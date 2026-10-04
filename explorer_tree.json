@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "manuscript_core": [
+    {
+      "path": "03_Thesis_Manuscript/DATA_DIGEST.md",
+      "title": "Data Digest (Valores Clave y Balances)",
+      "badge": "⭐ Síntesis",
+      "color": "gold",
+      "size": 5462
+    },
+    {
+      "path": "03_Thesis_Manuscript/Figures_Catalog.md",
+      "title": "Catálogo de Figuras (Enfoque Persona)",
+      "badge": "🖼️ Curaduría",
+      "color": "blue",
+      "size": 22888
+    },
+    {
+      "path": "03_Thesis_Manuscript/Methods_Chapter_Academic_Enhanced.md",
+      "title": "Capítulo Metodológico Extendido",
+      "badge": "🔬 Métodos",
+      "color": "purple",
+      "size": 34519
+    },
+    {
+      "path": "03_Thesis_Manuscript/OfficialDraft_Carbon_fluxes.txt",
+      "title": "Borrador Maestro Completo (.txt)",
+      "badge": "📄 Manuscrito",
+      "color": "gray",
+      "size": 330648
+    }
+  ],
+  "chapters": [
+    {
+      "path": "03_Thesis_Manuscript/chapters/00_FrontMatter_and_Abstract.md",
+      "title": "00 FrontMatter and Abstract",
+      "size": 17976
+    },
+    {
+      "path": "03_Thesis_Manuscript/chapters/01_Introduction_and_Aims.md",
+      "title": "01 Introduction and Aims",
+      "size": 83171
+    },
+    {
+      "path": "03_Thesis_Manuscript/chapters/02_Methods.md",
+      "title": "02 Methods",
+      "size": 100591
+    },
+    {
+      "path": "03_Thesis_Manuscript/chapters/03_Results.md",
+      "title": "03 Results",
+      "size": 41702
+    },
+    {
+      "path": "03_Thesis_Manuscript/chapters/04_Discussion.md",
+      "title": "04 Discussion",
+      "size": 81852
+    },
+    {
+      "path": "03_Thesis_Manuscript/chapters/05_Supervisors_Review_Notes.md",
+      "title": "05 Supervisors Review Notes",
+      "size": 2414
+    }
+  ],
+  "data_tables": [],
+  "figures": [],
+  "scripts": []
+}

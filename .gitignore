@@ -1,0 +1,24 @@
+# Temporary & Local Log Files
+.DS_Store
+*.log
+*.err
+server.log
+Icon?
+synthesis_screenshot.png
+
+# Development Backups
+*backup*.html
+*backup*.js
+screenshot_*.png
+
+# Historical Migration Scripts
+rebuild_*.py
+modify_*.py
+update*.py
+apply_all_user_requests.py
+fix_*.py
+hide_burger.py
+rewrite_html.py
+safe_rebuild.py
+mega_update.py
+reindex_narratives.py

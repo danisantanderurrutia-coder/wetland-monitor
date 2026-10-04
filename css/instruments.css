@@ -1,0 +1,202 @@
+/* ==========================================================================
+   MOUNTED INSTRUMENTS & SENSOR PINS STYLES
+   ========================================================================== */
+
+/* Instruments Column on the Right of Profile */
+.instruments-rack {
+  width: 320px;
+  height: 100%;
+  background: rgba(13, 20, 30, 0.95);
+  backdrop-filter: blur(14px);
+  border-left: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  z-index: 25;
+  overflow-y: auto;
+}
+
+.rack-header {
+  padding: 1.15rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rack-header h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rack-count {
+  font-size: 0.7rem;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  padding: 2px 7px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.instruments-list {
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.instrument-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.instrument-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--border-medium);
+  transition: all var(--transition-fast);
+}
+
+.instrument-card:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-glow);
+  transform: translateX(-2px);
+}
+
+.instrument-card.active {
+  background: rgba(30, 44, 64, 0.9);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
+}
+
+.instrument-card.active::before {
+  background: var(--accent-cyan);
+}
+
+.instrument-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.instrument-name-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.instrument-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-light);
+  line-height: 1.25;
+}
+
+.instrument-model {
+  font-size: 0.7rem;
+  color: var(--accent-cyan);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.instrument-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
+}
+
+.instrument-variables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.var-tag {
+  font-size: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+}
+
+.var-tag.highlight {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.instrument-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.4rem;
+}
+
+/* Floating Interactive Pins on the Profile Canvas */
+.sensor-pin {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(14, 21, 32, 0.9);
+  border: 2px solid var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+  transition: all var(--transition-fast);
+}
+
+.sensor-pin:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.9);
+  border-color: white;
+}
+
+.sensor-pin.active {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 1);
+  transform: scale(1.2);
+}
+
+/* Connection Line between Sensor Pin and Layer */
+.sensor-pin::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 24px;
+  height: 1px;
+  background: dashed rgba(56, 189, 248, 0.4);
+  pointer-events: none;
+}

@@ -1,0 +1,70 @@
+{
+  "version": "2.4.2",
+  "build_date": "2026-09-25",
+  "updated_at": "25.09.2026 18:30",
+  "title": "Master Thesis Defense Edition (Luminous 22-Slide Academic Deck)",
+  "university": "Christian-Albrechts-Universität zu Kiel",
+  "faculty": "Faculty of Agricultural and Nutritional Sciences",
+  "author": "Daniel Sebastián Santander Urrutia",
+  "supervisors": [
+    "Prof. Martin Komainda Ph.D.",
+    "Sebastian Jordan Ph.D."
+  ],
+  "changelog": [
+    {
+      "version": "2.4.2",
+      "date": "2026-09-25",
+      "badge": "Cache-Buster & Resilient Instance Binding",
+      "items": [
+        "Inyección estricta de parámetros de control de versiones (?v=2.4.2) en importaciones ES modules y etiquetas script para eliminar caché residual en navegadores locales.",
+        "Doble registro global del controlador (window.classicPresentationInstance y window.classicPresentation) con invocación inmediata.",
+        "Despachador de vistas resiliente con reintento automático si el módulo de diapositivas está completando su renderizado inicial.",
+        "Recarga en vivo forzada de pestañas activas en el navegador predeterminado (Opera)."
+      ]
+    },
+    {
+      "version": "2.4.1",
+      "date": "2026-09-25",
+      "badge": "Desktop Launcher & Menu Buttons",
+      "items": [
+        "Restaurados y fijados permanentemente los botones de 'Presentación Tesis (22 Slides)' en el menú superior (Fila 1 de acciones y Fila 2 de barra de navegación).",
+        "Optimizado el script de inicio del escritorio (launch_app.sh) con recarga automática de pestañas en Opera y Chrome.",
+        "Soporte de anclaje directo por URL hash (#presentation) para abrir la presentación inmediatamente al hacer doble clic en el acceso directo de escritorio.",
+        "Inclusión de parámetros anti-caché dinámicos para garantizar que el navegador siempre cargue la versión más reciente."
+      ]
+    },
+    {
+      "version": "2.4.0",
+      "date": "2026-09-25",
+      "badge": "Luminous Deck & Navigation Fix",
+      "items": [
+        "Presentación formal luminosa (blanco puro 16:9) de alta fidelidad académica para proyección.",
+        "Corrección de rutas de figuras (16b_CH4_Daily_Budgets, 14b_CH4_Models_Comparison y 80_N2O_Fluxes).",
+        "Reparación del menú superior de presentaciones para acceso directo sin caídas.",
+        "Eliminación del parpadeo (flicker) al cargar la página: inicio inmediato en la portada/landing.",
+        "Integración del botón 'Start Oral Defense' de la portada directamente a la presentación de 22 slides.",
+        "Sistema sincronizado de registro de versión (version.json + CHANGELOG.md + API)."
+      ]
+    },
+    {
+      "version": "2.3.0",
+      "date": "2026-09-25",
+      "badge": "Thesis Hub & 22 Slides",
+      "items": [
+        "Implementación del visor embebido Thesis Hub con explorador de manuscrito, datos y pipelines.",
+        "Ampliación a 22 diapositivas con cronómetro de defensa, notas del orador bilingües y preguntas de examen.",
+        "Eliminación de la barra obsoleta inferior para mayor limpieza visual."
+      ]
+    },
+    {
+      "version": "2.2.0",
+      "date": "2026-09-24",
+      "badge": "Repository Architecture",
+      "items": [
+        "Desacople de datos de pipeline (49 GB) a 01_Pipeline_Resultados y aceleración de búsqueda.",
+        "Modularización de capítulos en 03_Thesis_Manuscript y generación de DATA_DIGEST.md.",
+        "Nuevo icono oficial en alta resolución (.icns) en acceso directo de escritorio."
+      ]
+    }
+  ]
+}
