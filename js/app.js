@@ -187,6 +187,14 @@ class WetlandMonitorApp {
       });
     }
 
+    const directTwinBtn = document.getElementById("btn-header-direct-twin");
+    if (directTwinBtn) {
+      directTwinBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.switchView("soil_interface");
+      });
+    }
+
     const directBarBtn = document.getElementById("btn-direct-presentation-menu");
     if (directBarBtn) {
       directBarBtn.addEventListener("click", (e) => {

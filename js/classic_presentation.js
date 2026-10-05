@@ -13,7 +13,7 @@ export class ClassicThesisPresentation {
     this.notesVisible = false;
     this.overviewVisible = false;
     this.lightboxVisible = false;
-    this.notesLang = 'es'; // 'es' or 'en'
+    this.notesLang = 'en'; // Default to English ('en' or 'es')
     
     // Assign global references immediately
     window.classicPresentationInstance = this;
@@ -50,9 +50,9 @@ export class ClassicThesisPresentation {
       const btn = document.createElement('button');
       btn.id = 'btn-open-classic-presentation';
       btn.className = 'action-btn primary';
-      btn.title = 'Abrir Presentación Clásica de Tesis (22 Slides Académicas)';
+      btn.title = 'Open Classic Thesis Presentation (22 Academic Slides)';
       btn.style.cssText = 'background: linear-gradient(135deg, #0ea5e9, #0284c7) !important; border-color: #38bdf8 !important; font-weight: 600 !important;';
-      btn.innerHTML = `<span style="font-size:16px;">📽️</span> <span>Presentación Tesis</span>`;
+      btn.innerHTML = `<span style="font-size:16px;">📽️</span> <span>Thesis Presentation</span>`;
       headerActions.insertBefore(btn, headerActions.children[1] || null);
     }
 
@@ -67,8 +67,8 @@ export class ClassicThesisPresentation {
         <span class="carrusel-card-idx">00</span>
         <span class="carrusel-card-icon">📽️</span>
         <div class="carrusel-card-body">
-          <span class="carrusel-card-name">Presentación Tesis</span>
-          <span class="carrusel-card-sub">Clásica • 22 Slides</span>
+          <span class="carrusel-card-name">Thesis Presentation</span>
+          <span class="carrusel-card-sub">Classic • 22 Slides</span>
         </div>
       `;
       track.insertBefore(card, track.children[1] || null);
@@ -101,8 +101,8 @@ export class ClassicThesisPresentation {
               <div class="masthead-timer-wrap">
                 <span style="font-size:12px;">⏱️</span>
                 <span class="timer-digits" id="deck-timer-display">00:00</span>
-                <button class="timer-ctrl-btn" id="deck-timer-toggle-btn" title="Iniciar / Pausar Cronómetro">▶</button>
-                <button class="timer-ctrl-btn" id="deck-timer-reset-btn" title="Reiniciar Cronómetro">↺</button>
+                <button class="timer-ctrl-btn" id="deck-timer-toggle-btn" title="Start / Pause Stopwatch">▶</button>
+                <button class="timer-ctrl-btn" id="deck-timer-reset-btn" title="Reset Stopwatch">↺</button>
               </div>
 
               <div class="slide-masthead-right">
@@ -118,7 +118,7 @@ export class ClassicThesisPresentation {
             <div class="slide-status-line">
               <span>Wallener Au Peatland Observatory • Klimafarm Project • CAU Kiel</span>
               <button class="slide-hub-link-btn" id="btn-jump-to-hub">
-                <span>📖 Ver Capítulo en Thesis Hub</span>
+                <span>💻 Open Scripts &amp; Pipelines Hub</span>
               </button>
             </div>
 
@@ -128,8 +128,8 @@ export class ClassicThesisPresentation {
                 <div class="notes-header-left">
                   <span class="notes-panel-title">🎙️ Presenter Script &amp; Anticipated Defense Q&amp;A</span>
                   <div class="notes-lang-toggle">
-                    <button class="lang-btn active" id="lang-btn-es">ES</button>
-                    <button class="lang-btn" id="lang-btn-en">EN</button>
+                    <button class="lang-btn active" id="lang-btn-en">EN</button>
+                    <button class="lang-btn" id="lang-btn-es">ES</button>
                   </div>
                 </div>
                 <button id="btn-close-notes" style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size:16px;">✕</button>
@@ -142,27 +142,27 @@ export class ClassicThesisPresentation {
           <!-- Docked Controls Below Canvas -->
           <footer class="deck-control-footer">
             <div class="deck-nav-group">
-              <button class="deck-btn" id="deck-prev-btn" title="Anterior (Flecha Izquierda o Backspace)">
-                ❮ <span>Anterior</span>
+              <button class="deck-btn" id="deck-prev-btn" title="Previous (Left Arrow or Backspace)">
+                ❮ <span>Previous</span>
               </button>
-              <div class="slide-counter-badge" id="deck-counter-badge">Slide 01 / 14</div>
-              <button class="deck-btn primary" id="deck-next-btn" title="Siguiente (Flecha Derecha o Espacio)">
-                <span>Siguiente</span> ❯
+              <div class="slide-counter-badge" id="deck-counter-badge">Slide 01 / 22</div>
+              <button class="deck-btn primary" id="deck-next-btn" title="Next (Right Arrow or Space)">
+                <span>Next</span> ❯
               </button>
             </div>
 
             <div class="deck-nav-group">
-              <button class="deck-btn" id="deck-btn-overview" title="Ver cuadrícula de todas las diapositivas (Tecla O)">
-                ⊞ <span>Índice Diapositivas</span>
+              <button class="deck-btn" id="deck-btn-overview" title="View all slides overview (Key O)">
+                ⊞ <span>Slide Index</span>
               </button>
-              <button class="deck-btn" id="deck-btn-notes" title="Activar guión y notas del orador (Tecla P o N)">
-                🎙️ <span>Notas Orador</span>
+              <button class="deck-btn" id="deck-btn-notes" title="Toggle speaker notes and Q&A (Key P or N)">
+                🎙️ <span>Speaker Notes</span>
               </button>
-              <button class="deck-btn" id="deck-btn-fullscreen" title="Pantalla Completa (Tecla F)">
+              <button class="deck-btn" id="deck-btn-fullscreen" title="Fullscreen (Key F)">
                 ⛶ <span>Fullscreen</span>
               </button>
-              <button class="deck-btn" id="deck-btn-exit" title="Salir al Gemelo Digital (Esc)" style="background:rgba(239,68,68,0.15); border-color:rgba(239,68,68,0.3); color:#fca5a5;">
-                ✕ <span>Volver a la App</span>
+              <button class="deck-btn" id="deck-btn-exit" title="Exit to Digital Twin (Esc)" style="background:rgba(239,68,68,0.15); border-color:rgba(239,68,68,0.3); color:#fca5a5;">
+                ✕ <span>Back to App</span>
               </button>
             </div>
           </footer>
@@ -171,8 +171,8 @@ export class ClassicThesisPresentation {
         <!-- Slide Overview Grid Modal -->
         <div class="deck-overview-modal" id="deck-overview-modal">
           <div class="overview-header">
-            <h3>⊞ Índice General de la Presentación de Tesis (14 Diapositivas)</h3>
-            <button class="deck-btn" id="btn-close-overview">✕ Cerrar</button>
+            <h3>⊞ Thesis Defense Slide Deck Index (22 Slides)</h3>
+            <button class="deck-btn" id="btn-close-overview">✕ Close</button>
           </div>
           <div class="overview-grid" id="deck-overview-grid"></div>
         </div>
@@ -329,7 +329,7 @@ export class ClassicThesisPresentation {
 
     const carouselTitle = document.getElementById('carousel-current-title');
     if (carouselTitle) {
-      carouselTitle.innerHTML = `<span class="active-dot">●</span> <span class="active-icon">📽️</span> <span class="tab-text active-name">Presentación Tesis</span>`;
+      carouselTitle.innerHTML = `<span class="active-dot">●</span> <span class="active-icon">📽️</span> <span class="tab-text active-name">Thesis Presentation</span>`;
     }
 
     const drawer = document.getElementById('dropdown-view-tabs');
@@ -580,26 +580,40 @@ export class ClassicThesisPresentation {
 
     const speechEl = document.getElementById('deck-notes-speech');
     const qaEl = document.getElementById('deck-notes-qa');
-    const notesData = (this.notesLang === 'es' && slide.notes_es) ? slide.notes_es : slide.notes;
+    const isEn = this.notesLang === 'en';
+    const notesData = (!isEn && slide.notes_es) ? slide.notes_es : slide.notes;
 
     if (speechEl && notesData) {
-      speechEl.innerHTML = `<strong>Guión Oral del Ponente (${this.notesLang.toUpperCase()}):</strong><br>${notesData.speech}`;
+      const speechLabel = isEn ? "🎙️ Speaker Presentation Script (EN):" : "🎙️ Guión Oral del Ponente (ES):";
+      speechEl.innerHTML = `<strong>${speechLabel}</strong><br>${notesData.speech}`;
     }
     if (qaEl && notesData) {
-      qaEl.innerHTML = `<strong>❓ Pregunta Anticipada del Comité de Tesis:</strong><br>${notesData.defenseQ}`;
+      const qaLabel = isEn ? "❓ Anticipated Thesis Committee Question & Strategic Defense Answer:" : "❓ Pregunta Anticipada del Comité de Tesis y Respuesta:";
+      qaEl.innerHTML = `<strong>${qaLabel}</strong><br>${notesData.defenseQ}`;
     }
   }
 
   jumpToThesisHub() {
-    const slide = this.slides[this.currentIndex];
-    if (!slide || !slide.chapterLink) return;
-
-    // Buscar la instancia del ThesisExplorer o disparar su evento
     const explorerBtn = document.getElementById('btn-open-explorer');
     if (explorerBtn) explorerBtn.click();
 
+    // Map slides to relevant mermaid pipeline
+    const pipelineMap = {
+      0: 'scripts_hub/mermaid/01_eddy_processing_pipeline.md',
+      1: 'scripts_hub/mermaid/01_eddy_processing_pipeline.md',
+      2: 'scripts_hub/mermaid/02_gapfilling_partitioning_pipeline.md',
+      3: 'scripts_hub/mermaid/02_gapfilling_partitioning_pipeline.md',
+      4: 'scripts_hub/mermaid/03_chamber_eddy_integration_pipeline.md',
+      5: 'scripts_hub/mermaid/03_chamber_eddy_integration_pipeline.md',
+      6: 'scripts_hub/mermaid/04_soil_physics_geomechanics_pipeline.md',
+      7: 'scripts_hub/mermaid/04_soil_physics_geomechanics_pipeline.md',
+      8: 'scripts_hub/mermaid/05_ghg_budget_radiative_forcing_pipeline.md',
+      9: 'scripts_hub/mermaid/05_ghg_budget_radiative_forcing_pipeline.md'
+    };
+    const targetPath = pipelineMap[this.currentIndex] || 'scripts_hub/mermaid/01_eddy_processing_pipeline.md';
+
     setTimeout(() => {
-      const targetItem = document.querySelector(`.explorer-file-item[data-path="${slide.chapterLink}"]`);
+      const targetItem = document.querySelector(`.explorer-file-item[data-path="${targetPath}"]`);
       if (targetItem) targetItem.click();
     }, 250);
   }

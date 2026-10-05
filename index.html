@@ -75,13 +75,18 @@
         <!-- Right Header Actions -->
         <div class="header-actions">
           <!-- Official Academic Presentation Deck Button -->
-          <button class="action-btn primary header-presentation-btn" id="btn-open-classic-presentation" title="Abrir Presentación Clásica de Tesis (22 Slides Académicas)" style="background: linear-gradient(135deg, #0284c7, #0369a1) !important; color: #ffffff !important; border: 1px solid #38bdf8 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4) !important;">
-            <span style="font-size:16px;">📽️</span> <span style="font-weight:700;">Presentación Tesis</span> <span class="badge-pill" style="background:#38bdf8; color:#0f172a; font-size:10px; font-weight:800; padding:1px 6px; border-radius:10px;">22</span>
+          <button class="action-btn primary header-presentation-btn" id="btn-open-classic-presentation" title="Open Classic Thesis Presentation (22 Academic Slides)" style="background: linear-gradient(135deg, #0284c7, #0369a1) !important; color: #ffffff !important; border: 1px solid #38bdf8 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4) !important;">
+            <span style="font-size:16px;">📽️</span> <span style="font-weight:700;">Thesis Presentation</span> <span class="badge-pill" style="background:#38bdf8; color:#0f172a; font-size:10px; font-weight:800; padding:1px 6px; border-radius:10px;">22</span>
           </button>
 
-          <!-- Thesis Manuscript & Pipeline Explorer Hub Button -->
-          <button class="action-btn explorer-btn" id="btn-open-explorer" title="Open Thesis Manuscript & Pipeline Hub (Key T or H)">
-            <span style="font-size:16px;">📚</span> <span class="explorer-btn-text">Thesis Hub</span> <span class="badge-pill">Live</span>
+          <!-- Direct Digital Twin Button -->
+          <button class="action-btn direct-twin-btn" id="btn-header-direct-twin" title="Open Interactive Peatland Digital Twin & Soil Interface" style="background: linear-gradient(135deg, #059669, #047857) !important; color: #ffffff !important; border: 1px solid #34d399 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(5, 150, 105, 0.4) !important;">
+            <span style="font-size:16px;">🌱</span> <span>Digital Twin</span>
+          </button>
+
+          <!-- Scripts & Pipelines Hub Button -->
+          <button class="action-btn explorer-btn" id="btn-open-explorer" title="Open Scripts & Pipelines Hub (Key T or H)">
+            <span style="font-size:16px;">💻</span> <span class="explorer-btn-text">Hub - Scripts &amp; Pipelines</span> <span class="badge-pill">Live</span>
           </button>
 
           <!-- Template Theme Toggle (Luminous / Dark) -->
@@ -113,11 +118,6 @@
               <span class="tab-text active-name">Landing</span>
             </div>
             <span class="carrusel-btn-arrow">▾</span>
-          </button>
-
-          <!-- Direct Presentation Button in Navigation Bar -->
-          <button class="menu-bar-presentation-direct-btn" id="btn-direct-presentation-menu" title="Ver Presentación Clásica de Tesis (22 Diapositivas)" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: 1px solid #38bdf8; border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35); transition: all 0.2s ease;">
-            <span>📽️</span> <span>Presentación Tesis (22 Slides)</span>
           </button>
 
           <div class="nav-view-indicator" id="nav-view-indicator">
@@ -155,8 +155,8 @@
                 <span class="carrusel-card-idx">★</span>
                 <span class="carrusel-card-icon">📽️</span>
                 <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Presentación Tesis</span>
-                  <span class="carrusel-card-sub">Clásica • 22 Slides</span>
+                  <span class="carrusel-card-name">Thesis Presentation</span>
+                  <span class="carrusel-card-sub">Classic • 22 Slides</span>
                 </div>
               </div>
 
@@ -334,8 +334,8 @@
                 <span class="cover-meta-value">Kiel, Schleswig-Holstein</span>
                 <span class="cover-meta-sub">Academic Defense Examination • 2026</span>
                 <div class="cover-version-status-row">
-                  <span class="cover-version-badge-pill" id="app-version-tag">v2.4.0 • 25.09.2026</span>
-                  <button class="btn-changelog-trigger" id="btn-open-changelog" type="button" title="Ver registro completo de versiones">📋 Registro de Versión</button>
+                  <span class="cover-version-badge-pill" id="app-version-tag">v2.4.2 • 2026</span>
+                  <button class="btn-changelog-trigger" id="btn-open-changelog" type="button" title="View version changelog">📋 Version Log</button>
                 </div>
               </div>
             </div>
@@ -343,7 +343,7 @@
             <!-- Interactive Quick Actions — Oral Defense Launch -->
             <div class="cover-actions-row" style="justify-content: center; gap: 1rem; margin-top: 1.25rem;">
               <button class="cover-btn-start" id="btn-start-defense" style="background: linear-gradient(135deg, #0284c7, #0369a1); box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); font-weight: 700;">
-                <span>📽️</span> Iniciar Presentación Oficial de Tesis (22 Slides)
+                <span>📽️</span> Launch Official Thesis Defense (22 Slides)
               </button>
             </div>
 
@@ -4913,7 +4913,7 @@
   <div class="changelog-modal-overlay hidden" id="changelog-modal">
     <div class="changelog-modal-box">
       <div class="changelog-modal-header">
-        <h3><span>📋</span> Registro de Versiones y Actualizaciones</h3>
+        <h3><span>📋</span> Version &amp; Update History</h3>
         <button class="changelog-modal-close" id="btn-close-changelog" type="button">✕</button>
       </div>
       <div class="changelog-modal-body" id="changelog-list-container">
@@ -4922,7 +4922,7 @@
     </div>
   </div>
 
-  <script type="module" src="js/thesis_explorer.js?v=2.4.1"></script>
-  <script type="module" src="js/classic_presentation.js?v=2.4.1"></script>
+  <script type="module" src="js/thesis_explorer.js?v=2.5.0"></script>
+  <script type="module" src="js/classic_presentation.js?v=2.5.0"></script>
 </body>
 </html>

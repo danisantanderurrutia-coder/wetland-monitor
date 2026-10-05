@@ -19,8 +19,8 @@ export class ThesisExplorer {
       const btn = document.createElement('button');
       btn.id = 'btn-open-explorer';
       btn.className = 'action-btn explorer-btn';
-      btn.title = 'Abrir Thesis Manuscript & Pipeline Hub (Atajo: T o H)';
-      btn.innerHTML = `<span style="font-size:16px;">📚</span> <span>Thesis Hub</span> <span class="badge-pill">Live</span>`;
+      btn.title = 'Open Scripts & Pipelines Hub (Key T or H)';
+      btn.innerHTML = `<span style="font-size:16px;">💻</span> <span>Hub - Scripts &amp; Pipelines</span> <span class="badge-pill">Live</span>`;
       headerActions.insertBefore(btn, headerActions.firstChild);
     }
 
@@ -34,27 +34,27 @@ export class ThesisExplorer {
           <!-- Window Header -->
           <div class="explorer-header">
             <div class="explorer-header-left">
-              <div class="explorer-header-icon">🔬</div>
+              <div class="explorer-header-icon">💻</div>
               <div class="explorer-header-title">
-                <h2>Thesis Manuscript &amp; Pipeline Hub</h2>
-                <span>Explorador Académico • CAU Kiel • Wallener Au</span>
+                <h2>Hub - Scripts &amp; Pipelines</h2>
+                <span>Computational Architecture &amp; Empirical Routines • CAU Kiel</span>
               </div>
             </div>
 
             <!-- Search Bar -->
             <div class="explorer-search-wrapper">
               <span class="explorer-search-icon">🔍</span>
-              <input type="text" id="explorer-search-input" class="explorer-search-input" placeholder="Buscar datos, gases (ej: methane, GWP, bulk density)..." autocomplete="off" />
+              <input type="text" id="explorer-search-input" class="explorer-search-input" placeholder="Search scripts, models, functions (e.g., EddyPro, gap-filling, Casagrande)..." autocomplete="off" />
               <div id="explorer-search-results" class="explorer-search-results"></div>
             </div>
 
             <!-- Right Controls -->
             <div class="explorer-header-right">
-              <button class="explorer-ctrl-btn" id="explorer-copy-btn" title="Copiar contenido actual">
-                📋 <span>Copiar</span>
+              <button class="explorer-ctrl-btn" id="explorer-copy-btn" title="Copy current script / diagram code">
+                📋 <span>Copy Code</span>
               </button>
-              <button class="explorer-ctrl-btn close-btn" id="explorer-close-btn" title="Cerrar (Esc)">
-                ✕ <span>Cerrar</span>
+              <button class="explorer-ctrl-btn close-btn" id="explorer-close-btn" title="Close (Esc)">
+                ✕ <span>Close</span>
               </button>
             </div>
           </div>
@@ -63,14 +63,14 @@ export class ThesisExplorer {
           <div class="explorer-body">
             <!-- Left Sidebar Navigation -->
             <div class="explorer-sidebar" id="explorer-sidebar">
-              <div style="padding: 16px; color: #94a3b8; font-size: 13px;">Cargando archivos...</div>
+              <div style="padding: 16px; color: #94a3b8; font-size: 13px;">Loading scripts and pipelines...</div>
             </div>
 
             <!-- Main Document Area -->
             <div class="explorer-main">
               <div class="explorer-toolbar">
                 <div class="explorer-breadcrumb" id="explorer-breadcrumb">
-                  <span>Tesis</span> › <span class="explorer-breadcrumb-current" id="explorer-active-title">Seleccionar documento</span>
+                  <span>Hub</span> › <span class="explorer-breadcrumb-current" id="explorer-active-title">Select Script or Pipeline</span>
                 </div>
                 <div class="explorer-toolbar-actions" id="explorer-toolbar-actions">
                   <span id="explorer-file-size" style="font-size: 11px; color: #64748b;"></span>
@@ -79,8 +79,8 @@ export class ThesisExplorer {
 
               <div class="explorer-viewport" id="explorer-viewport">
                 <div style="text-align: center; padding: 60px 20px; color: #64748b;">
-                  <div style="font-size: 40px; margin-bottom: 12px;">📑</div>
-                  <h3>Cargando documento inicial...</h3>
+                  <div style="font-size: 40px; margin-bottom: 12px;">💻</div>
+                  <h3>Loading pipeline architecture...</h3>
                 </div>
               </div>
             </div>
@@ -180,15 +180,18 @@ export class ThesisExplorer {
       if (data && data.status === 'ok') {
         this.treeData = data;
         this.renderSidebar();
-        // Cargar por defecto DATA_DIGEST.md
-        this.loadFile('03_Thesis_Manuscript/DATA_DIGEST.md');
+        // Cargar por defecto el primer pipeline Mermaid
+        const defaultPath = (this.treeData.mermaid_pipelines && this.treeData.mermaid_pipelines[0])
+          ? this.treeData.mermaid_pipelines[0].path
+          : 'scripts_hub/mermaid/01_eddy_processing_pipeline.md';
+        this.loadFile(defaultPath);
       } else {
-        throw new Error('No se pudo obtener el árbol de documentos.');
+        throw new Error('Could not load scripts and pipelines catalog.');
       }
     } catch (err) {
       console.error('Error fetching tree:', err);
       const sb = document.getElementById('explorer-sidebar');
-      if (sb) sb.innerHTML = `<div style="padding:16px; color:#ef4444;">Error al cargar el árbol de archivos.</div>`;
+      if (sb) sb.innerHTML = `<div style="padding:16px; color:#ef4444;">Error loading scripts & pipelines catalog.</div>`;
     }
   }
 
@@ -198,101 +201,143 @@ export class ThesisExplorer {
 
     let html = '';
 
-    // 1. Manuscrito y Síntesis
-    html += `
-      <div class="explorer-nav-section">
-        <div class="explorer-nav-section-title">
-          <span>⭐ Síntesis &amp; Manuscrito</span>
-        </div>
-    `;
-    for (const item of this.treeData.manuscript_core || []) {
-      const badgeClass = item.color ? `badge-${item.color}` : 'badge-gray';
+    // 1. Mermaid Production Pipelines
+    if (this.treeData.mermaid_pipelines && this.treeData.mermaid_pipelines.length > 0) {
       html += `
-        <div class="explorer-file-item" data-path="${item.path}" title="${item.path}">
-          <div class="explorer-file-left">
-            <span class="explorer-file-icon">📄</span>
-            <span class="explorer-file-label">${item.title}</span>
+        <div class="explorer-nav-section">
+          <div class="explorer-nav-section-title">
+            <span>📊 Production Architecture &amp; Pipelines</span>
           </div>
-          <span class="explorer-file-badge ${badgeClass}">${item.badge}</span>
-        </div>
       `;
+      for (const item of this.treeData.mermaid_pipelines) {
+        const badgeClass = item.color ? `badge-${item.color}` : 'badge-emerald';
+        html += `
+          <div class="explorer-file-item" data-path="${item.path}" title="${item.path}">
+            <div class="explorer-file-left">
+              <span class="explorer-file-icon">⚡</span>
+              <span class="explorer-file-label">${item.title}</span>
+            </div>
+            <span class="explorer-file-badge ${badgeClass}">${item.badge || 'MERMAID'}</span>
+          </div>
+        `;
+      }
+      html += `</div>`;
     }
-    html += `</div>`;
 
-    // 2. Capítulos Modulares
-    html += `
-      <div class="explorer-nav-section">
-        <div class="explorer-nav-section-title">
-          <span>📑 Capítulos de la Tesis (.md)</span>
-        </div>
-    `;
-    for (const chap of this.treeData.chapters || []) {
+    // 2. Eddy Covariance Scripts
+    if (this.treeData.eddy_scripts && this.treeData.eddy_scripts.length > 0) {
       html += `
-        <div class="explorer-file-item" data-path="${chap.path}" title="${chap.path}">
-          <div class="explorer-file-left">
-            <span class="explorer-file-icon">📖</span>
-            <span class="explorer-file-label">${chap.title}</span>
+        <div class="explorer-nav-section">
+          <div class="explorer-nav-section-title">
+            <span>🗼 Eddy Covariance &amp; Fluxes (R)</span>
           </div>
-        </div>
       `;
+      for (const s of this.treeData.eddy_scripts) {
+        const badgeClass = s.color ? `badge-${s.color}` : 'badge-blue';
+        html += `
+          <div class="explorer-file-item" data-path="${s.path}" title="${s.path}">
+            <div class="explorer-file-left">
+              <span class="explorer-file-icon">📈</span>
+              <span class="explorer-file-label">${s.title}</span>
+            </div>
+            <span class="explorer-file-badge ${badgeClass}">${s.badge || 'R'}</span>
+          </div>
+        `;
+      }
+      html += `</div>`;
     }
-    html += `</div>`;
 
-    // 3. Tablas y Datos Procesados
-    html += `
-      <div class="explorer-nav-section">
-        <div class="explorer-nav-section-title">
-          <span>📊 Datos Procesados (.csv)</span>
-        </div>
-    `;
-    for (const d of this.treeData.data_tables || []) {
+    // 3. Chamber Network Scripts
+    if (this.treeData.chamber_scripts && this.treeData.chamber_scripts.length > 0) {
       html += `
-        <div class="explorer-file-item" data-path="${d.path}" title="${d.path}">
-          <div class="explorer-file-left">
-            <span class="explorer-file-icon">📈</span>
-            <span class="explorer-file-label">${d.title}</span>
+        <div class="explorer-nav-section">
+          <div class="explorer-nav-section-title">
+            <span>🧪 Gas Chambers &amp; Transects (R)</span>
           </div>
-          <span class="explorer-file-badge badge-blue">CSV</span>
-        </div>
       `;
-    }
-    html += `</div>`;
-
-    // 4. Figuras de Producción
-    html += `
-      <div class="explorer-nav-section">
-        <div class="explorer-nav-section-title">
-          <span>🖼️ Figuras de Producción</span>
-        </div>
-        <div class="explorer-file-item" data-action="gallery" title="Ver galería completa de figuras">
-          <div class="explorer-file-left">
-            <span class="explorer-file-icon">🎨</span>
-            <span class="explorer-file-label">Galería de Gráficos (${(this.treeData.figures || []).length})</span>
+      for (const s of this.treeData.chamber_scripts) {
+        const badgeClass = s.color ? `badge-${s.color}` : 'badge-amber';
+        html += `
+          <div class="explorer-file-item" data-path="${s.path}" title="${s.path}">
+            <div class="explorer-file-left">
+              <span class="explorer-file-icon">⚗️</span>
+              <span class="explorer-file-label">${s.title}</span>
+            </div>
+            <span class="explorer-file-badge ${badgeClass}">${s.badge || 'R'}</span>
           </div>
-          <span class="explorer-file-badge badge-gold">GRID</span>
-        </div>
-      </div>
-    `;
+        `;
+      }
+      html += `</div>`;
+    }
 
-    // 5. Scripts Analíticos
-    html += `
-      <div class="explorer-nav-section">
-        <div class="explorer-nav-section-title">
-          <span>💻 Scripts Analíticos (R / Python)</span>
-        </div>
-    `;
-    for (const sc of (this.treeData.scripts || []).slice(0, 15)) {
+    // 4. Meteophysics & Environmental Biomet
+    if (this.treeData.meteophysics_scripts && this.treeData.meteophysics_scripts.length > 0) {
       html += `
-        <div class="explorer-file-item" data-path="${sc.path}" title="${sc.path}">
-          <div class="explorer-file-left">
-            <span class="explorer-file-icon">⚙️</span>
-            <span class="explorer-file-label">${sc.title}</span>
+        <div class="explorer-nav-section">
+          <div class="explorer-nav-section-title">
+            <span>☀️ Meteophysics &amp; Biomet Drivers (R)</span>
           </div>
-          <span class="explorer-file-badge badge-gray">${sc.dir}</span>
-        </div>
       `;
+      for (const s of this.treeData.meteophysics_scripts) {
+        const badgeClass = s.color ? `badge-${s.color}` : 'badge-cyan';
+        html += `
+          <div class="explorer-file-item" data-path="${s.path}" title="${s.path}">
+            <div class="explorer-file-left">
+              <span class="explorer-file-icon">⛅</span>
+              <span class="explorer-file-label">${s.title}</span>
+            </div>
+            <span class="explorer-file-badge ${badgeClass}">${s.badge || 'R'}</span>
+          </div>
+        `;
+      }
+      html += `</div>`;
     }
-    html += `</div>`;
+
+    // 5. Soil Physics & Geomechanics
+    if (this.treeData.soil_physics_scripts && this.treeData.soil_physics_scripts.length > 0) {
+      html += `
+        <div class="explorer-nav-section">
+          <div class="explorer-nav-section-title">
+            <span>🌱 Soil Physics &amp; Geomechanics (R/Python)</span>
+          </div>
+      `;
+      for (const s of this.treeData.soil_physics_scripts) {
+        const badgeClass = s.color ? `badge-${s.color}` : 'badge-purple';
+        html += `
+          <div class="explorer-file-item" data-path="${s.path}" title="${s.path}">
+            <div class="explorer-file-left">
+              <span class="explorer-file-icon">🔬</span>
+              <span class="explorer-file-label">${s.title}</span>
+            </div>
+            <span class="explorer-file-badge ${badgeClass}">${s.badge || 'R'}</span>
+          </div>
+        `;
+      }
+      html += `</div>`;
+    }
+
+    // 6. Master Pipelines & Budgets
+    if (this.treeData.pipeline_scripts && this.treeData.pipeline_scripts.length > 0) {
+      html += `
+        <div class="explorer-nav-section">
+          <div class="explorer-nav-section-title">
+            <span>⚙️ Master Pipelines &amp; GHG Budgets</span>
+          </div>
+      `;
+      for (const s of this.treeData.pipeline_scripts) {
+        const badgeClass = s.color ? `badge-${s.color}` : 'badge-emerald';
+        html += `
+          <div class="explorer-file-item" data-path="${s.path}" title="${s.path}">
+            <div class="explorer-file-left">
+              <span class="explorer-file-icon">🚀</span>
+              <span class="explorer-file-label">${s.title}</span>
+            </div>
+            <span class="explorer-file-badge ${badgeClass}">${s.badge || 'Pipeline'}</span>
+          </div>
+        `;
+      }
+      html += `</div>`;
+    }
 
     sb.innerHTML = html;
 
@@ -302,13 +347,8 @@ export class ThesisExplorer {
         sb.querySelectorAll('.explorer-file-item').forEach(i => i.classList.remove('active'));
         el.classList.add('active');
 
-        const action = el.getAttribute('data-action');
-        if (action === 'gallery') {
-          this.renderFiguresGallery();
-        } else {
-          const path = el.getAttribute('data-path');
-          if (path) this.loadFile(path);
-        }
+        const path = el.getAttribute('data-path');
+        if (path) this.loadFile(path);
       });
     });
   }
@@ -319,7 +359,7 @@ export class ThesisExplorer {
     const sizeEl = document.getElementById('explorer-file-size');
 
     if (!vp) return;
-    vp.innerHTML = `<div style="text-align:center; padding: 60px; color:#94a3b8;">Cargando documento...</div>`;
+    vp.innerHTML = `<div style="text-align:center; padding: 60px; color:#94a3b8;">Loading file...</div>`;
     if (titleEl) titleEl.innerText = path.split('/').pop();
 
     try {
@@ -344,7 +384,7 @@ export class ThesisExplorer {
             content: content
           };
         } else {
-          throw new Error('No se pudo encontrar el archivo solicitado.');
+          throw new Error('Requested file could not be found.');
         }
       }
 
@@ -361,6 +401,7 @@ export class ThesisExplorer {
 
       if (data.type === 'markdown') {
         vp.innerHTML = `<div class="explorer-markdown">${this.parseMarkdown(data.content)}</div>`;
+        this.renderMermaidInContainer(vp);
       } else if (data.type === 'csv') {
         this.renderCSVTable(data, vp);
       } else if (data.type === 'code') {
@@ -510,11 +551,36 @@ export class ThesisExplorer {
     });
   }
 
+  renderMermaidInContainer(container) {
+    if (!container) return;
+    const mermaidBlocks = container.querySelectorAll('.mermaid');
+    if (mermaidBlocks.length > 0 && window.mermaid) {
+      try {
+        window.mermaid.run({ nodes: mermaidBlocks });
+      } catch (err) {
+        console.warn('Mermaid rendering issue, retrying with init:', err);
+        try {
+          window.mermaid.init(undefined, mermaidBlocks);
+        } catch (e) {
+          console.error('Mermaid render error:', e);
+        }
+      }
+    }
+  }
+
   parseMarkdown(text) {
     if (!text) return '';
 
+    // Extraer y proteger bloques mermaid antes del formateo regular
+    const mermaidMatches = [];
+    let processed = text.replace(/```mermaid\s*([\s\S]*?)```/g, (match, code) => {
+      const idx = mermaidMatches.length;
+      mermaidMatches.push(code.trim());
+      return `@@MERMAID_BLOCK_${idx}@@`;
+    });
+
     // Sanitización y parseo seguro
-    let html = text
+    let html = processed
       // Headers
       .replace(/^### (.*$)/gim, '<h3>$1</h3>')
       .replace(/^## (.*$)/gim, '<h2>$1</h2>')
@@ -542,9 +608,19 @@ export class ThesisExplorer {
 
     html = '<p>' + html + '</p>';
     // Envolver grupos de <tr> en <table>
-    html = html.replace(/(<tr>.*?<\/tr>)+/gs, (m) => `<table style="width:100%;">${m}</table>`);
+    html = html.replace(/(<tr>.*?<\/tr>)+/gs, (m) => `<table style="width:100%; margin: 16px 0;">${m}</table>`);
     // Envolver grupos de <li> en <ul>
     html = html.replace(/(<li>.*?<\/li>)+/gs, (m) => `<ul>${m}</ul>`);
+
+    // Reinsertar bloques mermaid interactivos
+    mermaidMatches.forEach((code, idx) => {
+      const blockHtml = `
+        <div class="mermaid-diagram-wrap" style="margin: 20px 0; background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 20px; overflow-x: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+          <div class="mermaid">${this.escapeHtml(code)}</div>
+        </div>
+      `;
+      html = html.replace(`@@MERMAID_BLOCK_${idx}@@`, blockHtml);
+    });
 
     return html;
   }

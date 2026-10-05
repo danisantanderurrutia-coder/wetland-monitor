@@ -1,68 +1,178 @@
 {
   "status": "ok",
-  "manuscript_core": [
+  "title": "Hub - Scripts & Pipelines",
+  "description": "Production computational architecture, empirical measurement routines, and analytical workflows for Wallener Au Peatland Observatory.",
+  "mermaid_pipelines": [
     {
-      "path": "03_Thesis_Manuscript/DATA_DIGEST.md",
-      "title": "Data Digest (Valores Clave y Balances)",
-      "badge": "⭐ Síntesis",
+      "path": "scripts_hub/mermaid/01_eddy_processing_pipeline.md",
+      "title": "01. High-Frequency EddyPro & QA/QC Pipeline",
+      "badge": "EddyPro",
+      "color": "cyan",
+      "size": 1520
+    },
+    {
+      "path": "scripts_hub/mermaid/02_gapfilling_partitioning_pipeline.md",
+      "title": "02. Multi-Gas Imputation & Flux Partitioning Pipeline",
+      "badge": "MDS / AI",
       "color": "gold",
-      "size": 5462
+      "size": 1640
     },
     {
-      "path": "03_Thesis_Manuscript/Figures_Catalog.md",
-      "title": "Catálogo de Figuras (Enfoque Persona)",
-      "badge": "🖼️ Curaduría",
-      "color": "blue",
-      "size": 22888
+      "path": "scripts_hub/mermaid/03_chamber_eddy_integration_pipeline.md",
+      "title": "03. Chamber & Footprint Integration Pipeline",
+      "badge": "Chambers",
+      "color": "amber",
+      "size": 1580
     },
     {
-      "path": "03_Thesis_Manuscript/Methods_Chapter_Academic_Enhanced.md",
-      "title": "Capítulo Metodológico Extendido",
-      "badge": "🔬 Métodos",
+      "path": "scripts_hub/mermaid/04_soil_physics_geomechanics_pipeline.md",
+      "title": "04. Soil Physics & Precompression Geomechanics Pipeline",
+      "badge": "Geomechanics",
       "color": "purple",
-      "size": 34519
+      "size": 1720
     },
     {
-      "path": "03_Thesis_Manuscript/OfficialDraft_Carbon_fluxes.txt",
-      "title": "Borrador Maestro Completo (.txt)",
-      "badge": "📄 Manuscrito",
-      "color": "gray",
-      "size": 330648
+      "path": "scripts_hub/mermaid/05_ghg_budget_radiative_forcing_pipeline.md",
+      "title": "05. Master Radiative Forcing & GHG Budgets Pipeline",
+      "badge": "GWP100/20",
+      "color": "emerald",
+      "size": 1810
     }
   ],
-  "chapters": [
+  "eddy_scripts": [
     {
-      "path": "03_Thesis_Manuscript/chapters/00_FrontMatter_and_Abstract.md",
-      "title": "00 FrontMatter and Abstract",
-      "size": 17976
+      "path": "scripts_hub/eddy/01_lmd_cl_processing_eddypro_output.R",
+      "title": "01_processing_eddypro_output.R",
+      "badge": "Raw L2",
+      "color": "blue"
     },
     {
-      "path": "03_Thesis_Manuscript/chapters/01_Introduction_and_Aims.md",
-      "title": "01 Introduction and Aims",
-      "size": 83171
+      "path": "scripts_hub/eddy/04_lmd_cl_QC_eddy_data.R",
+      "title": "04_QC_eddy_data.R (u* & MAD spike filtering)",
+      "badge": "QA/QC",
+      "color": "cyan"
     },
     {
-      "path": "03_Thesis_Manuscript/chapters/02_Methods.md",
-      "title": "02 Methods",
-      "size": 100591
+      "path": "scripts_hub/eddy/05_lmd_cl_MDS_gap_filling.R",
+      "title": "05_MDS_gap_filling.R (REddyProc)",
+      "badge": "MDS",
+      "color": "blue"
     },
     {
-      "path": "03_Thesis_Manuscript/chapters/03_Results.md",
-      "title": "03 Results",
-      "size": 41702
+      "path": "scripts_hub/eddy/06_lmd_cl_LT_MM_gap_filling.R",
+      "title": "06_LT_MM_gap_filling.R (Lloyd-Taylor & Michaelis-Menten)",
+      "badge": "Partition",
+      "color": "gold"
     },
     {
-      "path": "03_Thesis_Manuscript/chapters/04_Discussion.md",
-      "title": "04 Discussion",
-      "size": 81852
+      "path": "scripts_hub/eddy/07_lmd_cl_ML_gap_filling.R",
+      "title": "07_ML_gap_filling.R (Random Forest & ANN for CH4)",
+      "badge": "Machine Learning",
+      "color": "purple"
     },
     {
-      "path": "03_Thesis_Manuscript/chapters/05_Supervisors_Review_Notes.md",
-      "title": "05 Supervisors Review Notes",
-      "size": 2414
+      "path": "scripts_hub/eddy/plot_footprint.R",
+      "title": "plot_footprint.R (Kljun 2D analytical FFP)",
+      "badge": "Footprint",
+      "color": "gray"
     }
   ],
-  "data_tables": [],
-  "figures": [],
-  "scripts": []
+  "chamber_scripts": [
+    {
+      "path": "scripts_hub/chambers/Chambers_Avanzado.R",
+      "title": "Chambers_Avanzado.R (Non-linear & linear flux regression)",
+      "badge": "Flux Fitting",
+      "color": "amber"
+    },
+    {
+      "path": "scripts_hub/chambers/Verify_Cham.R",
+      "title": "Verify_Cham.R (QC quality and collar seal audit)",
+      "badge": "QC Audit",
+      "color": "cyan"
+    },
+    {
+      "path": "scripts_hub/chambers/09_lmd_cl_GHG_Chamber_Integration.R",
+      "title": "09_GHG_Chamber_Integration.R (Tower vs Chamber spatial cross-val)",
+      "badge": "Integration",
+      "color": "gold"
+    }
+  ],
+  "meteophysics_scripts": [
+    {
+      "path": "scripts_hub/meteophysics/00_lmd_cl_extract_clean_biomet.R",
+      "title": "00_extract_clean_biomet.R (Net radiation, soil heat flux)",
+      "badge": "Extract",
+      "color": "blue"
+    },
+    {
+      "path": "scripts_hub/meteophysics/02_lmd_cl_QC_biomet_data.R",
+      "title": "02_QC_biomet_data.R (Physical range limits & sensors)",
+      "badge": "QA/QC",
+      "color": "cyan"
+    },
+    {
+      "path": "scripts_hub/meteophysics/03_lmd_cl_QC_biomet_gap_filling.R",
+      "title": "03_QC_biomet_gap_filling.R (Meteo imputation & proxies)",
+      "badge": "Imputation",
+      "color": "gold"
+    },
+    {
+      "path": "scripts_hub/meteophysics/01_Switch_WalterLieth_NASA.R",
+      "title": "01_Switch_WalterLieth_NASA.R (Climate diagram synthesis)",
+      "badge": "Climate",
+      "color": "gray"
+    },
+    {
+      "path": "scripts_hub/meteophysics/plot_wl_ggplot.R",
+      "title": "plot_wl_ggplot.R (Ombrothermic graphics)",
+      "badge": "ggplot2",
+      "color": "gray"
+    }
+  ],
+  "soil_physics_scripts": [
+    {
+      "path": "scripts_hub/soil_physics/SoilCompression.R",
+      "title": "SoilCompression.R (Precompression stress σp & Casagrande curve)",
+      "badge": "Oedometer",
+      "color": "purple"
+    },
+    {
+      "path": "scripts_hub/soil_physics/plot_soil_profiles.R",
+      "title": "plot_soil_profiles.R (Bulk density, pF retention, stratigraphy)",
+      "badge": "pF Curves",
+      "color": "amber"
+    },
+    {
+      "path": "scripts_hub/soil_physics/generate_soil_atmosphere_diagram.py",
+      "title": "generate_soil_atmosphere_diagram.py (Stratigraphy engine)",
+      "badge": "Python",
+      "color": "blue"
+    }
+  ],
+  "pipeline_scripts": [
+    {
+      "path": "scripts_hub/pipelines/master_pipeline.R",
+      "title": "master_pipeline.R (End-to-end automated pipeline executor)",
+      "badge": "Master",
+      "color": "emerald"
+    },
+    {
+      "path": "scripts_hub/pipelines/pipeline_config.R",
+      "title": "pipeline_config.R (Constants, paths, physical boundaries)",
+      "badge": "Config",
+      "color": "gray"
+    },
+    {
+      "path": "scripts_hub/pipelines/08_lmd_cl_GHG_Budgets.R",
+      "title": "08_GHG_Budgets.R (Annual GWP100 & GWP20 budget calculation)",
+      "badge": "Budgets",
+      "color": "gold"
+    },
+    {
+      "path": "scripts_hub/pipelines/generate_monthly_stacked_ghg.R",
+      "title": "generate_monthly_stacked_ghg.R (Cumulative monthly balance)",
+      "badge": "Monthly",
+      "color": "cyan"
+    }
+  ]
 }
