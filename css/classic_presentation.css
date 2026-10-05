@@ -10,9 +10,10 @@
   display: none;
   width: 100%;
   height: calc(100vh - 110px);
-  min-height: 740px;
+  min-height: 0;
   background: #f1f5f9;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   color: #1e293b;
 }
@@ -39,11 +40,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 14px 24px;
+  justify-content: flex-start;
+  padding: 10px 20px 18px;
   background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: min-content;
+  box-sizing: border-box;
 }
 
 /* 16:9 Academic Slide Canvas (Luminous White Slide) */
@@ -51,16 +55,17 @@
   width: 100%;
   max-width: 1460px;
   aspect-ratio: 16 / 9;
-  max-height: calc(100vh - 170px);
+  max-height: calc(100vh - 195px);
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 12px;
-  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
   transition: opacity 0.25s ease, transform 0.25s ease;
+  flex-shrink: 1;
 }
 
 /* Top Progress Bar on Canvas */
@@ -474,17 +479,56 @@
 .deck-control-footer {
   width: 100%;
   max-width: 1460px;
-  height: 56px;
+  min-height: 52px;
+  height: 52px;
   margin-top: 10px;
+  margin-bottom: 6px;
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 0 16px;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
   z-index: 50;
+  flex-shrink: 0;
+}
+
+@media (max-height: 800px) {
+  .academic-deck-wrapper {
+    padding: 6px 12px 14px;
+  }
+  .academic-slide-canvas {
+    max-height: calc(100vh - 175px);
+  }
+  .deck-control-footer {
+    height: 46px;
+    min-height: 46px;
+    margin-top: 8px;
+    padding: 0 12px;
+  }
+  .deck-btn {
+    padding: 5px 10px;
+    font-size: 11.5px;
+  }
+  .slide-masthead {
+    height: 42px;
+  }
+  .slide-content-area {
+    padding: 14px 22px 10px;
+  }
+}
+
+@media (max-height: 680px) {
+  .academic-slide-canvas {
+    max-height: calc(100vh - 155px);
+  }
+  .deck-control-footer {
+    height: 42px;
+    min-height: 42px;
+    margin-top: 6px;
+  }
 }
 
 .deck-nav-group {
