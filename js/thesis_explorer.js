@@ -970,62 +970,62 @@ export class ThesisExplorer {
       {
         shortTitle: '01. Vision',
         slug: 'vision',
-        tag: 'SLIDE 01 / 10 • THE LIVING PEATLAND TWIN',
-        title: 'The Living Peatland: Continuous Biophysical Simulation in 60 FPS',
-        subtitle: 'Synthesizing 14,993 half-hourly micrometeorological flux blocks and soil mechanics into a zero-lag prognostic twin',
+        tag: 'SLIDE 01 / 10 • THE PEATLAND SIMULATOR',
+        title: 'The Living Peatland: Seeing a Wetland Breathe in Real Time',
+        subtitle: 'Turning thousands of sensor numbers into an interactive simulator where you can test what happens when water and weather change',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box success-box">
               <div class="pitch-card-metric">+5 to -60 cm</div>
-              <div class="pitch-card-sub">Hydrological Gradient</div>
-              <div class="pitch-box-title" style="color: #34d399;">Continuous Water Table</div>
+              <div class="pitch-card-sub">Water Level</div>
+              <div class="pitch-box-title" style="color: #34d399;">Water Table Slider</div>
               <p class="pitch-box-desc">
-                Simulates moisture dynamics across the full spectrum: from superficial winter ponding down to critical summer drought desiccation, driving aerobic vs. anoxic transitions.
+                Drag the water level from winter floods (water above ground) down to severe summer droughts to see how the peatland reacts immediately.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">< 0.8 ms</div>
-              <div class="pitch-card-sub">Evaluation Latency</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Tri-Gas Coupled Kinetics</div>
+              <div class="pitch-card-metric cyan">Live Math</div>
+              <div class="pitch-card-sub">Instant Calculation</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Three Greenhouse Gases</div>
               <p class="pitch-box-desc">
-                Solves coupled balances for <strong>CO₂ (GPP & Reco), CH₄ (methanogenesis/oxidation), and N₂O</strong> at 60 frames per second directly in the client GPU/DOM loop.
+                The app recalculates carbon uptake by plants (CO₂), soil emissions (CO₂ & N₂O), and swamp gas (CH₄) in real time with smooth animations.
               </p>
             </div>
 
             <div class="pitch-box">
-              <div class="pitch-card-metric gold">3 Horizons</div>
-              <div class="pitch-card-sub">Pedological Coupling</div>
-              <div class="pitch-box-title" style="color: #fbbf24;">Stratigraphic Soil Engine</div>
+              <div class="pitch-card-metric gold">3 Layers</div>
+              <div class="pitch-card-sub">Soil Profile</div>
+              <div class="pitch-box-title" style="color: #fbbf24;">Underground View</div>
               <p class="pitch-box-desc">
-                Directly couples the living <strong>Acrotelm (0–10 cm)</strong>, the compacted agricultural <strong>plow pan (10–25 cm)</strong>, and the deep saturated <strong>Catotelm (25–100+ cm)</strong>.
+                Shows the green surface moss, the hard compacted layer where tractors drive, and the deep wet peat that locks away carbon for centuries.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner">
-            <span class="pitch-thesis-pill">CORE AXIOM</span>
+            <span class="pitch-thesis-pill">SIMPLE IDEA</span>
             <span class="pitch-thesis-text">
-              <strong>Not a 3D animation, but a live numerical solver:</strong> We translated complex empirical field observations into continuous analytical functions that execute with zero latency in any modern web browser.
+              <strong>Not a cartoon, but a real working model:</strong> You move the sliders, and the app uses real scientific rules to show whether the wetland acts as a cooling carbon sink or a warming chimney.
             </span>
           </div>
 
           <div class="pitch-kpi-bar" style="margin-top: 4px;">
             <div class="pitch-kpi-item">
-              <div class="pitch-kpi-val">14,993</div>
-              <div class="pitch-kpi-label">EC Half-Hour Blocks</div>
+              <div class="pitch-kpi-val">15,000</div>
+              <div class="pitch-kpi-label">Field Measurements</div>
             </div>
             <div class="pitch-kpi-item">
               <div class="pitch-kpi-val">< 1 ms</div>
-              <div class="pitch-kpi-label">Physics Recalculation</div>
+              <div class="pitch-kpi-label">Instant Calculation</div>
             </div>
             <div class="pitch-kpi-item">
               <div class="pitch-kpi-val">60 FPS</div>
-              <div class="pitch-kpi-label">Native SVG Refresh</div>
+              <div class="pitch-kpi-label">Smooth Animation</div>
             </div>
             <div class="pitch-kpi-item">
-              <div class="pitch-kpi-val">0 KB</div>
-              <div class="pitch-kpi-label">Cloud Raw Data Leaked</div>
+              <div class="pitch-kpi-val">0 Files</div>
+              <div class="pitch-kpi-label">Private Data Uploaded</div>
             </div>
           </div>
         `
@@ -1033,320 +1033,316 @@ export class ThesisExplorer {
       {
         shortTitle: '02. The Dilemma',
         slug: 'the-problem',
-        tag: 'SLIDE 02 / 10 • THE SCIENTIFIC DILEMMA',
-        title: 'The Dead-PDF Paradox: Why Static Tables Fail Living Wetlands',
-        subtitle: 'Traditional master theses bury dynamic biogeochemical non-linearities inside immovable two-dimensional paper reports',
+        tag: 'SLIDE 02 / 10 • THE PRACTICAL PROBLEM',
+        title: 'The Problem with Static PDFs: Numbers on Paper are Silent',
+        subtitle: 'Traditional master theses end up as static reports that cannot answer real-life "what if" questions',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box danger-box">
-              <div class="pitch-card-metric rose">Tipping Points</div>
-              <div class="pitch-card-sub">Field Failure Mode 1</div>
-              <div class="pitch-box-title" style="color: #f43f5e;">Invisible Thresholds</div>
+              <div class="pitch-card-metric rose">Hidden Risks</div>
+              <div class="pitch-card-sub">Problem 1</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">Averages Hide Danger</div>
               <p class="pitch-box-desc">
-                Static mean tables hide non-linear tipping points. A 5 cm drop in groundwater can trigger a <strong>400% surge in peat oxidation</strong>, but static graphs only show seasonal averages.
+                In a static table, you only see yearly averages. You cannot see the dangerous tipping point where dropping the water just 5 cm suddenly triples carbon loss.
               </p>
             </div>
 
             <div class="pitch-box danger-box">
-              <div class="pitch-card-metric rose">Domain Silos</div>
-              <div class="pitch-card-sub">Field Failure Mode 2</div>
-              <div class="pitch-box-title" style="color: #f43f5e;">Fragmented Sciences</div>
+              <div class="pitch-card-metric rose">Dead Ends</div>
+              <div class="pitch-card-sub">Problem 2</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">You Can't Ask a PDF</div>
               <p class="pitch-box-desc">
-                Atmospheric physicists measure 10 Hz gas fluxes while soil mechanics researchers study pore subsidence. In paper theses, these two governing disciplines <strong>never talk to each other</strong>.
+                If a professor, farmer, or government officer asks: <em>"What happens if next summer is 3 degrees hotter?"</em>, a printed report cannot show you the answer.
               </p>
             </div>
 
             <div class="pitch-box danger-box">
-              <div class="pitch-card-metric rose">Zero Interactivity</div>
-              <div class="pitch-card-sub">Field Failure Mode 3</div>
-              <div class="pitch-box-title" style="color: #f43f5e;">Stakeholder Disconnect</div>
+              <div class="pitch-card-metric rose">Hard to Read</div>
+              <div class="pitch-card-sub">Problem 3</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">Locked in Jargon</div>
               <p class="pitch-box-desc">
-                Water authorities, farmers, and carbon project developers cannot interact with an R markdown script. Without interactive exploration, <strong>critical ecological insights remain unused</strong>.
+                Most people outside the lab will never read 200 pages of raw statistics. Important climate findings get forgotten on library shelves.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner gold">
-            <span class="pitch-thesis-pill">THE DILEMMA</span>
+            <span class="pitch-thesis-pill">THE LESSON</span>
             <span class="pitch-thesis-text">
-              <strong>Static papers report what happened; digital twins simulate what happens next:</strong> Peatland restoration requires stress-testing drought scenarios before digging drainage ditches or investing restoration capital.
+              <strong>Paper tells you what happened yesterday; an interactive model lets you explore tomorrow:</strong> We built this so anyone can touch the dials and see how a wetland responds.
             </span>
           </div>
         `
       },
       {
-        shortTitle: '03. Local Computing',
+        shortTitle: '03. My Computer',
         slug: 'local-computing',
-        tag: 'SLIDE 03 / 10 • PHASE 1: LOCAL COMPUTATIONAL RIGOR',
-        title: 'Phase 1: Heavy Scientific Computing on Local Workstations',
-        subtitle: 'Raw 10 Hz high-frequency turbulence and soil mechanics remain strictly on local research machines',
+        tag: 'SLIDE 03 / 10 • STEP 1: LOCAL NUMBER CRUNCHING',
+        title: 'Step 1: Heavy Computing Stays on My Local Computer',
+        subtitle: 'Millions of raw high-speed sensor readings were cleaned and checked offline on my workstation in R',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box">
-              <div class="pitch-card-metric">10 Hz • 4.8M</div>
-              <div class="pitch-card-sub">High-Frequency Telemetry</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">EddyPro Local Processing</div>
+              <div class="pitch-card-metric">10 times/sec</div>
+              <div class="pitch-card-sub">Sensor Data</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">High-Speed Wind & Air</div>
               <p class="pitch-box-desc">
-                Raw high-frequency sonic anemometer and LI-7500 IRGA streams processed locally through 3D coordinate rotation, spike removal, and Webb-Pearman-Leuning (WPL) air density corrections.
+                Sensors on the field measured wind and gases 10 times every single second (Eddy Covariance). That creates gigabytes of raw, noisy numbers.
               </p>
             </div>
 
             <div class="pitch-box success-box">
-              <div class="pitch-card-metric">R • sEddyProc</div>
-              <div class="pitch-card-sub">Biostatistical Curation</div>
-              <div class="pitch-box-title" style="color: #34d399;">Friction Velocity & Gap-Filling</div>
+              <div class="pitch-card-metric">R Scripts</div>
+              <div class="pitch-card-sub">Cleaning & Checking</div>
+              <div class="pitch-box-title" style="color: #34d399;">Removing Bad Data</div>
               <p class="pitch-box-desc">
-                Nighttime friction velocity filtering (u* threshold = 0.12 m/s), MDS gap-filling, and non-linear regressions executed via audited R packages on Daniel's dedicated machine.
+                I used scientific R tools (EddyPro & sEddyProc) on my PC to remove bad weather glitches, filter calm nights, and organize 15,000 clean half-hour blocks.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
               <div class="pitch-card-metric cyan">100% Private</div>
-              <div class="pitch-card-sub">Data Fortress</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Absolute Air-Gap Security</div>
+              <div class="pitch-card-sub">Stored at Home</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Zero Files on the Web</div>
               <p class="pitch-box-desc">
-                Zero raw CSVs, proprietary sensor calibrations, or unpublished measurement tables are ever pushed to GitHub or transmitted over web networks.
+                All this heavy, raw data stays safely on my hard drive. None of it is uploaded to the internet or exposed to the public.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner">
-            <span class="pitch-thesis-pill">ENGINEERING FACT</span>
+            <span class="pitch-thesis-pill">HOW IT WORKS</span>
             <span class="pitch-thesis-text">
-              <strong>Rigorous separation of concerns:</strong> The web app is not a data warehouse. Heavy statistical computing happens offline in R/EddyPro; the digital twin only hosts the resulting distilled physical laws.
+              <strong>Clear separation:</strong> The heavy math and data cleaning happened on my laptop in R. The website does not carry heavy data files; it only carries the clean rules we discovered.
             </span>
           </div>
         `
       },
       {
-        shortTitle: '04. Empirical Curves',
+        shortTitle: '04. Simple Rules',
         slug: 'empirical-curves',
-        tag: 'SLIDE 04 / 10 • PHASE 2: PARAMETRIC EXTRACTION',
-        title: 'Phase 2: Extracting Governing Biophysical Curves',
-        subtitle: 'Distilling gigabytes of raw data into clean, closed-form parametric equations with biological and physical meaning',
+        tag: 'SLIDE 04 / 10 • STEP 2: FINDING THE SIMPLE RULES',
+        title: 'Step 2: Boiling Down Big Data into 4 Simple Rules',
+        subtitle: 'Instead of loading millions of raw points, we extracted clean cause-and-effect curves that anyone can understand',
         contentHtml: `
           <div class="pitch-grid-4">
             <div class="pitch-box success-box">
-              <div class="pitch-card-metric">GPP(PAR)</div>
-              <div class="pitch-card-sub">Light Response Curve</div>
-              <div class="pitch-box-title" style="font-size: 14px;">Michaelis-Menten</div>
-              <div class="pitch-formula-block">GPP = (alpha * PAR * Amax) / (alpha * PAR + Amax)</div>
+              <div class="pitch-card-metric">Rule 1</div>
+              <div class="pitch-card-sub">Sunlight</div>
+              <div class="pitch-box-title" style="font-size: 14px;">Plants Eat Light</div>
               <p class="pitch-box-desc" style="font-size: 12.5px;">
-                Captures light saturation at noon and quantum yield efficiency (alpha = 0.042) under diffuse cloudy conditions.
+                More sun = more plant growth and carbon capture. On cloudy days it drops, and at bright noon it reaches a natural maximum.
               </p>
             </div>
 
             <div class="pitch-box danger-box">
-              <div class="pitch-card-metric rose">Reco(T, WT)</div>
-              <div class="pitch-card-sub">Thermal Peat Decay</div>
-              <div class="pitch-box-title" style="font-size: 14px;">Lloyd & Taylor 1994</div>
-              <div class="pitch-formula-block">Reco = Rref * exp(E0 * (1/(Tref-T0) - 1/(T-T0)))</div>
+              <div class="pitch-card-metric rose">Rule 2</div>
+              <div class="pitch-card-sub">Heat & Drought</div>
+              <div class="pitch-box-title" style="font-size: 14px;">Peat Decay</div>
               <p class="pitch-box-desc" style="font-size: 12.5px;">
-                Exponential microbial soil respiration accelerated by water table drawdown exposing fresh carbon to oxygen.
+                When the soil warms up and water drops, air enters the peat. Microbes wake up and burn old carbon into greenhouse gas.
               </p>
             </div>
 
             <div class="pitch-box">
-              <div class="pitch-card-metric gold">Δz(sigma)</div>
-              <div class="pitch-card-sub">1D Soil Consolidation</div>
-              <div class="pitch-box-title" style="font-size: 14px;">Casagrande Log-Scale</div>
-              <div class="pitch-formula-block">eps = Cc / (1 + e0) * log10(sigma_v / sigma_p)</div>
+              <div class="pitch-card-metric gold">Rule 3</div>
+              <div class="pitch-card-sub">Compaction</div>
+              <div class="pitch-box-title" style="font-size: 14px;">Soil Sinking</div>
               <p class="pitch-box-desc" style="font-size: 12.5px;">
-                Predicts peat shrinkage and irreversible macropore loss when effective stress exceeds pre-consolidation pressure.
+                When dried peat is stepped on by heavy cattle or tractors, it squashes like a sponge and loses its natural pore spaces.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">Turbulence</div>
-              <div class="pitch-card-sub">Atmospheric Boundary</div>
-              <div class="pitch-box-title" style="font-size: 14px;">Friction Velocity u*</div>
-              <div class="pitch-formula-block">u* = (tau / rho)^0.5 > 0.12 m/s</div>
+              <div class="pitch-card-metric cyan">Rule 4</div>
+              <div class="pitch-card-sub">Wind Flow</div>
+              <div class="pitch-box-title" style="font-size: 14px;">Turbulence</div>
               <p class="pitch-box-desc" style="font-size: 12.5px;">
-                Ensures only well-mixed turbulent regimes are represented, filtering out calm nocturnal boundary decoupling.
+                Brisk wind mixes air smoothly. On totally still, calm nights, gases linger close to the grass, so we filter those out.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner">
-            <span class="pitch-thesis-pill">MATHEMATICAL DISTILLATION</span>
+            <span class="pitch-thesis-pill">THE TAKEAWAY</span>
             <span class="pitch-thesis-text">
-              <strong>From data storage to mathematical laws:</strong> Instead of loading 50 megabytes of point data into memory, the twin evaluates 4 fundamental parametric equations in under 1 millisecond.
+              <strong>From gigabytes of data to clear equations:</strong> We don't need a supercomputer to run the web app. We only need these 4 clear rules that govern how nature behaves.
             </span>
           </div>
         `
       },
       {
-        shortTitle: '05. Real-Time Engine',
+        shortTitle: '05. Live Engine',
         slug: 'realtime-engine',
-        tag: 'SLIDE 05 / 10 • PHASE 3: NUMERICAL SOLVER IN JS',
-        title: 'Phase 3: Translating Equations into the 60 FPS Web Solver',
-        subtitle: 'How pure JavaScript evaluates coupled biophysical curves in real-time with zero backend latency',
+        tag: 'SLIDE 05 / 10 • STEP 3: RUNNING IN THE BROWSER',
+        title: 'Step 3: Putting the Rules into the Web Twin',
+        subtitle: 'How the website responds instantly to your fingers with zero delay and zero loading spinners',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box">
               <div class="pitch-card-metric">< 0.1 ms</div>
-              <div class="pitch-card-sub">Step 1: State Ingestion</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">User Input Capture</div>
+              <div class="pitch-card-sub">Step 1: You Touch a Slider</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Reading Your Input</div>
               <p class="pitch-box-desc">
-                Slider input events dispatch normalized state vectors (Water Table, PAR, Air Temperature, Bulk Density) directly to memory without DOM reflow.
+                When you drag the water table or change the temperature slider, the page instantly registers the new value in less than a tenth of a millisecond.
               </p>
             </div>
 
             <div class="pitch-box success-box">
               <div class="pitch-card-metric">< 0.7 ms</div>
-              <div class="pitch-card-sub">Step 2: Analytical Eval</div>
-              <div class="pitch-box-title" style="color: #34d399;">Physics Evaluation Loop</div>
+              <div class="pitch-card-sub">Step 2: Instant Math</div>
+              <div class="pitch-box-title" style="color: #34d399;">Calculates in Memory</div>
               <p class="pitch-box-desc">
-                The math solver evaluates the Michaelis-Menten, Lloyd-Taylor, and Casagrande functions in memory. Closed-form algebra means zero numerical divergence.
+                The browser evaluates the 4 natural rules inside your computer's memory. No waiting for a remote server or slow internet connection.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">16.6 ms</div>
-              <div class="pitch-card-sub">Step 3: Render Sync</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">SVG Scene Update</div>
+              <div class="pitch-card-metric cyan">60 FPS</div>
+              <div class="pitch-card-sub">Step 3: Screen Updates</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Smooth Visual Drawing</div>
               <p class="pitch-box-desc">
-                Direct manipulation of SVG coordinates, opacity masks, and gradient shaders via requestAnimationFrame, locking visual execution to 60 frames per second.
+                The water level rises, plant colors change, and gas bubbles float up smoothly 60 times every second, just like a modern video game.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner cyan">
-            <span class="pitch-thesis-pill">PERFORMANCE PROOF</span>
+            <span class="pitch-thesis-pill">WHY IT FEELS SO FAST</span>
             <span class="pitch-thesis-text">
-              <strong>Zero backend dependencies:</strong> Moving any slider triggers an instant in-memory calculation. The browser behaves as an interactive analog computer, not an API fetch client.
+              <strong>100% computed inside your browser:</strong> The app does not make network calls while you slide. It runs locally in your browser like a pocket calculator with graphics.
             </span>
           </div>
         `
       },
       {
-        shortTitle: '06. Architecture',
+        shortTitle: '06. Code Design',
         slug: 'architecture',
-        tag: 'SLIDE 06 / 10 • SOFTWARE ARCHITECTURE',
-        title: 'Decoupled 3-Tier Architecture & SVG Scene Graph',
-        subtitle: 'Strict separation of biophysical logic, state management, and graphic representation',
+        tag: 'SLIDE 06 / 10 • UNDER THE HOOD',
+        title: 'Clean Code Design: 3 Separate Building Blocks',
+        subtitle: 'The code is organized neatly so changes to visual graphics never mess up the scientific formulas',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box">
-              <div class="pitch-card-metric">Layer 1</div>
-              <div class="pitch-card-sub">State & Controls</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Input Controller</div>
+              <div class="pitch-card-metric">Block 1</div>
+              <div class="pitch-card-sub">User Interface</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Sliders & Buttons</div>
               <p class="pitch-box-desc">
-                Manages slider event listeners, debouncing, preset scenarios (Pristine, Degraded, Rewetted), and URL hash state persistence.
+                Controls the sliders, preset buttons (like "Pristine Mire" or "Drained Peat"), and dark/light modes. Easy to use on desktop or phone.
               </p>
             </div>
 
             <div class="pitch-box success-box">
-              <div class="pitch-card-metric">Layer 2</div>
-              <div class="pitch-card-sub">Pure Math Kernel</div>
-              <div class="pitch-box-title" style="color: #34d399;">Physics Engine</div>
+              <div class="pitch-card-metric">Block 2</div>
+              <div class="pitch-card-sub">The Brain</div>
+              <div class="pitch-box-title" style="color: #34d399;">Scientific Formulas</div>
               <p class="pitch-box-desc">
-                Completely isolated from the DOM. Receives environmental inputs and returns strict numeric matrices of gas fluxes and soil compaction.
+                Contains only the math: equations for photosynthesis, soil respiration, and compaction. It doesn't care what the screen looks like.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric">Layer 3</div>
-              <div class="pitch-card-sub">Hardware SVG</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Reactive Scene Graph</div>
+              <div class="pitch-card-metric">Block 3</div>
+              <div class="pitch-card-sub">The Visuals</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Drawing the Scene</div>
               <p class="pitch-box-desc">
-                Dynamically renders botanical canopies, soil horizons, capillary fringes, and real-time gas bubble particle animations.
+                Draws the plants, clouds, soil layers, water line, and gas bubbles using crisp, lightweight vector graphics (SVG) that scale to any screen size.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner">
-            <span class="pitch-thesis-pill">ARCHITECTURAL DESIGN</span>
+            <span class="pitch-thesis-pill">WHY THIS MATTERS</span>
             <span class="pitch-thesis-text">
-              <strong>Complete decoupling:</strong> The biophysical kernel has zero awareness of HTML or CSS. If tomorrow we replace SVG with WebGL or Canvas, not a single line of physics code needs to change.
+              <strong>Modular and tidy:</strong> If we want to change the plant illustration tomorrow, we don't risk breaking the science. If we improve a formula, the graphics automatically adapt.
             </span>
           </div>
         `
       },
       {
-        shortTitle: '07. Vanilla ES6+',
+        shortTitle: '07. Why Simple JS',
         slug: 'vanilla-es6',
-        tag: 'SLIDE 07 / 10 • ENGINEERING PHILOSOPHY',
-        title: 'The Zero-Build Bet: Why Pure Vanilla ES6+ Matters',
-        subtitle: 'Eliminating the NPM dependency trap to guarantee 20-year scientific archival longevity',
+        tag: 'SLIDE 07 / 10 • DURABILITY',
+        title: 'Why Simple Web Code? Built to Last 20 Years',
+        subtitle: 'We chose standard modern JavaScript with zero external frameworks so this thesis never goes obsolete',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box danger-box">
-              <div class="pitch-card-metric rose">NPM Bitrot</div>
-              <div class="pitch-card-sub">The Framework Trap</div>
-              <div class="pitch-box-title" style="color: #f43f5e;">The Modern Web Decay</div>
+              <div class="pitch-card-metric rose">The Tech Trap</div>
+              <div class="pitch-card-sub">Framework Fragility</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">Complex Tools Break Fast</div>
               <p class="pitch-box-desc">
-                90% of academic web apps built on React, Webpack, or Vite break within 3 years due to deprecated node_modules, breaking package updates, and broken build toolchains.
+                Many university apps built with complex tools like React or Node stop working after 2 or 3 years because libraries get discontinued or throw error messages.
               </p>
             </div>
 
             <div class="pitch-box success-box">
-              <div class="pitch-card-metric">20-Year SLA</div>
-              <div class="pitch-card-sub">Web Standards Standard</div>
-              <div class="pitch-box-title" style="color: #34d399;">Native Browser Engines</div>
+              <div class="pitch-card-metric">20-Year Life</div>
+              <div class="pitch-card-sub">Standard Web</div>
+              <div class="pitch-box-title" style="color: #34d399;">Pure Web Standards</div>
               <p class="pitch-box-desc">
-                ECMAScript 2020 modules, native SVG, and CSS Custom Properties run directly in Chromium, Safari, and Firefox with <strong>zero build steps and zero compilers</strong>.
+                We used pure native web standards. Chrome, Safari, and Firefox understand this code directly without installing any extra software or build steps.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">Double-Click</div>
-              <div class="pitch-card-sub">Frictionless Review</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Peer Review Simplicity</div>
+              <div class="pitch-card-metric cyan">Just Click</div>
+              <div class="pitch-card-sub">Easy for Anyone</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Double-Click to Run</div>
               <p class="pitch-box-desc">
-                Your examination committee can clone the GitHub repo and double-click index.html on a laptop with no node.js, no terminal, and no internet connection.
+                Anyone can download the folder and double-click <strong>index.html</strong>. It opens immediately, even on a computer with no internet and no developer tools.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner gold">
-            <span class="pitch-thesis-pill">ARCHIVAL TRUTH</span>
+            <span class="pitch-thesis-pill">HONEST DESIGN</span>
             <span class="pitch-thesis-text">
-              <strong>Built for the scientific record:</strong> A master thesis should outlive web fashion trends. This digital twin is engineered to run flawlessly when opened in 2045.
+              <strong>A scientific master thesis should last for decades:</strong> By avoiding trendy web fads, this digital twin will still work cleanly when opened in 2045.
             </span>
           </div>
         `
       },
       {
-        shortTitle: '08. Data Security',
+        shortTitle: '08. Data Safety',
         slug: 'data-security',
-        tag: 'SLIDE 08 / 10 • RESEARCH IP & PRIVACY',
-        title: 'Data Sovereignty: Why Your Research IP is 100% Protected',
-        subtitle: 'Definitive reassurance for Prof. Komainda and Dr. Jordan regarding unpublished thesis data',
+        tag: 'SLIDE 08 / 10 • PEACE OF MIND FOR PROFESSORS',
+        title: 'Data Safety: Your Unpublished Research is 100% Protected',
+        subtitle: 'Addressing the key question: Is my private thesis data at risk of being leaked or stolen on the internet?',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box success-box">
-              <div class="pitch-card-metric">0 Bytes</div>
-              <div class="pitch-card-sub">Zero Raw Data Uploaded</div>
-              <div class="pitch-box-title" style="color: #34d399;">No CSVs in Repository</div>
+              <div class="pitch-card-metric">0 Raw Files</div>
+              <div class="pitch-card-sub">Complete Privacy</div>
+              <div class="pitch-box-title" style="color: #34d399;">No Spreadsheets Uploaded</div>
               <p class="pitch-box-desc">
-                Audit proof: The GitHub repository contains zero .csv, .xlsx, .rds, or .dat files. Proprietary field measurements remain strictly on your local encrypted hard drive.
+                Zero Excel, CSV, or private database files exist in this project repository. Your original sensor measurements remain only on your private computer.
               </p>
             </div>
 
             <div class="pitch-box">
-              <div class="pitch-card-metric gold">Equations Only</div>
-              <div class="pitch-card-sub">Parametric Representation</div>
-              <div class="pitch-box-title" style="color: #fbbf24;">No Reverse Engineering</div>
+              <div class="pitch-card-metric gold">Rules Only</div>
+              <div class="pitch-card-sub">No Raw Points</div>
+              <div class="pitch-box-title" style="color: #fbbf24;">Formulas, Not Data Tables</div>
               <p class="pitch-box-desc">
-                The public twin runs normalized response curves. It is mathematically impossible for any third party to reconstruct individual field dates, raw flux points, or sensor logs.
+                The app only contains general mathematical rules. Nobody can download the website code and extract your original raw field measurements from it.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">Air-Gapped</div>
-              <div class="pitch-card-sub">Telemetry-Free</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Zero Cloud Phoning</div>
+              <div class="pitch-card-metric cyan">Works Offline</div>
+              <div class="pitch-card-sub">Air-Gapped</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">100% Offline Mode</div>
               <p class="pitch-box-desc">
-                The entire app runs 100% offline. It makes zero API calls, sends zero tracking telemetry, and can be presented in airplane mode inside any secure university auditorium.
+                The entire app runs without internet. You can turn on Airplane Mode, disconnect from WiFi, and present it anywhere with complete confidence.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner">
-            <span class="pitch-thesis-pill">COMMITTEE ASSURANCE</span>
+            <span class="pitch-thesis-pill">PROFESSOR REASSURANCE</span>
             <span class="pitch-thesis-text">
-              <strong>Zero publication conflict:</strong> The application behaves as an interactive scientific model, not a data leak. Your unpublished manuscripts and pending papers remain completely protected.
+              <strong>Zero publication risk:</strong> The app demonstrates the principles of your research without releasing your raw datasets before your scientific papers are published.
             </span>
           </div>
         `
@@ -1354,87 +1350,87 @@ export class ThesisExplorer {
       {
         shortTitle: '09. Soil Pores',
         slug: 'soil-pores',
-        tag: 'SLIDE 09 / 10 • SCIENTIFIC ROADMAP 1',
-        title: 'Scientific Roadmap: Dynamic Soil Pores & pF Retention Curves',
-        subtitle: 'Expanding the twin into an interactive pedological simulator for agricultural soil compaction',
+        tag: 'SLIDE 09 / 10 • FUTURE UPGRADES',
+        title: 'What We Can Add Next: The Soil Pore Slider',
+        subtitle: 'How we can make the twin even more realistic by letting users test the effect of heavy tractors and cattle hooves',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box">
-              <div class="pitch-card-metric">> 50 µm</div>
-              <div class="pitch-card-sub">Interactive Control 1</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Macropore Collapse Slider</div>
+              <div class="pitch-card-metric">The Sponge</div>
+              <div class="pitch-card-sub">Healthy Soil</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Natural Open Pores</div>
               <p class="pitch-box-desc">
-                Add a live slider to simulate heavy agricultural machinery wheeling, dynamically crushing coarse air-filled macropores into compacted mesopores.
+                Natural peat acts like a kitchen sponge: it is full of large pores that store water easily and let roots breathe oxygen.
               </p>
             </div>
 
-            <div class="pitch-box success-box">
-              <div class="pitch-card-metric">van Genuchten</div>
-              <div class="pitch-card-sub">Interactive Control 2</div>
-              <div class="pitch-box-title" style="color: #34d399;">Dynamic pF Water Retention</div>
+            <div class="pitch-box danger-box">
+              <div class="pitch-card-metric rose">Crushed</div>
+              <div class="pitch-card-sub">Farm Compaction</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">Tractor Compaction</div>
               <p class="pitch-box-desc">
-                Couple soil matric potential (pF curves) to compaction, demonstrating visually how compacted peat holds water at higher tensions, starving plant roots of capillary supply.
+                When heavy tractors drive over wet peat, they crush the large pores. The soil becomes dense, hard, and traps smelly gases.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">Anoxic Hotspots</div>
-              <div class="pitch-card-sub">Biogeochemical Effect</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Intra-Aggregate Methanogenesis</div>
+              <div class="pitch-card-metric cyan">New Dial</div>
+              <div class="pitch-card-sub">Future Feature</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Interactive Pore Slider</div>
               <p class="pitch-box-desc">
-                Show how soil compaction creates anaerobic micro-niches that emit methane even when the regional bulk water table is well below 30 cm depth.
+                We can easily add a "Soil Compaction" slider so farmers and students can see in real time how squashing the soil reduces pasture health.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner">
-            <span class="pitch-thesis-pill">FUTURE CAPABILITY</span>
+            <span class="pitch-thesis-pill">NEXT STEP</span>
             <span class="pitch-thesis-text">
-              <strong>Next-level pedological realism:</strong> Adding soil pore mechanics bridges agricultural pasture management with carbon auditing, showing farmers the exact cost of soil compaction.
+              <strong>Bringing soil physics to life:</strong> Adding a soil compaction slider directly connects everyday farm management with long-term climate impact.
             </span>
           </div>
         `
       },
       {
-        shortTitle: '10. Paludiculture',
+        shortTitle: '10. Big Picture',
         slug: 'microbial-future',
-        tag: 'SLIDE 10 / 10 • SCIENTIFIC ROADMAP 2',
-        title: 'The Paludiculture & Carbon Market Horizon',
-        subtitle: 'Transforming this digital twin from a master thesis into an EU-funded regional restoration asset',
+        tag: 'SLIDE 10 / 10 • THE BIGGER HORIZON',
+        title: 'The Bigger Horizon: From Master Thesis to Real-World Impact',
+        subtitle: 'How this tool can help farmers transition to wet agriculture and help universities win research grants',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box success-box">
-              <div class="pitch-card-metric">Paludiculture</div>
-              <div class="pitch-card-sub">Restoration Scenario</div>
-              <div class="pitch-box-title" style="color: #34d399;">Wet Agriculture Simulation</div>
+              <div class="pitch-card-metric">Wet Farming</div>
+              <div class="pitch-card-sub">Paludiculture</div>
+              <div class="pitch-box-title" style="color: #34d399;">Farming on Wet Land</div>
               <p class="pitch-box-desc">
-                Model economic rewetting with Typha latifolia and Sphagnum farming, allowing landowners to compare economic yields vs. traditional drained cattle pastures.
+                Farmers want to know: <em>"Can I still make a living if I rewet my fields?"</em> We can model wetland crops (like reed or Sphagnum moss) to show economic and climate benefits together.
               </p>
             </div>
 
             <div class="pitch-box">
-              <div class="pitch-card-metric gold">0 - 5 cm</div>
-              <div class="pitch-card-sub">Bio-Filter Layer</div>
-              <div class="pitch-box-title" style="color: #fbbf24;">Methanotrophic Bio-Filters</div>
+              <div class="pitch-card-metric gold">Carbon Credits</div>
+              <div class="pitch-card-sub">Climate Finance</div>
+              <div class="pitch-box-title" style="color: #fbbf24;">Proof for Investors</div>
               <p class="pitch-box-desc">
-                Simulate aerobic methanotrophic bacteria in the top moss layer oxidizing up to 90% of upward CH₄ fluxes, proving the ecological safety of partial rewetting.
+                Companies paying to restore wetlands need visual proof that stopping drainage really prevents emissions. This app makes that proof visible and intuitive.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">Tier 3 MRV</div>
-              <div class="pitch-card-sub">Carbon Financing</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">MoorFutures & EU ETS</div>
+              <div class="pitch-card-metric cyan">Grant Magnet</div>
+              <div class="pitch-card-sub">Research Value</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Winning Future Grants</div>
               <p class="pitch-box-desc">
-                Position this platform as a certified Measurement, Reporting, and Verification (MRV) tool for regional wetland restoration carbon credit underwriting.
+                Reviewers love interactive tools. Having a working digital twin makes future funding proposals for your institute stand out far above ordinary paper-only submissions.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner gold">
-            <span class="pitch-thesis-pill">ACADEMIC HORIZON</span>
+            <span class="pitch-thesis-pill">FINAL MESSAGE</span>
             <span class="pitch-thesis-text">
-              <strong>From defense presentation to institutional impact:</strong> This digital twin is not merely a thesis appendix; it is a foundational research asset ready for DFG grants, EU Horizon calls, and MoorFutures certification.
+              <strong>More than just a thesis requirement:</strong> This project is a practical tool that helps scientists, farmers, and policymakers understand peatlands and make smart climate decisions together.
             </span>
           </div>
         `
