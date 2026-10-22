@@ -262,7 +262,7 @@ export class ThesisExplorer {
             <span class="explorer-file-icon">🎯</span>
             <span class="explorer-file-label" style="font-weight: 700; color: #fb7185;">Executive Pitch Deck</span>
           </div>
-          <span class="explorer-file-badge badge-rose" style="font-weight: 800; background: rgba(244,63,94,0.2); color:#fda4af; border:1px solid rgba(244,63,94,0.4);">10 SLIDES</span>
+          <span class="explorer-file-badge badge-rose" style="font-weight: 800; background: rgba(244,63,94,0.2); color:#fda4af; border:1px solid rgba(244,63,94,0.4);">12 SLIDES</span>
         </div>
       </div>
     `;
@@ -970,9 +970,9 @@ export class ThesisExplorer {
       {
         shortTitle: '01. Vision',
         slug: 'vision',
-        tag: 'SLIDE 01 / 10 • THE PEATLAND SIMULATOR',
+        tag: 'SLIDE 01 / 12 • THE PEATLAND SIMULATOR',
         title: 'The Living Peatland: Seeing a Wetland Breathe in Real Time',
-        subtitle: 'Turning thousands of sensor numbers into an interactive simulator where you can test what happens when water and weather change',
+        subtitle: 'Turning complex environmental measurements into an interactive simulator where you can test what happens when water and weather change',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box success-box">
@@ -1024,8 +1024,8 @@ export class ThesisExplorer {
               <div class="pitch-kpi-label">Smooth Animation</div>
             </div>
             <div class="pitch-kpi-item">
-              <div class="pitch-kpi-val">0 Files</div>
-              <div class="pitch-kpi-label">Private Data Uploaded</div>
+              <div class="pitch-kpi-val">100%</div>
+              <div class="pitch-kpi-label">Browser Standalone</div>
             </div>
           </div>
         `
@@ -1033,7 +1033,7 @@ export class ThesisExplorer {
       {
         shortTitle: '02. The Dilemma',
         slug: 'the-problem',
-        tag: 'SLIDE 02 / 10 • THE PRACTICAL PROBLEM',
+        tag: 'SLIDE 02 / 12 • THE PRACTICAL PROBLEM',
         title: 'The Problem with Static PDFs: Numbers on Paper are Silent',
         subtitle: 'Traditional master theses end up as static reports that cannot answer real-life "what if" questions',
         contentHtml: `
@@ -1077,9 +1077,9 @@ export class ThesisExplorer {
       {
         shortTitle: '03. My Computer',
         slug: 'local-computing',
-        tag: 'SLIDE 03 / 10 • STEP 1: LOCAL NUMBER CRUNCHING',
+        tag: 'SLIDE 03 / 12 • STEP 1: LOCAL NUMBER CRUNCHING',
         title: 'Step 1: Heavy Computing Stays on My Local Computer',
-        subtitle: 'Millions of raw high-speed sensor readings were cleaned and checked offline on my workstation in R',
+        subtitle: 'Millions of raw high-speed sensor readings were cleaned, calibrated, and checked offline in R',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box">
@@ -1101,11 +1101,11 @@ export class ThesisExplorer {
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">100% Private</div>
+              <div class="pitch-card-metric cyan">Offline First</div>
               <div class="pitch-card-sub">Stored at Home</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Zero Files on the Web</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Zero Bloat on the Web</div>
               <p class="pitch-box-desc">
-                All this heavy, raw data stays safely on my hard drive. None of it is uploaded to the internet or exposed to the public.
+                All this heavy, raw data stays safely on my hard drive. None of it burdens the web app, keeping the online tool light and lightning-fast.
               </p>
             </div>
           </div>
@@ -1121,7 +1121,7 @@ export class ThesisExplorer {
       {
         shortTitle: '04. Simple Rules',
         slug: 'empirical-curves',
-        tag: 'SLIDE 04 / 10 • STEP 2: FINDING THE SIMPLE RULES',
+        tag: 'SLIDE 04 / 12 • STEP 2: FINDING THE SIMPLE RULES',
         title: 'Step 2: Boiling Down Big Data into 4 Simple Rules',
         subtitle: 'Instead of loading millions of raw points, we extracted clean cause-and-effect curves that anyone can understand',
         contentHtml: `
@@ -1174,7 +1174,7 @@ export class ThesisExplorer {
       {
         shortTitle: '05. Live Engine',
         slug: 'realtime-engine',
-        tag: 'SLIDE 05 / 10 • STEP 3: RUNNING IN THE BROWSER',
+        tag: 'SLIDE 05 / 12 • STEP 3: RUNNING IN THE BROWSER',
         title: 'Step 3: Putting the Rules into the Web Twin',
         subtitle: 'How the website responds instantly to your fingers with zero delay and zero loading spinners',
         contentHtml: `
@@ -1218,7 +1218,7 @@ export class ThesisExplorer {
       {
         shortTitle: '06. Code Design',
         slug: 'architecture',
-        tag: 'SLIDE 06 / 10 • UNDER THE HOOD',
+        tag: 'SLIDE 06 / 12 • UNDER THE HOOD',
         title: 'Clean Code Design: 3 Separate Building Blocks',
         subtitle: 'The code is organized neatly so changes to visual graphics never mess up the scientific formulas',
         contentHtml: `
@@ -1262,9 +1262,9 @@ export class ThesisExplorer {
       {
         shortTitle: '07. Why Simple JS',
         slug: 'vanilla-es6',
-        tag: 'SLIDE 07 / 10 • DURABILITY',
+        tag: 'SLIDE 07 / 12 • DURABILITY',
         title: 'Why Simple Web Code? Built to Last 20 Years',
-        subtitle: 'We chose standard modern JavaScript with zero external frameworks so this thesis never goes obsolete',
+        subtitle: 'We chose standard modern JavaScript with zero external frameworks so this project never goes obsolete',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box danger-box">
@@ -1304,45 +1304,45 @@ export class ThesisExplorer {
         `
       },
       {
-        shortTitle: '08. Data Safety',
-        slug: 'data-security',
-        tag: 'SLIDE 08 / 10 • PEACE OF MIND FOR PROFESSORS',
-        title: 'Data Safety: Your Unpublished Research is 100% Protected',
-        subtitle: 'Addressing the key question: Is my private thesis data at risk of being leaked or stolen on the internet?',
+        shortTitle: '08. Offline vs Online',
+        slug: 'offline-online',
+        tag: 'SLIDE 08 / 12 • ARCHITECTURE IN ACTION',
+        title: 'How It Works Offline vs. What It Shows Online',
+        subtitle: 'A self-contained simulation engine that runs without internet, wrapped in an accessible web window for the world',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box success-box">
-              <div class="pitch-card-metric">0 Raw Files</div>
-              <div class="pitch-card-sub">Complete Privacy</div>
-              <div class="pitch-box-title" style="color: #34d399;">No Spreadsheets Uploaded</div>
+              <div class="pitch-card-metric">100% Offline</div>
+              <div class="pitch-card-sub">Local Calculation Engine</div>
+              <div class="pitch-box-title" style="color: #34d399;">Self-Contained in Browser</div>
               <p class="pitch-box-desc">
-                Zero Excel, CSV, or private database files exist in this project repository. Your original sensor measurements remain only on your private computer.
-              </p>
-            </div>
-
-            <div class="pitch-box">
-              <div class="pitch-card-metric gold">Rules Only</div>
-              <div class="pitch-card-sub">No Raw Points</div>
-              <div class="pitch-box-title" style="color: #fbbf24;">Formulas, Not Data Tables</div>
-              <p class="pitch-box-desc">
-                The app only contains general mathematical rules. Nobody can download the website code and extract your original raw field measurements from it.
+                All physics formulas, state variables, and SVG graphics live inside the local browser bundle. You can turn on Airplane Mode, disconnect from WiFi, or run it from a USB stick in the field.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">Works Offline</div>
-              <div class="pitch-card-sub">Air-Gapped</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">100% Offline Mode</div>
+              <div class="pitch-card-metric cyan">Public Window</div>
+              <div class="pitch-card-sub">What the World Sees</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Interactive Scenario Explorer</div>
               <p class="pitch-box-desc">
-                The entire app runs without internet. You can turn on Airplane Mode, disconnect from WiFi, and present it anywhere with complete confidence.
+                Online, anyone with a browser link can explore the peatland twin. It presents normalized sliders, real-time gas flux balances, and dynamic visual stratigraphy without any installation.
+              </p>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-card-metric gold">< 1 MB</div>
+              <div class="pitch-card-sub">Zero Network Lag</div>
+              <div class="pitch-box-title" style="color: #fbbf24;">Ultra-Lightweight Delivery</div>
+              <p class="pitch-box-desc">
+                Instead of streaming heavy datasets over slow mobile networks, the browser downloads a single featherweight package once and runs all calculations locally at 60 FPS.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner">
-            <span class="pitch-thesis-pill">PROFESSOR REASSURANCE</span>
+            <span class="pitch-thesis-pill">THE DUAL DESIGN</span>
             <span class="pitch-thesis-text">
-              <strong>Zero publication risk:</strong> The app demonstrates the principles of your research without releasing your raw datasets before your scientific papers are published.
+              <strong>Independent engine, accessible interface:</strong> The simulation engine runs entirely self-contained inside your machine, while the online URL provides an instant, zero-friction window for the scientific community.
             </span>
           </div>
         `
@@ -1350,8 +1350,8 @@ export class ThesisExplorer {
       {
         shortTitle: '09. Soil Pores',
         slug: 'soil-pores',
-        tag: 'SLIDE 09 / 10 • FUTURE UPGRADES',
-        title: 'What We Can Add Next: The Soil Pore Slider',
+        tag: 'SLIDE 09 / 12 • FUTURE UPGRADE: SOIL',
+        title: 'What We Can Add Next: The Soil Pore & Compaction Slider',
         subtitle: 'How we can make the twin even more realistic by letting users test the effect of heavy tractors and cattle hooves',
         contentHtml: `
           <div class="pitch-grid-3">
@@ -1392,45 +1392,133 @@ export class ThesisExplorer {
         `
       },
       {
-        shortTitle: '10. Big Picture',
-        slug: 'microbial-future',
-        tag: 'SLIDE 10 / 10 • THE BIGGER HORIZON',
-        title: 'The Bigger Horizon: From Master Thesis to Real-World Impact',
-        subtitle: 'How this tool can help farmers transition to wet agriculture and help universities win research grants',
+        shortTitle: '10. Satellites',
+        slug: 'satellite-integration',
+        tag: 'SLIDE 10 / 12 • FUTURE UPGRADE: SPACE & SCALING',
+        title: 'Scaling Up: Connecting the Twin to Satellite Eyes in Space',
+        subtitle: 'How Sentinel-2 and Landsat imagery can expand this single-point tower model across the entire regional peatland landscape',
         contentHtml: `
           <div class="pitch-grid-3">
-            <div class="pitch-box success-box">
-              <div class="pitch-card-metric">Wet Farming</div>
-              <div class="pitch-card-sub">Paludiculture</div>
-              <div class="pitch-box-title" style="color: #34d399;">Farming on Wet Land</div>
+            <div class="pitch-box">
+              <div class="pitch-card-metric">10m Pixels</div>
+              <div class="pitch-card-sub">Sentinel-2 & Landsat</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Frequent Space Passes</div>
               <p class="pitch-box-desc">
-                Farmers want to know: <em>"Can I still make a living if I rewet my fields?"</em> We can model wetland crops (like reed or Sphagnum moss) to show economic and climate benefits together.
+                Satellites pass overhead every 5 days, capturing multispectral bands for plant greenness (NDVI), surface moisture (NDWI), and surface temperature across the whole wetland.
               </p>
             </div>
 
-            <div class="pitch-box">
-              <div class="pitch-card-metric gold">Carbon Credits</div>
-              <div class="pitch-card-sub">Climate Finance</div>
-              <div class="pitch-box-title" style="color: #fbbf24;">Proof for Investors</div>
+            <div class="pitch-box success-box">
+              <div class="pitch-card-metric">Ground Truth</div>
+              <div class="pitch-card-sub">Tower Calibration</div>
+              <div class="pitch-box-title" style="color: #34d399;">Calibrating the Satellite</div>
               <p class="pitch-box-desc">
-                Companies paying to restore wetlands need visual proof that stopping drainage really prevents emissions. This app makes that proof visible and intuitive.
+                Our physical Eddy Covariance tower provides continuous high-accuracy truth at one point. We use this anchor to train and calibrate the satellite readings from above.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-card-metric cyan">Grant Magnet</div>
-              <div class="pitch-card-sub">Research Value</div>
-              <div class="pitch-box-title" style="color: #38bdf8;">Winning Future Grants</div>
+              <div class="pitch-card-metric cyan">Whole Basin</div>
+              <div class="pitch-card-sub">Regional Scaling</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">From One Point to Thousands</div>
               <p class="pitch-box-desc">
-                Reviewers love interactive tools. Having a working digital twin makes future funding proposals for your institute stand out far above ordinary paper-only submissions.
+                Instead of guessing emissions between distant towers, live satellite vegetation pixels feed directly into our twin's formulas to simulate entire river catchment areas.
+              </p>
+            </div>
+          </div>
+
+          <div class="pitch-thesis-banner cyan">
+            <span class="pitch-thesis-pill">SPACE INTEGRATION</span>
+            <span class="pitch-thesis-text">
+              <strong>Ground truth meets orbital observation:</strong> Our field measurements teach the satellite what the numbers really mean. Together, they turn one experimental plot into a continuous regional monitoring system.
+            </span>
+          </div>
+        `
+      },
+      {
+        shortTitle: '11. Atmosphere',
+        slug: 'atmospheric-physics',
+        tag: 'SLIDE 11 / 12 • FUTURE UPGRADE: ATMOSPHERE',
+        title: 'What We Can Add Next: Atmospheric Physics & Wind Footprints',
+        subtitle: 'Adding interactive boundary layer controls to explore calm night trapping, wind gusts, and where the air really comes from',
+        contentHtml: `
+          <div class="pitch-grid-3">
+            <div class="pitch-box">
+              <div class="pitch-card-metric">Night Blanket</div>
+              <div class="pitch-card-sub">Interactive Control 1</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Air Inversion Slider</div>
+              <p class="pitch-box-desc">
+                On cold clear nights, a cold air blanket traps CO₂ and methane right at grass level. We can add an "Inversion Strength" slider to show this invisible blanket forming and breaking at dawn.
+              </p>
+            </div>
+
+            <div class="pitch-box success-box">
+              <div class="pitch-card-metric">Vegetation Drag</div>
+              <div class="pitch-card-sub">Interactive Control 2</div>
+              <div class="pitch-box-title" style="color: #34d399;">Canopy Roughness Slider</div>
+              <p class="pitch-box-desc">
+                Tall reed beds create strong turbulent mixing, while flat grazed moss lets wind slide smoothly. A roughness slider can show how plant height changes air mixing and gas exchange.
+              </p>
+            </div>
+
+            <div class="pitch-box accent-box">
+              <div class="pitch-card-metric cyan">Live Ellipse</div>
+              <div class="pitch-card-sub">Interactive Control 3</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Dynamic Footprint Map</div>
+              <p class="pitch-box-desc">
+                The tower does not measure the whole field equally. We can add an interactive map ellipse showing exactly which patch of peat the wind is blowing from into the sensor right now.
+              </p>
+            </div>
+          </div>
+
+          <div class="pitch-thesis-banner">
+            <span class="pitch-thesis-pill">ATMOSPHERIC INSIGHT</span>
+            <span class="pitch-thesis-text">
+              <strong>Making invisible air physics visible:</strong> The atmosphere is not a fixed ceiling; it breathes and expands. Adding boundary layer sliders turns invisible micrometeorology into an intuitive visual story.
+            </span>
+          </div>
+        `
+      },
+      {
+        shortTitle: '12. Recommendations',
+        slug: 'recommendations',
+        tag: 'SLIDE 12 / 12 • STRATEGIC RECOMMENDATIONS',
+        title: 'Key Recommendations: Putting this Digital Twin to Practical Use',
+        subtitle: 'Actionable next steps for research, farm management, and regional peatland restoration policy',
+        contentHtml: `
+          <div class="pitch-grid-3">
+            <div class="pitch-box success-box">
+              <div class="pitch-card-metric">Recommendation 1</div>
+              <div class="pitch-card-sub">For Agriculture</div>
+              <div class="pitch-box-title" style="color: #34d399;">Test Wet Farming First</div>
+              <p class="pitch-box-desc">
+                Recommend using this twin as an interactive decision simulator for farmers considering Paludiculture (growing reeds or Sphagnum moss) to test water scenarios before investing money.
+              </p>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-card-metric gold">Recommendation 2</div>
+              <div class="pitch-card-sub">For Carbon Markets</div>
+              <div class="pitch-box-title" style="color: #fbbf24;">Standardized Carbon Proof</div>
+              <p class="pitch-box-desc">
+                Recommend adopting interactive twins for carbon credit verification (like MoorFutures), giving carbon buyers and regional auditors transparent visual proof that rewetting stops emissions.
+              </p>
+            </div>
+
+            <div class="pitch-box accent-box">
+              <div class="pitch-card-metric cyan">Recommendation 3</div>
+              <div class="pitch-card-sub">For University Grants</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Grant Proposal Magnet</div>
+              <p class="pitch-box-desc">
+                Recommend presenting this live tool in upcoming research proposals (EU Horizon, DFG) to show funding agencies a working interactive prototype rather than just a written concept.
               </p>
             </div>
           </div>
 
           <div class="pitch-thesis-banner gold">
-            <span class="pitch-thesis-pill">FINAL MESSAGE</span>
+            <span class="pitch-thesis-pill">FINAL RECOMMENDATION</span>
             <span class="pitch-thesis-text">
-              <strong>More than just a thesis requirement:</strong> This project is a practical tool that helps scientists, farmers, and policymakers understand peatlands and make smart climate decisions together.
+              <strong>Move from static reporting to living decision tools:</strong> Digital twins bridge the gap between academic research, farmer adoption, and climate policy, turning master thesis findings into lasting regional impact.
             </span>
           </div>
         `
