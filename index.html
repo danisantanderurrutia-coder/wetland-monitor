@@ -99,6 +99,11 @@
             <span>🎙️</span>
           </button>
 
+          <!-- Research Admin & Security Console Toggle -->
+          <button class="action-btn admin-btn" id="btn-header-admin" title="Research Admin Console (Key Ctrl+Shift+A or Alt+A)" style="border: 1px solid rgba(244, 63, 94, 0.4); color: #fda4af;">
+            <span>⚙️</span> <span style="font-weight:700;">Admin</span>
+          </button>
+
           <!-- Fullscreen Mode Toggle -->
           <button class="action-btn primary" id="fullscreen-btn" title="Toggle Fullscreen">
             <span>⛶</span>
@@ -4908,6 +4913,60 @@
     });
   });
 </script>
+
+    <!-- ====================================================================
+       RESEARCH ADMIN & IP EMBARGO SECURITY CONSOLE MODAL
+       ==================================================================== -->
+  <div class="admin-modal-overlay hidden" id="admin-security-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <div class="admin-modal-title">
+          <span>⚙️</span> <span>Research Admin &amp; Data Security Console</span>
+        </div>
+        <button class="admin-modal-close" id="btn-close-admin-modal" type="button" title="Close Admin Console">✕</button>
+      </div>
+      <div class="admin-modal-body">
+        <div class="admin-switch-card">
+          <div class="admin-switch-row">
+            <div>
+              <div class="admin-switch-label">Thesis IP Embargo Mode</div>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                Unpublished results blur protection &amp; Jordan contact shield
+              </div>
+            </div>
+            <span class="admin-switch-status locked" id="admin-embargo-status-badge">🛡️ EMBARGO ACTIVE</span>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 6px;">
+            <button type="button" class="admin-toggle-btn btn-unlock" id="btn-admin-toggle-embargo">
+              <span>🔓</span> <span id="btn-admin-toggle-text">Deactivate Embargo (Unlock All Figures)</span>
+            </button>
+          </div>
+
+          <p class="admin-info-note">
+            When <strong>EMBARGO ACTIVE</strong> is enabled (default for public visitors), empirical figures for <em>Eddy Covariance, Static Chambers, and Soil Mechanics</em> are automatically blurred with a contact notice for Mr. Sebastian Jordan.
+          </p>
+        </div>
+
+        <div class="admin-switch-card">
+          <div class="admin-switch-label" style="font-size: 0.92rem; margin-bottom: 6px;">Exempt Data Whitelist (Always Public &amp; Uncensored)</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="admin-whitelist-pill">✓ DWD Regional Climatology (Walter-Lieth)</span>
+            <span class="admin-whitelist-pill">✓ Sentinel-2 Multispectral NDVI / NDWI</span>
+            <span class="admin-whitelist-pill">✓ Digital Elevation Model (DEM) Topography</span>
+            <span class="admin-whitelist-pill">✓ ISRIC SoilGrids Soil Carbon Density</span>
+            <span class="admin-whitelist-pill">✓ Biogeochemistry Conceptual Model (Fig. 20)</span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 4px;">
+          <button type="button" class="pitch-action-btn secondary" id="btn-admin-close-action">
+            Close Console
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Changelog Modal Overlay -->
   <div class="changelog-modal-overlay hidden" id="changelog-modal">

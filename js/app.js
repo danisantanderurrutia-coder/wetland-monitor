@@ -65,6 +65,7 @@ class WetlandMonitorApp {
     this.initKeyboardShortcuts();
     this.initSynthesisPillars();
     this.initVersionAndChangelog();
+    this.initAdminEmbargoManager();
 
     // 3. Set branding logo to "Stratigraphy & Probes"
     this.initLogo();
@@ -333,9 +334,11 @@ class WetlandMonitorApp {
       }
     }
 
-    // When navigated manually via top menus, reset all spotlights and dimming to normal
+    // When navigated manually via top menus, reset all spotlights and dimming to normal,
+    // then highlight primary figures relevant to the selected tab
     if (!fromSlide) {
       this.clearSpotlightsAndResetNormalView();
+      this.highlightFiguresForTab(viewKey);
     }
 
     document.querySelectorAll(".tab-btn").forEach(btn => {
@@ -1274,6 +1277,7 @@ class WetlandMonitorApp {
             if (imgEl) imgEl.src = selectedFig.file;
             if (figureTitleEl) figureTitleEl.textContent = selectedFig.title;
             if (captionEl) captionEl.textContent = selectedFig.caption;
+            if (this.scanAndApplyEmbargoOverlays) this.scanAndApplyEmbargoOverlays();
           });
         });
       } else {
@@ -1286,6 +1290,10 @@ class WetlandMonitorApp {
     if (imgEl) imgEl.src = primaryFig.file;
     if (figureTitleEl) figureTitleEl.textContent = primaryFig.title;
     if (captionEl) captionEl.textContent = primaryFig.caption;
+
+    if (this.scanAndApplyEmbargoOverlays) {
+      this.scanAndApplyEmbargoOverlays();
+    }
 
     // Metrics grid
     const metricsGrid = document.getElementById("modal-metrics-grid");
@@ -1609,9 +1617,19 @@ class WetlandMonitorApp {
         return;
       }
 
-      // 3. Figures across all views (Tier 3 results, macro maps, flux charts, GWP plots, soil profile figures)
-      const targetImg = e.target.closest("img.thesis-plot, .macro-display-wrapper img, .macro-img-container img, .flux-plot-card img, .ghg-plot-container img, .ghg-plot-card img, .gwp-stage-container img, .modal-figure-img, .dashboard-plot-img, img[data-zoomable='true']");
+      // 3. Figures across all views (Universal Lightbox Delegation)
+      const targetImg = e.target.closest("img.thesis-plot, .macro-display-wrapper img, .macro-img-container img, .flux-plot-card img, .ghg-plot-container img, .ghg-plot-card img, .gwp-stage-container img, .modal-figure-img, .dashboard-plot-img, .presentation-card img, .explorer-gallery-card img, .flowchart-container img, img[data-zoomable='true'], img[src*='assets/']:not(.cover-logo-img):not(#active-brand-logo-img):not(.no-zoom)");
       if (targetImg) {
+        // Check if currently under embargo
+        const src = targetImg.getAttribute("src") || "";
+        const alt = targetImg.getAttribute("alt") || "";
+        const titleAttr = targetImg.dataset.title || "";
+        const catAttr = targetImg.closest(".modal-tier-results")?.querySelector("#modal-category-text")?.textContent || "";
+
+        if (this.isEmbargoActive && this.isImageEmbargoed && this.isImageEmbargoed(src, alt, titleAttr, catAttr)) {
+          this.showEmbargoToast("🔒 This research result is under academic embargo. Please contact Mr. Sebastian Jordan (sebastian.jordan@thuenen.de) to request access.");
+          return;
+        }
         const card = targetImg.closest(".presentation-card, .modal-tier-results, .flux-plot-card, .ghg-plot-card, .thesis-plot-card, .macro-visualizer-card") || targetImg.parentElement;
         
         let title = targetImg.dataset.title;
@@ -1823,6 +1841,267 @@ class WetlandMonitorApp {
       });
     }
   }
+
+  // ==========================================================================
+  // TAB SELECTION FIGURE HIGHLIGHTING & ILLUMINATED FOCUS
+  // ==========================================================================
+  highlightFiguresForTab(viewKey) {
+    if (this._tabHighlightTimer) {
+      clearTimeout(this._tabHighlightTimer);
+      this._tabHighlightTimer = null;
+    }
+
+    // Declarative mapping from viewKey to figure selectors
+    const viewTargets = {
+      soil_interface: ["#soil-simulator-main-panel", ".soil-strata-card", ".soil-oedometer-card"],
+      macro: ["#macro-visualizer-main", ".macro-plot-card", "#walter-lieth-card"],
+      biogeochemistry: [".biogeo-hero-diagram", ".microbial-actors-grid", ".redox-cascade-panel"],
+      instruments_matrix: [".instruments-rack", ".matrix-showcase-grid"],
+      data_pipeline: ["#pipeline-card-ml", "#pipeline-card-part", ".flowchart-container", ".mermaid-wrapper"],
+      eddy_covariance: [".eddy-group-wrapper", ".flux-footprint-card", "#flux-plot-card-bowen"],
+      geophysics: [".geophysics-profile-card", ".geoelectrics-display"],
+      flux_diagnostics: [".flux-plot-card", "#flux-plot-card-vpd"],
+      gwp_explorer: ["#main-gwp-img", ".gwp-stage-container", ".ghg-plot-card"],
+      gwp_uncertainties: [".uncertainty-plot-card", ".monte-carlo-box"],
+      conclusions_outlook: [".verdict-card", ".pillars-grid", ".conclusions-card"]
+    };
+
+    const selectors = viewTargets[viewKey];
+    if (!selectors || selectors.length === 0) return;
+
+    const highlightedElements = [];
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        el.classList.add("slide-spotlight-active");
+        highlightedElements.push(el);
+
+        if (!el.querySelector(".spotlight-cue-badge")) {
+          const badge = document.createElement("div");
+          badge.className = "spotlight-cue-badge";
+          badge.innerHTML = "<span>🔍</span> <span>KEY EVIDENCE</span>";
+          el.appendChild(badge);
+        }
+      });
+    });
+
+    if (highlightedElements.length > 0) {
+      this._tabHighlightTimer = setTimeout(() => {
+        highlightedElements.forEach(el => {
+          el.classList.remove("slide-spotlight-active");
+          const b = el.querySelector(".spotlight-cue-badge");
+          if (b) b.remove();
+        });
+      }, 4500);
+    }
+  }
+
+  // ==========================================================================
+  // RESEARCH IP EMBARGO & ADMIN SECURITY CONSOLE
+  // ==========================================================================
+  initAdminEmbargoManager() {
+    // 1. Initial State from localStorage (Default: TRUE / Embargo Active)
+    const savedState = localStorage.getItem("wetland_embargo_active");
+    this.isEmbargoActive = savedState !== null ? savedState === "true" : true;
+
+    // Apply class to body
+    document.body.classList.toggle("embargo-active", this.isEmbargoActive);
+
+    // 2. Setup Whitelist & Categories
+    this.embargoConfig = {
+      embargoedCategories: ["eddy_covariance", "chambers", "oedometer", "soil_mechanics"],
+      embargoedFilePatterns: [
+        "17_19_Combined_Footprint",
+        "14b_CH4_Models_Comparison",
+        "01_Reco_LT_Fits",
+        "fig52_ec_workflow",
+        "fig62_gapfilling",
+        "fig50_data_processing",
+        "fig63_ghg_upscaling",
+        "peat_plowpan",
+        "oedometer",
+        "bowen",
+        "flux"
+      ],
+      whitelistPatterns: [
+        "Walter_Lieth",
+        "Walter-Lieth",
+        "24_Walter_Lieth",
+        "SiteMap_Satellite_Terrain",
+        "SiteMap_NDVI_Summer",
+        "SiteMap_NDVI_Delta",
+        "SiteMap_Topography",
+        "SiteMap_SoilCarbon",
+        "Peatlands_Biogeochemical_Processes_Fig20",
+        "wetland_carex_plate",
+        "conclusions",
+        "sprites",
+        "logo"
+      ]
+    };
+
+    // 3. Scan DOM and apply embargo wrappers to matching figures
+    this.scanAndApplyEmbargoOverlays();
+
+    // 4. Connect Admin Modal DOM Elements
+    const adminBtn = document.getElementById("btn-header-admin");
+    const adminModal = document.getElementById("admin-security-modal");
+    const closeBtn = document.getElementById("btn-close-admin-modal");
+    const closeActionBtn = document.getElementById("btn-admin-close-action");
+    const toggleBtn = document.getElementById("btn-admin-toggle-embargo");
+
+    const openAdminModal = () => {
+      if (adminModal) {
+        this.updateAdminModalUI();
+        adminModal.classList.remove("hidden");
+        adminModal.classList.add("active");
+        adminModal.setAttribute("aria-hidden", "false");
+      }
+    };
+
+    const closeAdminModal = () => {
+      if (adminModal) {
+        adminModal.classList.add("hidden");
+        adminModal.classList.remove("active");
+        adminModal.setAttribute("aria-hidden", "true");
+      }
+    };
+
+    if (adminBtn) adminBtn.addEventListener("click", openAdminModal);
+    if (closeBtn) closeBtn.addEventListener("click", closeAdminModal);
+    if (closeActionBtn) closeActionBtn.addEventListener("click", closeAdminModal);
+
+    if (adminModal) {
+      adminModal.addEventListener("click", (e) => {
+        if (e.target === adminModal) closeAdminModal();
+      });
+    }
+
+    // Toggle Embargo Switch
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        this.isEmbargoActive = !this.isEmbargoActive;
+        localStorage.setItem("wetland_embargo_active", String(this.isEmbargoActive));
+        document.body.classList.toggle("embargo-active", this.isEmbargoActive);
+        this.updateAdminModalUI();
+        this.showEmbargoToast(this.isEmbargoActive ? "🛡️ Embargo Activated: Unpublished results blurred." : "🔓 Defense Mode: All scientific results unlocked!");
+      });
+    }
+
+    // 5. Global Keyboard Shortcuts: Ctrl+Shift+A or Alt+A
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a") || (e.altKey && e.key.toLowerCase() === "a")) {
+        e.preventDefault();
+        if (adminModal && adminModal.classList.contains("active")) {
+          closeAdminModal();
+        } else {
+          openAdminModal();
+        }
+      }
+    });
+
+    this.updateAdminModalUI();
+  }
+
+  isImageEmbargoed(src, alt = "", title = "", category = "") {
+    if (!src) return false;
+    const lowerSrc = src.toLowerCase();
+    const lowerAlt = alt.toLowerCase();
+    const lowerTitle = title.toLowerCase();
+    const lowerCat = category.toLowerCase();
+
+    // Check whitelist first
+    for (const w of this.embargoConfig.whitelistPatterns) {
+      if (lowerSrc.includes(w.toLowerCase()) || lowerTitle.includes(w.toLowerCase())) {
+        return false;
+      }
+    }
+
+    // Check categories
+    for (const cat of this.embargoConfig.embargoedCategories) {
+      if (lowerCat.includes(cat)) return true;
+    }
+
+    // Check patterns
+    for (const pat of this.embargoConfig.embargoedFilePatterns) {
+      if (lowerSrc.includes(pat.toLowerCase()) || lowerAlt.includes(pat.toLowerCase()) || lowerTitle.includes(pat.toLowerCase())) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  scanAndApplyEmbargoOverlays() {
+    // Find candidate figures in the document
+    const images = document.querySelectorAll("img.thesis-plot, .presentation-card img, .flux-plot-card img, .ghg-plot-container img, .modal-figure-img, .flowchart-container img, .explorer-gallery-card img");
+    images.forEach(img => {
+      const src = img.getAttribute("src") || "";
+      const alt = img.getAttribute("alt") || "";
+      const title = img.dataset.title || "";
+      const cat = img.closest(".modal-tier-results")?.querySelector("#modal-category-text")?.textContent || "";
+
+      if (this.isImageEmbargoed(src, alt, title, cat)) {
+        img.classList.add("embargo-blurred-target");
+        const parent = img.parentElement;
+        if (parent && !parent.classList.contains("embargoed-wrapper")) {
+          parent.classList.add("embargoed-wrapper");
+
+          // Inject overlay card if missing
+          if (!parent.querySelector(".embargo-overlay")) {
+            const overlay = document.createElement("div");
+            overlay.className = "embargo-overlay";
+            overlay.innerHTML = `
+              <div class="embargo-badge">🔒 RESEARCH NOT PUBLISHED</div>
+              <h4 class="embargo-title">Academic Embargo</h4>
+              <p class="embargo-desc">
+                This empirical observation is under academic embargo prior to official manuscript publication.<br>
+                <strong>Please contact Mr. Sebastian Jordan to get the results:</strong>
+              </p>
+              <a href="mailto:sebastian.jordan@thuenen.de?subject=Request%20for%20Thesis%20Research%20Data" class="embargo-contact-card" target="_blank" onclick="event.stopPropagation();">
+                <span>✉️</span> <span>sebastian.jordan@thuenen.de</span>
+              </a>
+            `;
+            parent.appendChild(overlay);
+          }
+        }
+      }
+    });
+  }
+
+  updateAdminModalUI() {
+    const badge = document.getElementById("admin-embargo-status-badge");
+    const toggleBtn = document.getElementById("btn-admin-toggle-embargo");
+    const toggleText = document.getElementById("btn-admin-toggle-text");
+
+    if (badge) {
+      badge.className = `admin-switch-status ${this.isEmbargoActive ? "locked" : "unlocked"}`;
+      badge.textContent = this.isEmbargoActive ? "🛡️ EMBARGO ACTIVE (Protected)" : "🔓 DEFENSE MODE (All Unlocked)";
+    }
+
+    if (toggleBtn && toggleText) {
+      if (this.isEmbargoActive) {
+        toggleBtn.className = "admin-toggle-btn btn-unlock";
+        toggleBtn.innerHTML = "<span>🔓</span> <span>Deactivate Embargo (Unlock All Figures)</span>";
+      } else {
+        toggleBtn.className = "admin-toggle-btn btn-lock";
+        toggleBtn.innerHTML = "<span>🔒</span> <span>Activate Embargo (Protect Results)</span>";
+      }
+    }
+  }
+
+  showEmbargoToast(message) {
+    let toast = document.getElementById("embargo-toast-notification");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "embargo-toast-notification";
+      toast.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f172a;border:1px solid #38bdf8;color:#f8fafc;padding:12px 24px;border-radius:10px;font-size:0.88rem;font-weight:700;z-index:100100;box-shadow:0 8px 30px rgba(0,0,0,0.7);transition:opacity 0.3s;";
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.style.opacity = "1";
+    setTimeout(() => { toast.style.opacity = "0"; }, 3500);
+  }
+
 }
 
 // Instantiate master app

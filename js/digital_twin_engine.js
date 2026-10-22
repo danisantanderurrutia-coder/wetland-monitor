@@ -893,6 +893,16 @@ export class DigitalTwinSimulationEngine {
     if (this.stripTimeIcon) this.stripTimeIcon.textContent = icon;
     if (this.hudTimeIcon) this.hudTimeIcon.textContent = icon;
 
+    // Sky Gradient & Celestial Sync (Direct SVG assignment)
+    const skyRect = document.getElementById("svg-sky-gradient-rect");
+    if (skyRect) {
+      skyRect.setAttribute("fill", isDay ? "url(#skyDayGrad)" : "url(#skyNightGrad)");
+    }
+    const dayBtn = document.getElementById("mode-day-btn");
+    const nightBtn = document.getElementById("mode-night-btn");
+    if (dayBtn) dayBtn.classList.toggle("active", isDay);
+    if (nightBtn) nightBtn.classList.toggle("active", !isDay);
+
     // Sky & Sun/Moon Arc
     const sunGroup = document.getElementById("svg-sun-group");
     const moonGroup = document.getElementById("svg-moon-group");
@@ -952,7 +962,13 @@ export class DigitalTwinSimulationEngine {
       this.updateTelemetryValues("-3.8 µmol m⁻² s⁻¹", "#10b981", "+42 nmol m⁻² s⁻¹", false, "+0.02 nmol m⁻² s⁻¹");
     } else {
       if (sunGroup) sunGroup.style.display = "none";
-      if (moonGroup) moonGroup.style.display = "inline";
+      if (moonGroup) {
+        moonGroup.style.display = "inline";
+        const nightProgress = hour >= 19.5 ? (hour - 19.5) / 10.5 : (hour + 4.5) / 10.5;
+        const moonX = Math.round(180 + nightProgress * 1000);
+        const moonY = Math.round(195 - Math.sin(nightProgress * Math.PI) * 135);
+        moonGroup.setAttribute("transform", `translate(${moonX - 220}, ${moonY - 80})`);
+      }
       if (starsGroup) starsGroup.style.display = "inline";
       if (co2UptakeGroup) co2UptakeGroup.style.display = "none";
 
@@ -1128,8 +1144,7 @@ export class DigitalTwinSimulationEngine {
       co2Color = "#94a3b8";
       phenomMessage = "❄️ Invierno: Dormancia vegetal (GPP = 0) • Suelo frío saturado (-10 cm) • Respiración inhibida (<5% anual)";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "❄️";
-      if (snowLayer) snowLayer.style.display = "block";
-    } else if (month < 5.0) {
+      } else if (month < 5.0) {
       // 2. PRIMAVERA (Marzo - Mayo | Días 60 - 151):
       // Rebrote y expansión de hojas. Descenso gradual de WTD (-10 a -25 cm).
       // Fuerte asimilación fotosintética GPP supera a Reco -> ¡FUERTE SUMIDERO NETO DE CO₂!
@@ -1148,8 +1163,7 @@ export class DigitalTwinSimulationEngine {
       co2Color = "#10b981";
       phenomMessage = `🌱 Primavera: Rebrote vegetativo vigoroso • Asimilación fotosintética activa (GPP) • Sumidero Neto (${co2Text})`;
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "🌱";
-      if (snowLayer) snowLayer.style.display = "none";
-    } else if (month < 6.2) {
+      } else if (month < 6.2) {
       // 3. INICIO DE VERANO (Junio | Días 152 - 187):
       // Máxima radiación, dosel denso, sumidero de carbono pico
       targetWtd = -25;
@@ -1165,8 +1179,7 @@ export class DigitalTwinSimulationEngine {
       co2Color = "#10b981";
       phenomMessage = "🌿 Inicio de Verano: Canopia en plena fotosíntesis • WTD -25 cm • Máxima fijación de carbono atmosférico";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "☀️";
-      if (snowLayer) snowLayer.style.display = "none";
-    } else if (month < 8.0) {
+      } else if (month < 8.0) {
       // 4. ESTIAJE ESTIVAL SEVERO Y SEQUÍA (Julio - Agosto | Días 188 - 243):
       // WTD cae a -44 cm. 44 cm de turba expuesta a O2 -> ¡OXIDACIÓN Y RESPIRACIÓN MASIVA (Reco ~60% anual)!
       // Cierre estomático por VPD > 1.2 kPa reduce GPP -> ¡EL HUMEDAL SE INVIERTE A FUENTE NETA (+4.4 µmol)!
@@ -1187,8 +1200,7 @@ export class DigitalTwinSimulationEngine {
       co2Color = "#f43f5e";
       phenomMessage = "💨 Estiaje Estival (WTD -44 cm) • Estrés VPD • Oxidación masiva de turba (60% Reco anual) -> ¡Fuente Neta!";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "🔥";
-      if (snowLayer) snowLayer.style.display = "none";
-    } else if (month < 10.0) {
+      } else if (month < 10.0) {
       // 5. TRANSICIÓN OTOÑAL Y REINUNDACIÓN (Septiembre - Octubre | Días 244 - 304):
       // WTD se recupera rápidamente (-44 cm a -6 cm) por compuertas de manejo.
       // Senescencia foliar (GPP=0, tallos huecos). ¡PICO ANUAL DE N₂O (>50% de la emisión anual)!
@@ -1207,8 +1219,7 @@ export class DigitalTwinSimulationEngine {
       co2Color = "#f59e0b";
       phenomMessage = "🍂 Otoño: Reinundación de turba aireada • Senescencia vegetal • ¡Pico Anual de N₂O (>50% anual por desnitrificación)!";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "🍂";
-      if (snowLayer) snowLayer.style.display = "none";
-    } else {
+      } else {
       // 6. INUNDACIÓN TOTAL Y PULSO AGUDO DE METANO H1 (Noviembre - Diciembre | Días 305 - 365):
       // WTD alcanza +2 cm (ponding / anoxia total). Turba aún templada en profundidad.
       // Chimeneas de aerénquima de juncos muertos derivan metano directamente -> ¡PULSO H1 (+145 nmol)!
@@ -1228,7 +1239,45 @@ export class DigitalTwinSimulationEngine {
       co2Color = "#ef4444";
       phenomMessage = "🔥 Inundación Total (+2 cm) • ¡Pulso Agudo de Metano H1 (+145 nmol)! • Chimenea de aerénquima abierta • Forzamiento GWP₂₀";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "💧";
-      if (snowLayer) snowLayer.style.display = (month >= 11.5) ? "block" : "none";
+      }
+
+    // ------------------------------------------------------------------------
+    // CONTINUOUS CRYOSPHERIC MODEL: DYNAMIC SNOW ACCUMULATION & EVAPORATIVE THAW
+    // ------------------------------------------------------------------------
+    let snowOpacity = 0.0;
+    let isSnowPresent = false;
+
+    // Peak winter snowpack (Dec 15 - Feb 15 | Month 11.5 - 12.0 & Month 0.0 - 1.5):
+    if (month >= 11.5 || month < 1.5) {
+      snowOpacity = 1.0;
+      isSnowPresent = true;
+    }
+    // Solar Thaw & Sublimation/Evaporation (Feb 15 - Mar 31 | Month 1.5 - 3.0):
+    else if (month >= 1.5 && month < 3.0) {
+      const thawProgress = (month - 1.5) / 1.5; // 0.0 to 1.0
+      snowOpacity = Math.max(0, 1.0 - thawProgress);
+      isSnowPresent = snowOpacity > 0.02;
+      // Solar thaw message during snow evaporation
+      if (isSnowPresent && snowOpacity < 0.95) {
+        phenomMessage = `❄️ Deshielo y Evaporación: Radiación solar derritiendo el manto nival (${Math.round(snowOpacity * 100)}% restante) • Infiltración alimentando nivel freático`;
+      }
+    }
+    // Late autumn first snowfall (Nov 15 - Dec 15 | Month 10.5 - 11.5):
+    else if (month >= 10.5 && month < 11.5) {
+      const freezeProgress = (month - 10.5) / 1.0;
+      snowOpacity = freezeProgress;
+      isSnowPresent = snowOpacity > 0.05;
+    }
+    // Spring, Summer, Early Autumn (Month 3.0 to 10.5):
+    else {
+      snowOpacity = 0.0;
+      isSnowPresent = false;
+    }
+
+    if (snowLayer) {
+      snowLayer.style.display = isSnowPresent ? "block" : "none";
+      snowLayer.style.opacity = snowOpacity.toFixed(2);
+      snowLayer.style.transition = "opacity 0.25s ease";
     }
 
     // Apply WTD to soil physics model & sync HUD slider

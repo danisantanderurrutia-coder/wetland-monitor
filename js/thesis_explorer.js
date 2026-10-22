@@ -628,9 +628,9 @@ export class ThesisExplorer {
     `;
 
     for (const f of figures) {
-      const rawUrl = `/api/explorer/raw?path=${encodeURIComponent(f.path)}`;
+      const rawUrl = f.path.startsWith('http') || f.path.startsWith('/') || f.path.startsWith('assets') ? f.path : `/api/explorer/raw?path=${encodeURIComponent(f.path)}`;
       html += `
-        <div class="explorer-gallery-card" onclick="window.open('${rawUrl}', '_blank')">
+        <div class="explorer-gallery-card" onclick="if(window.openUniversalLightbox){ window.openUniversalLightbox('${rawUrl}', '${f.title.replace(/'/g, "\\'")}', 'High-resolution official thesis research figure'); } else { window.open('${rawUrl}', '_blank'); }">
           <img src="${rawUrl}" loading="lazy" alt="${f.title}" />
           <div class="explorer-gallery-info">
             <div class="explorer-gallery-title">${f.title}</div>
