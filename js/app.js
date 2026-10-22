@@ -14,6 +14,7 @@ import { SoilAtmosphereModel } from "./soil_model.js?v=7.0";
 import { SatelliteViewController } from "./satellite_view.js?v=7.0";
 import { DigitalTwinSimulationEngine } from "./digital_twin_engine.js?v=8.0";
 import { PITCH_TRANSLATIONS_ES } from "./pitch_translations_es.js?v=7.0";
+import { WetlandTwinSandbox } from "./twin_sandbox.js?v=1.0";
 
 class WetlandMonitorApp {
   constructor() {
@@ -66,6 +67,11 @@ class WetlandMonitorApp {
     this.initSynthesisPillars();
     this.initVersionAndChangelog();
     this.initAdminEmbargoManager();
+
+    // Initialize Interactive Wetland Lab Sandbox & Validator
+    this.sandbox = new WetlandTwinSandbox(this.soilModel, this.digitalTwin);
+    window.twinSandbox = this.sandbox;
+    this.sandbox.init();
 
     // 3. Set branding logo to "Stratigraphy & Probes"
     this.initLogo();

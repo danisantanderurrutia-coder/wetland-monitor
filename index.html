@@ -651,6 +651,16 @@
                 </div>
               </div>
 
+              <!-- 7. Lab Sandbox Toggle & Educational Help Buttons -->
+              <div class="hud-sandbox-group" style="display: flex; gap: 6px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
+                <button type="button" class="preset-pill" id="btn-open-lab-sandbox" title="Open Advanced Biophysical Lab Sandbox" style="display: flex; align-items: center; gap: 5px; padding: 5px 12px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: 1px solid #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); transition: all 0.2s;">
+                  <span>🔬</span> <span>Lab Sandbox</span>
+                </button>
+                <button type="button" class="preset-pill" id="btn-twin-help-guide" title="How the Peatland Digital Twin Works (?)" style="display: flex; align-items: center; gap: 4px; padding: 5px 10px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.45); transition: all 0.2s;">
+                  <span>❓</span> <span>Help</span>
+                </button>
+              </div>
+
               <!-- 6. Active Status Alerts -->
               <div id="hud-ch4-transient-badge" class="hud-alert-badge transient" style="display: none; padding: 3px 8px; border-radius: 6px; background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.68rem; font-weight: 700;">
                 <span>🔥</span> <strong id="hud-transient-text">H1: Acute CH₄ Pulse</strong>
@@ -1634,6 +1644,194 @@
               </div>
             </div>
           </div>
+
+
+            <!-- Floating Canvas Sandbox Badge Button -->
+            <button type="button" class="canvas-sandbox-badge-btn" id="btn-canvas-sandbox-badge" title="Click to open Wetland Lab Sandbox">
+              <span>🔬</span> <span>Lab Sandbox (Controls)</span>
+            </button>
+
+            <!-- INTERACTIVE LAB SANDBOX PANEL (EXTENDED CONTROLS) -->
+            <div class="twin-sandbox-tray collapsed" id="twin-sandbox-tray">
+              <div class="twin-sandbox-header">
+                <div class="twin-sandbox-title-wrap">
+                  <span class="sandbox-icon">🔬</span>
+                  <span class="sandbox-title">Wetland Lab Sandbox: Biophysical &amp; Meteophysical Levers</span>
+                  <span class="sandbox-tag">Interactive Simulation</span>
+                </div>
+
+                <div class="sandbox-tab-bar">
+                  <button type="button" class="sandbox-tab-btn active" data-tab="hydro">💧 Hydrology &amp; Site</button>
+                  <button type="button" class="sandbox-tab-btn" data-tab="soil">🚜 Soil &amp; Pores</button>
+                  <button type="button" class="sandbox-tab-btn" data-tab="plants">🌾 Vegetation</button>
+                  <button type="button" class="sandbox-tab-btn" data-tab="atmo">☀️ Meteophysics</button>
+                </div>
+
+                <div class="sandbox-header-actions">
+                  <button type="button" class="sandbox-btn-validate" id="btn-sandbox-validate" title="Compare Model Output with Real 2024 Wallener Au Tower Data">
+                    ⚖️ Validate vs. Field Benchmark
+                  </button>
+                  <button type="button" class="sandbox-btn-help" id="btn-sandbox-help" title="How Everything Works (?)">
+                    ❓ How It Works
+                  </button>
+                  <button type="button" class="sandbox-btn-toggle" id="btn-sandbox-tray-toggle" title="Toggle Sandbox Drawer">
+                    ▲ Expand
+                  </button>
+                </div>
+              </div>
+
+              <div class="twin-sandbox-content">
+                <!-- Tab 1: Hydrology & Site Management -->
+                <div class="sandbox-pane active" id="sandbox-pane-hydro">
+                  <div class="sandbox-controls-grid">
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">💧 Injected Water Dosage</span>
+                        <span class="control-val" id="val-water-injection">0 L/m²</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-water-injection" min="0" max="150" value="0" step="5">
+                      <div class="control-desc">Direct simulated rewetting volume. Raises groundwater table based on peat specific yield (Sy ≈ 0.25).</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🌿 Wetland Archetype Preset</span>
+                      </div>
+                      <div class="sandbox-archetype-pills">
+                        <button type="button" class="archetype-btn active" data-archetype="fen">Minerotrophic Fen (pH 6.8)</button>
+                        <button type="button" class="archetype-btn" data-archetype="bog">Ombrotrophic Bog (pH 3.8)</button>
+                        <button type="button" class="archetype-btn" data-archetype="paludi">Paludiculture Reed Bed</button>
+                        <button type="button" class="archetype-btn" data-archetype="drained">Drained Cattle Pasture</button>
+                      </div>
+                      <div class="control-desc">Instantly loads biophysical profiles for pH, species composition, and hydrology.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">⏱️ Rewetting Chronosequence</span>
+                        <span class="control-val" id="val-rewetting-year">Baseline (Year 0)</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-rewetting-year" min="0" max="10" value="0" step="1">
+                      <div class="control-desc">Time elapsed since rewetting: Year 0 (shock), Years 1–3 (acute CH4 pulse H1), Year 10 (stabilized biofilter).</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tab 2: Soil Mechanics & Pore Architecture -->
+                <div class="sandbox-pane" id="sandbox-pane-soil">
+                  <div class="sandbox-controls-grid">
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🧪 Soil &amp; Pore Water pH</span>
+                        <span class="control-val" id="val-soil-ph">6.4 (Neutral Fen)</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-soil-ph" min="3.5" max="8.5" value="6.4" step="0.1">
+                      <div class="control-desc">Acidic bog (pH 3.5–4.5) inhibits methanogenesis; neutral fen (pH 6.5–7.5) maximizes enzymatic decomposition.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🚜 Soil Compaction &amp; Bulk Density</span>
+                        <span class="control-val" id="val-soil-compaction">0.32 g/cm³</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-soil-compaction" min="0.15" max="0.85" value="0.32" step="0.01">
+                      <div class="control-desc">Heavy machinery increases plow pan density (Casagrande σp'), crushing macropores and trapping perched water.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🕳️ Macroporosity (&gt;50 µm)</span>
+                        <span class="control-val" id="val-macroporosity">24%</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-macroporosity" min="5" max="45" value="24" step="1">
+                      <div class="control-desc">Conductive pore fraction governing rapid drainage and root oxygenation vs. waterlogging anoxia.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🧪 Legacy Nitrogen / Fertilizer Load</span>
+                        <span class="control-val" id="val-nitrogen-load">15 kg N/ha</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-nitrogen-load" min="0" max="120" value="15" step="5">
+                      <div class="control-desc">Residual soil nitrate &amp; ammonium fueling autumn denitrification spikes and N₂O burst emissions.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tab 3: Vegetation & Biology -->
+                <div class="sandbox-pane" id="sandbox-pane-plants">
+                  <div class="sandbox-controls-grid">
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🌾 Leaf Area Index (LAI) / Canopy Cover</span>
+                        <span class="control-val" id="val-plant-lai">2.8 m²/m²</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-plant-lai" min="0.5" max="5.0" value="2.8" step="0.1">
+                      <div class="control-desc">Photosynthetic leaf biomass scaling daytime gross primary productivity (GPP) carbon assimilation.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🎋 Aerenchyma Gas Shunt Density</span>
+                        <span class="control-val" id="val-aerenchyma">65% Bypass</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-aerenchyma" min="10" max="100" value="65" step="5">
+                      <div class="control-desc">Proportion of vascular sedges (Carex rostrata) venting deep catotelm CH₄ directly through hollow stem tissue.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">📐 Acrotelm Peat Horizon Depth</span>
+                        <span class="control-val" id="val-peat-thickness">10 cm</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-peat-thickness" min="5" max="30" value="10" step="1">
+                      <div class="control-desc">Thickness of active living organic horizon above the compacted agricultural plow pan.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tab 4: Meteophysics & Boundary Layer -->
+                <div class="sandbox-pane" id="sandbox-pane-atmo">
+                  <div class="sandbox-controls-grid">
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">💨 Vapor Pressure Deficit (VPD)</span>
+                        <span class="control-val" id="val-atmo-vpd">0.85 kPa</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-atmo-vpd" min="0.2" max="2.5" value="0.85" step="0.05">
+                      <div class="control-desc">Atmospheric dryness: VPD &gt; 1.2 kPa triggers protective stomatal closure, curbing CO₂ assimilation.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🌪️ Friction Velocity (u*)</span>
+                        <span class="control-val" id="val-atmo-ustar">0.28 m/s (Turbulent)</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-atmo-ustar" min="0.04" max="0.80" value="0.28" step="0.02">
+                      <div class="control-desc">Mechanical wind shear: u* &lt; 0.12 m/s decouples surface emissions into nocturnal sub-canopy pools.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">☀️ Incident Net Radiation (Rn)</span>
+                        <span class="control-val" id="val-atmo-rn">+420 W/m²</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-atmo-rn" min="-50" max="750" value="420" step="10">
+                      <div class="control-desc">Surface net radiative balance driving thermal convection plumes and plant photosynthesis.</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">⚖️ Energy Partitioning Bowen Ratio (β)</span>
+                        <span class="control-val" id="val-atmo-bowen">0.45 (Wet Fen)</span>
+                      </div>
+                      <input type="range" class="sandbox-slider" id="slider-atmo-bowen" min="0.1" max="2.0" value="0.45" step="0.05">
+                      <div class="control-desc">Ratio of Sensible Heat H to Latent Heat LE: wet peatlands stay cool (β &lt; 0.5), dry peat heats air (β &gt; 1.5).</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
 
@@ -4981,7 +5179,93 @@
     </div>
   </div>
 
+  <script type="module" src="js/twin_sandbox.js?v=1.0"></script>
   <script type="module" src="js/thesis_explorer.js?v=2.6.0"></script>
   <script type="module" src="js/classic_presentation.js?v=2.5.0"></script>
+
+  <!-- ====================================================================
+       EDUCATIONAL HELP GUIDE MODAL: HOW THE DIGITAL TWIN WORKS (?)
+       ==================================================================== -->
+  <div class="twin-help-modal-overlay hidden" id="twin-help-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="twin-help-dialog">
+      <div class="twin-help-header">
+        <div class="twin-help-title">
+          <span>❓</span> <span>How the Peatland Digital Twin Works</span>
+        </div>
+        <button class="twin-help-close" id="btn-close-twin-help" type="button" title="Close Guide">✕</button>
+      </div>
+      <div class="twin-help-body">
+        
+        <!-- Topic 1: The Core Vision -->
+        <div class="help-topic-card">
+          <div class="help-topic-title">
+            <span>🌐</span> <span>1. The Living Simulator (Real-Time Biophysics)</span>
+          </div>
+          <p>
+            This platform is a <strong>zero-latency physical simulator</strong> representing wetland ecohydrology, soil mechanics, and atmospheric micrometeorology. Rather than querying static spreadsheets, every time you move a slider, analytical equations recalculate instantaneous mass and energy balances in less than 1 millisecond at 60 FPS.
+          </p>
+        </div>
+
+        <!-- Topic 2: Visual Elements -->
+        <div class="help-topic-card">
+          <div class="help-topic-title">
+            <span>🎨</span> <span>2. What You See on Screen (Visual Code)</span>
+          </div>
+          <p>
+            • <strong>Sky &amp; Celestial Arc:</strong> The sun rises and sets, driving net radiation (Rn). At night, the sky darkens, stars appear, and an atmospheric inversion layer traps cooling gases near the ground.<br>
+            • <strong>Green Canopies &amp; Aerenchyma Roots:</strong> Sedges (<em>Carex rostrata</em>) absorb CO₂ from sunlight while their hollow root tubes (aerenchyma) act as natural chimneys venting methane directly to the air.<br>
+            • <strong>Three Soil Horizons:</strong> Living moss Acrotelm (0–10 cm), compacted plow pan (10–25 cm) crushed by tractor wheels, and saturated Catotelm (&gt;25 cm) storing millennia of carbon.<br>
+            • <strong>Gas Vectors:</strong> Green arrows down = plant carbon uptake; Red arrows up = peat decay respiration; Orange bubbles = methane ebullition; Purple particles = nitrous oxide denitrification.
+          </p>
+        </div>
+
+        <!-- Topic 3: The Chemical Key: pH -->
+        <div class="help-topic-card">
+          <div class="help-topic-title">
+            <span>🧪</span> <span>3. The Power of pH (Acidic Bog vs. Neutral Fen)</span>
+          </div>
+          <p>
+            • <strong>Acidic Bogs (pH 3.5–4.5):</strong> Mosses produce uronic acids, creating a hostile environment for bacterial enzymes. Peat respiration slows, and methanogenic archaea are severely inhibited. Water appears amber-brown (peat tea).<br>
+            • <strong>Neutral Fens (pH 6.5–7.5):</strong> Groundwater buffers (calcium, magnesium) maximize enzymatic activity. Methanogenesis reaches its optimal peak, releasing methane whenever the soil is waterlogged.
+          </p>
+        </div>
+
+        <!-- Topic 4: Soil Compaction & Pores -->
+        <div class="help-topic-card">
+          <div class="help-topic-title">
+            <span>🚜</span> <span>4. Soil Mechanics: Pores &amp; Tractor Compaction</span>
+          </div>
+          <p>
+            • <strong>Macropores (&gt;50 µm):</strong> Natural open pores that let water drain and plant roots breathe.<br>
+            • <strong>Plow Pan Compaction:</strong> Heavy tractors crush macropores, raising bulk density (from 0.20 to 0.70+ g/cm³). Water pools on top (perched water), creating stagnant anoxic zones that emit methane even when the deep water table is dry.
+          </p>
+        </div>
+
+        <!-- Topic 5: Meteophysics -->
+        <div class="help-topic-card">
+          <div class="help-topic-title">
+            <span>☀️</span> <span>5. Meteophysics: Atmosphere &amp; Energy</span>
+          </div>
+          <p>
+            • <strong>VPD (Vapor Pressure Deficit):</strong> Atmospheric dryness. When air is too hot and dry (VPD &gt; 1.2 kPa), plants close their pores to avoid wilting, halting carbon uptake.<br>
+            • <strong>Friction Velocity (u*):</strong> Wind turbulence shear. When winds fall below 0.12 m/s on calm nights, air stops mixing and gases pool at the surface.<br>
+            • <strong>Bowen Ratio (β = H/LE):</strong> Healthy wet peatlands spend their energy evaporating water (staying cool, β &lt; 0.5); drained peatlands heat up the air (β &gt; 1.2).
+          </p>
+        </div>
+
+        <!-- Topic 6: Empirical Validation -->
+        <div class="help-topic-card">
+          <div class="help-topic-title">
+            <span>⚖️</span> <span>6. Ground-Truth Field Validation (Wallener Au 2024)</span>
+          </div>
+          <p>
+            Click the <strong>⚖️ Validate vs. Field Benchmark</strong> button inside the Lab Sandbox at any time to compare the twin's live calculated numbers with 15,000 real half-hour measurements recorded at the Wallener Au tower in Germany.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
