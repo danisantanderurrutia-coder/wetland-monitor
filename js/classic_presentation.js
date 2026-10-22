@@ -544,6 +544,18 @@ export class ClassicThesisPresentation {
     // Conectar eventos de la imagen y zoom
     const imgEl = document.getElementById('active-slide-img');
     const zoomHint = document.getElementById('caption-zoom-action');
+    const appRef2 = window.presentationApp;
+    if (imgEl && appRef2 && appRef2.isImageEmbargoed && appRef2.isImageEmbargoed(currentVisualSrc, slide.title || '', '', '')) {
+      const wrap = imgEl.parentElement;
+      imgEl.classList.add('embargo-blurred-target');
+      wrap.classList.add('embargoed-wrapper');
+      if (!wrap.querySelector('.embargo-overlay')) {
+        const ov = document.createElement('div');
+        ov.className = 'embargo-overlay';
+        ov.innerHTML = '<div class="embargo-badge">🔒 RESEARCH NOT PUBLISHED</div><h4 class="embargo-title">Academic Embargo</h4><p class="embargo-desc">Research not published — <strong>Please contact Mr Sebastian Jordan</strong></p><a href="mailto:sebastian.jordan@thuenen.de" class="embargo-contact-card" onclick="event.stopPropagation();"><span>✉️</span> <span>sebastian.jordan@thuenen.de</span></a>';
+        wrap.insertBefore(ov, wrap.firstChild);
+      }
+    }
     if (imgEl) imgEl.addEventListener('click', () => this.openLightbox(currentVisualSrc, currentCaption));
     if (zoomHint) zoomHint.addEventListener('click', () => this.openLightbox(currentVisualSrc, currentCaption));
 
@@ -619,6 +631,19 @@ export class ClassicThesisPresentation {
   }
 
   openLightbox(src, caption) {
+    const appRef = window.presentationApp;
+    if (appRef && appRef.isEmbargoActive && appRef.isImageEmbargoed && appRef.isImageEmbargoed(src, '', '', '')) {
+      appRef.showEmbargoToast('🔒 This research result is under academic publication embargo.');
+      return;
+    }
+    if (typeof window.openUniversalLightbox === 'function') {
+      const slide = this.slides[this.currentIndex];
+      const title = slide ? `${slide.num}. ${slide.title}` : 'Executive Pitch Visual';
+      const badge = slide ? (slide.section || 'Pitch Deck') : 'Pitch Deck';
+      window.openUniversalLightbox(src, title, caption || (slide ? slide.visual?.caption : ''), badge);
+      return;
+    }
+
     const modal = document.getElementById('slide-lightbox-modal');
     const img = document.getElementById('lightbox-img');
     const cap = document.getElementById('lightbox-caption');

@@ -1879,7 +1879,7 @@
   background: rgba(5, 10, 20, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  z-index: 100060;
+  z-index: 100070;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1890,8 +1890,14 @@
 }
 
 .twin-help-modal-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.twin-help-modal-overlay.hidden {
+  display: none !important;
+  pointer-events: none !important;
 }
 
 .twin-help-dialog {

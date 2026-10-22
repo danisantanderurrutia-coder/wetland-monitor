@@ -273,30 +273,48 @@ class WetlandMonitorApp {
       });
     }
 
-    // Top Header & Menu "How It Works" buttons
+    // Global "How It Works" Pedagogical Guide Modal Controller
+    window.openHowItWorks = () => {
+      const modal = document.getElementById("twin-help-modal");
+      if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+      }
+      const drawer = document.getElementById("dropdown-view-tabs");
+      const hamburgerBtn = document.getElementById("btn-hamburger-menu");
+      if (drawer) drawer.classList.add("hidden");
+      if (hamburgerBtn) hamburgerBtn.classList.remove("active");
+    };
+
+    window.closeHowItWorks = () => {
+      const modal = document.getElementById("twin-help-modal");
+      if (modal) {
+        modal.classList.remove("active");
+        modal.classList.add("hidden");
+        modal.setAttribute("aria-hidden", "true");
+      }
+    };
+
+    // Wire all "How It Works" triggers across header, menu, and twin HUD
     const howItWorksBtn = document.getElementById("btn-header-how-it-works");
-    if (howItWorksBtn) {
-      howItWorksBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (this.sandbox && typeof this.sandbox.showHelpModal === "function") {
-          this.sandbox.showHelpModal();
-        } else {
-          const m = document.getElementById("twin-help-modal");
-          if (m) { m.classList.remove("hidden"); m.classList.add("active"); }
-        }
-      });
-    }
+    if (howItWorksBtn) howItWorksBtn.addEventListener("click", (e) => { e.preventDefault(); window.openHowItWorks(); });
 
     const tabHowItWorks = document.getElementById("tab-how-it-works");
-    if (tabHowItWorks) {
-      tabHowItWorks.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (this.sandbox && typeof this.sandbox.showHelpModal === "function") {
-          this.sandbox.showHelpModal();
-        } else {
-          const m = document.getElementById("twin-help-modal");
-          if (m) { m.classList.remove("hidden"); m.classList.add("active"); }
-        }
+    if (tabHowItWorks) tabHowItWorks.addEventListener("click", (e) => { e.preventDefault(); window.openHowItWorks(); });
+
+    const hudHelpBtn = document.getElementById("btn-twin-help-guide");
+    if (hudHelpBtn) hudHelpBtn.addEventListener("click", (e) => { e.preventDefault(); window.openHowItWorks(); });
+
+    const sandboxHelpBtn = document.getElementById("btn-sandbox-help");
+    if (sandboxHelpBtn) sandboxHelpBtn.addEventListener("click", (e) => { e.preventDefault(); window.openHowItWorks(); });
+
+    const closeHelpBtn = document.getElementById("btn-close-twin-help");
+    const helpModal = document.getElementById("twin-help-modal");
+    if (closeHelpBtn) closeHelpBtn.addEventListener("click", () => window.closeHowItWorks());
+    if (helpModal) {
+      helpModal.addEventListener("click", (e) => {
+        if (e.target === helpModal) window.closeHowItWorks();
       });
     }
   }
@@ -1650,37 +1668,47 @@ class WetlandMonitorApp {
       }
 
       // 3. Figures across all views (Universal Lightbox Delegation)
-      const targetImg = e.target.closest("img.thesis-plot, .macro-display-wrapper img, .macro-img-container img, .flux-plot-card img, .ghg-plot-container img, .ghg-plot-card img, .gwp-stage-container img, .modal-figure-img, .dashboard-plot-img, .presentation-card img, .explorer-gallery-card img, .flowchart-container img, img[data-zoomable='true'], img[src*='assets/']:not(.cover-logo-img):not(#active-brand-logo-img):not(.no-zoom)");
+      let targetImg = e.target.tagName === "IMG" ? e.target : null;
+      if (!targetImg) {
+        const plotWrap = e.target.closest(".slide-col-visual, .thesis-plot-container, .thesis-plot-card, .pipeline-plot-wrapper, .pipeline-card, .flux-plot-card, .ghg-plot-container, .ghg-plot-card, .macro-display-wrapper, .macro-img-container, .macro-plot-card, .dashboard-plot-card, .caption-zoom-hint, [data-zoomable='true']");
+        if (plotWrap && !e.target.closest("button, a, input, select, .action-btn-unlock-admin")) {
+          targetImg = plotWrap.querySelector("img");
+        }
+      }
+
       if (targetImg) {
-        // Check if currently under embargo
+        if (targetImg.id === "active-brand-logo-img" || targetImg.classList.contains("cover-logo-img") || targetImg.classList.contains("no-zoom")) {
+          return;
+        }
+
         const src = targetImg.getAttribute("src") || "";
         const alt = targetImg.getAttribute("alt") || "";
         const titleAttr = targetImg.dataset.title || "";
         const catAttr = targetImg.closest(".modal-tier-results")?.querySelector("#modal-category-text")?.textContent || "";
 
         if (this.isEmbargoActive && this.isImageEmbargoed && this.isImageEmbargoed(src, alt, titleAttr, catAttr)) {
-          this.showEmbargoToast("🔒 This research result is under academic embargo. Please contact Mr. Sebastian Jordan (sebastian.jordan@thuenen.de) to request access.");
+          this.showEmbargoToast("🔒 This research result is under academic publication embargo. Authenticate in Admin Console to unlock.");
           return;
         }
-        const card = targetImg.closest(".presentation-card, .modal-tier-results, .flux-plot-card, .ghg-plot-card, .thesis-plot-card, .macro-visualizer-card") || targetImg.parentElement;
+        const card = targetImg.closest(".presentation-card, .modal-tier-results, .flux-plot-card, .ghg-plot-card, .thesis-plot-card, .macro-visualizer-card, .pipeline-card, .workflow-card") || targetImg.parentElement;
         
         let title = targetImg.dataset.title;
         if (!title && card) {
-          const titleEl = card.querySelector(".thesis-plot-title, .presentation-card-title, .plot-card-header h4, #macro-layer-title, #modal-figure-title");
+          const titleEl = card.querySelector(".thesis-plot-title, .presentation-card-title, .plot-card-header h4, #macro-layer-title, #modal-figure-title, h4, h3");
           if (titleEl) title = titleEl.textContent.trim();
         }
-        if (!title) title = targetImg.alt || "Thesis Scientific Figure";
+        if (!title) title = targetImg.alt || "Scientific Observation Plot";
 
         let caption = targetImg.dataset.caption;
         if (!caption && card) {
-          const captionEl = card.querySelector(".plot-caption, .figure-caption-text, .plot-card-footer p, #macro-layer-desc, #modal-figure-caption, .pitch-takeaway-text");
+          const captionEl = card.querySelector(".plot-caption, .figure-caption-text, .plot-card-footer p, #macro-layer-desc, #modal-figure-caption, .pitch-takeaway-text, p");
           if (captionEl) caption = captionEl.textContent.trim();
         }
         if (!caption) caption = targetImg.alt || "Observation and empirical analysis from the Klimafarm Peatland Observatory at Wallener Au.";
 
         let badge = targetImg.dataset.badge;
         if (!badge && card) {
-          const badgeEl = card.querySelector(".presentation-card-badge, .modal-category-badge, .plot-depth-tag, #macro-layer-tag, #modal-category-text");
+          const badgeEl = card.querySelector(".presentation-card-badge, .modal-category-badge, .plot-depth-tag, #macro-layer-tag, #modal-category-text, .badge-pill");
           if (badgeEl) badge = badgeEl.textContent.trim();
         }
         if (!badge) badge = "Empirical Result";
@@ -1942,17 +1970,15 @@ class WetlandMonitorApp {
     this.embargoConfig = {
       embargoedCategories: ["eddy_covariance", "chambers", "oedometer", "soil_mechanics"],
       embargoedFilePatterns: [
-        "17_19_Combined_Footprint",
-        "14b_CH4_Models_Comparison",
-        "01_Reco_LT_Fits",
-        "fig52_ec_workflow",
-        "fig62_gapfilling",
-        "fig50_data_processing",
-        "fig63_ghg_upscaling",
-        "peat_plowpan",
-        "oedometer",
-        "bowen",
-        "flux"
+        "17_19_Combined_Footprint", "17_Footprint", "14b_CH4", "01_Reco", "01_time_series", "02_GPP",
+        "03_SW_IN", "03_TA_QC", "03_TS10", "03_chamber", "07b_NEE", "08_NEE", "08b_Resp", "10_Soil_Temp",
+        "11_Water_Level", "12_QC", "12b_CH4", "13_Energy", "14_Ecosystem", "15_GPP", "16_Bowen", "16b_CH4",
+        "17_Cumulative", "18_Depth", "18_GHG", "19_Spatial", "20_Chamber", "20b_Chamber", "21_GHG", "22_GHG",
+        "23_GHG", "24_Literature", "24_Soil_Strat", "25_Soil_Strat", "25b_", "26b_", "78_N2O", "79_N2O",
+        "80_N2O", "81_N2O", "82_N2O", "Air_Conductivity", "Air_Permeability", "Chambers_", "Comparison_EK",
+        "Dry_Bulk", "GPV_", "Precompression", "TPV_", "WCP_", "Weight_Evolution", "energy_balance",
+        "fig50_data_processing", "fig52_ec_workflow", "fig55_", "fig57_", "fig62_gapfilling", "fig63_ghg",
+        "precompression_curves", "peat_plowpan", "oedometer", "bowen", "flux", "cau_kiel_air_permeameter"
       ],
       whitelistPatterns: [
         "Walter_Lieth",
@@ -1974,61 +2000,136 @@ class WetlandMonitorApp {
     // 3. Scan DOM and apply embargo wrappers to matching figures
     this.scanAndApplyEmbargoOverlays();
 
-    // 4. Connect Admin Modal DOM Elements
+    // 4. Connect Admin Modal DOM Elements (PIN-gated console)
+    const ADMIN_PIN = "2026";
     const adminBtn = document.getElementById("btn-header-admin");
     const adminModal = document.getElementById("admin-security-modal");
-    const closeBtn = document.getElementById("btn-close-admin-modal");
-    const closeActionBtn = document.getElementById("btn-admin-close-action");
+    const authScreen = document.getElementById("admin-auth-screen");
+    const consoleScreen = document.getElementById("admin-console-screen");
+    const pinInput = document.getElementById("admin-password-input");
+    const authError = document.getElementById("admin-auth-error");
+    const authForm = document.getElementById("admin-auth-form");
     const toggleBtn = document.getElementById("btn-admin-toggle-embargo");
 
+    this.isAdminAuthed = sessionStorage.getItem("wetland_admin_auth") === "1";
+
+    const showScreen = () => {
+      if (authScreen) authScreen.classList.toggle("hidden", this.isAdminAuthed);
+      if (consoleScreen) consoleScreen.classList.toggle("hidden", !this.isAdminAuthed);
+    };
+
     const openAdminModal = () => {
-      if (adminModal) {
-        this.updateAdminModalUI();
-        adminModal.classList.remove("hidden");
-        adminModal.classList.add("active");
-        adminModal.setAttribute("aria-hidden", "false");
-      }
+      if (!adminModal) return;
+      this.updateAdminModalUI();
+      showScreen();
+      adminModal.classList.remove("hidden");
+      adminModal.classList.add("active");
+      adminModal.setAttribute("aria-hidden", "false");
+      if (!this.isAdminAuthed && pinInput) setTimeout(() => pinInput.focus(), 60);
     };
 
     const closeAdminModal = () => {
-      if (adminModal) {
-        adminModal.classList.add("hidden");
-        adminModal.classList.remove("active");
-        adminModal.setAttribute("aria-hidden", "true");
-      }
+      if (!adminModal) return;
+      adminModal.classList.add("hidden");
+      adminModal.classList.remove("active");
+      adminModal.setAttribute("aria-hidden", "true");
+      if (pinInput) pinInput.value = "";
+      if (authError) authError.classList.add("hidden");
+    };
+    window.openAdminModal = openAdminModal;
+
+    const setEmbargo = (active) => {
+      this.isEmbargoActive = active;
+      localStorage.setItem("wetland_embargo_active", String(active));
+      document.body.classList.toggle("embargo-active", active);
+      this.updateAdminModalUI();
+    };
+
+    const lockSession = () => {
+      this.isAdminAuthed = false;
+      sessionStorage.removeItem("wetland_admin_auth");
+      setEmbargo(true);
+      showScreen();
+      this.showEmbargoToast("🔒 Admin session locked. Embargo re-engaged.");
     };
 
     if (adminBtn) adminBtn.addEventListener("click", openAdminModal);
-    if (closeBtn) closeBtn.addEventListener("click", closeAdminModal);
-    if (closeActionBtn) closeActionBtn.addEventListener("click", closeAdminModal);
-
+    ["btn-close-admin-modal", "btn-close-admin-console", "btn-admin-close-action"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("click", closeAdminModal);
+    });
     if (adminModal) {
-      adminModal.addEventListener("click", (e) => {
-        if (e.target === adminModal) closeAdminModal();
+      adminModal.addEventListener("click", (e) => { if (e.target === adminModal) closeAdminModal(); });
+    }
+
+    if (authForm) {
+      authForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (pinInput && pinInput.value === ADMIN_PIN) {
+          this.isAdminAuthed = true;
+          sessionStorage.setItem("wetland_admin_auth", "1");
+          if (authError) authError.classList.add("hidden");
+          pinInput.value = "";
+          showScreen();
+        } else {
+          if (authError) authError.classList.remove("hidden");
+          if (pinInput) { pinInput.value = ""; pinInput.focus(); }
+        }
       });
     }
 
-    // Toggle Embargo Switch
+    const lockBtn = document.getElementById("btn-admin-lock-session");
+    if (lockBtn) lockBtn.addEventListener("click", lockSession);
+
+    // Toggle Embargo Switch (only reachable when authenticated)
     if (toggleBtn) {
       toggleBtn.addEventListener("click", () => {
-        this.isEmbargoActive = !this.isEmbargoActive;
-        localStorage.setItem("wetland_embargo_active", String(this.isEmbargoActive));
-        document.body.classList.toggle("embargo-active", this.isEmbargoActive);
-        this.updateAdminModalUI();
-        this.showEmbargoToast(this.isEmbargoActive ? "🛡️ Embargo Activated: Unpublished results blurred." : "🔓 Defense Mode: All scientific results unlocked!");
+        if (!this.isAdminAuthed) return;
+        setEmbargo(!this.isEmbargoActive);
+        this.showEmbargoToast(this.isEmbargoActive ? "🛡️ Embargo activated: unpublished results hidden." : "🔓 Embargo lifted: all results unlocked.");
       });
     }
+
+    // Stress tests / overrides on the digital twin
+    const applyOverride = (patch, msg) => {
+      const sb = this.sandbox;
+      if (!sb) return;
+      Object.assign(sb.state, patch);
+      if (patch.targetWtd !== undefined && this.soilModel && typeof this.soilModel.setWaterTable === "function") {
+        this.soilModel.setWaterTable(patch.targetWtd);
+      }
+      sb.updatePhysics();
+      this.showEmbargoToast(msg);
+    };
+    const bindAdmin = (id, fn) => { const el = document.getElementById(id); if (el) el.addEventListener("click", () => { if (this.isAdminAuthed) fn(); }); };
+    bindAdmin("btn-admin-stress-drought", () => applyOverride({ targetWtd: -80, atmoVpd: 2.4 }, "🌵 Severe drought injected"));
+    bindAdmin("btn-admin-stress-flood", () => applyOverride({ targetWtd: 15 }, "🌊 Flash flood injected"));
+    bindAdmin("btn-admin-stress-compaction", () => applyOverride({ soilCompaction: 0.78, macroporosity: 6 }, "🚜 Heavy compaction injected"));
+    bindAdmin("btn-admin-stress-heatwave", () => applyOverride({ atmoVpd: 2.2, atmoRn: 650 }, "🔥 Heatwave injected"));
+    bindAdmin("btn-admin-stress-reset", () => {
+      if (this.sandbox) this.sandbox.loadArchetype("fen");
+      this.showEmbargoToast("🔄 Reset to Wallener Au calibrated baseline");
+    });
+
+    document.querySelectorAll(".admin-jump-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        if (!this.isAdminAuthed) return;
+        closeAdminModal();
+        this.switchView(chip.dataset.jumpView);
+      });
+    });
+
+    // Re-apply embargo whenever the app is (re)loaded without auth: sessions never persist an unlocked state
+    if (!this.isAdminAuthed) setEmbargo(true);
 
     // 5. Global Keyboard Shortcuts: Ctrl+Shift+A or Alt+A
     document.addEventListener("keydown", (e) => {
       if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a") || (e.altKey && e.key.toLowerCase() === "a")) {
         e.preventDefault();
-        if (adminModal && adminModal.classList.contains("active")) {
-          closeAdminModal();
-        } else {
-          openAdminModal();
-        }
+        if (adminModal && adminModal.classList.contains("active")) closeAdminModal();
+        else openAdminModal();
       }
+      if (e.key === "Escape" && adminModal && adminModal.classList.contains("active")) closeAdminModal();
     });
 
     this.updateAdminModalUI();

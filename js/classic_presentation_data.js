@@ -194,8 +194,8 @@ export const CLASSIC_THESIS_SLIDES = [
     subtitle: "High-Frequency Micrometeorology (10 Hz) Coupled with a Stratified In Situ Chamber Network",
     visual: {
       type: "image",
-      src: "assets/sprites/gas_chamber.png",
-      caption: "Closed dynamic chamber setup (base ⌀ 36.7 cm) coupled with the 10 Hz Eddy Covariance tower."
+      src: "assets/sprites/sonic_anemometer.png",
+      caption: "Micrometeorological 3D sonic anemometer (10 Hz) and coupled open-path Eddy Covariance tower array."
     },
     cards: [
       {

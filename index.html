@@ -129,28 +129,23 @@
         <!-- Right Header Actions -->
         <div class="header-actions">
           <!-- Guided Tour / Executive Pitch Deck Button -->
-          <button class="action-btn primary header-presentation-btn" id="btn-open-classic-presentation" title="Open Guided Tour &amp; Executive Pitch Deck (22 Slides)" style="background: linear-gradient(135deg, #0284c7, #0369a1) !important; color: #ffffff !important; border: 1px solid #38bdf8 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4) !important;">
-            <span style="font-size:16px;">🧭</span> <span style="font-weight:700;">Guided Tour</span> <span class="badge-pill" style="background:#38bdf8; color:#0f172a; font-size:10px; font-weight:800; padding:1px 6px; border-radius:10px;">Pitch Deck</span>
-          </button>
-
-          <!-- Direct Digital Twin Button -->
-          <button class="action-btn direct-twin-btn" id="btn-header-direct-twin" title="Open Interactive Peatland Digital Twin &amp; Soil Interface" style="background: linear-gradient(135deg, #059669, #047857) !important; color: #ffffff !important; border: 1px solid #34d399 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(5, 150, 105, 0.4) !important;">
-            <span style="font-size:16px;">🌍</span> <span>Ecosystem Twin</span>
+          <button class="action-btn primary header-presentation-btn" id="btn-open-classic-presentation" title="Open Guided Tour &amp; Executive Pitch Deck (22 Slides)">
+            <span class="btn-icon">🧭</span> <span class="action-btn-text">Guided Tour</span> <span class="badge-pill">Deck</span>
           </button>
 
           <!-- How It Works Pedagogical Guide Button -->
-          <button class="action-btn help-guide-btn" id="btn-header-how-it-works" title="How the Peatland Digital Twin Works (?)" style="border: 1px solid rgba(245, 158, 11, 0.45); color: #fbbf24; background: rgba(245, 158, 11, 0.12); font-weight: 700;">
-            <span style="font-size:15px;">❓</span> <span>How It Works</span>
+          <button class="action-btn help-guide-btn" id="btn-header-how-it-works" title="How the Peatland Digital Twin Works (?)">
+            <span class="btn-icon">❓</span> <span class="action-btn-text">How It Works</span>
           </button>
 
           <!-- Scripts & Pipelines Hub Button -->
           <button class="action-btn explorer-btn" id="btn-open-explorer" title="Open Scripts &amp; Pipelines Hub (Key T or H)">
-            <span style="font-size:16px;">💻</span> <span class="explorer-btn-text">Hub - Scripts &amp; Pipelines</span> <span class="badge-pill">Live</span>
+            <span class="btn-icon">💻</span> <span class="explorer-btn-text">Pipeline Hub</span>
           </button>
 
           <!-- Template Theme Toggle (Luminous / Dark) -->
           <button class="action-btn theme-toggle-btn" id="btn-theme-toggle" title="Toggle Light/Dark Theme">
-            <span id="theme-icon">☀️</span> <span id="label-theme-btn">Luminous</span>
+            <span id="theme-icon">☀️</span> <span id="label-theme-btn" class="theme-label">Luminous</span>
           </button>
 
           <!-- Presenter Speaker Notes Drawer Toggle -->
@@ -158,9 +153,9 @@
             <span>🎙️</span>
           </button>
 
-          <!-- Research Admin & Security Console Toggle -->
-          <button class="action-btn admin-btn" id="btn-header-admin" title="Research Admin Console (Key Ctrl+Shift+A or Alt+A)" style="border: 1px solid rgba(244, 63, 94, 0.4); color: #fda4af;">
-            <span>⚙️</span> <span style="font-weight:700;">Admin</span>
+          <!-- Research Admin & Security Console Toggle (No password displayed here) -->
+          <button class="action-btn admin-btn" id="btn-header-admin" title="Research Admin Console (Key Ctrl+Shift+A or Alt+A)">
+            <span>⚙️</span> <span class="admin-btn-text">Admin</span>
           </button>
 
           <!-- Fullscreen Mode Toggle -->
@@ -3181,8 +3176,44 @@
       </div>
     </div>
 
-    <!-- Category Filter / Jump Bar -->
-    <div class="macro-layer-switcher-bar eddy-switcher-bar" style="margin-bottom: 1.5rem;">
+    <!-- SECTION EMBARGO LOCK SHIELD (Active by default until unlocked via Admin) -->
+    <div class="section-embargo-lock-card" id="lock-card-eddy">
+      <div class="section-lock-badge">
+        <span class="lock-shield-icon">🛡️</span>
+        <span>ACADEMIC EMBARGO ACTIVE • RESTRICTED SCIENTIFIC ASSETS</span>
+      </div>
+      <h3 class="section-lock-title">🔒 Case Study 01 Empirical Data Restricted</h3>
+      <p class="section-lock-desc">
+        All continuous 10 Hz Eddy Covariance series, discrete chamber flux matrices (CO₂, CH₄, N₂O), and empirical validation tables from the 2024 Wallener Au field campaign are currently withheld under academic publication embargo.
+      </p>
+      <div class="section-lock-reasons">
+        <div class="lock-reason-item">
+          <span class="reason-icon">📜</span>
+          <div class="reason-text">
+            <strong>Publication Embargo:</strong> Pre-publication intellectual property protection for doctoral research manuscript (Santander et al., 2026).
+          </div>
+        </div>
+        <div class="lock-reason-item">
+          <span class="reason-icon">✉️</span>
+          <div class="reason-text">
+            <strong>Academic Inquiries:</strong> Contact primary investigator <em>Mr. Sebastian Jordan</em> (<code>sebastian.jordan@thuenen.de</code>).
+          </div>
+        </div>
+      </div>
+      <div class="section-lock-actions">
+        <button type="button" class="action-btn-unlock-admin" onclick="window.openAdminModal ? window.openAdminModal() : document.getElementById('btn-header-admin').click();">
+          <span>🔑</span> <span>Authenticate &amp; Unlock via Admin Console</span>
+        </button>
+        <a href="mailto:sebastian.jordan@thuenen.de?subject=Request%20for%20Wallener%20Au%20Eddy%20Covariance%20Data" class="action-btn-contact-author">
+          <span>✉️</span> <span>Request Access from Author</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- EMBARGO RESTRICTED CONTENT WRAPPER -->
+    <div class="embargo-section-locked-content">
+      <!-- Category Filter / Jump Bar -->
+      <div class="macro-layer-switcher-bar eddy-switcher-bar" style="margin-bottom: 1.5rem;">
       <button class="macro-layer-pill eddy-section-pill active" data-category="all" type="button">
         <span>🌐</span> All Figures (14)
       </button>
@@ -3458,6 +3489,7 @@
         </div>
       </div>
     </div>
+    </div> <!-- /.embargo-section-locked-content -->
 
   </div>
 </section>
@@ -3478,8 +3510,44 @@
       </div>
     </div>
 
-    <!-- Master 2-Area Grid: Left Causal Chain + Right Data Panels -->
-    <div class="geophysics-master-grid">
+    <!-- SECTION EMBARGO LOCK SHIELD (Active by default until unlocked via Admin) -->
+    <div class="section-embargo-lock-card" id="lock-card-geophysics">
+      <div class="section-lock-badge">
+        <span class="lock-shield-icon">🛡️</span>
+        <span>ACADEMIC EMBARGO ACTIVE • RESTRICTED GEOTECHNICAL ASSETS</span>
+      </div>
+      <h3 class="section-lock-title">🔒 Soil Compression &amp; Oedometer Results Restricted</h3>
+      <p class="section-lock-desc">
+        All laboratory oedometer compaction curves, precompression stress profiles (&sigma;<sub>p</sub>), and deep core stratigraphy are withheld under academic publication embargo.
+      </p>
+      <div class="section-lock-reasons">
+        <div class="lock-reason-item">
+          <span class="reason-icon">🗜️</span>
+          <div class="reason-text">
+            <strong>Geomechanical Data:</strong> Proprietary mechanical consolidation tests, settlement ratios, and plow pan compression models.
+          </div>
+        </div>
+        <div class="lock-reason-item">
+          <span class="reason-icon">✉️</span>
+          <div class="reason-text">
+            <strong>Academic Inquiries:</strong> Contact primary investigator <em>Mr. Sebastian Jordan</em> (<code>sebastian.jordan@thuenen.de</code>).
+          </div>
+        </div>
+      </div>
+      <div class="section-lock-actions">
+        <button type="button" class="action-btn-unlock-admin" onclick="window.openAdminModal ? window.openAdminModal() : document.getElementById('btn-header-admin').click();">
+          <span>🔑</span> <span>Authenticate &amp; Unlock via Admin Console</span>
+        </button>
+        <a href="mailto:sebastian.jordan@thuenen.de?subject=Request%20for%20Peatland%20Geomechanics%20Data" class="action-btn-contact-author">
+          <span>✉️</span> <span>Request Access from Author</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- EMBARGO RESTRICTED CONTENT WRAPPER -->
+    <div class="embargo-section-locked-content">
+      <!-- Master 2-Area Grid: Left Causal Chain + Right Data Panels -->
+      <div class="geophysics-master-grid">
       
       <!-- AREA 1 (LEFT): Causal Chain Diagram -->
       <div class="presentation-card causal-chain-card">
@@ -3972,6 +4040,7 @@
       </div>
 
     </div>
+    </div> <!-- /.embargo-section-locked-content -->
 
   </div>
 </section>
@@ -4363,6 +4432,7 @@
       </div>
 
     </div>
+    </div> <!-- /.embargo-section-locked-content -->
 
   </div>
 </section>
@@ -5183,52 +5253,147 @@
        ==================================================================== -->
   <div class="admin-modal-overlay hidden" id="admin-security-modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="admin-modal-dialog">
-      <div class="admin-modal-header">
-        <div class="admin-modal-title">
-          <span>⚙️</span> <span>Research Admin &amp; Data Security Console</span>
+      
+      <!-- SCREEN 1: AUTHORIZATION & PIN VERIFICATION -->
+      <div id="admin-auth-screen" class="admin-auth-screen">
+        <div class="admin-modal-header">
+          <div class="admin-modal-title">
+            <span>🔒</span> <span>Restricted Admin Console</span>
+          </div>
+          <button class="admin-modal-close" id="btn-close-admin-modal" type="button" title="Close Admin Console">✕</button>
         </div>
-        <button class="admin-modal-close" id="btn-close-admin-modal" type="button" title="Close Admin Console">✕</button>
-      </div>
-      <div class="admin-modal-body">
-        <div class="admin-switch-card">
-          <div class="admin-switch-row">
-            <div>
-              <div class="admin-switch-label">Thesis IP Embargo Mode</div>
-              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
-                Unpublished results blur protection &amp; Jordan contact shield
-              </div>
+        <div class="admin-modal-body" style="text-align: center; padding: 2rem 1.5rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🛡️</div>
+          <h3 style="color: #ffffff; font-size: 1.15rem; font-weight: 800; margin: 0 0 0.5rem 0;">Authorized Research Access</h3>
+          <p style="color: #94a3b8; font-size: 0.85rem; max-width: 440px; margin: 0 auto 1.5rem auto; line-height: 1.5;">
+            Enter the authorized administrative security key to access unreleased doctoral datasets, toggle publication embargoes, and inject stress-test parameters.
+          </p>
+
+          <form id="admin-auth-form" onsubmit="return false;" style="max-width: 320px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem;">
+            <div style="position: relative; width: 100%;">
+              <input type="password" id="admin-password-input" class="admin-password-input" placeholder="Enter security PIN..." autocomplete="current-password" autofocus style="width: 100%; padding: 10px 14px; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 9px; color: #ffffff; font-family: 'JetBrains Mono', monospace; font-size: 1rem; text-align: center; letter-spacing: 0.2em; outline: none; box-shadow: 0 2px 10px rgba(0,0,0,0.4);">
             </div>
-            <span class="admin-switch-status locked" id="admin-embargo-status-badge">🛡️ EMBARGO ACTIVE</span>
+            <button type="submit" id="btn-admin-submit-auth" class="admin-toggle-btn btn-unlock" style="width: 100%; padding: 11px; font-weight: 800; border-radius: 9px; background: linear-gradient(135deg, #0284c7, #0369a1); border: 1px solid #38bdf8; color: #ffffff;">
+              <span>🔓</span> <span>Authenticate Admin Console</span>
+            </button>
+            <div id="admin-auth-error" class="admin-auth-error hidden" style="color: #f87171; font-size: 0.8rem; font-weight: 700; margin-top: 4px;">
+              ❌ Invalid authorization PIN. Access restricted.
+            </div>
+          </form>
+          <div style="margin-top: 1.5rem; font-size: 0.75rem; color: #64748b;">
+            Proprietary Research &amp; Simulator Governance • Klimafarm Peatland Observatory
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: ENHANCED ADMIN CONSOLE (AUTHENTICATED) -->
+      <div id="admin-console-screen" class="admin-console-screen hidden">
+        <div class="admin-modal-header">
+          <div class="admin-modal-title">
+            <span>⚙️</span> <span>Simulator Governance &amp; Research Console</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button type="button" class="admin-action-chip" id="btn-admin-lock-session" title="Lock Admin Session and re-engage embargo" style="background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: #fda4af; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">
+              🔒 Lock Session
+            </button>
+            <button class="admin-modal-close" id="btn-close-admin-console" type="button" title="Close Admin Console">✕</button>
+          </div>
+        </div>
+
+        <div class="admin-modal-body" style="max-height: 75vh; overflow-y: auto;">
+          <!-- 1. Master Embargo Switch Card -->
+          <div class="admin-switch-card">
+            <div class="admin-switch-row">
+              <div>
+                <div class="admin-switch-label">Master Academic IP Embargo</div>
+                <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                  Toggle publication embargo overlay &amp; unlock deactivated result sections
+                </div>
+              </div>
+              <span class="admin-switch-status locked" id="admin-embargo-status-badge">🛡️ EMBARGO ACTIVE</span>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 6px;">
+              <button type="button" class="admin-toggle-btn btn-unlock" id="btn-admin-toggle-embargo">
+                <span>🔓</span> <span id="btn-admin-toggle-text">Deactivate Embargo (Unlock All Figures)</span>
+              </button>
+            </div>
+
+            <p class="admin-info-note">
+              When <strong>EMBARGO ACTIVE</strong> is enabled (public mode), empirical figures and sections for <em>Eddy Covariance, Static Chambers, and Soil Mechanics</em> are deactivated and blurred behind the Sebastian Jordan contact notice.
+            </p>
           </div>
 
-          <div style="display: flex; gap: 10px; margin-top: 6px;">
-            <button type="button" class="admin-toggle-btn btn-unlock" id="btn-admin-toggle-embargo">
-              <span>🔓</span> <span id="btn-admin-toggle-text">Deactivate Embargo (Unlock All Figures)</span>
+          <!-- 2. Simulation Sandbox Stress-Test Injector -->
+          <div class="admin-switch-card">
+            <div class="admin-switch-label" style="font-size: 0.92rem; display: flex; align-items: center; gap: 6px;">
+              <span>⚡</span> <span>Digital Twin Stress-Test &amp; Anomaly Injection</span>
+            </div>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin: 0 0 8px 0;">
+              Force extreme environmental disturbances directly into the biophysical simulation:
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <button type="button" class="admin-stress-btn" id="btn-admin-stress-drought" style="padding: 8px 10px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); color: #fbbf24; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-align: left;">
+                🌵 Severe Drought (WTD −80cm, VPD 2.4kPa)
+              </button>
+              <button type="button" class="admin-stress-btn" id="btn-admin-stress-flood" style="padding: 8px 10px; background: rgba(2, 132, 199, 0.12); border: 1px solid rgba(2, 132, 199, 0.35); color: #38bdf8; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-align: left;">
+                🌊 Flash Flood &amp; Anoxia (WTD +15cm)
+              </button>
+              <button type="button" class="admin-stress-btn" id="btn-admin-stress-compaction" style="padding: 8px 10px; background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); color: #fda4af; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-align: left;">
+                🚜 Heavy Tractor Compaction (BD 0.78)
+              </button>
+              <button type="button" class="admin-stress-btn" id="btn-admin-stress-heatwave" style="padding: 8px 10px; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer; text-align: left;">
+                🔥 Summer Heatwave (Air 38°C, Soil 28°C)
+              </button>
+            </div>
+            <div style="margin-top: 6px;">
+              <button type="button" class="admin-stress-btn" id="btn-admin-stress-reset" style="width: 100%; padding: 8px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; border-radius: 8px; font-size: 0.78rem; font-weight: 800; cursor: pointer;">
+                🔄 Reset to Calibrated Baseline (Wallener Au 2024 Standard)
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. Direct Analytical Jumps -->
+          <div class="admin-switch-card">
+            <div class="admin-switch-label" style="font-size: 0.92rem; display: flex; align-items: center; gap: 6px;">
+              <span>🧭</span> <span>Direct Analytical Section Jumps</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;">
+              <button type="button" class="admin-jump-chip" data-jump-view="eddy_covariance" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 5px 10px; border-radius: 6px; font-size: 0.76rem; cursor: pointer;">
+                📊 Validation Benchmark (Case Study 01)
+              </button>
+              <button type="button" class="admin-jump-chip" data-jump-view="geophysics" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 5px 10px; border-radius: 6px; font-size: 0.76rem; cursor: pointer;">
+                🗜️ Geomechanics &amp; Soil Compaction
+              </button>
+              <button type="button" class="admin-jump-chip" data-jump-view="macro" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 5px 10px; border-radius: 6px; font-size: 0.76rem; cursor: pointer;">
+                🛰️ Remote Sensing &amp; Satellites
+              </button>
+              <button type="button" class="admin-jump-chip" data-jump-view="gwp_explorer" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 5px 10px; border-radius: 6px; font-size: 0.76rem; cursor: pointer;">
+                ⚖️ Carbon Accounting &amp; GWP
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. Exempt Data Whitelist Reference -->
+          <div class="admin-switch-card">
+            <div class="admin-switch-label" style="font-size: 0.92rem; margin-bottom: 6px;">Exempt Data Whitelist (Always Public &amp; Uncensored)</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <span class="admin-whitelist-pill">✓ DWD Regional Climatology (Walter-Lieth)</span>
+              <span class="admin-whitelist-pill">✓ Sentinel-2 Multispectral NDVI / NDWI</span>
+              <span class="admin-whitelist-pill">✓ Digital Elevation Model (DEM) Topography</span>
+              <span class="admin-whitelist-pill">✓ ISRIC SoilGrids Soil Carbon Density</span>
+              <span class="admin-whitelist-pill">✓ Biogeochemistry Conceptual Model (Fig. 20)</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 4px;">
+            <button type="button" class="pitch-action-btn secondary" id="btn-admin-close-action">
+              Close Console
             </button>
           </div>
-
-          <p class="admin-info-note">
-            When <strong>EMBARGO ACTIVE</strong> is enabled (default for public visitors), empirical figures for <em>Eddy Covariance, Static Chambers, and Soil Mechanics</em> are automatically blurred with a contact notice for Mr. Sebastian Jordan.
-          </p>
-        </div>
-
-        <div class="admin-switch-card">
-          <div class="admin-switch-label" style="font-size: 0.92rem; margin-bottom: 6px;">Exempt Data Whitelist (Always Public &amp; Uncensored)</div>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <span class="admin-whitelist-pill">✓ DWD Regional Climatology (Walter-Lieth)</span>
-            <span class="admin-whitelist-pill">✓ Sentinel-2 Multispectral NDVI / NDWI</span>
-            <span class="admin-whitelist-pill">✓ Digital Elevation Model (DEM) Topography</span>
-            <span class="admin-whitelist-pill">✓ ISRIC SoilGrids Soil Carbon Density</span>
-            <span class="admin-whitelist-pill">✓ Biogeochemistry Conceptual Model (Fig. 20)</span>
-          </div>
-        </div>
-
-        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 4px;">
-          <button type="button" class="pitch-action-btn secondary" id="btn-admin-close-action">
-            Close Console
-          </button>
         </div>
       </div>
+
     </div>
   </div>
 
