@@ -29,6 +29,8 @@ export class WetlandTwinSandbox {
     // Archetype Presets
     this.archetypes = {
       fen: {
+        title: "Wallener Au (Temperate Fen Benchmark)",
+        badge: "Empirical Ground-Truth",
         soilPh: 6.8,
         waterInjection: 0,
         soilCompaction: 0.32,
@@ -36,9 +38,12 @@ export class WetlandTwinSandbox {
         plantLai: 2.8,
         aerenchymaBypass: 65,
         atmoBowen: 0.42,
-        nitrogenLoad: 15
+        nitrogenLoad: 15,
+        targetWtd: -25
       },
       bog: {
+        title: "Sphagnum Raised Bog (Ombrotrophic)",
+        badge: "Acidic Ombrotrophic",
         soilPh: 3.8,
         waterInjection: 25,
         soilCompaction: 0.18,
@@ -46,9 +51,12 @@ export class WetlandTwinSandbox {
         plantLai: 2.1,
         aerenchymaBypass: 25,
         atmoBowen: 0.35,
-        nitrogenLoad: 5
+        nitrogenLoad: 5,
+        targetWtd: -5
       },
       paludi: {
+        title: "Paludiculture Reed Bed (Typha / Phragmites)",
+        badge: "Wet Farming Shunt",
         soilPh: 7.0,
         waterInjection: 50,
         soilCompaction: 0.28,
@@ -56,9 +64,12 @@ export class WetlandTwinSandbox {
         plantLai: 4.5,
         aerenchymaBypass: 90,
         atmoBowen: 0.25,
-        nitrogenLoad: 25
+        nitrogenLoad: 25,
+        targetWtd: 2
       },
       drained: {
+        title: "Drained Peat Grassland (Degraded Soil)",
+        badge: "Degraded Agricultural Soil",
         soilPh: 5.4,
         waterInjection: 0,
         soilCompaction: 0.68,
@@ -66,7 +77,8 @@ export class WetlandTwinSandbox {
         plantLai: 1.4,
         aerenchymaBypass: 15,
         atmoBowen: 1.45,
-        nitrogenLoad: 60
+        nitrogenLoad: 60,
+        targetWtd: -60
       }
     };
 
@@ -135,7 +147,7 @@ export class WetlandTwinSandbox {
       });
     });
 
-    // 3. Archetype Preset Buttons
+    // 3. Archetype Preset Buttons & Header Site Selector
     const archBtns = document.querySelectorAll(".archetype-btn");
     archBtns.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -144,6 +156,40 @@ export class WetlandTwinSandbox {
         this.loadArchetype(btn.dataset.archetype);
       });
     });
+
+    // 3b. Top Global Header Site Selector Dropdown
+    const siteDropdownBtn = document.getElementById("btn-site-selector-toggle");
+    const siteDropdownMenu = document.getElementById("header-site-dropdown-menu");
+    const siteOptions = document.querySelectorAll(".site-option");
+
+    if (siteDropdownBtn && siteDropdownMenu) {
+      siteDropdownBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = !siteDropdownMenu.classList.contains("hidden");
+        siteDropdownMenu.classList.toggle("hidden", isOpen);
+        siteDropdownBtn.setAttribute("aria-expanded", String(!isOpen));
+      });
+
+      siteOptions.forEach(opt => {
+        opt.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const siteKey = opt.dataset.site;
+          if (siteKey) {
+            this.loadArchetype(siteKey);
+          }
+          siteDropdownMenu.classList.add("hidden");
+          siteDropdownBtn.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Close when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!siteDropdownMenu.classList.contains("hidden") && !siteDropdownBtn.contains(e.target) && !siteDropdownMenu.contains(e.target)) {
+          siteDropdownMenu.classList.add("hidden");
+          siteDropdownBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
 
     // 4. Sliders Binding
     this.bindSlider("slider-water-injection", "val-water-injection", "waterInjection", " L/m²", 0);
@@ -219,7 +265,12 @@ export class WetlandTwinSandbox {
     Object.assign(this.state, arch);
     this.state.archetype = key;
 
-    // Sync sliders
+    // 1. Update Water Table Depth in Soil Model if specified
+    if (arch.targetWtd !== undefined && this.soilModel && typeof this.soilModel.setWaterTable === "function") {
+      this.soilModel.setWaterTable(arch.targetWtd);
+    }
+
+    // 2. Sync sliders
     const sync = (id, readId, val, fmt) => {
       const s = document.getElementById(id);
       const r = document.getElementById(readId);
@@ -235,6 +286,20 @@ export class WetlandTwinSandbox {
     sync("slider-aerenchyma", "val-aerenchyma", arch.aerenchymaBypass, `${arch.aerenchymaBypass}% Bypass`);
     sync("slider-atmo-bowen", "val-atmo-bowen", arch.atmoBowen, `${arch.atmoBowen.toFixed(2)}`);
     sync("slider-nitrogen-load", "val-nitrogen-load", arch.nitrogenLoad, `${arch.nitrogenLoad} kg N/ha`);
+
+    // 3. Sync Top Header Site Selector label & dropdown active class
+    const headerSiteName = document.getElementById("header-site-name");
+    if (headerSiteName) {
+      headerSiteName.textContent = arch.title || key;
+    }
+    document.querySelectorAll(".site-option").forEach(opt => {
+      opt.classList.toggle("active", opt.dataset.site === key);
+    });
+
+    // 4. Sync Sandbox Archetype Buttons
+    document.querySelectorAll(".archetype-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.archetype === key);
+    });
 
     this.updatePhysics();
   }

@@ -16,44 +16,44 @@ export const ACTIVE_LOGO = {
 
 export const MASTER_APPROACH = {
   "id": "the_rewetting_paradox",
-  "title": "Unified Defense Methodology & Analysis Layers",
-  "subtitle": "Unified Thesis Defense Methodology • CAU Kiel",
+  "title": "PEAT-TWIN Executive Walkthrough & Scientific Methodology",
+  "subtitle": "Universal Peatland Simulation & Ground-Truth Calibration • CAU Kiel",
   "description": "Comprehensive synthesis of peat stratigraphy, climate policy drivers, multiscale observational hierarchies, agricultural soil mechanical memory, and the final net GHG balance at 20- and 100-year horizons.",
   "slides": [
     {
       "id": "slide_1_cover",
       "stepNumber": 1,
-      "layerBadge": "Defense Opening & Context",
-      "title": "1. Academic Defense: Carbon Fluxes in Transitioning Peatlands",
+      "layerBadge": "Executive Overview & Baseline",
+      "title": "1. Executive Briefing: Carbon Fluxes in Transitioning Peatlands",
       "viewTarget": "thesis_cover",
       "wtdDepth": -45,
       "diurnalMode": true,
       "figure": "assets/sprites/logo_2.png",
       "pitch": {
-        "title": "Opening Statement & Welcome to Examination Committee",
-        "speech": "Distinguished committee members, Prof. Komainda, Dr. Jordan, and colleagues: Welcome to the master's thesis defense on 'Carbon Fluxes and Greenhouse Gases Exchange in Transitioning Peatlands of Northern Germany'. Peatlands represent only 3% of terrestrial land area yet contain over 30% of global soil organic carbon. Over 90% of peatlands in Schleswig-Holstein were drained for intensive agriculture. Today, as environmental mandates push for rewetting, we investigate the acute biophysical trade-offs: how do carbon dioxide, methane, and nitrous oxide balances shift as groundwater tables rise across degraded peat profiles?",
+        "title": "Executive Overview & Global Peatland Challenge",
+        "speech": "Distinguished colleagues, scientists, and climate stakeholders: Welcome to the PEAT-TWIN platform briefing on 'Carbon Fluxes and Greenhouse Gases Exchange in Transitioning Peatlands of Northern Germany'. Peatlands represent only 3% of terrestrial land area yet contain over 30% of global soil organic carbon. Over 90% of peatlands in Schleswig-Holstein were drained for intensive agriculture. Today, as environmental mandates push for rewetting, we investigate the acute biophysical trade-offs: how do carbon dioxide, methane, and nitrous oxide balances shift as groundwater tables rise across degraded peat profiles?",
         "bullets": [
-          "Academic defense at the Faculty of Agricultural and Nutritional Sciences, Christian-Albrechts-Universität zu Kiel (CAU Kiel).",
-          "Supervisors: Prof. Martin Komainda Ph.D. (Grassland and Forage Science) & Sebastian Jordan Ph.D. (Research Associate & Greenhouse Gas Monitoring Coordinator, Klimafarm Project).",
+          "Developed in collaboration with the Faculty of Agricultural and Nutritional Sciences, Christian-Albrechts-Universität zu Kiel (CAU Kiel).",
+          "Scientific Supervision: Prof. Martin Komainda Ph.D. (Grassland and Forage Science) & Sebastian Jordan Ph.D. (Research Associate & Greenhouse Gas Monitoring Coordinator, Klimafarm Project).",
           "Observational testbed: Klimafarm Peatland Observatory at Wallener Au (Schleswig-Holstein).",
           "Central research core: Coupled high-frequency Eddy Covariance (10 Hz), in situ gas chambers, and soil mechanics during the drained-to-rewetted transition."
         ],
-        "defenseQ": "What is the core novelty of this thesis? We unite deep soil mechanics and precompression stress with micrometeorological flux diagnostics, demonstrating that physical soil legacy dictates the magnitude of greenhouse gas emissions upon rewetting.",
+        "defenseQ": "What is the core breakthrough of PEAT-TWIN? We unite deep soil mechanics and precompression stress with micrometeorological flux diagnostics, demonstrating that physical soil legacy dictates the magnitude of greenhouse gas emissions upon rewetting.",
         "coreThesis": "Peatland rewetting cannot be evaluated through carbon dioxide alone; resolving the net radiative impact requires coupling micrometeorological turbulent exchange, discrete chamber hotspot dynamics, and historical soil mechanical memory."
       }
     },
     {
       "id": "slide_2_agenda",
       "stepNumber": 2,
-      "layerBadge": "Defense Roadmap & Structure",
-      "title": "2. Defense Agenda: Methodological Progression",
+      "layerBadge": "Simulator Architecture & Hierarchy",
+      "title": "2. Methodological Architecture: Observational Hierarchy",
       "viewTarget": "defense_agenda",
       "wtdDepth": -45,
       "diurnalMode": true,
       "figure": "assets/sprites/logo_2.png",
       "pitch": {
-        "title": "Presentation Roadmap & Analytical Hierarchy (31 Slides Across 5 Parts)",
-        "speech": "Today's defense navigates 9 orders of magnitude across five coherent thematic parts: Part I establishes our theoretical framework, core hypotheses, and environmental baseline (Slides 1–10). Part II unveils the micrometeorological tower instrumentation rig, high-frequency 10 Hz processing, empirical QC yield (Tables 13a & 13b), and reproducible R spheres (Slides 11–16). Part III addresses micrometeorological flux diagnostics, energy balance closure, and soil geomechanics (Slides 17–22). Part IV details biogeochemical succession, the static chamber network, and spatial disconnect (Slides 23–29). Finally, Part V delivers the net multi-decadal radiative balance and operational agronomic guidelines (Slides 30–31).",
+        "title": "Walkthrough Roadmap & Analytical Hierarchy (31 Slides Across 5 Modules)",
+        "speech": "This guided walkthrough navigates 9 orders of magnitude across five coherent thematic modules: Part I establishes our theoretical framework, core hypotheses, and environmental baseline (Slides 1–10). Part II unveils the micrometeorological tower instrumentation rig, high-frequency 10 Hz processing, empirical QC yield (Tables 13a & 13b), and reproducible R computational spheres (Slides 11–16). Part III addresses micrometeorological flux diagnostics, energy balance closure, and soil geomechanics (Slides 17–22). Part IV details biogeochemical succession, the static chamber network, and spatial disconnect (Slides 23–29). Finally, Part V delivers the net multi-decadal radiative balance and operational agronomic guidelines (Slides 30–31).",
         "bullets": [
           "Part I: Theoretical Framework & Environmental Baseline (Slides 1–10)",
           "Part II: Observational Rig, Computational Pipeline & R Spheres (Slides 11–16)",

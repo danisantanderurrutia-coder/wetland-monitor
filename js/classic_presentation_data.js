@@ -23,14 +23,14 @@ export const CLASSIC_THESIS_SLIDES = [
     },
     cards: [
       {
-        title: "Academic Defense Framework",
+        title: "Platform & Scientific Framework",
         color: "blue",
-        text: "Master's Thesis in Environmental Management at the Faculty of Agricultural and Nutritional Sciences, Christian-Albrechts-Universität zu Kiel (CAU Kiel)."
+        text: "PEAT-TWIN: Biophysical modeling and simulation platform developed in collaboration with the Faculty of Agricultural and Nutritional Sciences, Christian-Albrechts-Universität zu Kiel (CAU Kiel)."
       },
       {
-        title: "Supervisory Committee",
+        title: "Scientific Leadership & Supervision",
         color: "gold",
-        text: "<strong>First Supervisor:</strong> Prof. Martin Komainda Ph.D. (Grassland & Forage Science)<br><strong>Second Supervisor:</strong> Sebastian Jordan Ph.D. (Greenhouse Gas Monitoring Coordinator, Klimafarm Project)"
+        text: "<strong>Scientific Co-Director:</strong> Prof. Martin Komainda Ph.D. (Grassland &amp; Forage Science)<br><strong>Observational Coordinator:</strong> Sebastian Jordan Ph.D. (Greenhouse Gas Monitoring Coordinator, Klimafarm Project)"
       },
       {
         title: "Observational Setting",
@@ -44,12 +44,12 @@ export const CLASSIC_THESIS_SLIDES = [
       { val: "8 Chambers", lbl: "Spatial Network" }
     ],
     notes: {
-      speech: "Distinguished committee members, Prof. Komainda, Dr. Jordan, and colleagues: Welcome to the master's thesis defense on 'Carbon Fluxes and Greenhouse Gases Exchange in Transitioning Peatlands of Northern Germany'. Today we examine the core biophysical paradox of peatland rewetting: how rising groundwater across degraded, compacted peat profiles modulates carbon dioxide sequestration while triggering acute, non-linear surges of potent trace greenhouse gases.",
+      speech: "Distinguished colleagues, scientists, and climate stakeholders: Welcome to the PEAT-TWIN platform presentation on 'Carbon Fluxes and Greenhouse Gases Exchange in Transitioning Peatlands of Northern Germany'. Today we examine the core biophysical paradox of peatland rewetting: how rising groundwater across degraded, compacted peat profiles modulates carbon dioxide sequestration while triggering acute, non-linear surges of potent trace greenhouse gases.",
       defenseQ: "Why is an integrated approach necessary? Measuring CO₂ alone gives a dangerously false impression of climate cooling. We must quantify the short-term radiative forcing of methane pulses to evaluate the real climate outcome."
     },
     notes_es: {
-      speech: "Estimados miembros del comité examinador, Prof. Komainda, Dr. Jordan, colegas e invitados: Bienvenidos a la defensa de tesis de maestría titulada 'Flujos de Carbono e Intercambio de Gases de Efecto Invernadero en Turberas en Transición del Norte de Alemania'. Aunque las turberas cubren únicamente el 3% de la superficie terrestre global, custodian más del 30% de todo el carbono orgánico edáfico del planeta. En Schleswig-Holstein, más del 90% fueron drenadas para la agricultura intensiva. Hoy, frente a las directivas de restauración climática que exigen su inundación, investigamos los compromisos biofísicos críticos: ¿cómo se alteran los balances de CO₂, CH₄ y N₂O al ascender el nivel freático sobre perfiles de turba degradada y compactada?",
-      defenseQ: "¿Cuál es la novedad fundamental de esta tesis? Unimos la mecánica profunda del suelo y la tensión de precompresión con el diagnóstico de flujos micrometeorológicos continuos, demostrando que el legado físico del manejo agrícola gobierna la magnitud de las emisiones tras la inundación."
+      speech: "Estimados colegas, científicos y colaboradores: Bienvenidos a la presentación ejecutiva de PEAT-TWIN sobre 'Flujos de Carbono e Intercambio de Gases de Efecto Invernadero en Turberas en Transición del Norte de Alemania'. Aunque las turberas cubren únicamente el 3% de la superficie terrestre global, custodian más del 30% de todo el carbono orgánico edáfico del planeta. En Schleswig-Holstein, más del 90% fueron drenadas para la agricultura intensiva. Hoy, frente a las directivas de restauración climática que exigen su inundación, investigamos los compromisos biofísicos críticos: ¿cómo se alteran los balances de CO₂, CH₄ y N₂O al ascender el nivel freático sobre perfiles de turba degradada y compactada?",
+      defenseQ: "¿Cuál es la novedad fundamental de PEAT-TWIN? Unimos la mecánica profunda del suelo y la tensión de precompresión con el diagnóstico de flujos micrometeorológicos continuos, demostrando que el legado físico del manejo agrícola gobierna la magnitud de las emisiones tras la inundación."
     }
   },
   {

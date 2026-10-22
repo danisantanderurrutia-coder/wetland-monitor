@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wetland Monitor — Wallener Au Peatland • Digital Twin &amp; Defense Studio • CAU Kiel</title>
-  <meta name="description" content="Digital Twin, vertical peatland soil-atmosphere cross-section, and academic thesis defense studio for greenhouse gas exchange (CO2, CH4, N2O) at Wallener Au, CAU Kiel.">
+  <title>PEAT-TWIN: Interactive Biophysical Wetland &amp; Peatland Simulator</title>
+  <meta name="description" content="PEAT-TWIN — Universal biophysical wetland &amp; peatland simulator, ground-truth calibrated digital twin, and multi-horizon carbon accounting engine.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Prevent Browser Caching of HTML -->
@@ -59,33 +59,92 @@
       
       <!-- Row 1: Brand Identity & Quick Action Controls -->
       <div class="header-top-row">
-        <!-- Brand Identity: Wetland Monitor (Click to Return to Defense Cover Landing) -->
-        <div class="header-brand" id="brand-badge-click" role="button" tabindex="0" title="Return to Academic Defense Cover &amp; Landing Page">
+        <!-- Brand Identity: PEAT-TWIN (Click to Return to Live Digital Twin) -->
+        <div class="header-brand" id="brand-badge-click" role="button" tabindex="0" title="Return to Interactive Ecosystem Digital Twin">
           <div class="brand-icon-wrapper">
-            <img id="active-brand-logo-img" src="assets/sprites/logo_2.png?v=4.0" alt="Wetland Monitor">
+            <img id="active-brand-logo-img" src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Simulator">
           </div>
           <div class="brand-text-block">
             <div class="brand-title-row">
-              <span class="brand-title" id="brand-title-text"><span class="brand-title-accent">WETLAND</span> MONITOR</span>
+              <span class="brand-title" id="brand-title-text"><span class="brand-title-accent">PEAT</span>-TWIN</span>
             </div>
-            <span class="brand-subtext" id="brand-subtext-label">Wallener Au Peatland • Digital Twin &amp; Defense Studio • CAU Kiel</span>
+            <span class="brand-subtext" id="brand-subtext-label">Interactive Biophysical Wetland &amp; Peatland Simulator</span>
+          </div>
+        </div>
+
+        <!-- Global Header Site Selector Dropdown -->
+        <div class="header-site-selector" id="header-site-selector">
+          <button type="button" class="site-selector-btn" id="btn-site-selector-toggle" aria-haspopup="true" aria-expanded="false" title="Select Wetland Ecosystem Archetype / Benchmark">
+            <span class="site-icon">📍</span>
+            <div class="site-label-group">
+              <span class="site-kicker">Ecosystem Archetype</span>
+              <span class="site-name" id="header-site-name">Wallener Au (Temperate Fen Benchmark)</span>
+            </div>
+            <span class="site-arrow">▾</span>
+          </button>
+          <div class="site-dropdown-menu hidden" id="header-site-dropdown-menu" role="listbox">
+            <div class="site-option active" data-site="fen" role="option">
+              <div class="site-option-header">
+                <div class="site-option-title-wrap">
+                  <span class="site-option-icon">🌾</span>
+                  <span class="site-option-title">Wallener Au, Germany</span>
+                </div>
+                <span class="site-option-badge benchmark">Empirical Ground-Truth</span>
+              </div>
+              <p class="site-option-desc">Temperate fen benchmark • EC tower calibrated (10 Hz) • WTD -25 cm baseline</p>
+            </div>
+            <div class="site-option" data-site="bog" role="option">
+              <div class="site-option-header">
+                <div class="site-option-title-wrap">
+                  <span class="site-option-icon">🌿</span>
+                  <span class="site-option-title">Sphagnum Raised Bog</span>
+                </div>
+                <span class="site-option-badge">Ombrotrophic Acid</span>
+              </div>
+              <p class="site-option-desc">Acidic peat (pH 3.8) • High macroporosity (36%) • Moss carpet • Suppressed CH₄</p>
+            </div>
+            <div class="site-option" data-site="paludi" role="option">
+              <div class="site-option-header">
+                <div class="site-option-title-wrap">
+                  <span class="site-option-icon">🎋</span>
+                  <span class="site-option-title">Paludiculture Reed Bed</span>
+                </div>
+                <span class="site-option-badge">Wet Farming</span>
+              </div>
+              <p class="site-option-desc">Typha / Phragmites • High LAI (4.5) • 90% aerenchyma bypass shunt • WTD +2 cm</p>
+            </div>
+            <div class="site-option" data-site="drained" role="option">
+              <div class="site-option-header">
+                <div class="site-option-title-wrap">
+                  <span class="site-option-icon">🚜</span>
+                  <span class="site-option-title">Drained Peat Grassland</span>
+                </div>
+                <span class="site-option-badge degraded">Degraded Soil</span>
+              </div>
+              <p class="site-option-desc">Deep aeration (-60 cm) • Heavy plow pan (0.68 g/cm³) • Continuous oxidation (+24.5 t CO₂-eq)</p>
+            </div>
           </div>
         </div>
 
         <!-- Right Header Actions -->
         <div class="header-actions">
-          <!-- Official Academic Presentation Deck Button -->
-          <button class="action-btn primary header-presentation-btn" id="btn-open-classic-presentation" title="Open Classic Thesis Presentation (22 Academic Slides)" style="background: linear-gradient(135deg, #0284c7, #0369a1) !important; color: #ffffff !important; border: 1px solid #38bdf8 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4) !important;">
-            <span style="font-size:16px;">📽️</span> <span style="font-weight:700;">Thesis Presentation</span> <span class="badge-pill" style="background:#38bdf8; color:#0f172a; font-size:10px; font-weight:800; padding:1px 6px; border-radius:10px;">22</span>
+          <!-- Guided Tour / Executive Pitch Deck Button -->
+          <button class="action-btn primary header-presentation-btn" id="btn-open-classic-presentation" title="Open Guided Tour &amp; Executive Pitch Deck (22 Slides)" style="background: linear-gradient(135deg, #0284c7, #0369a1) !important; color: #ffffff !important; border: 1px solid #38bdf8 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4) !important;">
+            <span style="font-size:16px;">🧭</span> <span style="font-weight:700;">Guided Tour</span> <span class="badge-pill" style="background:#38bdf8; color:#0f172a; font-size:10px; font-weight:800; padding:1px 6px; border-radius:10px;">Pitch Deck</span>
           </button>
 
           <!-- Direct Digital Twin Button -->
-          <button class="action-btn direct-twin-btn" id="btn-header-direct-twin" title="Open Interactive Peatland Digital Twin & Soil Interface" style="background: linear-gradient(135deg, #059669, #047857) !important; color: #ffffff !important; border: 1px solid #34d399 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(5, 150, 105, 0.4) !important;">
-            <span style="font-size:16px;">🌱</span> <span>Digital Twin</span>
+          <button class="action-btn direct-twin-btn" id="btn-header-direct-twin" title="Open Interactive Peatland Digital Twin &amp; Soil Interface" style="background: linear-gradient(135deg, #059669, #047857) !important; color: #ffffff !important; border: 1px solid #34d399 !important; font-weight: 700 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 2px 10px rgba(5, 150, 105, 0.4) !important;">
+            <span style="font-size:16px;">🌍</span> <span>Ecosystem Twin</span>
+          </button>
+
+          <!-- How It Works Pedagogical Guide Button -->
+          <button class="action-btn help-guide-btn" id="btn-header-how-it-works" title="How the Peatland Digital Twin Works (?)" style="border: 1px solid rgba(245, 158, 11, 0.45); color: #fbbf24; background: rgba(245, 158, 11, 0.12); font-weight: 700;">
+            <span style="font-size:15px;">❓</span> <span>How It Works</span>
           </button>
 
           <!-- Scripts & Pipelines Hub Button -->
-          <button class="action-btn explorer-btn" id="btn-open-explorer" title="Open Scripts & Pipelines Hub (Key T or H)">
+          <button class="action-btn explorer-btn" id="btn-open-explorer" title="Open Scripts &amp; Pipelines Hub (Key T or H)">
             <span style="font-size:16px;">💻</span> <span class="explorer-btn-text">Hub - Scripts &amp; Pipelines</span> <span class="badge-pill">Live</span>
           </button>
 
@@ -119,14 +178,14 @@
             <span class="carrusel-btn-badge">Section Views</span>
             <div class="carrusel-current-display" id="carousel-current-title">
               <span class="active-dot">●</span>
-              <span class="active-icon">🏠</span>
-              <span class="tab-text active-name">Landing</span>
+              <span class="active-icon">🌍</span>
+              <span class="tab-text active-name">Ecosystem Twin</span>
             </div>
             <span class="carrusel-btn-arrow">▾</span>
           </button>
 
           <div class="nav-view-indicator" id="nav-view-indicator">
-            <span>14 Sections • Horizontal Scroll ↔</span>
+            <span>Core Biophysical Modules • Horizontal Scroll ↔</span>
           </div>
         </div>
 
@@ -134,7 +193,7 @@
         <div class="carrusel-hamburguesa-drawer hidden" id="dropdown-view-tabs">
           <div class="carrusel-drawer-top">
             <div class="drawer-info">
-              <span class="drawer-kicker">Master Thesis Sections</span>
+              <span class="drawer-kicker">PEAT-TWIN Simulator Modules</span>
               <h4 class="drawer-title">Navigation Drawer</h4>
             </div>
             <div class="drawer-actions">
@@ -147,69 +206,77 @@
             <button class="carrusel-nav-arrow arrow-left" id="btn-carrusel-slide-prev" title="Scroll left">❮</button>
 
             <div class="carrusel-slider-track" id="carrusel-slider-track">
-              <div class="carrusel-card tab-btn active" data-view="thesis_cover" id="tab-cover">
+              <!-- 1. Ecosystem Twin (Live Hero View) -->
+              <div class="carrusel-card tab-btn active" data-view="soil_interface" id="tab-soil">
                 <span class="carrusel-card-idx">01</span>
-                <span class="carrusel-card-icon">🏠</span>
+                <span class="carrusel-card-icon">🌍</span>
                 <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Landing</span>
-                  <span class="carrusel-card-sub">Cover &amp; Overview</span>
+                  <span class="carrusel-card-name">Ecosystem Twin</span>
+                  <span class="carrusel-card-sub">Live Stratigraphy &amp; GHG Dock</span>
                 </div>
               </div>
 
-              <div class="carrusel-card tab-btn" data-view="classic_presentation" id="tab-classic-presentation">
-                <span class="carrusel-card-idx">★</span>
-                <span class="carrusel-card-icon">📽️</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Thesis Presentation</span>
-                  <span class="carrusel-card-sub">Classic • 22 Slides</span>
-                </div>
-              </div>
-
-              <div class="carrusel-card tab-btn" data-view="defense_agenda" id="tab-agenda">
+              <!-- 2. Validation Benchmark (Case Study 01) -->
+              <div class="carrusel-card tab-btn" data-view="eddy_covariance" id="tab-ec">
                 <span class="carrusel-card-idx">02</span>
-                <span class="carrusel-card-icon">📑</span>
+                <span class="carrusel-card-icon">📊</span>
                 <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Agenda</span>
-                  <span class="carrusel-card-sub">Defense Roadmap</span>
+                  <span class="carrusel-card-name">Validation Benchmark</span>
+                  <span class="carrusel-card-sub">Case Study 01: Wallener Au 2024</span>
                 </div>
               </div>
 
-              <div class="carrusel-card tab-btn" data-view="aims_objectives" id="tab-aims">
-                <span class="carrusel-card-idx">03</span>
-                <span class="carrusel-card-icon">🎯</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Aims &amp; Hypotheses</span>
-                  <span class="carrusel-card-sub">H1, H2, H3 &amp; Objectives</span>
-                </div>
-              </div>
-
-              <div class="carrusel-card tab-btn" data-view="soil_interface" id="tab-soil">
-                <span class="carrusel-card-idx">04</span>
-                <span class="carrusel-card-icon">🌱</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Digital Twin</span>
-                  <span class="carrusel-card-sub">Stratigraphy &amp; Fluxes</span>
-                </div>
-              </div>
-
+              <!-- 3. Remote Sensing & Satellites -->
               <div class="carrusel-card tab-btn" data-view="macro" id="tab-macro">
-                <span class="carrusel-card-idx">05</span>
+                <span class="carrusel-card-idx">03</span>
                 <span class="carrusel-card-icon">🛰️</span>
                 <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Macro &amp; Climate</span>
-                  <span class="carrusel-card-sub">Walter-Lieth &amp; 2D Footprint</span>
+                  <span class="carrusel-card-name">Remote Sensing &amp; Satellites</span>
+                  <span class="carrusel-card-sub">Sentinel-2, NDVI &amp; 2D Footprint</span>
                 </div>
               </div>
 
-              <div class="carrusel-card tab-btn" data-view="biogeochemistry" id="tab-biogeo">
-                <span class="carrusel-card-idx">06</span>
-                <span class="carrusel-card-icon">⚗️</span>
+              <!-- 4. Carbon Accounting & GWP -->
+              <div class="carrusel-card tab-btn" data-view="gwp_explorer" id="tab-gwp">
+                <span class="carrusel-card-idx">04</span>
+                <span class="carrusel-card-icon">⚖️</span>
                 <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Biogeochemistry</span>
-                  <span class="carrusel-card-sub">Redox, Succession &amp; Microbes</span>
+                  <span class="carrusel-card-name">Carbon Accounting &amp; GWP</span>
+                  <span class="carrusel-card-sub">GWP-100 vs GWP-20 &amp; Credits</span>
                 </div>
               </div>
 
+              <!-- 5. Methodology & Models -->
+              <div class="carrusel-card tab-btn" data-view="data_pipeline" id="tab-pipeline">
+                <span class="carrusel-card-idx">05</span>
+                <span class="carrusel-card-icon">📚</span>
+                <div class="carrusel-card-body">
+                  <span class="carrusel-card-name">Methodology &amp; Models</span>
+                  <span class="carrusel-card-sub">Biophysical Kinetics &amp; Pore Physics</span>
+                </div>
+              </div>
+
+              <!-- 6. How It Works Modal Guide -->
+              <div class="carrusel-card" id="tab-how-it-works" style="cursor: pointer;">
+                <span class="carrusel-card-idx">06</span>
+                <span class="carrusel-card-icon">❓</span>
+                <div class="carrusel-card-body">
+                  <span class="carrusel-card-name">How It Works</span>
+                  <span class="carrusel-card-sub">Pedagogical Guide &amp; Controls</span>
+                </div>
+              </div>
+
+              <!-- 7. Guided Tour / Pitch Deck -->
+              <div class="carrusel-card tab-btn" data-view="classic_presentation" id="tab-classic-presentation">
+                <span class="carrusel-card-idx">★</span>
+                <span class="carrusel-card-icon">🧭</span>
+                <div class="carrusel-card-body">
+                  <span class="carrusel-card-name">Guided Tour</span>
+                  <span class="carrusel-card-sub">Executive Pitch Deck • 22 Slides</span>
+                </div>
+              </div>
+
+              <!-- 8. Instruments Matrix -->
               <div class="carrusel-card tab-btn" data-view="instruments_matrix" id="tab-instruments">
                 <span class="carrusel-card-idx">07</span>
                 <span class="carrusel-card-icon">📡</span>
@@ -219,26 +286,19 @@
                 </div>
               </div>
 
-              <div class="carrusel-card tab-btn" data-view="data_pipeline" id="tab-pipeline">
+              <!-- 9. Biogeochemistry -->
+              <div class="carrusel-card tab-btn" data-view="biogeochemistry" id="tab-biogeo">
                 <span class="carrusel-card-idx">08</span>
-                <span class="carrusel-card-icon">💻</span>
+                <span class="carrusel-card-icon">⚗️</span>
                 <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Data Pipeline &amp; R</span>
-                  <span class="carrusel-card-sub">QC, ML ANN &amp; Reichstein</span>
+                  <span class="carrusel-card-name">Biogeochemistry</span>
+                  <span class="carrusel-card-sub">Redox, Succession &amp; Microbes</span>
                 </div>
               </div>
 
-              <div class="carrusel-card tab-btn" data-view="eddy_covariance" id="tab-ec">
-                <span class="carrusel-card-idx">09</span>
-                <span class="carrusel-card-icon">🗼</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Eddy &amp; Chambers</span>
-                  <span class="carrusel-card-sub">Cross-Validation &amp; N₂O</span>
-                </div>
-              </div>
-
+              <!-- 10. Geomechanics & Soil Compaction -->
               <div class="carrusel-card tab-btn" data-view="geophysics" id="tab-geophysics">
-                <span class="carrusel-card-idx">10</span>
+                <span class="carrusel-card-idx">09</span>
                 <span class="carrusel-card-icon">🗜️</span>
                 <div class="carrusel-card-body">
                   <span class="carrusel-card-name">Geomechanics &amp; Soil</span>
@@ -246,26 +306,19 @@
                 </div>
               </div>
 
+              <!-- 11. Flux Diagnostics -->
               <div class="carrusel-card tab-btn" data-view="flux_diagnostics" id="tab-flux">
-                <span class="carrusel-card-idx">11</span>
-                <span class="carrusel-card-icon">📊</span>
+                <span class="carrusel-card-idx">10</span>
+                <span class="carrusel-card-icon">📈</span>
                 <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Flux Diagnosis</span>
+                  <span class="carrusel-card-name">Flux Diagnostics</span>
                   <span class="carrusel-card-sub">EBC 85%, Bowen &amp; VPD</span>
                 </div>
               </div>
 
-              <div class="carrusel-card tab-btn" data-view="gwp_explorer" id="tab-gwp">
-                <span class="carrusel-card-idx">12</span>
-                <span class="carrusel-card-icon">⚖️</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">GHG Balance</span>
-                  <span class="carrusel-card-sub">GWP-100 vs GWP-20</span>
-                </div>
-              </div>
-
+              <!-- 12. Uncertainties & Monte Carlo -->
               <div class="carrusel-card tab-btn" data-view="gwp_uncertainties" id="tab-uncertainties">
-                <span class="carrusel-card-idx">13</span>
+                <span class="carrusel-card-idx">11</span>
                 <span class="carrusel-card-icon">📐</span>
                 <div class="carrusel-card-body">
                   <span class="carrusel-card-name">Uncertainties</span>
@@ -273,12 +326,23 @@
                 </div>
               </div>
 
+              <!-- 13. Executive Synthesis & Agronomy -->
               <div class="carrusel-card tab-btn" data-view="conclusions_outlook" id="tab-conclusions">
-                <span class="carrusel-card-idx">14</span>
-                <span class="carrusel-card-icon">🎓</span>
+                <span class="carrusel-card-idx">12</span>
+                <span class="carrusel-card-icon">🎯</span>
                 <div class="carrusel-card-body">
                   <span class="carrusel-card-name">Synthesis &amp; Outlook</span>
                   <span class="carrusel-card-sub">Pillars &amp; Agronomy</span>
+                </div>
+              </div>
+
+              <!-- 14. Project Background & Observatory Overview -->
+              <div class="carrusel-card tab-btn" data-view="thesis_cover" id="tab-cover">
+                <span class="carrusel-card-idx">13</span>
+                <span class="carrusel-card-icon">🏛️</span>
+                <div class="carrusel-card-body">
+                  <span class="carrusel-card-name">Project Overview</span>
+                  <span class="carrusel-card-sub">CAU Kiel &amp; Observatory</span>
                 </div>
               </div>
             </div>
@@ -291,64 +355,67 @@
 
     <!-- Main Viewport Containers -->
     <main class="main-viewport">
-<section class="view-panel active" data-view-id="thesis_cover" id="view-cover">
+<section class="view-panel" data-view-id="thesis_cover" id="view-cover">
         <div class="thesis-cover-wrapper">
           <div class="cover-document-card">
             
             <!-- Institution Header -->
             <div class="cover-institution-header">
-              <span class="cover-degree-badge">Master's Thesis in Environmental Management</span>
+              <span class="cover-degree-badge">Scientific Research &amp; Biophysical Modeling Platform</span>
               <h1 class="cover-university-title">Christian-Albrechts-Universität zu Kiel</h1>
               <h2 class="cover-faculty-title">Faculty of Agricultural and Nutritional Sciences</h2>
               <p class="cover-institute-title">Institute of Crop Science and Plant Breeding • Integrated Grassland System Analysis and Assessment (IGSAA)</p>
             </div>
 
-            <!-- Central Wetland Monitor Logo Seal -->
+            <!-- Central PEAT-TWIN Seal -->
             <div class="cover-logo-seal" style="margin: 1.5rem auto 1rem; transform: scale(1.35);">
-              <img src="assets/sprites/logo_2.png?v=4.0" alt="Wetland Monitor Crest" class="cover-logo-img">
-              <span class="cover-logo-caption">Klimafarm Peatland Observatory • Wallener Au</span>
+              <img src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Seal" class="cover-logo-img">
+              <span class="cover-logo-caption">PEAT-TWIN • Klimafarm Peatland Observatory • Wallener Au</span>
             </div>
 
-            <!-- Thesis Title and Subtitle -->
+            <!-- Project Title and Subtitle -->
             <div class="cover-title-group">
-              <h2 class="cover-thesis-title">Carbon Fluxes and Greenhouse Gases Exchange in Transitioning Peatlands of Northern Germany</h2>
+              <h2 class="cover-thesis-title">PEAT-TWIN: Global Peatland Digital Twin &amp; Restoration Simulator</h2>
               <p class="cover-thesis-subtitle">
                 Continuous high-frequency micrometeorological diagnostics (Eddy Covariance 10 Hz), closed gas chamber transects, soil mechanical memory, and net greenhouse gas balance (CO₂, CH₄, N₂O) across drained-to-rewetted fen peat transitions.
               </p>
             </div>
 
-            <!-- Author & Supervisory Committee Grid -->
+            <!-- Author & Scientific Leadership Grid -->
             <div class="cover-metadata-grid">
               <div class="cover-meta-item">
-                <span class="cover-meta-label">Candidate &amp; Author</span>
+                <span class="cover-meta-label">Lead Modeler &amp; System Architect</span>
                 <span class="cover-meta-value">Daniel Sebastián Santander Urrutia</span>
-                <span class="cover-meta-sub">M.Sc. Environmental Management Candidate</span>
+                <span class="cover-meta-sub">Environmental Modeler &amp; Digital Twin Architect</span>
               </div>
               <div class="cover-meta-item">
-                <span class="cover-meta-label">First Academic Supervisor</span>
+                <span class="cover-meta-label">Scientific Co-Director (Forage Science)</span>
                 <span class="cover-meta-value">Prof. Martin Komainda Ph.D.</span>
                 <span class="cover-meta-sub">Professor of Grassland and Forage Science • CAU Kiel</span>
               </div>
               <div class="cover-meta-item">
-                <span class="cover-meta-label">Second Academic Supervisor</span>
+                <span class="cover-meta-label">Lead Observational Coordinator</span>
                 <span class="cover-meta-value">Sebastian Jordan Ph.D.</span>
-                <span class="cover-meta-sub">Research Associate &amp; Greenhouse Gas Monitoring Coordinator, Klimafarm Project</span>
+                <span class="cover-meta-sub">Research Associate &amp; GHG Monitoring Coordinator, Klimafarm Project</span>
               </div>
               <div class="cover-meta-item">
-                <span class="cover-meta-label">Location &amp; Academic Year</span>
-                <span class="cover-meta-value">Kiel, Schleswig-Holstein</span>
-                <span class="cover-meta-sub">Academic Defense Examination • 2026</span>
+                <span class="cover-meta-label">Location &amp; Validation Baseline</span>
+                <span class="cover-meta-value">Kiel &amp; Wallener Au Observatory</span>
+                <span class="cover-meta-sub">Schleswig-Holstein • 2024–2026 Ground-Truth</span>
                 <div class="cover-version-status-row">
-                  <span class="cover-version-badge-pill" id="app-version-tag">v2.4.2 • 2026</span>
+                  <span class="cover-version-badge-pill" id="app-version-tag">v3.0.0 • PEAT-TWIN</span>
                   <button class="btn-changelog-trigger" id="btn-open-changelog" type="button" title="View version changelog">📋 Version Log</button>
                 </div>
               </div>
             </div>
 
-            <!-- Interactive Quick Actions — Oral Defense Launch -->
+            <!-- Interactive Quick Actions — Launch Options -->
             <div class="cover-actions-row" style="justify-content: center; gap: 1rem; margin-top: 1.25rem;">
               <button class="cover-btn-start" id="btn-start-defense" style="background: linear-gradient(135deg, #0284c7, #0369a1); box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); font-weight: 700;">
-                <span>📽️</span> Launch Official Thesis Defense (22 Slides)
+                <span>🧭</span> Launch Executive Guided Tour (22 Slides)
+              </button>
+              <button class="cover-btn-start" id="btn-cover-soil" style="background: linear-gradient(135deg, #059669, #047857); box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35); font-weight: 700;">
+                <span>🌍</span> Open Live Ecosystem Twin
               </button>
             </div>
 
@@ -358,7 +425,7 @@
 <section class="view-panel" data-view-id="defense_agenda" id="view-defense-agenda">
         <div class="presentation-view-container agenda-view-container">
           <div class="presentation-view-header">
-            <h2 class="presentation-title">📋 Defense Roadmap: Methodological Progression</h2>
+            <h2 class="presentation-title">📋 Simulator Architecture: Methodological Progression</h2>
           </div>
 
           <!-- ═══ REDESIGNED TOC: Grid of Numbered Cards ═══ -->
@@ -592,7 +659,7 @@
 
         </div>
       </section>
-<section class="view-panel" data-view-id="soil_interface">
+<section class="view-panel active" data-view-id="soil_interface">
         <div class="ecosystem-container day-mode" id="soil-ecosystem-container">
           
           <!-- Central Canvas Stage: The Illustrated Ecosystem Cross-Section -->
@@ -2703,10 +2770,10 @@
     
     <div class="presentation-view-header">
       <div class="presentation-header-info">
-        <span class="presentation-view-tag">Computational Workflow &amp; Machine Learning Architecture</span>
-        <h2 class="presentation-title">💻 Computational Architecture: From Raw 10Hz to Ecosystem Budgets</h2>
+        <span class="presentation-view-tag" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; font-weight: 700;">Biophysical Methodology &amp; Mathematical Models</span>
+        <h2 class="presentation-title">📚 Biophysical Methodology &amp; Analytical Models</h2>
         <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 950px; line-height: 1.55; margin: 0;">
-          From raw 10 Hz binary files to definitive GHG budgets — the 4-Sphere R computational architecture processes 14,993 half-hourly timesteps through EddyPro® 7.0.9 (3D planar fit, WPL corrections, ICOS 0-1-2 screening), REddyProc gap-filling (MDS + Lloyd-Taylor + Michaelis-Menten), and non-linear AI imputation (ANN &amp; Random Forest) for episodic winter CH₄ ebullition gaps. Figs. 50, 52, 62 &amp; 63 document the complete workflow architecture.
+          Governing physical equations, kinetic reaction models, and computational architecture: Lloyd-Taylor soil respiration kinetics, Michaelis-Menten photosynthetic light curves, aerenchyma plant-mediated bypass shunts, and non-linear machine learning imputation. Figs. 50, 52, 62 &amp; 63 document the complete workflow architecture.
         </p>
       </div>
     </div>
@@ -3099,17 +3166,17 @@
 </section>
 
 <!-- ====================================================================
-     VIEW: EDDY COVARIANCE & GAS CHAMBERS (N2O SUITE & CROSS-VALIDATION)
+     VIEW: VALIDATION BENCHMARK (CASE STUDY 01: WALLENER AU 2024)
      ==================================================================== -->
 <section class="view-panel" data-view-id="eddy_covariance" id="view-eddy_covariance">
   <div class="presentation-view-container">
     
     <div class="presentation-view-header">
       <div class="presentation-header-info">
-        <span class="presentation-view-tag">Multi-Platform Scale Synthesis (10⁻¹ m ➔ 10² m)</span>
-        <h2 class="presentation-title">🗼 Eddy Covariance Tower &amp; Gas Chambers Dashboard</h2>
+        <span class="presentation-view-tag" style="background: rgba(16, 185, 129, 0.15); color: #34d399; font-weight: 700;">Case Study 01: Ground-Truth Field Validation Benchmark</span>
+        <h2 class="presentation-title">📊 Case Study 01: Ground-Truth Validation &amp; Sensor Calibration (Wallener Au 2024)</h2>
         <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 950px; line-height: 1.55; margin: 0;">
-          Comprehensive observational synthesis integrating continuous 10 Hz landscape-scale Eddy Covariance turbulent fluxes (100–300 m fetch) with discrete closed chamber collar transects (N₂O, CH₄, CO₂). Resolves the microtopographic spatial disconnect, ditch ebullition chimneys, and episodic soil denitrification pulses.
+          Empirical calibration benchmark providing scientific confidence and rigor to PEAT-TWIN algorithms. Integrates continuous 10 Hz landscape-scale Eddy Covariance turbulent fluxes (100–300 m fetch) with discrete closed chamber collar transects (N₂O, CH₄, CO₂), piezometers, and soil mechanical oedometer tests, validating biophysical model outputs against real-world in situ observations.
         </p>
       </div>
     </div>
@@ -4494,7 +4561,7 @@
     <!-- View Header -->
     <div class="presentation-view-header">
       <div class="presentation-header-info">
-        <span class="presentation-view-tag">Academic Defense Synthesis • Multi-Scale Discussion & Strategic Directives</span>
+        <span class="presentation-view-tag">Executive Platform Synthesis • Multi-Scale Discussion &amp; Strategic Directives</span>
         <h2 class="presentation-title">🌍 Cross-Disciplinary Synthesis & Discussion Pillars</h2>
         <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 1050px; line-height: 1.55; margin: 0;">
           Bridging high-frequency micrometeorology, deep soil geomechanics, non-linear machine learning, and environmental policy into four fundamental discussion pillars, a dual-scale policy matrix, five definitive conclusions, and operational guidelines for peatland restoration.
@@ -4871,7 +4938,7 @@
     <!-- Speaker Pitch Notes Drawer (Slides in from the right on 'P') -->
     <aside class="notes-drawer" id="notes-drawer">
       <div class="notes-header">
-        <h3><span>🎙️</span> <span id="notes-drawer-title">Speaker Pitch &amp; Defense Script</span></h3>
+        <h3><span>🎙️</span> <span id="notes-drawer-title">Executive Pitch &amp; Technical Script</span></h3>
         <button class="modal-close-btn" id="close-notes-btn">✕</button>
       </div>
       <div class="notes-content" id="notes-content-box">
@@ -4925,7 +4992,7 @@
                   <tr>
                     <th>Specification / Parameter</th>
                     <th>Configuration / Value</th>
-                    <th>Relevance in Thesis Defense</th>
+                    <th>Relevance in PEAT-TWIN Modeling</th>
                   </tr>
                 </thead>
                 <tbody id="modal-specs-tbody">
@@ -4966,7 +5033,7 @@
               </div>
               <div class="pitch-takeaway-box">
                 <div class="pitch-takeaway-title">
-                  <span>💡</span> <span>Thesis Defense Synthesis &amp; Takeaway</span>
+                  <span>💡</span> <span>Biophysical Synthesis &amp; Takeaway</span>
                 </div>
                 <div class="pitch-takeaway-text" id="modal-pitch-takeaway">
                   Continuous optical eddy covariance delivers real-time ecosystem carbon exchange rates, identifying crucial environmental tipping points.

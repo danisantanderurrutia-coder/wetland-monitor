@@ -2,7 +2,7 @@
 PORT=1115
 APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CACHE_BUSTER=$(date +%s)
-TARGET_URL="http://127.0.0.1:${PORT}/?v=${CACHE_BUSTER}#presentation"
+TARGET_URL="http://127.0.0.1:${PORT}/?v=${CACHE_BUSTER}"
 
 # 1. Verificar si el servidor ya responde 200 OK
 HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 0.8 "http://127.0.0.1:${PORT}/api/version" 2>/dev/null || echo "000")

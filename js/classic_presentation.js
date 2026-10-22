@@ -50,9 +50,9 @@ export class ClassicThesisPresentation {
       const btn = document.createElement('button');
       btn.id = 'btn-open-classic-presentation';
       btn.className = 'action-btn primary';
-      btn.title = 'Open Classic Thesis Presentation (22 Academic Slides)';
-      btn.style.cssText = 'background: linear-gradient(135deg, #0ea5e9, #0284c7) !important; border-color: #38bdf8 !important; font-weight: 600 !important;';
-      btn.innerHTML = `<span style="font-size:16px;">📽️</span> <span>Thesis Presentation</span>`;
+      btn.title = 'Open Guided Tour & Executive Pitch Deck (22 Visual Slides)';
+      btn.style.cssText = 'background: linear-gradient(135deg, #0ea5e9, #0284c7) !important; border-color: #38bdf8 !important; font-weight: 700 !important;';
+      btn.innerHTML = `<span style="font-size:16px;">🧭</span> <span>Guided Tour</span>`;
       headerActions.insertBefore(btn, headerActions.children[1] || null);
     }
 
@@ -64,11 +64,11 @@ export class ClassicThesisPresentation {
       card.className = 'carrusel-card tab-btn';
       card.dataset.view = 'classic_presentation';
       card.innerHTML = `
-        <span class="carrusel-card-idx">00</span>
-        <span class="carrusel-card-icon">📽️</span>
+        <span class="carrusel-card-idx">★</span>
+        <span class="carrusel-card-icon">🧭</span>
         <div class="carrusel-card-body">
-          <span class="carrusel-card-name">Thesis Presentation</span>
-          <span class="carrusel-card-sub">Classic • 22 Slides</span>
+          <span class="carrusel-card-name">Guided Tour</span>
+          <span class="carrusel-card-sub">Executive Pitch Deck • 22 Slides</span>
         </div>
       `;
       track.insertBefore(card, track.children[1] || null);
@@ -329,7 +329,7 @@ export class ClassicThesisPresentation {
 
     const carouselTitle = document.getElementById('carousel-current-title');
     if (carouselTitle) {
-      carouselTitle.innerHTML = `<span class="active-dot">●</span> <span class="active-icon">📽️</span> <span class="tab-text active-name">Thesis Presentation</span>`;
+      carouselTitle.innerHTML = `<span class="active-dot">●</span> <span class="active-icon">🧭</span> <span class="tab-text active-name">Guided Tour</span>`;
     }
 
     const drawer = document.getElementById('dropdown-view-tabs');
@@ -588,7 +588,7 @@ export class ClassicThesisPresentation {
       speechEl.innerHTML = `<strong>${speechLabel}</strong><br>${notesData.speech}`;
     }
     if (qaEl && notesData) {
-      const qaLabel = isEn ? "❓ Anticipated Thesis Committee Question & Strategic Defense Answer:" : "❓ Pregunta Anticipada del Comité de Tesis y Respuesta:";
+      const qaLabel = isEn ? "❓ Strategic Technical Question & Expert Validation Answer:" : "❓ Pregunta Técnica Estratégica y Validación:";
       qaEl.innerHTML = `<strong>${qaLabel}</strong><br>${notesData.defenseQ}`;
     }
   }

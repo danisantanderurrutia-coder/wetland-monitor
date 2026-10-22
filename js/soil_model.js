@@ -336,6 +336,14 @@ export class SoilAtmosphereModel {
     }
   }
 
+  setWaterTable(targetWtd) {
+    const val = parseInt(targetWtd, 10);
+    this.waterTableDepth = isNaN(val) ? -25 : Math.min(5, Math.max(-60, val));
+    if (this.slider) this.slider.value = this.waterTableDepth;
+    if (this.hudSlider) this.hudSlider.value = this.waterTableDepth;
+    this.updateWaterPhysics();
+  }
+
   setScope(scopeKey) {
     this.currentScope = scopeKey;
 

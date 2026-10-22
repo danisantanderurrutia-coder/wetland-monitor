@@ -76,8 +76,9 @@ class WetlandMonitorApp {
     // 3. Set branding logo to "Stratigraphy & Probes"
     this.initLogo();
 
-    // 4. Load slide 0 (Landing on Academic Defense Cover)
-    this.goToSlide(0);
+    // 4. Immediate Hero Landing on Live Ecosystem Digital Twin
+    this.currentViewKey = "soil_interface";
+    this.switchView("soil_interface");
   }
 
   initDOM() {
@@ -262,14 +263,39 @@ class WetlandMonitorApp {
     const brandBtn = document.getElementById("brand-badge-click");
     if (brandBtn) {
       brandBtn.addEventListener("click", () => {
-        this.goToSlide(0);
-        this.switchView("thesis_cover");
+        this.switchView("soil_interface");
       });
       brandBtn.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          this.goToSlide(0);
-          this.switchView("thesis_cover");
+          this.switchView("soil_interface");
+        }
+      });
+    }
+
+    // Top Header & Menu "How It Works" buttons
+    const howItWorksBtn = document.getElementById("btn-header-how-it-works");
+    if (howItWorksBtn) {
+      howItWorksBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (this.sandbox && typeof this.sandbox.showHelpModal === "function") {
+          this.sandbox.showHelpModal();
+        } else {
+          const m = document.getElementById("twin-help-modal");
+          if (m) { m.classList.remove("hidden"); m.classList.add("active"); }
+        }
+      });
+    }
+
+    const tabHowItWorks = document.getElementById("tab-how-it-works");
+    if (tabHowItWorks) {
+      tabHowItWorks.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (this.sandbox && typeof this.sandbox.showHelpModal === "function") {
+          this.sandbox.showHelpModal();
+        } else {
+          const m = document.getElementById("twin-help-modal");
+          if (m) { m.classList.remove("hidden"); m.classList.add("active"); }
         }
       });
     }
@@ -929,7 +955,7 @@ class WetlandMonitorApp {
       ${pCoreThesis ? `
         <div class="pitch-takeaway-box" style="margin-bottom: 1.25rem;">
           <div class="pitch-takeaway-title">
-            <span>🎯</span> <span>Core Defense Thesis</span>
+            <span>🎯</span> <span>Core Biophysical Finding</span>
           </div>
           <div class="pitch-takeaway-text">
             "${pCoreThesis}"
@@ -958,7 +984,7 @@ class WetlandMonitorApp {
       <!-- SPEECH CARDS -->
       ${(lang === "dual" || lang === "en") ? `
         <div class="pitch-speech-card" style="margin-bottom: 1rem;">
-          <div class="pitch-speech-badge" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.65rem; font-weight: 800; background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); border-radius: 4px; padding: 2px 6px; margin-bottom: 6px;">🇬🇧 Spoken Defense Script (English)</div>
+          <div class="pitch-speech-badge" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.65rem; font-weight: 800; background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); border-radius: 4px; padding: 2px 6px; margin-bottom: 6px;">🇬🇧 Executive Walkthrough Script (English)</div>
           <div class="pitch-speech-title">${pTitleEn}</div>
           <div class="pitch-speech-body" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-primary);">${pSpeechEn}</div>
         </div>
@@ -966,7 +992,7 @@ class WetlandMonitorApp {
 
       ${(lang === "dual" || lang === "es") && pSpeechEs ? `
         <div class="pitch-speech-card" style="margin-bottom: 1rem; border-color: rgba(245,158,11,0.4);">
-          <div class="pitch-speech-badge" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.65rem; font-weight: 800; background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); border-radius: 4px; padding: 2px 6px; margin-bottom: 6px;">🇪🇸 Guion de Defensa Hablado (Español)</div>
+          <div class="pitch-speech-badge" style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.65rem; font-weight: 800; background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); border-radius: 4px; padding: 2px 6px; margin-bottom: 6px;">🇪🇸 Guion Ejecutivo Hablado (Español)</div>
           <div class="pitch-speech-title">${pTitleEs}</div>
           <div class="pitch-speech-body" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-primary);">${pSpeechEs}</div>
         </div>
@@ -987,11 +1013,11 @@ class WetlandMonitorApp {
         </div>
       ` : ""}
 
-      <!-- DEFENSE Q&A -->
+      <!-- STRATEGIC TECHNICAL Q&A -->
       ${(pDefenseEn || pDefenseEs) ? `
         <div class="defense-qa-card">
           <div class="defense-qa-title" style="display: flex; align-items: center; gap: 6px;">
-            <span>❓</span> Anticipated Committee Q&amp;A
+            <span>❓</span> Strategic Technical &amp; Stakeholder Q&amp;A
           </div>
           ${(lang === "dual" || lang === "en") && pDefenseEn ? `
             <div class="defense-qa-text" style="margin-bottom: ${lang === 'dual' ? '0.6rem' : '0'}; font-size: 0.85rem; line-height: 1.55;">
