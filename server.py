@@ -21,7 +21,10 @@ class ThesisExplorerRequestHandler(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def get_tesis_root(self):
-        return os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+        local_dir = os.path.dirname(os.path.abspath(__file__))
+        if os.path.exists(os.path.join(local_dir, "03_Thesis_Manuscript")):
+            return local_dir
+        return os.path.abspath(os.path.join(local_dir, "..", ".."))
 
     def resolve_safe_path(self, rel_path):
         if not rel_path:
