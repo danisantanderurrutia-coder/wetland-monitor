@@ -670,61 +670,7 @@
               </div>
             </div>
 
-            <!-- ATMOSPHERIC PHENOMENA + GAS ISOLATOR CONTROL STRIP -->
-            <div id="atmo-control-strip" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 12px 6px 12px;padding:6px 14px;background:rgba(10,16,28,0.88);border-radius:8px;border:1px solid rgba(255,255,255,0.08);">
-              <span style="font-size:0.68rem;color:#64748b;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-right:4px;">Atmosphere:</span>
-              <button id="btn-toggle-advection" class="atmo-pill" data-on="true"
-                style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.45);transition:all 0.2s;"
-                title="Show/hide horizontal advection wind arrows">
-                💨 Advection
-              </button>
-              <button id="btn-toggle-convection" class="atmo-pill" data-on="true"
-                style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(251,191,36,0.2);color:#fbbf24;border:1px solid rgba(251,191,36,0.45);transition:all 0.2s;"
-                title="Show/hide convective thermal plumes">
-                🌪️ Convection
-              </button>
-              <button id="btn-toggle-turbulence" class="atmo-pill" data-on="true"
-                style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(139,92,246,0.2);color:#a78bfa;border:1px solid rgba(139,92,246,0.45);transition:all 0.2s;"
-                title="Show/hide turbulent eddy mixing">
-                🌀 Turbulence
-              </button>
-              <button id="btn-toggle-inversion" class="atmo-pill" data-on="true"
-                style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.35);transition:all 0.2s;"
-                title="Show/hide stable nocturnal inversion layer">
-                ❄️ Inversion
-              </button>
-
-              <span style="font-size:0.68rem;color:#64748b;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 4px 0 12px;border-left:1px solid rgba(255,255,255,0.1);padding-left:12px;">Gas Layers:</span>
-              <button id="gas-pill-co2" class="gas-pill" data-gas="co2" data-on="true"
-                style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(16,185,129,0.2);color:#10b981;border:1px solid rgba(16,185,129,0.45);transition:all 0.2s;"
-                title="Show/hide CO₂ flux arrows">
-                🟢 CO₂
-              </button>
-              <button id="gas-pill-ch4" class="gas-pill" data-gas="ch4" data-on="true"
-                style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(249,115,22,0.2);color:#f97316;border:1px solid rgba(249,115,22,0.45);transition:all 0.2s;"
-                title="Show/hide CH₄ flux arrows">
-                🟠 CH₄
-              </button>
-              <button id="gas-pill-n2o" class="gas-pill" data-gas="n2o" data-on="true"
-                style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(192,132,252,0.2);color:#c084fc;border:1px solid rgba(192,132,252,0.45);transition:all 0.2s;"
-                title="Show/hide N₂O flux arrows">
-                🟣 N₂O
-              </button>
-              <button id="gas-pill-co2e" class="gas-pill" data-gas="co2e" data-on="true"
-                style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(255,255,255,0.07);color:#94a3b8;border:1px solid rgba(255,255,255,0.15);transition:all 0.2s;"
-                title="Show/hide Net CO₂-eq balance arrow">
-                ⚪ Net GHG
-              </button>
-
-              <!-- Live time / calendar readout embedded in strip -->
-              <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
-                <span id="strip-time-icon" style="font-size:1rem;">☀️</span>
-                <span id="strip-time-readout" style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;font-weight:800;color:#38bdf8;min-width:40px;">12:00</span>
-                <span id="strip-calendar-readout" style="font-size:0.7rem;color:#94a3b8;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Summer (Jul)</span>
-              </div>
-            </div>
-
-            <!-- SVG STAGE WRAPPER (Full remaining viewport height for Digital Twin) -->
+            <!-- SVG STAGE WRAPPER (Full Viewport Height for Digital Twin Hero Stage) -->
             <div class="svg-stage-wrapper">
               <!-- MASTER SVG ILLUSTRATED CANVAS (Widescreen Transect with 1:1 Aspect Ratio) -->
               <svg class="ecosystem-svg-canvas" id="ecosystem-svg" viewBox="0 0 1350 650" preserveAspectRatio="xMidYMid meet">
@@ -1643,16 +1589,69 @@
                 </div>
               </div>
             </div>
-          </div>
 
-
-            <!-- Floating Canvas Sandbox Badge Button -->
+            <!-- Floating Canvas Sandbox Badge Button (Inside Canvas Viewport) -->
             <button type="button" class="canvas-sandbox-badge-btn" id="btn-canvas-sandbox-badge" title="Click to open Wetland Lab Sandbox">
               <span>🔬</span> <span>Lab Sandbox (Controls)</span>
             </button>
+          </div>
 
-            <!-- INTERACTIVE LAB SANDBOX PANEL (EXTENDED CONTROLS) -->
-            <div class="twin-sandbox-tray collapsed" id="twin-sandbox-tray">
+          <!-- LOWER CONTROLS DOCK: ATMOSPHERIC PHENOMENA & GAS ISOLATOR CONTROL STRIP (Positioned Below Twin) -->
+          <div id="atmo-control-strip" class="atmo-control-dock" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 12px 6px 12px;padding:6px 14px;background:rgba(10,16,28,0.92);border-radius:8px;border:1px solid rgba(56,189,248,0.25);box-shadow:0 4px 14px rgba(0,0,0,0.4);">
+            <span style="font-size:0.68rem;color:#64748b;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-right:4px;">Atmosphere:</span>
+            <button id="btn-toggle-advection" class="atmo-pill" data-on="true"
+              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.45);transition:all 0.2s;"
+              title="Show/hide horizontal advection wind arrows">
+              💨 Advection
+            </button>
+            <button id="btn-toggle-convection" class="atmo-pill" data-on="true"
+              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(251,191,36,0.2);color:#fbbf24;border:1px solid rgba(251,191,36,0.45);transition:all 0.2s;"
+              title="Show/hide convective thermal plumes">
+              🌪️ Convection
+            </button>
+            <button id="btn-toggle-turbulence" class="atmo-pill" data-on="true"
+              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(139,92,246,0.2);color:#a78bfa;border:1px solid rgba(139,92,246,0.45);transition:all 0.2s;"
+              title="Show/hide turbulent eddy mixing">
+              🌀 Turbulence
+            </button>
+            <button id="btn-toggle-inversion" class="atmo-pill" data-on="true"
+              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.35);transition:all 0.2s;"
+              title="Show/hide stable nocturnal inversion layer">
+              ❄️ Inversion
+            </button>
+
+            <span style="font-size:0.68rem;color:#64748b;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 4px 0 12px;border-left:1px solid rgba(255,255,255,0.1);padding-left:12px;">Gas Layers:</span>
+            <button id="gas-pill-co2" class="gas-pill" data-gas="co2" data-on="true"
+              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(16,185,129,0.2);color:#10b981;border:1px solid rgba(16,185,129,0.45);transition:all 0.2s;"
+              title="Show/hide CO₂ flux arrows">
+              🟢 CO₂
+            </button>
+            <button id="gas-pill-ch4" class="gas-pill" data-gas="ch4" data-on="true"
+              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(249,115,22,0.2);color:#f97316;border:1px solid rgba(249,115,22,0.45);transition:all 0.2s;"
+              title="Show/hide CH₄ flux arrows">
+              🟠 CH₄
+            </button>
+            <button id="gas-pill-n2o" class="gas-pill" data-gas="n2o" data-on="true"
+              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(192,132,252,0.2);color:#c084fc;border:1px solid rgba(192,132,252,0.45);transition:all 0.2s;"
+              title="Show/hide N₂O flux arrows">
+              🟣 N₂O
+            </button>
+            <button id="gas-pill-co2e" class="gas-pill" data-gas="co2e" data-on="true"
+              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(255,255,255,0.07);color:#94a3b8;border:1px solid rgba(255,255,255,0.15);transition:all 0.2s;"
+              title="Show/hide Net CO₂-eq balance arrow">
+              ⚪ Net GHG
+            </button>
+
+            <!-- Live time / calendar readout embedded in strip -->
+            <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+              <span id="strip-time-icon" style="font-size:1rem;">☀️</span>
+              <span id="strip-time-readout" style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;font-weight:800;color:#38bdf8;min-width:40px;">12:00</span>
+              <span id="strip-calendar-readout" style="font-size:0.7rem;color:#94a3b8;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Summer (Jul)</span>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE LAB SANDBOX PANEL (EXTENDED CONTROLS) -->
+          <div class="twin-sandbox-tray collapsed" id="twin-sandbox-tray">
               <div class="twin-sandbox-header">
                 <div class="twin-sandbox-title-wrap">
                   <span class="sandbox-icon">🔬</span>

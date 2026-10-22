@@ -239,19 +239,22 @@
   min-width: 0;
   height: 100%;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   background: transparent;
+  scroll-behavior: smooth;
 }
 
-/* SVG Stage Container filling remaining height below HUD bar */
+/* SVG Stage Container - Primary Hero Visual for Digital Twin */
 .svg-stage-wrapper {
-  flex: 1;
-  min-height: 0;
+  flex: 1 0 480px;
+  min-height: 480px;
   width: 100%;
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Master SVG Canvas */
@@ -1619,7 +1622,8 @@
    ========================================================================== */
 
 .twin-sandbox-tray {
-  margin: 6px 12px 10px 12px;
+  margin: 6px 12px 18px 12px;
+  flex-shrink: 0;
   background: rgba(10, 16, 28, 0.95);
   border: 1px solid rgba(56, 189, 248, 0.4);
   border-radius: 12px;
