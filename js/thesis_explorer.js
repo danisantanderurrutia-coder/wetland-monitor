@@ -50,6 +50,9 @@ export class ThesisExplorer {
 
             <!-- Right Controls -->
             <div class="explorer-header-right">
+              <button class="explorer-ctrl-btn twin-return-btn" id="explorer-twin-btn" title="Jump directly to the Interactive Digital Twin">
+                🌱 <span>Go to Digital Twin</span>
+              </button>
               <button class="explorer-ctrl-btn" id="explorer-copy-btn" title="Copy current script / diagram code">
                 📋 <span>Copy Code</span>
               </button>
@@ -94,6 +97,7 @@ export class ThesisExplorer {
   bindEvents() {
     const openBtn = document.getElementById('btn-open-explorer');
     const closeBtn = document.getElementById('explorer-close-btn');
+    const twinBtn = document.getElementById('explorer-twin-btn');
     const modal = document.getElementById('thesis-explorer-modal');
     const searchInput = document.getElementById('explorer-search-input');
     const copyBtn = document.getElementById('explorer-copy-btn');
@@ -104,6 +108,19 @@ export class ThesisExplorer {
 
     if (closeBtn) {
       closeBtn.addEventListener('click', () => this.close());
+    }
+
+    if (twinBtn) {
+      twinBtn.addEventListener('click', () => {
+        this.close();
+        const app = window.presentationApp || window.app;
+        if (app && app.switchView) {
+          app.switchView('soil_interface');
+        } else {
+          const btn = document.getElementById('tab-soil-interface');
+          if (btn) btn.click();
+        }
+      });
     }
 
     if (modal) {
@@ -183,7 +200,7 @@ export class ThesisExplorer {
         // Cargar por defecto el primer pipeline Mermaid
         const defaultPath = (this.treeData.mermaid_pipelines && this.treeData.mermaid_pipelines[0])
           ? this.treeData.mermaid_pipelines[0].path
-          : 'scripts_hub/mermaid/01_eddy_processing_pipeline.md';
+          : 'scripts_hub/mermaid/00_digital_twin_software_architecture.md';
         this.loadFile(defaultPath);
       } else {
         throw new Error('Could not load scripts and pipelines catalog.');
@@ -362,6 +379,14 @@ export class ThesisExplorer {
     vp.innerHTML = `<div style="text-align:center; padding: 60px; color:#94a3b8;">Loading file...</div>`;
     if (titleEl) titleEl.innerText = path.split('/').pop();
 
+    // Sincronizar item activo en el sidebar
+    const sb = document.getElementById('explorer-sidebar');
+    if (sb) {
+      sb.querySelectorAll('.explorer-file-item').forEach(i => {
+        i.classList.toggle('active', i.getAttribute('data-path') === path);
+      });
+    }
+
     try {
       let data = null;
       try {
@@ -447,19 +472,84 @@ export class ThesisExplorer {
   }
 
   renderCodeView(data, container) {
+    const ext = (data.path || '').split('.').pop().toLowerCase();
     const lines = (data.content || '').split('\n');
     let codeHtml = lines.map((l, i) => `
-      <div style="display:flex; line-height:1.6;">
-        <span style="width:40px; color:#475569; text-align:right; padding-right:16px; user-select:none; font-family:'JetBrains Mono', monospace; font-size:12px;">${i+1}</span>
-        <span style="color:#e2e8f0; font-family:'JetBrains Mono', monospace; font-size:13px; white-space:pre;">${this.escapeHtml(l)}</span>
+      <div class="r-code-line">
+        <span class="r-line-number">${i+1}</span>
+        <span class="r-line-content">${this.highlightSyntax(l, ext)}</span>
       </div>
     `).join('');
 
     container.innerHTML = `
-      <div style="background:#020617; border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:20px; overflow-x:auto;">
-        ${codeHtml}
+      <div class="r-code-container">
+        <div class="r-code-header">
+          <div class="r-code-header-left">
+            <span class="r-lang-badge">${ext.toUpperCase()} Source</span>
+            <span class="r-filename">${data.title || data.path}</span>
+          </div>
+          <div class="r-code-header-right">
+            <span>${lines.length} lines • RStudio Dark</span>
+          </div>
+        </div>
+        <div class="r-code-body">
+          ${codeHtml}
+        </div>
       </div>
     `;
+  }
+
+  highlightSyntax(line, ext = 'r') {
+    if (!line) return '';
+
+    // 1. Extraer strings primero para proteger su contenido de tokens posteriores
+    const stringMatches = [];
+    let processed = line.replace(/(".*?"|'.*?')/g, (match) => {
+      const idx = stringMatches.length;
+      stringMatches.push(match);
+      return `@@CODE_STR_${idx}@@`;
+    });
+
+    // 2. Extraer comentarios (# ...)
+    let comment = '';
+    const hashIdx = processed.indexOf('#');
+    if (hashIdx !== -1) {
+      comment = processed.substring(hashIdx);
+      processed = processed.substring(0, hashIdx);
+    }
+
+    // 3. Escapar caracteres HTML en el código ejecutable
+    processed = this.escapeHtml(processed);
+
+    // 4. Tokenización semántica R / Python
+    // Palabras clave de control y tipos
+    const rKeywords = /\b(library|require|function|if|else|repeat|while|for|in|next|break|return|TRUE|FALSE|NULL|NA|NaN|Inf|switch|tryCatch|import|from|def|class|with|as|lambda|None|True|False)\b/g;
+    processed = processed.replace(rKeywords, '<span class="r-kw">$1</span>');
+
+    // Operadores característicos de R (<- , %>% , etc.)
+    processed = processed.replace(/(&lt;-|-&gt;|%&gt;%|%in%|%*%)/g, '<span class="r-op-special">$1</span>');
+    processed = processed.replace(/(\=\=|\!\=|\&lt;\=|\&gt;\=|\+|\-|\*|\/|\^|\&amp;{1,2}|\|{1,2}|\!|\~|\$)/g, '<span class="r-op">$1</span>');
+
+    // Funciones comunes en R y bioestadística
+    const rFunctions = /\b(data\.frame|tibble|as_tibble|mutate|filter|select|group_by|summarise|summarize|arrange|rename|left_join|inner_join|full_join|ggplot|aes|geom_[a-z_]+|theme_[a-z_]+|labs|ggsave|scale_[a-z_]+|facet_[a-z_]+|read\.csv|read_csv|write\.csv|write_rds|read_rds|c|list|vector|matrix|array|names|colnames|rownames|dim|nrow|ncol|head|tail|str|summary|mean|median|sd|var|min|max|sum|round|print|cat|paste0|paste|sprintf|seq|rep|which|is\.na|complete\.cases|as\.numeric|as\.character|as\.Date|as\.POSIXct|factor|levels|lm|glm|nls|predict|residuals|plot|lines|points|abline|ranger|randomForest|sEddyProc)\b/g;
+    processed = processed.replace(rFunctions, '<span class="r-fn">$1</span>');
+
+    // Números (enteros, decimales, notación científica)
+    processed = processed.replace(/\b(\d+(\.\d+)?([eE][+-]?\d+)?)\b/g, '<span class="r-num">$1</span>');
+
+    // 5. Restaurar strings con clase de estilizado
+    stringMatches.forEach((str, idx) => {
+      const escStr = this.escapeHtml(str);
+      processed = processed.replace(`@@CODE_STR_${idx}@@`, `<span class="r-str">${escStr}</span>`);
+    });
+
+    // 6. Restaurar comentarios si existen
+    if (comment) {
+      const escComment = this.escapeHtml(comment);
+      processed += `<span class="r-com">${escComment}</span>`;
+    }
+
+    return processed;
   }
 
   renderFiguresGallery() {

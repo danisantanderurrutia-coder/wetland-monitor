@@ -4,6 +4,13 @@
   "description": "Production computational architecture, empirical measurement routines, and analytical workflows for Wallener Au Peatland Observatory.",
   "mermaid_pipelines": [
     {
+      "path": "scripts_hub/mermaid/00_digital_twin_software_architecture.md",
+      "title": "00. Twin Software Architecture & Reactive Engine",
+      "badge": "Architecture",
+      "color": "cyan",
+      "size": 3200
+    },
+    {
       "path": "scripts_hub/mermaid/01_eddy_processing_pipeline.md",
       "title": "01. High-Frequency EddyPro & QA/QC Pipeline",
       "badge": "EddyPro",
@@ -37,6 +44,13 @@
       "badge": "GWP100/20",
       "color": "emerald",
       "size": 1810
+    },
+    {
+      "path": "scripts_hub/mermaid/06_empirical_data_to_twin_calibration.md",
+      "title": "06. Empirical Ingestion vs. Functional Calibration (Full Data vs. Trends)",
+      "badge": "Twin Ingestion",
+      "color": "emerald",
+      "size": 3400
     }
   ],
   "eddy_scripts": [

@@ -191,6 +191,20 @@
   color: #f8fafc;
 }
 
+.explorer-ctrl-btn.twin-return-btn {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 95, 70, 0.4));
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #34d399;
+  font-weight: 600;
+}
+
+.explorer-ctrl-btn.twin-return-btn:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(6, 95, 70, 0.6));
+  border-color: #34d399;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.35);
+}
+
 .explorer-ctrl-btn.close-btn {
   background: rgba(239, 68, 68, 0.15);
   border-color: rgba(239, 68, 68, 0.3);
@@ -473,6 +487,153 @@
   background: transparent;
   padding: 0;
   color: #e2e8f0;
+}
+
+/* ==============================================================================
+   Mermaid Diagrams Styling
+   ============================================================================== */
+.mermaid-diagram-wrap {
+  margin: 24px 0 !important;
+  background: radial-gradient(circle at top center, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98)) !important;
+  border: 1px solid rgba(56, 189, 248, 0.28) !important;
+  border-radius: 14px !important;
+  padding: 24px !important;
+  overflow-x: auto !important;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.mermaid-diagram-wrap .mermaid {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.mermaid-diagram-wrap svg {
+  max-width: 100% !important;
+  height: auto !important;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+/* ==============================================================================
+   R / Python Code Studio (RStudio / VS Code Theming)
+   ============================================================================== */
+.r-code-container {
+  background: #090d16;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+.r-code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.r-code-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.r-lang-badge {
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.r-filename {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f1f5f9;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.r-code-header-right {
+  font-size: 12px;
+  color: #64748b;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.r-code-body {
+  padding: 16px 0;
+  overflow-x: auto;
+}
+
+.r-code-line {
+  display: flex;
+  line-height: 1.65;
+  transition: background 0.15s ease;
+}
+
+.r-code-line:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.r-line-number {
+  width: 52px;
+  min-width: 52px;
+  color: #475569;
+  text-align: right;
+  padding-right: 18px;
+  user-select: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.r-line-content {
+  padding-left: 18px;
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  white-space: pre;
+}
+
+/* R Syntax Highlighting Tokens (RStudio Dark Palette) */
+.r-kw {
+  color: #fb7185; /* Vibrant coral / rose */
+  font-weight: 600;
+}
+
+.r-fn {
+  color: #38bdf8; /* Sky Blue function calls */
+  font-weight: 600;
+}
+
+.r-str {
+  color: #34d399; /* Emerald Green strings */
+}
+
+.r-num {
+  color: #fbbf24; /* Amber Gold numbers */
+}
+
+.r-com {
+  color: #94a3b8; /* Slate gray comments */
+  font-style: italic;
+}
+
+.r-op-special {
+  color: #facc15; /* Bright Gold assignment <- and pipe %>% */
+  font-weight: 700;
+}
+
+.r-op {
+  color: #cbd5e1; /* Silver operators */
 }
 
 /* CSV Table Viewer */

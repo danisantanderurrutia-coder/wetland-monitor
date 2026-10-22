@@ -76,6 +76,15 @@ class ThesisExplorerRequestHandler(SimpleHTTPRequestHandler):
         self.send_json({"version": "2.4.0", "build_date": "2026-09-25", "title": "Wetland Monitor Master Thesis"}, 200)
 
     def handle_api_tree(self):
+        json_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "explorer_tree.json")
+        if os.path.exists(json_file):
+            try:
+                with open(json_file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                self.send_json(data)
+                return
+            except Exception as e:
+                pass
         tesis_root = self.get_tesis_root()
         manuscript_files = []
         special_items = [
