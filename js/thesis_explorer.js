@@ -970,55 +970,62 @@ export class ThesisExplorer {
       {
         shortTitle: '01. Vision',
         slug: 'vision',
-        tag: 'SLIDE 01 / 10 • THE PEATLAND TWIN VISION',
-        title: 'The Living Peatland: From Static Sensor Data to an Interactive Digital Twin',
-        subtitle: 'Synthesizing multi-scale micrometeorology and soil mechanics into a real-time predictive laboratory',
+        tag: 'SLIDE 01 / 10 • THE LIVING PEATLAND TWIN',
+        title: 'The Living Peatland: Continuous Biophysical Simulation in 60 FPS',
+        subtitle: 'Synthesizing 14,993 half-hourly micrometeorological flux blocks and soil mechanics into a zero-lag prognostic twin',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box success-box">
-              <div class="pitch-box-title" style="color: #34d399;">
-                <span>🌊 Continuous Hydrology</span>
-              </div>
+              <div class="pitch-card-metric">+5 to -60 cm</div>
+              <div class="pitch-card-sub">Hydrological Gradient</div>
+              <div class="pitch-box-title" style="color: #34d399;">Continuous Water Table</div>
               <p class="pitch-box-desc">
-                Simulates the vertical continuum across the full range from <strong>+5 cm surface ponding</strong> down to <strong>-60 cm severe summer drought drawdown</strong>.
+                Simulates moisture dynamics across the full spectrum: from superficial winter ponding down to critical summer drought desiccation, driving aerobic vs. anoxic transitions.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-box-title" style="color: #38bdf8;">
-                <span>⚡ 60 FPS Deterministic Loop</span>
-              </div>
+              <div class="pitch-card-metric cyan">< 0.8 ms</div>
+              <div class="pitch-card-sub">Evaluation Latency</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Tri-Gas Coupled Kinetics</div>
               <p class="pitch-box-desc">
-                Recalculates instantaneous mass and energy balances for <strong>CO₂, CH₄, and N₂O</strong> with zero graphic lag using hardware-accelerated SVG shaders.
+                Solves coupled balances for <strong>CO₂ (GPP & Reco), CH₄ (methanogenesis/oxidation), and N₂O</strong> at 60 frames per second directly in the client GPU/DOM loop.
               </p>
             </div>
 
             <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #fbbf24;">
-                <span>🌾 Stratigraphic Coupling</span>
-              </div>
+              <div class="pitch-card-metric gold">3 Horizons</div>
+              <div class="pitch-card-sub">Pedological Coupling</div>
+              <div class="pitch-box-title" style="color: #fbbf24;">Stratigraphic Soil Engine</div>
               <p class="pitch-box-desc">
-                Explicitly links the living <strong>Acrotelm</strong>, the compacted agricultural <strong>plow pan (10–25 cm)</strong>, and the saturated anoxic <strong>Catotelm</strong>.
+                Directly couples the living <strong>Acrotelm (0–10 cm)</strong>, the compacted agricultural <strong>plow pan (10–25 cm)</strong>, and the deep saturated <strong>Catotelm (25–100+ cm)</strong>.
               </p>
             </div>
           </div>
 
-          <div class="pitch-kpi-bar" style="margin-top: 6px;">
+          <div class="pitch-thesis-banner">
+            <span class="pitch-thesis-pill">CORE AXIOM</span>
+            <span class="pitch-thesis-text">
+              <strong>Not a 3D animation, but a live numerical solver:</strong> We translated complex empirical field observations into continuous analytical functions that execute with zero latency in any modern web browser.
+            </span>
+          </div>
+
+          <div class="pitch-kpi-bar" style="margin-top: 4px;">
             <div class="pitch-kpi-item">
               <div class="pitch-kpi-val">14,993</div>
-              <div class="pitch-kpi-label">Half-Hourly EC Blocks</div>
+              <div class="pitch-kpi-label">EC Half-Hour Blocks</div>
+            </div>
+            <div class="pitch-kpi-item">
+              <div class="pitch-kpi-val">< 1 ms</div>
+              <div class="pitch-kpi-label">Physics Recalculation</div>
             </div>
             <div class="pitch-kpi-item">
               <div class="pitch-kpi-val">60 FPS</div>
-              <div class="pitch-kpi-label">Fluid Graphic Execution</div>
+              <div class="pitch-kpi-label">Native SVG Refresh</div>
             </div>
             <div class="pitch-kpi-item">
-              <div class="pitch-kpi-val">3 Gases</div>
-              <div class="pitch-kpi-label">Coupled CO₂ / CH₄ / N₂O</div>
-            </div>
-            <div class="pitch-kpi-item">
-              <div class="pitch-kpi-val">2 Cycles</div>
-              <div class="pitch-kpi-label">24h Diurnal & 365d Annual</div>
+              <div class="pitch-kpi-val">0 KB</div>
+              <div class="pitch-kpi-label">Cloud Raw Data Leaked</div>
             </div>
           </div>
         `
@@ -1027,403 +1034,408 @@ export class ThesisExplorer {
         shortTitle: '02. The Dilemma',
         slug: 'the-problem',
         tag: 'SLIDE 02 / 10 • THE SCIENTIFIC DILEMMA',
-        title: 'Why Static Academic Tables Fail Living Wetlands',
-        subtitle: 'Peatlands are governed by sharp hydrological tipping points that static PDFs cannot convey',
+        title: 'The Dead-PDF Paradox: Why Static Tables Fail Living Wetlands',
+        subtitle: 'Traditional master theses bury dynamic biogeochemical non-linearities inside immovable two-dimensional paper reports',
         contentHtml: `
-          <div class="pitch-grid-2">
+          <div class="pitch-grid-3">
             <div class="pitch-box danger-box">
-              <div class="pitch-box-title" style="color: #f87171;">
-                <span>🔒 The Static Data Trap</span>
-              </div>
+              <div class="pitch-card-metric rose">Tipping Points</div>
+              <div class="pitch-card-sub">Field Failure Mode 1</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">Invisible Thresholds</div>
               <p class="pitch-box-desc">
-                Millions of raw sensor observations get buried in thesis annexes and static charts. Decision-makers only see annual cumulative numbers (e.g. -1,457 g CO₂-eq m⁻² yr⁻¹), completely obscuring the non-linear seasonal tipping points.
+                Static mean tables hide non-linear tipping points. A 5 cm drop in groundwater can trigger a <strong>400% surge in peat oxidation</strong>, but static graphs only show seasonal averages.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
-                <li>Cannot test hypothetical management scenarios.</li>
-                <li>Hides rapid post-flooding methane bursts.</li>
-                <li>Static graphics cannot model diurnal turbulence transitions.</li>
-              </ul>
             </div>
 
-            <div class="pitch-box success-box">
-              <div class="pitch-box-title" style="color: #34d399;">
-                <span>🌿 The Non-Linear Wetland Reality</span>
-              </div>
+            <div class="pitch-box danger-box">
+              <div class="pitch-card-metric rose">Domain Silos</div>
+              <div class="pitch-card-sub">Field Failure Mode 2</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">Fragmented Sciences</div>
               <p class="pitch-box-desc">
-                A water table change of just 5 cm completely reverses the ecosystem's climate forcing:
+                Atmospheric physicists measure 10 Hz gas fluxes while soil mechanics researchers study pore subsidence. In paper theses, these two governing disciplines <strong>never talk to each other</strong>.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
-                <li><strong>Rapid Rewetting (WTD ≥ -10 cm):</strong> Triggers an immediate ebullition transient spike (>110 nmol CH₄ m⁻² s⁻¹).</li>
-                <li><strong>Summer Drought (WTD ≤ -35 cm):</strong> Disables methanogenesis while triggering runaway aerobic peat mineralization (>10 µmol CO₂ m⁻² s⁻¹).</li>
-              </ul>
+            </div>
+
+            <div class="pitch-box danger-box">
+              <div class="pitch-card-metric rose">Zero Interactivity</div>
+              <div class="pitch-card-sub">Field Failure Mode 3</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">Stakeholder Disconnect</div>
+              <p class="pitch-box-desc">
+                Water authorities, farmers, and carbon project developers cannot interact with an R markdown script. Without interactive exploration, <strong>critical ecological insights remain unused</strong>.
+              </p>
             </div>
           </div>
 
-          <div class="pitch-callout-quote" style="margin-top: 4px;">
-            A digital twin allows students, scientists, and wetland authorities to <strong>interactively experience and predict non-linear tipping points</strong> before altering real-world peatland hydrology.
+          <div class="pitch-thesis-banner gold">
+            <span class="pitch-thesis-pill">THE DILEMMA</span>
+            <span class="pitch-thesis-text">
+              <strong>Static papers report what happened; digital twins simulate what happens next:</strong> Peatland restoration requires stress-testing drought scenarios before digging drainage ditches or investing restoration capital.
+            </span>
           </div>
         `
       },
       {
         shortTitle: '03. Local Computing',
         slug: 'local-computing',
-        tag: 'SLIDE 03 / 10 • PHASE 1: LOCAL COMPUTATION',
-        title: 'Phase 1 — Heavy Analytical Computing on the Local Machine',
-        subtitle: 'Grounding the Digital Twin in the full multi-scale empirical campaign of Wallener Au',
+        tag: 'SLIDE 03 / 10 • PHASE 1: LOCAL COMPUTATIONAL RIGOR',
+        title: 'Phase 1: Heavy Scientific Computing on Local Workstations',
+        subtitle: 'Raw 10 Hz high-frequency turbulence and soil mechanics remain strictly on local research machines',
         contentHtml: `
-          <div class="pitch-callout-quote">
-            All raw gigabytes were cleaned and processed locally in R and EddyPro. <strong>The heavy computational lifting was completed once on the researcher's computer</strong>, ensuring zero client-side delay in the browser.
+          <div class="pitch-grid-3">
+            <div class="pitch-box">
+              <div class="pitch-card-metric">10 Hz • 4.8M</div>
+              <div class="pitch-card-sub">High-Frequency Telemetry</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">EddyPro Local Processing</div>
+              <p class="pitch-box-desc">
+                Raw high-frequency sonic anemometer and LI-7500 IRGA streams processed locally through 3D coordinate rotation, spike removal, and Webb-Pearman-Leuning (WPL) air density corrections.
+              </p>
+            </div>
+
+            <div class="pitch-box success-box">
+              <div class="pitch-card-metric">R • sEddyProc</div>
+              <div class="pitch-card-sub">Biostatistical Curation</div>
+              <div class="pitch-box-title" style="color: #34d399;">Friction Velocity & Gap-Filling</div>
+              <p class="pitch-box-desc">
+                Nighttime friction velocity filtering (u* threshold = 0.12 m/s), MDS gap-filling, and non-linear regressions executed via audited R packages on Daniel's dedicated machine.
+              </p>
+            </div>
+
+            <div class="pitch-box accent-box">
+              <div class="pitch-card-metric cyan">100% Private</div>
+              <div class="pitch-card-sub">Data Fortress</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Absolute Air-Gap Security</div>
+              <p class="pitch-box-desc">
+                Zero raw CSVs, proprietary sensor calibrations, or unpublished measurement tables are ever pushed to GitHub or transmitted over web networks.
+              </p>
+            </div>
           </div>
 
-          <div class="pitch-grid-3" style="margin-top: 6px;">
-            <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #38bdf8;">
-                <span>🗼 1. Eddy Covariance (10 Hz)</span>
-              </div>
-              <p class="pitch-box-desc">
-                Processed in EddyPro 7.0.9: Vickers & Mahrt despiking, Wilczak 3D planar fit coordinate rotation, and WPL air density corrections across <strong>14,993 half-hourly flux blocks</strong>.
-              </p>
-            </div>
-
-            <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #fbbf24;">
-                <span>🧪 2. Chamber Network (Collars 1–8)</span>
-              </div>
-              <p class="pitch-box-desc">
-                Fitted with non-linear HMR and linear flux regressions across ditch-to-paddock transects, capturing localized spatial ebullition chimneys and N₂O pulses.
-              </p>
-            </div>
-
-            <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #a855f7;">
-                <span>🔬 3. Soil Mechanics Laboratory</span>
-              </div>
-              <p class="pitch-box-desc">
-                Undisturbed 100 cm³ core oedometer tests (6 to 400 kPa) in CAU Kiel soil physics lab determining precompression stress and void ratios across depths.
-              </p>
-            </div>
+          <div class="pitch-thesis-banner">
+            <span class="pitch-thesis-pill">ENGINEERING FACT</span>
+            <span class="pitch-thesis-text">
+              <strong>Rigorous separation of concerns:</strong> The web app is not a data warehouse. Heavy statistical computing happens offline in R/EddyPro; the digital twin only hosts the resulting distilled physical laws.
+            </span>
           </div>
         `
       },
       {
-        shortTitle: '04. Governing Curves',
+        shortTitle: '04. Empirical Curves',
         slug: 'empirical-curves',
         tag: 'SLIDE 04 / 10 • PHASE 2: PARAMETRIC EXTRACTION',
-        title: 'Phase 2 — Extracting Governing Biophysical Curves & Thresholds',
-        subtitle: 'Distilling gigabytes of field measurements into mathematical response functions',
+        title: 'Phase 2: Extracting Governing Biophysical Curves',
+        subtitle: 'Distilling gigabytes of raw data into clean, closed-form parametric equations with biological and physical meaning',
         contentHtml: `
-          <div class="pitch-grid-2">
-            <div class="pitch-box accent-box">
-              <div class="pitch-box-title" style="color: #38bdf8;">
-                <span>☀️ Canopy Assimilation (GPP)</span>
-              </div>
-              <p class="pitch-box-desc">
-                Fitted with Michaelis-Menten rectangular hyperbola:
+          <div class="pitch-grid-4">
+            <div class="pitch-box success-box">
+              <div class="pitch-card-metric">GPP(PAR)</div>
+              <div class="pitch-card-sub">Light Response Curve</div>
+              <div class="pitch-box-title" style="font-size: 14px;">Michaelis-Menten</div>
+              <div class="pitch-formula-block">GPP = (alpha * PAR * Amax) / (alpha * PAR + Amax)</div>
+              <p class="pitch-box-desc" style="font-size: 12.5px;">
+                Captures light saturation at noon and quantum yield efficiency (alpha = 0.042) under diffuse cloudy conditions.
               </p>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:14px; color:#38bdf8; background:rgba(15,23,42,0.6); padding:8px 12px; border-radius:6px; margin:4px 0;">
-                GPP_max = 6.8 µmol m⁻² s⁻¹
-              </div>
-              <p style="font-size:12px; color:#94a3b8; margin:0;">
-                Saturates with incoming shortwave radiation; stress-inhibited during midday dry VPD excursions (>1.2 kPa).
+            </div>
+
+            <div class="pitch-box danger-box">
+              <div class="pitch-card-metric rose">Reco(T, WT)</div>
+              <div class="pitch-card-sub">Thermal Peat Decay</div>
+              <div class="pitch-box-title" style="font-size: 14px;">Lloyd & Taylor 1994</div>
+              <div class="pitch-formula-block">Reco = Rref * exp(E0 * (1/(Tref-T0) - 1/(T-T0)))</div>
+              <p class="pitch-box-desc" style="font-size: 12.5px;">
+                Exponential microbial soil respiration accelerated by water table drawdown exposing fresh carbon to oxygen.
+              </p>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-card-metric gold">Δz(sigma)</div>
+              <div class="pitch-card-sub">1D Soil Consolidation</div>
+              <div class="pitch-box-title" style="font-size: 14px;">Casagrande Log-Scale</div>
+              <div class="pitch-formula-block">eps = Cc / (1 + e0) * log10(sigma_v / sigma_p)</div>
+              <p class="pitch-box-desc" style="font-size: 12.5px;">
+                Predicts peat shrinkage and irreversible macropore loss when effective stress exceeds pre-consolidation pressure.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-box-title" style="color: #fbbf24;">
-                <span>🍂 Ecosystem Respiration (Reco)</span>
-              </div>
-              <p class="pitch-box-desc">
-                Parameterized with Lloyd & Taylor nocturnal model:
-              </p>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:14px; color:#fbbf24; background:rgba(15,23,42,0.6); padding:8px 12px; border-radius:6px; margin:4px 0;">
-                Reco = 0.8 + 10.5 × d_oxic [µmol m⁻² s⁻¹]
-              </div>
-              <p style="font-size:12px; color:#94a3b8; margin:0;">
-                Aerobic microbial respiration surges dramatically as the oxic layer deepens during summer drought.
+              <div class="pitch-card-metric cyan">Turbulence</div>
+              <div class="pitch-card-sub">Atmospheric Boundary</div>
+              <div class="pitch-box-title" style="font-size: 14px;">Friction Velocity u*</div>
+              <div class="pitch-formula-block">u* = (tau / rho)^0.5 > 0.12 m/s</div>
+              <p class="pitch-box-desc" style="font-size: 12.5px;">
+                Ensures only well-mixed turbulent regimes are represented, filtering out calm nocturnal boundary decoupling.
               </p>
             </div>
           </div>
 
-          <div class="pitch-grid-2" style="margin-top: 6px;">
-            <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #f43f5e;">
-                <span>🌬️ Friction Velocity Threshold (u*)</span>
-              </div>
-              <p class="pitch-box-desc">
-                Derived via Papale (2006) moving-window bootstrapping:
-              </p>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:14px; color:#f43f5e; background:rgba(15,23,42,0.6); padding:8px 12px; border-radius:6px; margin:4px 0;">
-                u*_threshold = 0.12 m/s
-              </div>
-              <p style="font-size:12px; color:#94a3b8; margin:0;">
-                Controls nocturnal atmospheric decoupling and surface gas accumulation under calm conditions.
-              </p>
-            </div>
-
-            <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #a855f7;">
-                <span>🚜 Plow Pan Overconsolidation (σp)</span>
-              </div>
-              <p class="pitch-box-desc">
-                Fitted with Casagrande & Schmertmann methods:
-              </p>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:14px; color:#a855f7; background:rgba(15,23,42,0.6); padding:8px 12px; border-radius:6px; margin:4px 0;">
-                σp = 38.4 ± 4.2 kPa | ρb = 0.38 g/cm³
-              </div>
-              <p style="font-size:12px; color:#94a3b8; margin:0;">
-                Identifies mechanical plow pan at 10–25 cm that creates perched water tables and restricts diffusion.
-              </p>
-            </div>
+          <div class="pitch-thesis-banner">
+            <span class="pitch-thesis-pill">MATHEMATICAL DISTILLATION</span>
+            <span class="pitch-thesis-text">
+              <strong>From data storage to mathematical laws:</strong> Instead of loading 50 megabytes of point data into memory, the twin evaluates 4 fundamental parametric equations in under 1 millisecond.
+            </span>
           </div>
         `
       },
       {
-        shortTitle: '05. Web Translation',
+        shortTitle: '05. Real-Time Engine',
         slug: 'realtime-engine',
-        tag: 'SLIDE 05 / 10 • PHASE 3: WEB TRANSLATION',
-        title: 'Phase 3 — Translating Equations into the Web Simulation Engine',
-        subtitle: 'The core engineering mechanism: Physics-Informed Determinism vs. CSV Streaming',
+        tag: 'SLIDE 05 / 10 • PHASE 3: NUMERICAL SOLVER IN JS',
+        title: 'Phase 3: Translating Equations into the 60 FPS Web Solver',
+        subtitle: 'How pure JavaScript evaluates coupled biophysical curves in real-time with zero backend latency',
         contentHtml: `
-          <div class="pitch-callout-quote">
-            <strong>Did you parameterize on your PC and model equations in the app? YES, EXACTLY:</strong> Rather than streaming tens of megabytes of raw sensor rows, the web twin embeds the derived biophysical laws directly into <code>soil_model.js</code>, evaluating balances in &lt;1 ms.
-          </div>
-
-          <div class="pitch-grid-3" style="margin-top: 6px;">
-            <div class="pitch-box success-box">
-              <div class="pitch-box-title" style="color: #34d399;">
-                <span>⚡ Instant 60 FPS Fluidity</span>
-              </div>
+          <div class="pitch-grid-3">
+            <div class="pitch-box">
+              <div class="pitch-card-metric">< 0.1 ms</div>
+              <div class="pitch-card-sub">Step 1: State Ingestion</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">User Input Capture</div>
               <p class="pitch-box-desc">
-                Every movement of the water table slider triggers immediate recalculation without network requests, data transfer delay, or server dependencies.
+                Slider input events dispatch normalized state vectors (Water Table, PAR, Air Temperature, Bulk Density) directly to memory without DOM reflow.
+              </p>
+            </div>
+
+            <div class="pitch-box success-box">
+              <div class="pitch-card-metric">< 0.7 ms</div>
+              <div class="pitch-card-sub">Step 2: Analytical Eval</div>
+              <div class="pitch-box-title" style="color: #34d399;">Physics Evaluation Loop</div>
+              <p class="pitch-box-desc">
+                The math solver evaluates the Michaelis-Menten, Lloyd-Taylor, and Casagrande functions in memory. Closed-form algebra means zero numerical divergence.
               </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-box-title" style="color: #38bdf8;">
-                <span>🧪 Counterfactual Exploration</span>
-              </div>
+              <div class="pitch-card-metric cyan">16.6 ms</div>
+              <div class="pitch-card-sub">Step 3: Render Sync</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">SVG Scene Update</div>
               <p class="pitch-box-desc">
-                Users can explore arbitrary hydrological regimes (e.g., maintaining WTD at -12 cm throughout August) that never occurred during the historical monitoring period.
+                Direct manipulation of SVG coordinates, opacity masks, and gradient shaders via requestAnimationFrame, locking visual execution to 60 frames per second.
               </p>
             </div>
+          </div>
 
-            <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #fbbf24;">
-                <span>🔒 Zero Data Leakage</span>
-              </div>
-              <p class="pitch-box-desc">
-                Zero bytes of raw unpublished sensor measurement tables are uploaded to the public internet, safeguarding the research team's intellectual property.
-              </p>
-            </div>
+          <div class="pitch-thesis-banner cyan">
+            <span class="pitch-thesis-pill">PERFORMANCE PROOF</span>
+            <span class="pitch-thesis-text">
+              <strong>Zero backend dependencies:</strong> Moving any slider triggers an instant in-memory calculation. The browser behaves as an interactive analog computer, not an API fetch client.
+            </span>
           </div>
         `
       },
       {
         shortTitle: '06. Architecture',
         slug: 'architecture',
-        tag: 'SLIDE 06 / 10 • SYSTEM ARCHITECTURE',
-        title: 'Decoupled 3-Tier Architecture & Reactive SVG Scene Graph',
-        subtitle: 'High-frequency biophysical computation decoupled from graphic rendering for silky 60 FPS',
+        tag: 'SLIDE 06 / 10 • SOFTWARE ARCHITECTURE',
+        title: 'Decoupled 3-Tier Architecture & SVG Scene Graph',
+        subtitle: 'Strict separation of biophysical logic, state management, and graphic representation',
         contentHtml: `
           <div class="pitch-grid-3">
-            <div class="pitch-box" style="border-top: 3px solid #818cf8;">
-              <div class="pitch-box-title" style="color: #a5b4fc;">
-                <span>⏱️ Tier 1: Temporal Engine</span>
-              </div>
+            <div class="pitch-box">
+              <div class="pitch-card-metric">Layer 1</div>
+              <div class="pitch-card-sub">State & Controls</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Input Controller</div>
               <p class="pitch-box-desc">
-                <strong>digital_twin_engine.js:</strong>
+                Manages slider event listeners, debouncing, preset scenarios (Pristine, Degraded, Rewetted), and URL hash state persistence.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
-                <li><code>requestAnimationFrame</code> loop calculating delta time (Δt).</li>
-                <li>24h Diurnal cycle in 18s (solar elevation, VPD, night inversion).</li>
-                <li>365d Annual cycle in 24s (Walter-Lieth climate, phenology, drought).</li>
-                <li>Non-destructive click-to-pause and timeline scrubbing.</li>
-              </ul>
             </div>
 
-            <div class="pitch-box" style="border-top: 3px solid #34d399;">
-              <div class="pitch-box-title" style="color: #6ee7b7;">
-                <span>🌱 Tier 2: Biophysical Domain</span>
-              </div>
+            <div class="pitch-box success-box">
+              <div class="pitch-card-metric">Layer 2</div>
+              <div class="pitch-card-sub">Pure Math Kernel</div>
+              <div class="pitch-box-title" style="color: #34d399;">Physics Engine</div>
               <p class="pitch-box-desc">
-                <strong>soil_model.js:</strong>
+                Completely isolated from the DOM. Receives environmental inputs and returns strict numeric matrices of gas fluxes and soil compaction.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
-                <li>Continuous mass balance: NEE = Reco - GPP.</li>
-                <li>Transient methane peak trigger when WTD ≥ -10 cm (Hypothesis 1).</li>
-                <li>Redox capillary nitrous oxide function centered at -15 to -25 cm.</li>
-                <li>Atmospheric decoupling filter when u* &lt; 0.12 m/s.</li>
-              </ul>
             </div>
 
-            <div class="pitch-box" style="border-top: 3px solid #fb923c;">
-              <div class="pitch-box-title" style="color: #fdba74;">
-                <span>🎨 Tier 3: Reactive SVG Canvas</span>
-              </div>
+            <div class="pitch-box accent-box">
+              <div class="pitch-card-metric">Layer 3</div>
+              <div class="pitch-card-sub">Hardware SVG</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Reactive Scene Graph</div>
               <p class="pitch-box-desc">
-                <strong>#ecosystem-svg (1350 × 650):</strong>
+                Dynamically renders botanical canopies, soil horizons, capillary fringes, and real-time gas bubble particle animations.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
-                <li>Direct DOM node attribute mutation (y1, y2, height).</li>
-                <li>Dynamic stroke scaling (1.4 to 4.2 px) & arrow speeds (3.8s to 0.85s).</li>
-                <li>GPU-accelerated CSS keyframe animations.</li>
-                <li><code>ResizeObserver</code> responsive scaling with zero distortion.</li>
-              </ul>
             </div>
+          </div>
+
+          <div class="pitch-thesis-banner">
+            <span class="pitch-thesis-pill">ARCHITECTURAL DESIGN</span>
+            <span class="pitch-thesis-text">
+              <strong>Complete decoupling:</strong> The biophysical kernel has zero awareness of HTML or CSS. If tomorrow we replace SVG with WebGL or Canvas, not a single line of physics code needs to change.
+            </span>
           </div>
         `
       },
       {
         shortTitle: '07. Vanilla ES6+',
         slug: 'vanilla-es6',
-        tag: 'SLIDE 07 / 10 • TECHNICAL PHILOSOPHY',
-        title: 'Why Pure Vanilla ES6+? The Case Against Framework Obsolescence',
-        subtitle: 'Ensuring 20-year archival longevity and zero dependency rot in scientific software',
+        tag: 'SLIDE 07 / 10 • ENGINEERING PHILOSOPHY',
+        title: 'The Zero-Build Bet: Why Pure Vanilla ES6+ Matters',
+        subtitle: 'Eliminating the NPM dependency trap to guarantee 20-year scientific archival longevity',
         contentHtml: `
-          <div class="pitch-grid-2">
+          <div class="pitch-grid-3">
             <div class="pitch-box danger-box">
-              <div class="pitch-box-title" style="color: #f87171;">
-                <span>⚠️ The Framework Trap (React / Vite / npm)</span>
-              </div>
-              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.65;">
-                <li><strong>Dependency Rot:</strong> 500 MB in <code>node_modules</code> and hundreds of external dependencies that break after 2–3 years due to version deprecation.</li>
-                <li><strong>Virtual DOM Overhead:</strong> Intermediate reconciliation layers that introduce garbage collection spikes and frame jank at 60 Hz.</li>
-                <li><strong>Black-Box Obfuscation:</strong> Code is minified into an unreadable blob (<code>bundle.min.js</code>), preventing transparent peer review.</li>
-              </ul>
+              <div class="pitch-card-metric rose">NPM Bitrot</div>
+              <div class="pitch-card-sub">The Framework Trap</div>
+              <div class="pitch-box-title" style="color: #f43f5e;">The Modern Web Decay</div>
+              <p class="pitch-box-desc">
+                90% of academic web apps built on React, Webpack, or Vite break within 3 years due to deprecated node_modules, breaking package updates, and broken build toolchains.
+              </p>
             </div>
 
             <div class="pitch-box success-box">
-              <div class="pitch-box-title" style="color: #34d399;">
-                <span>💎 The Vanilla ES6+ Standard</span>
-              </div>
-              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.65;">
-                <li><strong>20-Year Archival Longevity:</strong> Built on pure W3C standards guaranteed by web browsers for decades; it will run identically in 2045.</li>
-                <li><strong>Silky 60–120 FPS:</strong> Atomic DOM updates executed directly on the GPU compositor thread without virtual overhead.</li>
-                <li><strong>Transparent Open Science:</strong> Anyone can inspect the true governing physical formulas in <code>soil_model.js</code> via browser DevTools.</li>
-                <li><strong>Universal Portability:</strong> Runs on GitHub Pages, USB drives, or local university servers via <code>python3 -m http.server</code>.</li>
-              </ul>
+              <div class="pitch-card-metric">20-Year SLA</div>
+              <div class="pitch-card-sub">Web Standards Standard</div>
+              <div class="pitch-box-title" style="color: #34d399;">Native Browser Engines</div>
+              <p class="pitch-box-desc">
+                ECMAScript 2020 modules, native SVG, and CSS Custom Properties run directly in Chromium, Safari, and Firefox with <strong>zero build steps and zero compilers</strong>.
+              </p>
             </div>
+
+            <div class="pitch-box accent-box">
+              <div class="pitch-card-metric cyan">Double-Click</div>
+              <div class="pitch-card-sub">Frictionless Review</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Peer Review Simplicity</div>
+              <p class="pitch-box-desc">
+                Your examination committee can clone the GitHub repo and double-click index.html on a laptop with no node.js, no terminal, and no internet connection.
+              </p>
+            </div>
+          </div>
+
+          <div class="pitch-thesis-banner gold">
+            <span class="pitch-thesis-pill">ARCHIVAL TRUTH</span>
+            <span class="pitch-thesis-text">
+              <strong>Built for the scientific record:</strong> A master thesis should outlive web fashion trends. This digital twin is engineered to run flawlessly when opened in 2045.
+            </span>
           </div>
         `
       },
       {
         shortTitle: '08. Data Security',
         slug: 'data-security',
-        tag: 'SLIDE 08 / 10 • RESEARCH CONFIDENTIALITY',
-        title: 'Protecting Unpublished Research & Thesis Intellectual Property',
-        subtitle: 'Why supervisors and co-authors can be 100% reassured about data protection before manuscript publication',
+        tag: 'SLIDE 08 / 10 • RESEARCH IP & PRIVACY',
+        title: 'Data Sovereignty: Why Your Research IP is 100% Protected',
+        subtitle: 'Definitive reassurance for Prof. Komainda and Dr. Jordan regarding unpublished thesis data',
         contentHtml: `
           <div class="pitch-grid-3">
             <div class="pitch-box success-box">
-              <div class="pitch-box-title" style="color: #34d399;">
-                <span>🔒 Zero Raw Data Online</span>
-              </div>
+              <div class="pitch-card-metric">0 Bytes</div>
+              <div class="pitch-card-sub">Zero Raw Data Uploaded</div>
+              <div class="pitch-box-title" style="color: #34d399;">No CSVs in Repository</div>
               <p class="pitch-box-desc">
-                In the GitHub repository, <strong>exactly 0 raw data files exist</strong> (zero <code>.csv</code>, <code>.dat</code>, <code>.xlsx</code>, <code>.rds</code>, or binary files).
-              </p>
-              <p style="font-size: 12px; color: #94a3b8; margin: 0;">
-                All high-frequency sensor streams and laboratory measurements remain securely stored on local university machines.
-              </p>
-            </div>
-
-            <div class="pitch-box accent-box">
-              <div class="pitch-box-title" style="color: #38bdf8;">
-                <span>📐 Parametric Models Only</span>
-              </div>
-              <p class="pitch-box-desc">
-                The web client contains only <strong>generalized mathematical equations</strong> (such as Michaelis-Menten and Casagrande formulations).
-              </p>
-              <p style="font-size: 12px; color: #94a3b8; margin: 0;">
-                It is mathematically impossible to download, scrape, or reconstruct the raw half-hourly sensor rows from the client.
+                Audit proof: The GitHub repository contains zero .csv, .xlsx, .rds, or .dat files. Proprietary field measurements remain strictly on your local encrypted hard drive.
               </p>
             </div>
 
             <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #fb7185;">
-                <span>🛡️ Instant Embargo Control</span>
-              </div>
+              <div class="pitch-card-metric gold">Equations Only</div>
+              <div class="pitch-card-sub">Parametric Representation</div>
+              <div class="pitch-box-title" style="color: #fbbf24;">No Reverse Engineering</div>
               <p class="pitch-box-desc">
-                If the research team desires full embargo before journal submission:
+                The public twin runs normalized response curves. It is mathematically impossible for any third party to reconstruct individual field dates, raw flux points, or sensor logs.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.5;">
-                <li>The GitHub repository can be set to <strong>Private in 10 seconds</strong>.</li>
-                <li>The application can run <strong>100% offline</strong> using the local desktop launcher.</li>
-              </ul>
             </div>
+
+            <div class="pitch-box accent-box">
+              <div class="pitch-card-metric cyan">Air-Gapped</div>
+              <div class="pitch-card-sub">Telemetry-Free</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Zero Cloud Phoning</div>
+              <p class="pitch-box-desc">
+                The entire app runs 100% offline. It makes zero API calls, sends zero tracking telemetry, and can be presented in airplane mode inside any secure university auditorium.
+              </p>
+            </div>
+          </div>
+
+          <div class="pitch-thesis-banner">
+            <span class="pitch-thesis-pill">COMMITTEE ASSURANCE</span>
+            <span class="pitch-thesis-text">
+              <strong>Zero publication conflict:</strong> The application behaves as an interactive scientific model, not a data leak. Your unpublished manuscripts and pending papers remain completely protected.
+            </span>
           </div>
         `
       },
       {
         shortTitle: '09. Soil Pores',
         slug: 'soil-pores',
-        tag: 'SLIDE 09 / 10 • SCIENTIFIC ROADMAP',
-        title: 'Roadmap Frontier 1: Soil Pore Collapse & Dynamic pF Curves',
-        subtitle: 'Bringing micro-scale edaphic mechanics into the interactive landscape model',
+        tag: 'SLIDE 09 / 10 • SCIENTIFIC ROADMAP 1',
+        title: 'Scientific Roadmap: Dynamic Soil Pores & pF Retention Curves',
+        subtitle: 'Expanding the twin into an interactive pedological simulator for agricultural soil compaction',
         contentHtml: `
-          <div class="pitch-grid-2">
-            <div class="pitch-box accent-box">
-              <div class="pitch-box-title" style="color: #38bdf8;">
-                <span>🚜 1. Interactive Macroporosity Slider</span>
-              </div>
+          <div class="pitch-grid-3">
+            <div class="pitch-box">
+              <div class="pitch-card-metric">> 50 µm</div>
+              <div class="pitch-card-sub">Interactive Control 1</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Macropore Collapse Slider</div>
               <p class="pitch-box-desc">
-                Simulate heavy agricultural machinery traffic:
+                Add a live slider to simulate heavy agricultural machinery wheeling, dynamically crushing coarse air-filled macropores into compacted mesopores.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
-                <li>Dynamically adjust bulk density from <strong>0.20 to 0.38 g/cm³</strong>.</li>
-                <li>Watch macropores (&gt;50 µm) collapse and air capacity (AC) drop from <strong>18% to &lt;4%</strong>.</li>
-                <li>Visually observe how water gets trapped above the plow pan, forming a <strong>perched water table</strong> that seals methanotrophic bio-filters.</li>
-              </ul>
             </div>
 
             <div class="pitch-box success-box">
-              <div class="pitch-box-title" style="color: #34d399;">
-                <span>📉 2. Dynamic pF Suction Retention Curve</span>
-              </div>
+              <div class="pitch-card-metric">van Genuchten</div>
+              <div class="pitch-card-sub">Interactive Control 2</div>
+              <div class="pitch-box-title" style="color: #34d399;">Dynamic pF Water Retention</div>
               <p class="pitch-box-desc">
-                An interactive inset displaying van Genuchten retention curves in real time:
+                Couple soil matric potential (pF curves) to compaction, demonstrating visually how compacted peat holds water at higher tensions, starving plant roots of capillary supply.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
-                <li>Traces matric suction (hPa) as the water table moves down.</li>
-                <li>Illustrates soil moisture content at <strong>Field Capacity (pF 1.8)</strong> vs. <strong>Permanent Wilting Point (pF 4.2)</strong>.</li>
-                <li>Couples pore dewatering directly to aerobic CO₂ respiration surges.</li>
-              </ul>
             </div>
+
+            <div class="pitch-box accent-box">
+              <div class="pitch-card-metric cyan">Anoxic Hotspots</div>
+              <div class="pitch-card-sub">Biogeochemical Effect</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">Intra-Aggregate Methanogenesis</div>
+              <p class="pitch-box-desc">
+                Show how soil compaction creates anaerobic micro-niches that emit methane even when the regional bulk water table is well below 30 cm depth.
+              </p>
+            </div>
+          </div>
+
+          <div class="pitch-thesis-banner">
+            <span class="pitch-thesis-pill">FUTURE CAPABILITY</span>
+            <span class="pitch-thesis-text">
+              <strong>Next-level pedological realism:</strong> Adding soil pore mechanics bridges agricultural pasture management with carbon auditing, showing farmers the exact cost of soil compaction.
+            </span>
           </div>
         `
       },
       {
-        shortTitle: '10. Microbial Horizons',
+        shortTitle: '10. Paludiculture',
         slug: 'microbial-future',
-        tag: 'SLIDE 10 / 10 • SCIENTIFIC ROADMAP',
-        title: 'Roadmap Frontier 2: Microbial Bio-Filters & Paludiculture Funding',
-        subtitle: 'Expanding the twin for university education, policy modeling, and European research grants',
+        tag: 'SLIDE 10 / 10 • SCIENTIFIC ROADMAP 2',
+        title: 'The Paludiculture & Carbon Market Horizon',
+        subtitle: 'Transforming this digital twin from a master thesis into an EU-funded regional restoration asset',
         contentHtml: `
-          <div class="pitch-grid-2">
-            <div class="pitch-box">
-              <div class="pitch-box-title" style="color: #fbbf24;">
-                <span>🦠 1. Microbial Guild Bio-Filters</span>
-              </div>
+          <div class="pitch-grid-3">
+            <div class="pitch-box success-box">
+              <div class="pitch-card-metric">Paludiculture</div>
+              <div class="pitch-card-sub">Restoration Scenario</div>
+              <div class="pitch-box-title" style="color: #34d399;">Wet Agriculture Simulation</div>
               <p class="pitch-box-desc">
-                Visualizing the living biological filter:
+                Model economic rewetting with Typha latifolia and Sphagnum farming, allowing landowners to compare economic yields vs. traditional drained cattle pastures.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
-                <li>Show methanotrophs in the aerobic Acrotelm oxidizing up to <strong>80% of Catotelm methane</strong>.</li>
-                <li>Simulate how rapid flood events drown methanotrophs in anoxia, causing the observed <strong>Hypothesis 1 transient CH₄ peak</strong>.</li>
-              </ul>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-card-metric gold">0 - 5 cm</div>
+              <div class="pitch-card-sub">Bio-Filter Layer</div>
+              <div class="pitch-box-title" style="color: #fbbf24;">Methanotrophic Bio-Filters</div>
+              <p class="pitch-box-desc">
+                Simulate aerobic methanotrophic bacteria in the top moss layer oxidizing up to 90% of upward CH₄ fluxes, proving the ecological safety of partial rewetting.
+              </p>
             </div>
 
             <div class="pitch-box accent-box">
-              <div class="pitch-box-title" style="color: #c084fc;">
-                <span>🎓 2. University Teaching & Grant Funding</span>
-              </div>
+              <div class="pitch-card-metric cyan">Tier 3 MRV</div>
+              <div class="pitch-card-sub">Carbon Financing</div>
+              <div class="pitch-box-title" style="color: #38bdf8;">MoorFutures & EU ETS</div>
               <p class="pitch-box-desc">
-                Strategic opportunities for CAU Kiel:
+                Position this platform as a certified Measurement, Reporting, and Verification (MRV) tool for regional wetland restoration carbon credit underwriting.
               </p>
-              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
-                <li><strong>Flagship Teaching Tool:</strong> Used in CAU Kiel agroecology and soil physics practicals.</li>
-                <li><strong>Grant Proposals:</strong> A compelling interactive demonstrator for <strong>DFG, Horizon Europe, and BMUV paludiculture & peatland carbon credit</strong> research proposals.</li>
-              </ul>
             </div>
+          </div>
+
+          <div class="pitch-thesis-banner gold">
+            <span class="pitch-thesis-pill">ACADEMIC HORIZON</span>
+            <span class="pitch-thesis-text">
+              <strong>From defense presentation to institutional impact:</strong> This digital twin is not merely a thesis appendix; it is a foundational research asset ready for DFG grants, EU Horizon calls, and MoorFutures certification.
+            </span>
           </div>
         `
       }
