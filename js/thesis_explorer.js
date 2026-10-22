@@ -8,6 +8,8 @@ export class ThesisExplorer {
     this.treeData = null;
     this.currentFile = null;
     this.searchDebounceTimer = null;
+    this.pitchSlideIndex = 0;
+    this.isPitchMode = false;
     this.initDOM();
     this.bindEvents();
   }
@@ -50,6 +52,9 @@ export class ThesisExplorer {
 
             <!-- Right Controls -->
             <div class="explorer-header-right">
+              <button class="explorer-ctrl-btn pitch-btn" id="explorer-pitch-btn" title="Open Twin Executive Pitch Presentation">
+                🎯 <span>Executive Pitch</span>
+              </button>
               <button class="explorer-ctrl-btn twin-return-btn" id="explorer-twin-btn" title="Jump directly to the Interactive Digital Twin">
                 🌱 <span>Go to Digital Twin</span>
               </button>
@@ -97,6 +102,7 @@ export class ThesisExplorer {
   bindEvents() {
     const openBtn = document.getElementById('btn-open-explorer');
     const closeBtn = document.getElementById('explorer-close-btn');
+    const pitchBtn = document.getElementById('explorer-pitch-btn');
     const twinBtn = document.getElementById('explorer-twin-btn');
     const modal = document.getElementById('thesis-explorer-modal');
     const searchInput = document.getElementById('explorer-search-input');
@@ -108,6 +114,10 @@ export class ThesisExplorer {
 
     if (closeBtn) {
       closeBtn.addEventListener('click', () => this.close());
+    }
+
+    if (pitchBtn) {
+      pitchBtn.addEventListener('click', () => this.showPitchDeck(0));
     }
 
     if (twinBtn) {
@@ -133,7 +143,7 @@ export class ThesisExplorer {
       copyBtn.addEventListener('click', () => this.copyCurrentContent());
     }
 
-    // Atajos de teclado: 't', 'h' o 'Escape'
+    // Atajos de teclado: 't', 'h', 'Escape' y flechas en modo Pitch
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
         this.close();
@@ -142,6 +152,14 @@ export class ThesisExplorer {
           this.close();
         } else {
           this.open();
+        }
+      } else if (this.isPitchMode && modal && modal.classList.contains('active') && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+          e.preventDefault();
+          this.nextPitchSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          this.prevPitchSlide();
         }
       }
     });
@@ -217,6 +235,19 @@ export class ThesisExplorer {
     if (!sb || !this.treeData) return;
 
     let html = '';
+
+    // 0. Executive Pitch Deck (Interactive Slides)
+    html += `
+      <div class="explorer-nav-section pitch-nav-section" style="padding-bottom: 6px;">
+        <div class="explorer-file-item pitch-file-item" id="sidebar-pitch-deck-btn" title="Open Twin Executive Pitch Presentation">
+          <div class="explorer-file-left">
+            <span class="explorer-file-icon">🎯</span>
+            <span class="explorer-file-label" style="font-weight: 700; color: #fb7185;">Executive Pitch Deck</span>
+          </div>
+          <span class="explorer-file-badge badge-rose" style="font-weight: 800; background: rgba(244,63,94,0.2); color:#fda4af; border:1px solid rgba(244,63,94,0.4);">6 SLIDES</span>
+        </div>
+      </div>
+    `;
 
     // 1. Mermaid Production Pipelines
     if (this.treeData.mermaid_pipelines && this.treeData.mermaid_pipelines.length > 0) {
@@ -358,8 +389,18 @@ export class ThesisExplorer {
 
     sb.innerHTML = html;
 
+    // Vincular botón especial del Pitch Deck
+    const sidePitchBtn = document.getElementById('sidebar-pitch-deck-btn');
+    if (sidePitchBtn) {
+      sidePitchBtn.addEventListener('click', () => {
+        sb.querySelectorAll('.explorer-file-item').forEach(i => i.classList.remove('active'));
+        sidePitchBtn.classList.add('active');
+        this.showPitchDeck(0);
+      });
+    }
+
     // Vincular clics en archivos
-    sb.querySelectorAll('.explorer-file-item').forEach(el => {
+    sb.querySelectorAll('.explorer-file-item[data-path]').forEach(el => {
       el.addEventListener('click', () => {
         sb.querySelectorAll('.explorer-file-item').forEach(i => i.classList.remove('active'));
         el.classList.add('active');
@@ -371,6 +412,7 @@ export class ThesisExplorer {
   }
 
   async loadFile(path) {
+    this.isPitchMode = false;
     const vp = document.getElementById('explorer-viewport');
     const titleEl = document.getElementById('explorer-active-title');
     const sizeEl = document.getElementById('explorer-file-size');
@@ -717,6 +759,441 @@ export class ThesisExplorer {
 
   escapeHtml(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  showPitchDeck(slideIndex = 0) {
+    this.isPitchMode = true;
+    const slides = this.getPitchSlides();
+    this.pitchSlideIndex = Math.max(0, Math.min(slideIndex, slides.length - 1));
+
+    const titleEl = document.getElementById('explorer-active-title');
+    const sizeEl = document.getElementById('explorer-file-size');
+    if (titleEl) titleEl.innerText = '🎯 Executive Pitch Deck (Twin Architecture & Vision)';
+    if (sizeEl) sizeEl.innerText = `Interactive Deck • ${slides.length} Slides`;
+
+    const sb = document.getElementById('explorer-sidebar');
+    if (sb) {
+      sb.querySelectorAll('.explorer-file-item').forEach(i => i.classList.remove('active'));
+      const sidePitchBtn = document.getElementById('sidebar-pitch-deck-btn');
+      if (sidePitchBtn) sidePitchBtn.classList.add('active');
+    }
+
+    this.renderPitchDeck();
+  }
+
+  nextPitchSlide() {
+    const slides = this.getPitchSlides();
+    if (this.pitchSlideIndex < slides.length - 1) {
+      this.pitchSlideIndex++;
+      this.renderPitchDeck();
+    }
+  }
+
+  prevPitchSlide() {
+    if (this.pitchSlideIndex > 0) {
+      this.pitchSlideIndex--;
+      this.renderPitchDeck();
+    }
+  }
+
+  goToPitchSlide(idx) {
+    const slides = this.getPitchSlides();
+    if (idx >= 0 && idx < slides.length) {
+      this.pitchSlideIndex = idx;
+      this.renderPitchDeck();
+    }
+  }
+
+  renderPitchDeck() {
+    const vp = document.getElementById('explorer-viewport');
+    if (!vp) return;
+
+    const slides = this.getPitchSlides();
+    const current = slides[this.pitchSlideIndex];
+    const total = slides.length;
+
+    const dotsHtml = slides.map((s, idx) => `
+      <button class="pitch-step-dot ${idx === this.pitchSlideIndex ? 'active' : ''}" data-index="${idx}" title="Slide ${idx+1}: ${s.shortTitle}">
+        ${idx + 1}
+      </button>
+    `).join('');
+
+    vp.innerHTML = `
+      <div class="pitch-deck-container">
+        <!-- Deck Header & Navigation Toolbar -->
+        <div class="pitch-deck-toolbar">
+          <div class="pitch-deck-stepper">
+            <span style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-right: 4px; font-family:'JetBrains Mono', monospace;">Slides</span>
+            ${dotsHtml}
+          </div>
+          <div class="pitch-deck-controls">
+            <span style="font-size: 12px; font-weight: 600; color: #cbd5e1; margin-right: 8px; font-family:'JetBrains Mono', monospace;">
+              ${this.pitchSlideIndex + 1} / ${total}
+            </span>
+            <button class="pitch-nav-btn" id="pitch-prev-btn" ${this.pitchSlideIndex === 0 ? 'disabled' : ''}>
+              ← Previous
+            </button>
+            <button class="pitch-nav-btn" id="pitch-next-btn" ${this.pitchSlideIndex === total - 1 ? 'disabled' : ''}>
+              Next →
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Slide Canvas Card -->
+        <div class="pitch-slide-card">
+          <div class="pitch-slide-tag">${current.tag}</div>
+          <h2 class="pitch-slide-title">${current.title}</h2>
+          <p class="pitch-slide-subtitle">${current.subtitle}</p>
+
+          <div class="pitch-slide-body">
+            ${current.contentHtml}
+          </div>
+
+          <!-- Bottom Slide Footer Actions -->
+          <div class="pitch-footer-actions">
+            <div style="font-size: 12px; color: #64748b; font-family:'JetBrains Mono', monospace;">
+              Wallener Au Peatland Digital Twin • CAU Kiel Agroecology Observatory
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="pitch-action-btn secondary" id="pitch-view-pipelines-btn">
+                📊 View Data Pipelines
+              </button>
+              <button class="pitch-action-btn primary" id="pitch-launch-twin-btn">
+                🌱 Launch Live Twin ➔
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Vincular navegación de botones
+    const prevBtn = document.getElementById('pitch-prev-btn');
+    const nextBtn = document.getElementById('pitch-next-btn');
+    if (prevBtn) prevBtn.addEventListener('click', () => this.prevPitchSlide());
+    if (nextBtn) nextBtn.addEventListener('click', () => this.nextPitchSlide());
+
+    vp.querySelectorAll('.pitch-step-dot').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.getAttribute('data-index'), 10);
+        if (!isNaN(idx)) this.goToPitchSlide(idx);
+      });
+    });
+
+    const launchBtn = document.getElementById('pitch-launch-twin-btn');
+    if (launchBtn) {
+      launchBtn.addEventListener('click', () => {
+        this.close();
+        const app = window.presentationApp || window.app;
+        if (app && app.switchView) {
+          app.switchView('soil_interface');
+        } else {
+          const b = document.getElementById('tab-soil-interface');
+          if (b) b.click();
+        }
+      });
+    }
+
+    const pipesBtn = document.getElementById('pitch-view-pipelines-btn');
+    if (pipesBtn) {
+      pipesBtn.addEventListener('click', () => {
+        this.loadFile('scripts_hub/mermaid/00_digital_twin_software_architecture.md');
+      });
+    }
+  }
+
+  getPitchSlides() {
+    return [
+      {
+        shortTitle: 'Vision',
+        tag: 'SLIDE 01 / 06 • EXECUTIVE VISION',
+        title: 'From Static Sensor Data to an Interactive Agroecological Decision Engine',
+        subtitle: 'Transforming complex multi-scale peatland measurements into a live predictive laboratory',
+        contentHtml: `
+          <div class="pitch-grid-2">
+            <div class="pitch-box danger-box">
+              <div class="pitch-box-title" style="color: #f87171;">
+                <span>🔒 The Challenge: The Data-Policy Disconnect</span>
+              </div>
+              <p class="pitch-box-desc">
+                High-frequency micrometeorology (10 Hz EC), 8 chamber transects, piezometers, and soil physics produce massive datasets that typically remain locked in static tables, spreadsheets, and academic PDFs.
+              </p>
+              <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
+                <li>Non-linear trade-offs (e.g. drought aeration vs. rewetting CH₄ bursts) are difficult to grasp from static charts.</li>
+                <li>Wetland restoration managers and agricultural policymakers need intuitive scenario exploration, not weeks of manual recalculation.</li>
+              </ul>
+            </div>
+
+            <div class="pitch-box success-box">
+              <div class="pitch-box-title" style="color: #34d399;">
+                <span>🌱 The Solution: Real-Time Biophysical Digital Twin</span>
+              </div>
+              <p class="pitch-box-desc">
+                An interactive, client-side biophysical laboratory that synthesizes all field observations into an immediate, reactive vertical continuum.
+              </p>
+              <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
+                <li><strong>60 FPS In-Browser Determinism:</strong> Continuous calculation of CO₂, CH₄, and N₂O balances.</li>
+                <li><strong>Dynamic Water Table Scenarios:</strong> Smoothly simulates from +5 cm winter flooding to -60 cm severe summer drought.</li>
+                <li><strong>Physical Stratigraphy:</strong> Explicit coupling of Acrotelm, compacted plow pan (10–25 cm), and saturated Catotelm.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pitch-kpi-bar" style="margin-top: 6px;">
+            <div class="pitch-kpi-item">
+              <div class="pitch-kpi-val">14,993</div>
+              <div class="pitch-kpi-label">30-min EC Blocks Processed</div>
+            </div>
+            <div class="pitch-kpi-item">
+              <div class="pitch-kpi-val">60 FPS</div>
+              <div class="pitch-kpi-label">Real-Time Fluid Execution</div>
+            </div>
+            <div class="pitch-kpi-item">
+              <div class="pitch-kpi-val">3 Gases</div>
+              <div class="pitch-kpi-label">Coupled CO₂ / CH₄ / N₂O</div>
+            </div>
+            <div class="pitch-kpi-item">
+              <div class="pitch-kpi-val">2 Cycles</div>
+              <div class="pitch-kpi-label">24h Diurnal & 365d Annual</div>
+            </div>
+          </div>
+        `
+      },
+      {
+        shortTitle: 'Engineering',
+        tag: 'SLIDE 02 / 06 • THE ENGINEERING REVEALED',
+        title: 'The Parametric Transformation: How Local Science Powers the Web Model',
+        subtitle: 'Answering the core question: How is empirical science translated into a real-time digital twin?',
+        contentHtml: `
+          <div class="pitch-callout-quote">
+            <strong>¿Cómo está construido el modelo?</strong> Procesamos los gigabytes de datos brutos localmente en R y EddyPro, ajustamos modelos no lineales para extraer las funciones de respuesta y umbrales gobernantes, y trasladamos esas ecuaciones al motor JavaScript. <strong>El navegador ejecuta directamente la física en &lt;1 ms</strong> sin necesidad de descargar pesadas tablas de datos.
+          </div>
+
+          <div class="pitch-grid-3" style="margin-top: 4px;">
+            <div class="pitch-box">
+              <div class="pitch-box-title" style="color: #38bdf8;">
+                <span>💻 1. Local Heavy R Computing</span>
+              </div>
+              <p class="pitch-box-desc">
+                En tu ordenador se ingirieron las series temporales de 10 Hz, transectos de collares y curvas oedométricas de laboratorio:
+              </p>
+              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                <li>Despicado y rotación 3D planar fit en EddyPro 7.0.9.</li>
+                <li>Regresiones no lineales de flujos en cámaras (HMR).</li>
+                <li>Ajuste de curvatura de Casagrande para tensión de preconsolidación.</li>
+              </ul>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-box-title" style="color: #f59e0b;">
+                <span>📐 2. Mathematical Curve Fitting</span>
+              </div>
+              <p class="pitch-box-desc">
+                Se sintetizaron los parámetros físicos que gobiernan la turbera:
+              </p>
+              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #cbd5e1; line-height: 1.6;">
+                <li><strong>GPPmax:</strong> 6.8 µmol m⁻² s⁻¹ (Michaelis-Menten).</li>
+                <li><strong>Reco Basal & Aireación:</strong> 0.8 + 10.5 × d_oxic (Lloyd-Taylor).</li>
+                <li><strong>Umbral u*:</strong> 0.12 m/s (Papale 2006).</li>
+                <li><strong>Geomecánica:</strong> σp = 38.4 kPa, ρb = 0.38 g/cm³.</li>
+                <li><strong>Disparador H1 CH₄:</strong> Pico &gt;110 nmol m⁻² s⁻¹ si WTD ≥ -10 cm.</li>
+              </ul>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-box-title" style="color: #34d399;">
+                <span>⚡ 3. Real-Time Web Twin Engine</span>
+              </div>
+              <p class="pitch-box-desc">
+                Se programaron las ecuaciones en <code>soil_model.js</code> para evaluación continua:
+              </p>
+              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                <li>Cero megabytes de datos brutos descargados en el navegador.</li>
+                <li>Evaluación atómica en &lt;1 ms por fotograma (60 Hz).</li>
+                <li>Confidencialidad absoluta: el código web no contiene filas descargables de la tesis.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        shortTitle: 'Architecture',
+        tag: 'SLIDE 03 / 06 • SYSTEM ARCHITECTURE',
+        title: 'Decoupled 3-Tier Architecture & Hardware-Accelerated SVG Scene Graph',
+        subtitle: 'High-frequency biophysical loop decoupled from rendering for zero graphic jitter',
+        contentHtml: `
+          <div class="pitch-grid-3">
+            <div class="pitch-box" style="border-top: 3px solid #818cf8;">
+              <div class="pitch-box-title" style="color: #a5b4fc;">
+                <span>⏱️ Tier 1: Temporal Orchestrator</span>
+              </div>
+              <p class="pitch-box-desc">
+                <strong>digital_twin_engine.js:</strong>
+              </p>
+              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                <li>Bucle <code>requestAnimationFrame</code> con cálculo de delta time (Δt).</li>
+                <li>Ciclo Diurno de 24h comprimido en 18s (ángulo solar, VPD, inversión térmica).</li>
+                <li>Ciclo Anual de 365d en 24s (curvas Walter-Lieth, fenología, estiaje).</li>
+                <li>Máquina de estados finita: Idle, Running, Paused con memoria de progreso y scrubbing.</li>
+              </ul>
+            </div>
+
+            <div class="pitch-box" style="border-top: 3px solid #34d399;">
+              <div class="pitch-box-title" style="color: #6ee7b7;">
+                <span>🌱 Tier 2: Biophysical Domain Core</span>
+              </div>
+              <p class="pitch-box-desc">
+                <strong>soil_model.js:</strong>
+              </p>
+              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                <li>Perfil estratigráfico: Acrotelmo, Suela de Labor (10–25 cm) y Catotelmo.</li>
+                <li>Balance instantáneo: NEE = Reco(WTD, Tsoil) - GPP(Rg, VPD).</li>
+                <li>Pico capilar de N₂O centrado entre -15 y -25 cm.</li>
+                <li>Desacople por inversión nocturna si u* &lt; 0.12 m/s.</li>
+              </ul>
+            </div>
+
+            <div class="pitch-box" style="border-top: 3px solid #fb923c;">
+              <div class="pitch-box-title" style="color: #fdba74;">
+                <span>🎨 Tier 3: Reactive SVG Engine</span>
+              </div>
+              <p class="pitch-box-desc">
+                <strong>#ecosystem-svg (1350 × 650):</strong>
+              </p>
+              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                <li>Mutación geométrica atómica directa en nodos DOM (y1, y2, height).</li>
+                <li>Vectores dinámicos de gas con grosores y velocidades variables (1.4 a 4.2 px).</li>
+                <li>Animaciones de partículas en GPU mediante CSS Keyframes.</li>
+                <li>Escalado proporcional responsivo con <code>ResizeObserver</code> sin distorsión.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        shortTitle: 'Vanilla ES6+',
+        tag: 'SLIDE 04 / 06 • TECHNICAL PHILOSOPHY',
+        title: 'Why Pure Vanilla ES6+? The Case Against Modern Framework Obsolescence',
+        subtitle: 'Ensuring 20-year archival longevity and zero dependency rot in scientific software',
+        contentHtml: `
+          <div class="pitch-grid-2">
+            <div class="pitch-box danger-box">
+              <div class="pitch-box-title" style="color: #f87171;">
+                <span>⚠️ The Modern Framework Trap (React / Vite / npm)</span>
+              </div>
+              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.65;">
+                <li><strong>Dependency Rot:</strong> 500 MB en <code>node_modules</code> y cientos de librerías externas que quedan obsoletas o se rompen en 2–3 años.</li>
+                <li><strong>Virtual DOM Overhead:</strong> Capas intermedias de reconciliación que generan micro-tirones (jank) durante simulaciones continuas a 60 Hz.</li>
+                <li><strong>Black-Box Obfuscation:</strong> El código se compila en un archivo gigante e ilegible (<code>bundle.min.js</code>), impidiendo la auditoría científica abierta.</li>
+              </ul>
+            </div>
+
+            <div class="pitch-box success-box">
+              <div class="pitch-box-title" style="color: #34d399;">
+                <span>💎 The Vanilla ES6+ Zero-Build Solution</span>
+              </div>
+              <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #cbd5e1; line-height: 1.65;">
+                <li><strong>20-Year Archival Longevity:</strong> Estándares W3C nativos garantizados por los navegadores por décadas; correrá en 2045 sin cambios.</li>
+                <li><strong>Silky 60–120 FPS:</strong> Manipulación atómica de nodos SVG delegada directamente a la GPU del navegador sin capas virtuales.</li>
+                <li><strong>Transparent Open Science:</strong> Cualquier profesor o revisor puede abrir las herramientas de desarrollo y auditar las fórmulas reales en <code>soil_model.js</code>.</li>
+                <li><strong>Universal Zero-Friction Portability:</strong> Se aloja en GitHub Pages o corre localmente en cualquier ordenador con <code>python3 -m http.server</code>.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        shortTitle: 'Data Security',
+        tag: 'SLIDE 05 / 06 • INTELLECTUAL PROPERTY & SECURITY',
+        title: 'Protecting Unpublished Thesis Data & Research Confidentiality',
+        subtitle: 'Why supervisors can be 100% reassured about data protection before manuscript publication',
+        contentHtml: `
+          <div class="pitch-grid-3">
+            <div class="pitch-box" style="border-top: 3px solid #10b981;">
+              <div class="pitch-box-title" style="color: #34d399;">
+                <span>🔒 1. Zero Raw Datasets Online</span>
+              </div>
+              <p class="pitch-box-desc">
+                En el repositorio público de GitHub <strong>no existe ni un solo archivo de datos brutos</strong> (cero archivos <code>.csv</code>, <code>.dat</code>, <code>.xlsx</code> o <code>.rds</code>).
+              </p>
+              <p style="font-size: 12px; color: #94a3b8; margin: 0;">
+                Las series continuas de 10 Hz de la torre y los registros crudos de laboratorio permanecen seguros en tu computador local.
+              </p>
+            </div>
+
+            <div class="pitch-box" style="border-top: 3px solid #38bdf8;">
+              <div class="pitch-box-title" style="color: #38bdf8;">
+                <span>📐 2. Parametric Functions, Not Data</span>
+              </div>
+              <p class="pitch-box-desc">
+                La aplicación web contiene únicamente <strong>ecuaciones de respuesta fisiológica y física</strong> (como la ecuación de Michaelis-Menten o Casagrande).
+              </p>
+              <p style="font-size: 12px; color: #94a3b8; margin: 0;">
+                Nadie puede descargar, robar o reconstruir las observaciones crudas de la torre porque simplemente no residen en el cliente web.
+              </p>
+            </div>
+
+            <div class="pitch-box" style="border-top: 3px solid #fb7185;">
+              <div class="pitch-box-title" style="color: #fda4af;">
+                <span>🛡️ 3. Full Embargo Control</span>
+              </div>
+              <p class="pitch-box-desc">
+                Si el supervisor prefiere confidencialidad total previa a la publicación en revistas indexadas:
+              </p>
+              <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #94a3b8; line-height: 1.5;">
+                <li>El repositorio se pasa a <strong>Modo Privado</strong> en 10 segundos.</li>
+                <li>La app puede ejecutarse <strong>100% offline</strong> en los ordenadores de la universidad.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        shortTitle: 'Roadmap',
+        tag: 'SLIDE 06 / 06 • SCIENTIFIC ROADMAP',
+        title: 'Next Horizons: Soil Pore Dynamics & Research Opportunities for CAU Kiel',
+        subtitle: 'Expanding the model for edaphology teaching, paludiculture modeling, and grant funding',
+        contentHtml: `
+          <div class="pitch-grid-2">
+            <div class="pitch-box">
+              <div class="pitch-box-title" style="color: #f59e0b;">
+                <span>🚜 1. Soil Macroporosity & Compaction Slider</span>
+              </div>
+              <p class="pitch-box-desc">
+                Simular el paso de maquinaria agrícola: ver cómo la densidad aparente (ρb) sube de 0.20 a 0.38 g/cm³ y la capacidad de aireación (AC) colapsa del 18% a &lt;4%, mostrando visualmente la compactación del espacio poroso y la formación de agua colgada (perched water).
+              </p>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-box-title" style="color: #38bdf8;">
+                <span>📉 2. Dynamic pF Suction Retention Curve</span>
+              </div>
+              <p class="pitch-box-desc">
+                Un recuadro interactivo (inset) que dibuje la curva de van Genuchten en tiempo real: al bajar el nivel freático, se ilustra la succión matricial (hPa) entre capacidad de campo (pF 1.8) y punto de marchitez (pF 4.2).
+              </p>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-box-title" style="color: #34d399;">
+                <span>🦠 3. Microbial Guild Bio-Filters</span>
+              </div>
+              <p class="pitch-box-desc">
+                Visualizar la comunidad de bacterias metanótrofas en la capa óxica como un bio-filtro que oxida hasta el 80% del metano generado en el catotelmo. Mostrar cómo una inundación súbita asfixia el filtro y desata el pulso de la Hipótesis 1.
+              </p>
+            </div>
+
+            <div class="pitch-box">
+              <div class="pitch-box-title" style="color: #c084fc;">
+                <span>🎓 4. Academic Teaching & Grant Funding</span>
+              </div>
+              <p class="pitch-box-desc">
+                Herramienta insignia de transferencia para cursos universitarios en CAU Kiel y plataforma base para postulación a fondos DFG / Horizon Europe en restauración de turberas, paludicultura y contabilidad de créditos de carbono.
+              </p>
+            </div>
+          </div>
+        `
+      }
+    ];
   }
 }
 
