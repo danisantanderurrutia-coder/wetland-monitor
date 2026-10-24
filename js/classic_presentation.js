@@ -299,7 +299,21 @@ export class ClassicThesisPresentation {
 
     const carouselTitle = document.getElementById('carousel-current-title');
     if (carouselTitle) {
-      carouselTitle.innerHTML = `<span class="active-dot">●</span> <span class="active-icon">🧭</span> <span class="tab-text active-name">Guided Tour</span>`;
+      carouselTitle.innerHTML = `<span class="active-dot">●</span> <span class="active-icon">🎙️</span> <span class="tab-text active-name">Pitch</span>`;
+    }
+
+    const wallenerNav = document.getElementById('wallener-project-nav-bar');
+    if (wallenerNav) {
+      wallenerNav.classList.remove('hidden');
+      wallenerNav.querySelectorAll('.carrusel-card, .wallener-tab-pill').forEach(pill => {
+        const isActive = (pill.dataset.wallenerNav === 'classic_presentation' || pill.dataset.view === 'classic_presentation');
+        pill.classList.toggle('active', isActive);
+        if (isActive) {
+          setTimeout(() => {
+            pill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }, 80);
+        }
+      });
     }
 
     const drawer = document.getElementById('dropdown-view-tabs');
@@ -324,15 +338,15 @@ export class ClassicThesisPresentation {
 
     try {
       if (window.location.hash.includes('presentation')) {
-        window.history.replaceState(null, '', '#landing');
+        window.history.replaceState(null, '', '#wallener');
       }
     } catch (_) {}
 
     if (window.presentationApp && window.presentationApp.switchView) {
-      window.presentationApp.switchView('thesis_cover');
+      window.presentationApp.switchView('wallener_dashboard');
     } else {
-      const landing = document.getElementById('view-cover') || document.querySelector('.view-panel[data-view-id="thesis_cover"]');
-      if (landing) landing.classList.add('active');
+      const wallener = document.getElementById('view-wallener-dashboard');
+      if (wallener) wallener.classList.add('active');
     }
   }
 

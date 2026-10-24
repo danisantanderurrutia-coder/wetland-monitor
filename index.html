@@ -99,90 +99,6 @@
           </div>
         </div>
 
-        <!-- Global Header Site Selector Dropdown -->
-        <div class="header-site-selector" id="header-site-selector">
-          <button type="button" class="site-selector-btn" id="btn-site-selector-toggle" aria-haspopup="true" aria-expanded="false" title="Select Wetland Ecosystem Archetype / Benchmark">
-            <span class="site-icon">📍</span>
-            <div class="site-label-group">
-              <span class="site-kicker">Ecosystem Archetype</span>
-              <span class="site-name" id="header-site-name">Wallener Au (Temperate Fen Benchmark)</span>
-            </div>
-            <span class="site-arrow">▾</span>
-          </button>
-          <div class="site-dropdown-menu hidden" id="header-site-dropdown-menu" role="listbox">
-            <div class="site-option active" data-site="fen" role="option">
-              <div class="site-option-header">
-                <div class="site-option-title-wrap">
-                  <span class="site-option-icon">🌾</span>
-                  <span class="site-option-title">Wallener Au, Germany</span>
-                </div>
-                <span class="site-option-badge benchmark">Empirical Ground-Truth</span>
-              </div>
-              <p class="site-option-desc">Temperate fen benchmark • EC tower calibrated (10 Hz) • WTD -25 cm baseline</p>
-            </div>
-            <div class="site-option" data-site="bog" role="option">
-              <div class="site-option-header">
-                <div class="site-option-title-wrap">
-                  <span class="site-option-icon">🌿</span>
-                  <span class="site-option-title">Sphagnum Raised Bog</span>
-                </div>
-                <span class="site-option-badge">Ombrotrophic Acid</span>
-              </div>
-              <p class="site-option-desc">Acidic peat (pH 3.8) • High macroporosity (36%) • Moss carpet • Suppressed CH₄</p>
-            </div>
-            <div class="site-option" data-site="paludi" role="option">
-              <div class="site-option-header">
-                <div class="site-option-title-wrap">
-                  <span class="site-option-icon">🎋</span>
-                  <span class="site-option-title">Paludiculture Reed Bed</span>
-                </div>
-                <span class="site-option-badge">Wet Farming</span>
-              </div>
-              <p class="site-option-desc">Typha / Phragmites • High LAI (4.5) • 90% aerenchyma bypass shunt • WTD +2 cm</p>
-            </div>
-            <div class="site-option" data-site="drained" role="option">
-              <div class="site-option-header">
-                <div class="site-option-title-wrap">
-                  <span class="site-option-icon">🚜</span>
-                  <span class="site-option-title">Drained Peat Grassland</span>
-                </div>
-                <span class="site-option-badge degraded">Degraded Soil</span>
-              </div>
-              <p class="site-option-desc">Deep aeration (-60 cm) • Heavy plow pan (0.68 g/cm³) • Continuous oxidation (+24.5 t CO₂-eq)</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Global Header Nav Links -->
-        <div class="global-nav-links-row" id="global-nav-links-row">
-          <button type="button" class="global-nav-link" id="nav-btn-twin" data-nav-target="soil_interface" title="Universal Twin Lab with Full Biophysical Controls">
-            <span>🌍</span> <span>Twin Lab</span>
-          </button>
-          <button type="button" class="global-nav-link" id="nav-btn-wallener" data-nav-target="wallener_dashboard" title="Case Study 01: Klimafarm Wallener Au (Empirical Benchmark)">
-            <span>📍</span> <span>Wallener Au</span> <span class="badge-pill" style="background:#10b981; color:#0f172a; font-size:10px; font-weight:800; padding:1px 6px; border-radius:10px;">Case 01</span>
-          </button>
-          
-          <div class="global-nav-dropdown" id="nav-dropdown-methodology">
-            <button type="button" class="global-nav-link" id="nav-btn-methodology" aria-haspopup="true" aria-expanded="false" title="General Wetland Monitoring Methodology">
-              <span>📚</span> <span>Methodology ▾</span>
-            </button>
-            <div class="global-dropdown-menu hidden" id="menu-methodology">
-              <div class="global-dropdown-item" data-nav-target="tools_general">
-                <span>🛠️</span> <span>Tools &amp; Instrumentation</span>
-              </div>
-              <div class="global-dropdown-item" data-nav-target="satellites_general">
-                <span>🛰️</span> <span>Satellites &amp; Earth Observation</span>
-              </div>
-              <div class="global-dropdown-item" data-nav-target="biogeochemistry_general">
-                <span>⚗️</span> <span>Biogeochemistry &amp; Wetland Types</span>
-              </div>
-              <div class="global-dropdown-item" data-nav-target="carbon_general">
-                <span>⚖️</span> <span>Carbon Accounting &amp; GWP</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Right Header Actions -->
         <div class="header-actions">
           <!-- How It Works Pedagogical Guide Button -->
@@ -212,7 +128,7 @@
         </div>
       </div>
 
-      <!-- Contextual Project Navigation Bar (Only displayed when inside Wallener Au project views) -->
+      <!-- Contextual Project Navigation Bar: Scrolleable Carrusel Menu for Wallener Au -->
       <div class="wallener-project-nav-bar hidden" id="wallener-project-nav-bar">
         <div class="nav-left-actions">
           <button type="button" class="btn-back-to-landing" id="nav-btn-back-wallener-dash" title="Return to Wallener Au Dashboard">
@@ -222,189 +138,143 @@
             <span>🏠</span> <span>Home</span>
           </button>
         </div>
-        <div class="project-tabs-track" id="wallener-tabs-track">
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="soil_interface"><span>🌾</span> <span>Calibrated Twin</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="eddy_covariance"><span>📊</span> <span>Eddy Covariance</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="instruments_matrix"><span>📦</span> <span>Chambers &amp; N₂O</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="geophysics"><span>🗜️</span> <span>Soil Geomechanics</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="flux_diagnostics"><span>📈</span> <span>Micrometeo &amp; EBC</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="data_pipeline"><span>🔬</span> <span>Empirical Models</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="macro"><span>🛰️</span> <span>Satellites &amp; Footprint</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="gwp_uncertainties"><span>📐</span> <span>Uncertainties</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="aims_objectives"><span>🎯</span> <span>Thesis Objectives</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="conclusions_outlook"><span>🏁</span> <span>Conclusions</span></button>
-        </div>
-      </div>
 
-      <!-- Row 2: Analytical View Switcher Navigation Bar (Unified Button & Lateral Drawer) -->
-      <div class="header-bottom-row" id="header-bottom-row">
-        <div class="carrusel-hamburguesa-bar">
-          <button class="carrusel-hamburguesa-btn" id="btn-hamburger-menu" title="Open Navigation Menu">
-            <span class="hamburger-icon">☰</span>
-            <span class="carrusel-btn-badge">Section Views</span>
-            <div class="carrusel-current-display" id="carousel-current-title">
-              <span class="active-dot">●</span>
-              <span class="active-icon">🌍</span>
-              <span class="tab-text active-name">Ecosystem Twin</span>
+        <div class="carrusel-slider-wrapper wallener-carrusel-wrapper">
+          <button type="button" class="carrusel-nav-arrow arrow-left" id="btn-wallener-slide-prev" title="Scroll left">❮</button>
+
+          <div class="carrusel-slider-track" id="wallener-tabs-track">
+            <!-- 01. Calibrated Twin -->
+            <div class="carrusel-card tab-btn active" data-view="soil_interface" data-wallener-nav="soil_interface" id="wallener-tab-soil">
+              <span class="carrusel-card-idx">01</span>
+              <span class="carrusel-card-icon">🌾</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Calibrated Twin</span>
+                <span class="carrusel-card-sub">Baseline -25 cm WTD</span>
+              </div>
             </div>
-            <span class="carrusel-btn-arrow">▾</span>
-          </button>
 
-          <div class="nav-view-indicator" id="nav-view-indicator">
-            <span>Core Biophysical Modules • Horizontal Scroll ↔</span>
+            <!-- 02. Pitch / Walkthrough Presentation -->
+            <div class="carrusel-card tab-btn" data-view="classic_presentation" data-wallener-nav="classic_presentation" id="wallener-tab-pitch">
+              <span class="carrusel-card-idx">02</span>
+              <span class="carrusel-card-icon">🎙️</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Pitch</span>
+                <span class="carrusel-card-sub">Wallener Au Presentation</span>
+              </div>
+            </div>
+
+            <!-- 03. Project Dossier -->
+            <div class="carrusel-card tab-btn" data-view="thesis_cover" data-wallener-nav="thesis_cover" id="wallener-tab-cover">
+              <span class="carrusel-card-idx">03</span>
+              <span class="carrusel-card-icon">🏛️</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Project Dossier</span>
+                <span class="carrusel-card-sub">CAU Kiel Observatory</span>
+              </div>
+            </div>
+
+            <!-- 04. Aims & Hypotheses -->
+            <div class="carrusel-card tab-btn" data-view="aims_objectives" data-wallener-nav="aims_objectives" id="wallener-tab-aims">
+              <span class="carrusel-card-idx">04</span>
+              <span class="carrusel-card-icon">🎯</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Aims &amp; Objectives</span>
+                <span class="carrusel-card-sub">Hypotheses &amp; Questions</span>
+              </div>
+            </div>
+
+            <!-- 05. Site & Satellites -->
+            <div class="carrusel-card tab-btn" data-view="macro" data-wallener-nav="macro" id="wallener-tab-macro">
+              <span class="carrusel-card-idx">05</span>
+              <span class="carrusel-card-icon">🛰️</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Site &amp; Satellites</span>
+                <span class="carrusel-card-sub">Sentinel-2 &amp; 2D Footprint</span>
+              </div>
+            </div>
+
+            <!-- 06. Eddy Covariance -->
+            <div class="carrusel-card tab-btn" data-view="eddy_covariance" data-wallener-nav="eddy_covariance" id="wallener-tab-ec">
+              <span class="carrusel-card-idx">06</span>
+              <span class="carrusel-card-icon">📊</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Eddy Covariance</span>
+                <span class="carrusel-card-sub">10 Hz Fluxes &amp; Reco</span>
+              </div>
+            </div>
+
+            <!-- 07. Chambers & N₂O -->
+            <div class="carrusel-card tab-btn" data-view="instruments_matrix" data-wallener-nav="instruments_matrix" id="wallener-tab-instruments">
+              <span class="carrusel-card-idx">07</span>
+              <span class="carrusel-card-icon">📦</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Chambers &amp; N₂O</span>
+                <span class="carrusel-card-sub">Closed Chamber Array</span>
+              </div>
+            </div>
+
+            <!-- 08. Empirical Models -->
+            <div class="carrusel-card tab-btn" data-view="data_pipeline" data-wallener-nav="data_pipeline" id="wallener-tab-pipeline">
+              <span class="carrusel-card-idx">08</span>
+              <span class="carrusel-card-icon">🔬</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Empirical Models</span>
+                <span class="carrusel-card-sub">QA/QC &amp; Gapfilling</span>
+              </div>
+            </div>
+
+            <!-- 09. Soil Geomechanics -->
+            <div class="carrusel-card tab-btn" data-view="geophysics" data-wallener-nav="geophysics" id="wallener-tab-geophysics">
+              <span class="carrusel-card-idx">09</span>
+              <span class="carrusel-card-icon">🗜️</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Soil Geomechanics</span>
+                <span class="carrusel-card-sub">ERT &amp; Oedometer σ'p</span>
+              </div>
+            </div>
+
+            <!-- 10. Micrometeo & EBC -->
+            <div class="carrusel-card tab-btn" data-view="flux_diagnostics" data-wallener-nav="flux_diagnostics" id="wallener-tab-flux">
+              <span class="carrusel-card-idx">10</span>
+              <span class="carrusel-card-icon">📈</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Micrometeo &amp; EBC</span>
+                <span class="carrusel-card-sub">Energy Closure 85%</span>
+              </div>
+            </div>
+
+            <!-- 11. Biogeochemistry -->
+            <div class="carrusel-card tab-btn" data-view="biogeochemistry" data-wallener-nav="biogeochemistry" id="wallener-tab-biogeo">
+              <span class="carrusel-card-idx">11</span>
+              <span class="carrusel-card-icon">🧪</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Biogeochemistry</span>
+                <span class="carrusel-card-sub">Redox &amp; Horizons</span>
+              </div>
+            </div>
+
+            <!-- 12. Uncertainties & GWP -->
+            <div class="carrusel-card tab-btn" data-view="gwp_uncertainties" data-wallener-nav="gwp_uncertainties" id="wallener-tab-uncertainties">
+              <span class="carrusel-card-idx">12</span>
+              <span class="carrusel-card-icon">📐</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Uncertainties</span>
+                <span class="carrusel-card-sub">Monte Carlo &amp; GWP</span>
+              </div>
+            </div>
+
+            <!-- 13. Conclusions & Outlook -->
+            <div class="carrusel-card tab-btn" data-view="conclusions_outlook" data-wallener-nav="conclusions_outlook" id="wallener-tab-conclusions">
+              <span class="carrusel-card-idx">13</span>
+              <span class="carrusel-card-icon">💡</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Conclusions</span>
+                <span class="carrusel-card-sub">Pillars &amp; Management</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Lateral Navigation Drawer -->
-        <div class="carrusel-hamburguesa-drawer hidden" id="dropdown-view-tabs">
-          <div class="carrusel-drawer-top">
-            <div class="drawer-info">
-              <span class="drawer-kicker">PEAT-TWIN Simulator Modules</span>
-              <h4 class="drawer-title">Navigation Drawer</h4>
-            </div>
-            <div class="drawer-actions">
-              <span class="drawer-tip">↔ Scroll horizontally with ❮ ❯, mouse wheel or touch</span>
-              <button class="drawer-close-btn" id="btn-close-carrusel-drawer" title="Close panel">✕</button>
-            </div>
-          </div>
-
-          <div class="carrusel-slider-wrapper">
-            <button class="carrusel-nav-arrow arrow-left" id="btn-carrusel-slide-prev" title="Scroll left">❮</button>
-
-            <div class="carrusel-slider-track" id="carrusel-slider-track">
-              <!-- 1. Ecosystem Twin (Live Hero View) -->
-              <div class="carrusel-card tab-btn active" data-view="soil_interface" id="tab-soil">
-                <span class="carrusel-card-idx">01</span>
-                <span class="carrusel-card-icon">🌍</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Ecosystem Twin</span>
-                  <span class="carrusel-card-sub">Live Stratigraphy &amp; GHG Dock</span>
-                </div>
-              </div>
-
-              <!-- 2. Validation Benchmark (Case Study 01) -->
-              <div class="carrusel-card tab-btn" data-view="eddy_covariance" id="tab-ec">
-                <span class="carrusel-card-idx">02</span>
-                <span class="carrusel-card-icon">📊</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Validation Benchmark</span>
-                  <span class="carrusel-card-sub">Case Study 01: Wallener Au 2024</span>
-                </div>
-              </div>
-
-              <!-- 3. Remote Sensing & Satellites -->
-              <div class="carrusel-card tab-btn" data-view="macro" id="tab-macro">
-                <span class="carrusel-card-idx">03</span>
-                <span class="carrusel-card-icon">🛰️</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Remote Sensing &amp; Satellites</span>
-                  <span class="carrusel-card-sub">Sentinel-2, NDVI &amp; 2D Footprint</span>
-                </div>
-              </div>
-
-              <!-- 4. Carbon Accounting & GWP -->
-              <div class="carrusel-card tab-btn" data-view="gwp_explorer" id="tab-gwp">
-                <span class="carrusel-card-idx">04</span>
-                <span class="carrusel-card-icon">⚖️</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Carbon Accounting &amp; GWP</span>
-                  <span class="carrusel-card-sub">GWP-100 vs GWP-20 &amp; Credits</span>
-                </div>
-              </div>
-
-              <!-- 5. Methodology & Models -->
-              <div class="carrusel-card tab-btn" data-view="data_pipeline" id="tab-pipeline">
-                <span class="carrusel-card-idx">05</span>
-                <span class="carrusel-card-icon">📚</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Methodology &amp; Models</span>
-                  <span class="carrusel-card-sub">Biophysical Kinetics &amp; Pore Physics</span>
-                </div>
-              </div>
-
-              <!-- 6. How It Works Modal Guide -->
-              <div class="carrusel-card" id="tab-how-it-works" style="cursor: pointer;">
-                <span class="carrusel-card-idx">06</span>
-                <span class="carrusel-card-icon">❓</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">How It Works</span>
-                  <span class="carrusel-card-sub">Pedagogical Guide &amp; Controls</span>
-                </div>
-              </div>
-
-              <!-- 8. Instruments Matrix -->
-              <div class="carrusel-card tab-btn" data-view="instruments_matrix" id="tab-instruments">
-                <span class="carrusel-card-idx">07</span>
-                <span class="carrusel-card-icon">📡</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Instruments Matrix</span>
-                  <span class="carrusel-card-sub">Hardware &amp; Sensor Array</span>
-                </div>
-              </div>
-
-              <!-- 9. Biogeochemistry -->
-              <div class="carrusel-card tab-btn" data-view="biogeochemistry" id="tab-biogeo">
-                <span class="carrusel-card-idx">08</span>
-                <span class="carrusel-card-icon">⚗️</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Biogeochemistry</span>
-                  <span class="carrusel-card-sub">Redox, Succession &amp; Microbes</span>
-                </div>
-              </div>
-
-              <!-- 10. Geomechanics & Soil Compaction -->
-              <div class="carrusel-card tab-btn" data-view="geophysics" id="tab-geophysics">
-                <span class="carrusel-card-idx">09</span>
-                <span class="carrusel-card-icon">🗜️</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Geomechanics &amp; Soil</span>
-                  <span class="carrusel-card-sub">Compaction &amp; R Curves</span>
-                </div>
-              </div>
-
-              <!-- 11. Flux Diagnostics -->
-              <div class="carrusel-card tab-btn" data-view="flux_diagnostics" id="tab-flux">
-                <span class="carrusel-card-idx">10</span>
-                <span class="carrusel-card-icon">📈</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Flux Diagnostics</span>
-                  <span class="carrusel-card-sub">EBC 85%, Bowen &amp; VPD</span>
-                </div>
-              </div>
-
-              <!-- 12. Uncertainties & Monte Carlo -->
-              <div class="carrusel-card tab-btn" data-view="gwp_uncertainties" id="tab-uncertainties">
-                <span class="carrusel-card-idx">11</span>
-                <span class="carrusel-card-icon">📐</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Uncertainties</span>
-                  <span class="carrusel-card-sub">Monte Carlo &amp; Error Bounds</span>
-                </div>
-              </div>
-
-              <!-- 13. Executive Synthesis & Agronomy -->
-              <div class="carrusel-card tab-btn" data-view="conclusions_outlook" id="tab-conclusions">
-                <span class="carrusel-card-idx">12</span>
-                <span class="carrusel-card-icon">🎯</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Synthesis &amp; Outlook</span>
-                  <span class="carrusel-card-sub">Pillars &amp; Agronomy</span>
-                </div>
-              </div>
-
-              <!-- 14. Project Background & Observatory Overview -->
-              <div class="carrusel-card tab-btn" data-view="thesis_cover" id="tab-cover">
-                <span class="carrusel-card-idx">13</span>
-                <span class="carrusel-card-icon">🏛️</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Project Overview</span>
-                  <span class="carrusel-card-sub">CAU Kiel &amp; Observatory</span>
-                </div>
-              </div>
-            </div>
-
-            <button class="carrusel-nav-arrow arrow-right" id="btn-carrusel-slide-next" title="Scroll right">❯</button>
-          </div>
+          <button type="button" class="carrusel-nav-arrow arrow-right" id="btn-wallener-slide-next" title="Scroll right">❯</button>
         </div>
       </div>
     </header>
@@ -425,28 +295,32 @@
 
           <!-- Hero Card: Platform Presentation with Sizable Left Seal and Right Texts -->
           <div class="landing-hero-card">
-            <div class="landing-hero-top" style="display: flex; align-items: center; gap: 2.25rem;">
-              <!-- Large Left Seal Icon -->
-              <div class="landing-seal-wrapper" style="flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
-                <img src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Seal" class="landing-seal-img" style="width: 155px; height: 155px; object-fit: contain; filter: drop-shadow(0 12px 28px rgba(2, 132, 199, 0.4));">
+            <div class="landing-hero-top">
+              <!-- Large Left Seal Icon (Occupies 33% width) -->
+              <div class="landing-seal-wrapper">
+                <img src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Seal" class="landing-seal-img">
               </div>
               
-              <!-- Presentation Text Group on the Right -->
-              <div class="landing-hero-title-group" style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+              <!-- Presentation Text Group on the Right (67% width) -->
+              <div class="landing-hero-title-group">
                 <div class="landing-hero-badge">
                   <span class="badge-dot">●</span>
                   <span>Global Peatland Digital Twin &amp; Universal Restoration Simulator</span>
                 </div>
-                <h1 class="landing-hero-title" style="font-size: 2rem; line-height: 1.2;">
+                <h1 class="landing-hero-title">
                   <span class="brand-accent">PEAT-TWIN</span>: Interactive Biophysical Wetland Platform
                 </h1>
-                <p class="landing-hero-desc" style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+                <p class="landing-hero-desc">
                   Open-access scientific platform for real-time biophysical modeling, multi-tier MRV monitoring, and restoration trajectory simulation across temperate wetlands and peatlands. Integrates continuous micrometeorology (Eddy Covariance 10 Hz), hydromechanical pore physics, microbial redox kinetics, Copernicus Earth Observation (Sentinel-2 / SAR), and radiative forcing balances (CO₂, CH₄, N₂O).
                 </p>
-                <div class="landing-author-line" style="margin-top: 0.35rem; font-size: 0.84rem; color: #94a3b8; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                  <span style="color: #38bdf8; font-weight: 800;">Lead Modeler &amp; System Architect:</span>
-                  <strong style="color: #ffffff;">Daniel Sebastián Santander Urrutia</strong>
-                  <span>• M.Sc. Environmental Management, CAU Kiel</span>
+                <div class="landing-author-box">
+                  <div class="author-role-badge">Lead Modeler &amp; System Architect</div>
+                  <h3 class="author-name">Daniel Sebastián Santander Urrutia</h3>
+                  <ul class="author-degrees-list">
+                    <li>• <strong>M.Sc. Environmental Management</strong> — Christian-Albrechts-Universität zu Kiel (Germany)</li>
+                    <li>• <strong>M.Sc. Integrated Catchment Management</strong> — Uniwersytet Przyrodniczy w Poznaniu (Poland)</li>
+                    <li>• <strong>B.Sc. &amp; Professional Degree in Geophysical Engineering</strong> — Universidad de Chile</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -715,9 +589,25 @@
             </button>
           </div>
 
-          <!-- 11 Module Scientific Buttons Grid -->
+          <!-- 12 Module Scientific Buttons Grid -->
           <div class="wallener-grid">
             
+            <!-- Module 00: Executive Pitch Presentation -->
+            <div class="wallener-btn-card" data-jump-wallener="classic_presentation" style="border: 1.5px solid rgba(52, 211, 153, 0.45); background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(6, 78, 59, 0.2));">
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">🎙️</span>
+                <span class="wallener-btn-badge benchmark" style="background:#10b981; color:#0f172a; font-weight:800;">Executive Pitch</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4 style="color:#34d399;">🎙️ Pitch: Wallener Au</h4>
+                <p>Guided executive pitch &amp; walkthrough of the Klimafarm Wallener Au peatland observatory (31 slides, audio &amp; figures).</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span style="color:#34d399; font-weight:800;">Launch Pitch</span>
+                <span style="color:#34d399;">➔</span>
+              </div>
+            </div>
+
             <!-- Module 1: Thesis Dossier -->
             <div class="wallener-btn-card" data-jump-wallener="thesis_cover">
               <div class="wallener-btn-card-header">
@@ -1043,11 +933,11 @@
               <h3 class="general-method-card-title"><span>⚡</span> 1. The Thermodynamic Redox Ladder</h3>
               <p class="general-method-card-desc">
                 As peat saturates and O₂ is depleted, microbial consortia utilize alternative electron acceptors in order of decreasing free energy yield (\(\Delta G^\circ\)):<br>
-                • <strong>Aerobic Respiration:</strong> \(\mathrm{O}_2 \rightarrow \mathrm{H}_2\mathrm{O}\) (\(Eh > +300\text{ mV}\))<br>
-                • <strong>Denitrification:</strong> \(\mathrm{NO}_3^- \rightarrow \mathrm{N}_2\mathrm{O} \rightarrow \mathrm{N}_2\) (\(+100\text{ to }+300\text{ mV}\))<br>
-                • <strong>Manganese &amp; Iron Reduction:</strong> \(\mathrm{Fe}^{3+} \rightarrow \mathrm{Fe}^{2+}\) (\(-100\text{ to }+100\text{ mV}\))<br>
-                • <strong>Sulfate Reduction:</strong> \(\mathrm{SO}_4^{2-} \rightarrow \mathrm{H}_2\mathrm{S}\) (\(-200\text{ to }-100\text{ mV}\))<br>
-                • <strong>Methanogenesis:</strong> \(\mathrm{CO}_2 \rightarrow \mathrm{CH}_4\) (\(Eh < -200\text{ mV}\))
+                • <strong>Aerobic Respiration:</strong> \(\mathrm{O}_2 \rightarrow \mathrm{H}_2\mathrm{O} \quad (Eh \gt +300\text{ mV})\)<br>
+                • <strong>Denitrification:</strong> \(\mathrm{NO}_3^- \rightarrow \mathrm{N}_2\mathrm{O} \rightarrow \mathrm{N}_2 \quad (+100\text{ to }+300\text{ mV})\)<br>
+                • <strong>Manganese &amp; Iron Reduction:</strong> \(\mathrm{Fe}^{3+} \rightarrow \mathrm{Fe}^{2+} \quad (-100\text{ to }+100\text{ mV})\)<br>
+                • <strong>Sulfate Reduction:</strong> \(\mathrm{SO}_4^{2-} \rightarrow \mathrm{H}_2\mathrm{S} \quad (-200\text{ to }-100\text{ mV})\)<br>
+                • <strong>Methanogenesis:</strong> \(\mathrm{CO}_2 \rightarrow \mathrm{CH}_4 \quad (Eh \lt -200\text{ mV})\)
               </p>
             </div>
 
@@ -1109,8 +999,8 @@
               <h3 class="general-method-card-title"><span>📊</span> 1. Net Greenhouse Gas Balance (NGHGB)</h3>
               <p class="general-method-card-desc">
                 Unified mass balance equation for ecosystem climate radiative forcing:<br>
-                \[ NGHGB = NEE_{CO_2} + (F_{CH_4} \cdot GWP_{CH_4}) + (F_{N_2O} \cdot GWP_{N_2O}) + F_{DOC} \]<br>
-                Where \(NEE\) is net ecosystem CO₂ exchange, \(F_{CH_4}\) and \(F_{N_2O}\) are surface trace gas fluxes weighted by their global warming potentials, and \(F_{DOC}\) represents aquatic dissolved organic carbon export through ditch drainage networks.
+                \[ \mathrm{NGHGB} = \mathrm{NEE}_{\mathrm{CO}_2} + (F_{\mathrm{CH}_4} \cdot \mathrm{GWP}_{\mathrm{CH}_4}) + (F_{\mathrm{N}_2\mathrm{O}} \cdot \mathrm{GWP}_{\mathrm{N}_2\mathrm{O}}) + F_{\mathrm{DOC}} \]<br>
+                Where \(\mathrm{NEE}\) is net ecosystem CO₂ exchange, \(F_{\mathrm{CH}_4}\) and \(F_{\mathrm{N}_2\mathrm{O}}\) are surface trace gas fluxes weighted by their global warming potentials, and \(F_{\mathrm{DOC}}\) represents aquatic dissolved organic carbon export through ditch drainage networks.
               </p>
             </div>
 
@@ -2463,7 +2353,6 @@
             <button type="button" class="canvas-sandbox-badge-btn" id="btn-canvas-sandbox-badge" title="Click to open Wetland Lab Sandbox">
               <span>🔬</span> <span>Lab Sandbox (Controls)</span>
             </button>
-          </div>
 
           <!-- LOWER CONTROLS DOCK: ATMOSPHERIC PHENOMENA & GAS ISOLATOR CONTROL STRIP (Positioned Below Twin) -->
           <div id="atmo-control-strip" class="atmo-control-dock" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 12px 6px 12px;padding:6px 14px;background:rgba(10,16,28,0.92);border-radius:8px;border:1px solid rgba(56,189,248,0.25);box-shadow:0 4px 14px rgba(0,0,0,0.4);">
@@ -2884,7 +2773,7 @@
                     <span class="state-match-badge badge-drained-only">Drained Active</span>
                   </div>
                   <div class="redox-formula-display">
-                    C_org + O₂ ➔ CO₂ + H₂O &nbsp; (ΔG°' = -2870 kJ/mol)
+                    \[ \mathrm{C}_{\mathrm{org}} + \mathrm{O}_2 \xrightarrow{\quad} \mathrm{CO}_2 + \mathrm{H}_2\mathrm{O} \quad (\Delta G^{\circ\prime} = -2870\text{ kJ/mol}) \]
                   </div>
                   <span style="font-size: 0.76rem; color: var(--text-secondary);">
                     Dominant in drained acrotelm. Oxygen acts as highest-energy terminal electron acceptor, driving rapid peat oxidation.
@@ -2898,10 +2787,10 @@
                     <strong>Incomplete Denitrification (Fluctuating / Suboxic)</strong>
                   </div>
                   <div class="redox-formula-display">
-                    NO₃⁻ ➔ NO₂⁻ ➔ NO ➔ N₂O ↑ &nbsp; (➔ N₂)
+                    \[ \mathrm{NO}_3^- \xrightarrow{\quad} \mathrm{NO}_2^- \xrightarrow{\quad} \mathrm{NO} \xrightarrow{\quad} \mathrm{N}_2\mathrm{O} \uparrow \quad (\xrightarrow{\quad} \mathrm{N}_2) \]
                   </div>
                   <span style="font-size: 0.76rem; color: var(--text-secondary);">
-                    Fluctuating water tables trigger high-GWP N₂O pulses (GWP₁₀₀ = 273) when trace oxygen inhibits nitrous oxide reductase.
+                    Fluctuating water tables trigger high-GWP N₂O pulses (\(\mathrm{GWP}_{100} = 273\)) when trace oxygen inhibits nitrous oxide reductase.
                   </span>
                 </div>
 
@@ -2909,12 +2798,11 @@
                 <div class="redox-reaction-item reaction-anaerobic reaction-methanogenesis">
                   <div class="redox-reaction-title">
                     <span style="color: var(--accent-cyan);">●</span>
-                    <strong>Methanogenesis (Strict Anoxia, Eh &lt; -200 mV)</strong>
+                    <strong>Methanogenesis (Strict Anoxia, \(Eh \lt -200\text{ mV}\))</strong>
                     <span class="state-match-badge badge-rewetted-only">Rewetted Spike</span>
                   </div>
                   <div class="redox-formula-display">
-                    Hydrogenotrophic: CO₂ + 4H₂ ➔ CH₄ + 2H₂O<br>
-                    Acetoclastic: CH₃COOH ➔ CH₄ + CO₂
+                    \[ \begin{aligned} \text{Hydrogenotrophic: } & \mathrm{CO}_2 + 4\mathrm{H}_2 \xrightarrow{\quad} \mathrm{CH}_4 + 2\mathrm{H}_2\mathrm{O} \\ \text{Acetoclastic: } & \mathrm{CH}_3\mathrm{COOH} \xrightarrow{\quad} \mathrm{CH}_4 + \mathrm{CO}_2 \end{aligned} \]
                   </div>
                   <span style="font-size: 0.76rem; color: var(--text-secondary);">
                     Terminal step of anaerobic degradation executed by Archaea after alternative electron acceptors are fully depleted.
@@ -2929,7 +2817,7 @@
                     <span class="state-match-badge badge-rewetted-only">Biofilter Active</span>
                   </div>
                   <div class="redox-formula-display">
-                    CH₄ + 2O₂ ➔ CO₂ + 2H₂O &nbsp; (ΔG°' = -820 kJ/mol)
+                    \[ \mathrm{CH}_4 + 2\mathrm{O}_2 \xrightarrow{\quad} \mathrm{CO}_2 + 2\mathrm{H}_2\mathrm{O} \quad (\Delta G^{\circ\prime} = -820\text{ kJ/mol}) \]
                   </div>
                   <span style="font-size: 0.76rem; color: var(--text-secondary);">
                     Aerobic methanotrophic bacteria consume 60–90% of upward diffusing CH₄ at the capillary fringe before reaching atmosphere.

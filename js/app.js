@@ -323,6 +323,59 @@ class WetlandMonitorApp {
       });
     }
 
+    // Wallener contextual carousel sliding buttons
+    const wallenerSlidePrev = document.getElementById("btn-wallener-slide-prev");
+    const wallenerSlideNext = document.getElementById("btn-wallener-slide-next");
+    const wallenerTrack = document.getElementById("wallener-tabs-track");
+
+    if (wallenerSlidePrev && wallenerTrack) {
+      wallenerSlidePrev.addEventListener("click", (e) => {
+        e.stopPropagation();
+        wallenerTrack.scrollBy({ left: -220, behavior: "smooth" });
+      });
+    }
+    if (wallenerSlideNext && wallenerTrack) {
+      wallenerSlideNext.addEventListener("click", (e) => {
+        e.stopPropagation();
+        wallenerTrack.scrollBy({ left: 220, behavior: "smooth" });
+      });
+    }
+
+    // Mouse wheel horizontal scrolling on Wallener carousel track
+    if (wallenerTrack) {
+      wallenerTrack.addEventListener("wheel", (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+          wallenerTrack.scrollLeft += e.deltaY * 1.2;
+        }
+      }, { passive: false });
+
+      // Mouse drag to scroll on Wallener carousel track
+      let isDownW = false;
+      let startXW = 0;
+      let scrollLeftW = 0;
+
+      wallenerTrack.addEventListener("mousedown", (e) => {
+        isDownW = true;
+        wallenerTrack.classList.add("is-dragging");
+        startXW = e.pageX - wallenerTrack.offsetLeft;
+        scrollLeftW = wallenerTrack.scrollLeft;
+      });
+
+      window.addEventListener("mouseup", () => {
+        isDownW = false;
+        wallenerTrack.classList.remove("is-dragging");
+      });
+
+      wallenerTrack.addEventListener("mousemove", (e) => {
+        if (!isDownW) return;
+        e.preventDefault();
+        const x = e.pageX - wallenerTrack.offsetLeft;
+        const walk = (x - startXW) * 1.5;
+        wallenerTrack.scrollLeft = scrollLeftW - walk;
+      });
+    }
+
     const brandBtn = document.getElementById("brand-badge-click");
     if (brandBtn) {
       brandBtn.addEventListener("click", () => {
@@ -455,17 +508,25 @@ class WetlandMonitorApp {
       "flux_diagnostics",
       "gwp_uncertainties",
       "conclusions_outlook",
-      "defense_agenda"
+      "defense_agenda",
+      "classic_presentation"
     ];
 
-    // Toggle Wallener project contextual nav bar
+    // Toggle Wallener project contextual nav bar (Scrolleable Carrusel)
     const wallenerNav = document.getElementById("wallener-project-nav-bar");
     if (wallenerNav) {
       if (wallenerSubviews.includes(viewKey) || (viewKey === "soil_interface" && this.isWallenerTwinMode)) {
         wallenerNav.classList.remove("hidden");
-        // Update active tab pill in Wallener project nav bar
-        wallenerNav.querySelectorAll(".wallener-tab-pill").forEach(pill => {
-          pill.classList.toggle("active", pill.dataset.wallenerNav === viewKey);
+        // Update active tab card in Wallener project carrusel
+        const cards = wallenerNav.querySelectorAll(".carrusel-card, .wallener-tab-pill");
+        cards.forEach(pill => {
+          const isActive = (pill.dataset.wallenerNav === viewKey || pill.dataset.view === viewKey);
+          pill.classList.toggle("active", isActive);
+          if (isActive) {
+            setTimeout(() => {
+              pill.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+            }, 80);
+          }
         });
       } else {
         wallenerNav.classList.add("hidden");
@@ -584,7 +645,8 @@ class WetlandMonitorApp {
     // Automatically re-render any LaTeX equations in the newly active view
     if (typeof window.renderScientificMath === "function") {
       setTimeout(() => {
-        window.renderScientificMath();
+        const p = document.querySelector(".view-panel.active");
+        window.renderScientificMath(p || document.body);
       }, 60);
     }
 
