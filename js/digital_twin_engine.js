@@ -28,12 +28,12 @@ export class DigitalTwinSimulationEngine {
     this.diurnalDuration = 18000; // 18 seconds for 24 hours
     this.annualDuration = 24000;  // 24 seconds for 365 days
     
-    // Month labels (Spanish Academic)
+    // Month labels (English Scientific)
     this.months = [
-      "Enero (Dormancia)", "Febrero (Fin Invierno)", "Marzo (Deshielo/Rebrote)",
-      "Abril (Fase Vegetativa)", "Mayo (Canopia Activa)", "Junio (Pico Fotosintético)",
-      "Julio (Estiaje/Estrés VPD)", "Agosto (Oxidación de Turba)", "Septiembre (Senescencia)",
-      "Octubre (Reinundación/Pico N₂O)", "Noviembre (Inundación/Pulso CH₄ H1)", "Diciembre (Inundación Invernal)"
+      "January (Dormancy)", "February (Late Winter)", "March (Thaw/Greenup)",
+      "April (Vegetative Phase)", "May (Active Canopy)", "June (Photosynthetic Peak)",
+      "July (Midsummer Low/VPD Stress)", "August (Peat Aeration & Oxidation)", "September (Senescence)",
+      "October (Rewetting/N₂O Peak)", "November (Inundation/CH₄ Pulse H1)", "December (Winter Flooding)"
     ];
 
     // DOM Elements - HUD Buttons & Readouts
@@ -122,7 +122,7 @@ export class DigitalTwinSimulationEngine {
     // Keep header strip synchronized with current state
     if (this.currentMode === "idle") {
       if (this.stripTimeReadout) this.stripTimeReadout.textContent = "12:00";
-      if (this.stripCalendarReadout) this.stripCalendarReadout.textContent = "Verano (Jul)";
+      if (this.stripCalendarReadout) this.stripCalendarReadout.textContent = "Summer (Jul)";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "☀️";
     }
   }
@@ -357,7 +357,7 @@ export class DigitalTwinSimulationEngine {
         state.fluxCh4Text = '+35 nmol m⁻² s⁻¹';
         state.fluxN2oText = '+0.03 nmol m⁻² s⁻¹';
         state.co2Color = '#f43f5e';
-        state.ustarLabel = 'Inversión Nocturna (u* = 0.08 m/s, Desacoplado)';
+        state.ustarLabel = 'Nocturnal Inversion (u* = 0.08 m/s, Decoupled)';
         state.convectionOpacity = 0;
         state.inversionOpacity = 0.85;
       }
@@ -371,10 +371,10 @@ export class DigitalTwinSimulationEngine {
         state.ch4Scale = 2.4;
         state.n2oScale = 0.2;
         state.fluxCo2Text = '+0.8 µmol m⁻² s⁻¹';
-        state.fluxCh4Text = '+145 nmol m⁻² s⁻¹ (Pulso H1)';
+        state.fluxCh4Text = '+145 nmol m⁻² s⁻¹ (H1 Pulse)';
         state.fluxN2oText = '+0.01 nmol m⁻² s⁻¹';
         state.co2Color = '#fbbf24';
-        state.ustarLabel = 'Viento Invernal (u* = 0.18 m/s)';
+        state.ustarLabel = 'Winter Wind (u* = 0.18 m/s)';
         state.convectionOpacity = 0.15;
         state.inversionOpacity = 0;
         state.isH1Transient = true;
@@ -697,7 +697,7 @@ export class DigitalTwinSimulationEngine {
       if (this.scrubberSubLeft) this.scrubberSubLeft.textContent = "00:00 Medianoche";
       if (this.scrubberSubRight) this.scrubberSubRight.textContent = "24:00 Noche";
 
-      const ticks = ["00:00", "04:00", "08:00 (Alba)", "12:00 (Cenit)", "16:00", "20:00 (Ocaso)", "24:00"];
+      const ticks = ["00:00", "04:00", "08:00 (Dawn)", "12:00 (Noon)", "16:00", "20:00 (Dusk)", "24:00"];
       ticks.forEach((tick, i) => {
         const span = document.createElement("span");
         span.textContent = tick;
@@ -705,11 +705,11 @@ export class DigitalTwinSimulationEngine {
         this.scrubberLabels.appendChild(span);
       });
     } else {
-      if (this.overlayModeBadge) this.overlayModeBadge.textContent = "🗓️ Paso de los Días (365d)";
-      if (this.scrubberSubLeft) this.scrubberSubLeft.textContent = "Día 1 (01 Ene)";
-      if (this.scrubberSubRight) this.scrubberSubRight.textContent = "Día 365 (31 Dic)";
+      if (this.overlayModeBadge) this.overlayModeBadge.textContent = "🗓️ Annual Progression (365d)";
+      if (this.scrubberSubLeft) this.scrubberSubLeft.textContent = "Day 1 (Jan 01)";
+      if (this.scrubberSubRight) this.scrubberSubRight.textContent = "Day 365 (Dec 31)";
 
-      const ticks = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+      const ticks = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       ticks.forEach((tick, i) => {
         const span = document.createElement("span");
         span.textContent = tick;
@@ -721,14 +721,14 @@ export class DigitalTwinSimulationEngine {
 
   updateOverlayPauseUI() {
     if (this.overlayPauseStatus) {
-      this.overlayPauseStatus.textContent = this.isPaused ? "⏸ Pausado" : "▶ En reproducción";
+      this.overlayPauseStatus.textContent = this.isPaused ? "⏸ Paused" : "▶ Running";
       this.overlayPauseStatus.classList.toggle("paused", this.isPaused);
     }
     if (this.overlayBtnPauseIcon) {
       this.overlayBtnPauseIcon.textContent = this.isPaused ? "▶" : "⏸";
     }
     if (this.overlayBtnPauseLabel) {
-      this.overlayBtnPauseLabel.textContent = this.isPaused ? "Reanudar" : "Pausar";
+      this.overlayBtnPauseLabel.textContent = this.isPaused ? "Resume" : "Pause";
     }
     if (this.overlayBtnPause) {
       this.overlayBtnPause.classList.toggle("paused", this.isPaused);
@@ -777,10 +777,10 @@ export class DigitalTwinSimulationEngine {
       const hh = Math.floor(this.currentProgress * 24);
       const mm = Math.floor(((this.currentProgress * 24) - hh) * 60);
       const timeStr = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
-      this.flashPauseFeedback(`Pausado (${timeStr} hrs)`, "⏸");
+      this.flashPauseFeedback(`Paused (${timeStr} hrs)`, "⏸");
     } else {
       const dayOfYear = Math.min(365, Math.max(1, Math.floor(this.currentProgress * 365) + 1));
-      this.flashPauseFeedback(`Pausado (Día ${dayOfYear})`, "⏸");
+      this.flashPauseFeedback(`Paused (Day ${dayOfYear})`, "⏸");
     }
   }
 
@@ -793,7 +793,7 @@ export class DigitalTwinSimulationEngine {
 
     this.updateButtonStates();
     this.updateOverlayPauseUI();
-    this.flashPauseFeedback("Reanudado", "▶");
+    this.flashPauseFeedback("Resumed", "▶");
 
     if (this.currentMode === "diurnal") {
       this.startDiurnalLoop();
@@ -848,7 +848,7 @@ export class DigitalTwinSimulationEngine {
 
     this.showTimeOverlay("diurnal");
     this.updateButtonStates();
-    this.flashPauseFeedback("Ciclo 24h Iniciado", "☀️");
+    this.flashPauseFeedback("24h Diurnal Cycle Started", "☀️");
     this.startDiurnalLoop();
   }
 
@@ -876,7 +876,7 @@ export class DigitalTwinSimulationEngine {
 
     // Update digital clocks & readouts
     if (this.stripTimeReadout) this.stripTimeReadout.textContent = `${timeStr} hrs`;
-    if (this.stripCalendarReadout) this.stripCalendarReadout.textContent = "15 Julio (Ciclo 24h)";
+    if (this.stripCalendarReadout) this.stripCalendarReadout.textContent = "July 15 (24h Diurnal Cycle)";
     if (this.hudTimeReadout) this.hudTimeReadout.textContent = timeStr;
     if (this.overlayMainClock) this.overlayMainClock.textContent = `🕒 ${timeStr} hrs`;
 
@@ -991,7 +991,7 @@ export class DigitalTwinSimulationEngine {
       if (this.alertStomatal) this.alertStomatal.setAttribute("opacity", "1");
       if (this.co2UptakeStream) this.co2UptakeStream.classList.add("throttled-flow");
       
-      const phenom = `⚠️ Estrés VPD de Mediodía (VPD > 1.2 kPa) • Cierre estomático protector • Asimilación CO₂ reducida (Rn = +${rnEst} W/m²)`;
+      const phenom = `⚠️ Midday VPD Stress (VPD > 1.2 kPa) • Stomatal closure • Reduced CO₂ uptake (Rn = +${rnEst} W/m²)`;
       this.setPhenomenon(phenom, "#f59e0b");
       if (this.overlayPhenom) this.overlayPhenom.textContent = phenom;
     } else {
@@ -1009,7 +1009,7 @@ export class DigitalTwinSimulationEngine {
 
       document.querySelectorAll(".animated-flux-arrow").forEach(el => el.classList.add("stagnant-flow"));
 
-      const phenom = "❄️ Inversión Térmica Nocturna • u* < 0.12 m/s (Filtro EC activo) • Desacople atmosférico y acumulación sub-canopia";
+      const phenom = "❄️ Nocturnal Thermal Inversion • u* < 0.12 m/s (EC filter active) • Atmospheric decoupling and sub-canopy pooling";
       this.setPhenomenon(phenom, "#f43f5e");
       if (this.overlayPhenom) this.overlayPhenom.textContent = phenom;
     } else if (!isVpdStress) {
@@ -1018,7 +1018,7 @@ export class DigitalTwinSimulationEngine {
 
       document.querySelectorAll(".animated-flux-arrow").forEach(el => el.classList.remove("stagnant-flow"));
 
-      const phenom = `☀️ Capa Límite Turbulenta Convectiva • Alta mezcla turbulenta (QC 0, u* = 0.38 m/s) • Asimilación neta constante (Rn = +${rnEst} W/m²)`;
+      const phenom = `☀️ Convective Turbulent Boundary Layer • High turbulent mixing (QC 0, u* = 0.38 m/s) • Steady net assimilation (Rn = +${rnEst} W/m²)`;
       this.setPhenomenon(phenom, "#10b981");
       if (this.overlayPhenom) this.overlayPhenom.textContent = phenom;
     }
@@ -1053,7 +1053,7 @@ export class DigitalTwinSimulationEngine {
 
     this.showTimeOverlay("annual");
     this.updateButtonStates();
-    this.flashPauseFeedback("Evolución Anual 365d Iniciada", "🗓️");
+    this.flashPauseFeedback("Annual 365d Evolution Started", "🗓️");
     this.startAnnualLoop();
   }
 
@@ -1083,11 +1083,11 @@ export class DigitalTwinSimulationEngine {
 
     // Time text updates
     const dateFormatted = `${String(dayInMonth).padStart(2, "0")} ${currentMonthLabel.split(" ")[0]}`;
-    if (this.stripTimeReadout) this.stripTimeReadout.textContent = `Día ${dayOfYear}/365`;
+    if (this.stripTimeReadout) this.stripTimeReadout.textContent = `Day ${dayOfYear}/365`;
     if (this.stripCalendarReadout) this.stripCalendarReadout.textContent = `${dateFormatted} (${currentMonthLabel})`;
-    if (this.hudTimeReadout) this.hudTimeReadout.textContent = `Día ${dayOfYear}`;
+    if (this.hudTimeReadout) this.hudTimeReadout.textContent = `Day ${dayOfYear}`;
     if (this.hudCalendarReadout) this.hudCalendarReadout.textContent = currentMonthLabel;
-    if (this.overlayMainClock) this.overlayMainClock.textContent = `📅 Día ${dayOfYear} / 365 (${dateFormatted})`;
+    if (this.overlayMainClock) this.overlayMainClock.textContent = `📅 Day ${dayOfYear} / 365 (${dateFormatted})`;
 
     // Scrubber update
     if (this.scrubberFill) this.scrubberFill.style.width = `${progress * 100}%`;
@@ -1142,7 +1142,7 @@ export class DigitalTwinSimulationEngine {
       ch4Text = "+65 nmol m⁻² s⁻¹";
       n2oText = "+0.008 nmol m⁻² s⁻¹";
       co2Color = "#94a3b8";
-      phenomMessage = "❄️ Invierno: Dormancia vegetal (GPP = 0) • Suelo frío saturado (-10 cm) • Respiración inhibida (<5% anual)";
+      phenomMessage = "❄️ Winter: Plant dormancy (GPP = 0) • Saturated cold soil (-10 cm) • Respiration suppressed (<5% annual)";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "❄️";
       } else if (month < 5.0) {
       // 2. PRIMAVERA (Marzo - Mayo | Días 60 - 151):
@@ -1161,7 +1161,7 @@ export class DigitalTwinSimulationEngine {
       ch4Text = `+${Math.round(20 + t * 12)} nmol m⁻² s⁻¹`;
       n2oText = "+0.015 nmol m⁻² s⁻¹";
       co2Color = "#10b981";
-      phenomMessage = `🌱 Primavera: Rebrote vegetativo vigoroso • Asimilación fotosintética activa (GPP) • Sumidero Neto (${co2Text})`;
+      phenomMessage = `🌱 Spring: Vigorous vegetative green-up • Active photosynthetic assimilation (GPP) • Net carbon sink (${co2Text})`;
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "🌱";
       } else if (month < 6.2) {
       // 3. INICIO DE VERANO (Junio | Días 152 - 187):
@@ -1177,7 +1177,7 @@ export class DigitalTwinSimulationEngine {
       ch4Text = "+42 nmol m⁻² s⁻¹";
       n2oText = "+0.02 nmol m⁻² s⁻¹";
       co2Color = "#10b981";
-      phenomMessage = "🌿 Inicio de Verano: Canopia en plena fotosíntesis • WTD -25 cm • Máxima fijación de carbono atmosférico";
+      phenomMessage = "🌿 Early Summer: Active canopy photosynthesis • WTD -25 cm • Peak atmospheric carbon uptake";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "☀️";
       } else if (month < 8.0) {
       // 4. ESTIAJE ESTIVAL SEVERO Y SEQUÍA (Julio - Agosto | Días 188 - 243):
@@ -1195,10 +1195,10 @@ export class DigitalTwinSimulationEngine {
       isN2oPulse = (month >= 6.8 && month <= 7.3);
 
       co2Text = `+${(3.2 + t * 1.2).toFixed(1)} µmol m⁻² s⁻¹`;
-      ch4Text = "+32 nmol m⁻² s⁻¹ (Filtro Óxico)";
-      n2oText = isN2oPulse ? "+0.05 nmol m⁻² s⁻¹ (Tormenta)" : "+0.015 nmol m⁻² s⁻¹";
+      ch4Text = "+32 nmol m⁻² s⁻¹ (Oxic Filter)";
+      n2oText = isN2oPulse ? "+0.05 nmol m⁻² s⁻¹ (Storm Pulse)" : "+0.015 nmol m⁻² s⁻¹";
       co2Color = "#f43f5e";
-      phenomMessage = "💨 Estiaje Estival (WTD -44 cm) • Estrés VPD • Oxidación masiva de turba (60% Reco anual) -> ¡Fuente Neta!";
+      phenomMessage = "💨 Summer Drought (WTD -44 cm) • VPD stress • Massive peat oxidation (60% annual Reco) -> Net Carbon Source!";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "🔥";
       } else if (month < 10.0) {
       // 5. TRANSICIÓN OTOÑAL Y REINUNDACIÓN (Septiembre - Octubre | Días 244 - 304):
@@ -1215,9 +1215,9 @@ export class DigitalTwinSimulationEngine {
       isN2oPulse = true;
       co2Text = "+1.6 µmol m⁻² s⁻¹";
       ch4Text = `+${Math.round(45 + t * 40)} nmol m⁻² s⁻¹`;
-      n2oText = "+0.14 nmol m⁻² s⁻¹ (Pico Anual)";
+      n2oText = "+0.14 nmol m⁻² s⁻¹ (Annual Peak)";
       co2Color = "#f59e0b";
-      phenomMessage = "🍂 Otoño: Reinundación de turba aireada • Senescencia vegetal • ¡Pico Anual de N₂O (>50% anual por desnitrificación)!";
+      phenomMessage = "🍂 Autumn: Rewetting of aerated peat • Plant senescence • Annual N₂O peak (>50% annual denitrification pulse)!";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "🍂";
       } else {
       // 6. INUNDACIÓN TOTAL Y PULSO AGUDO DE METANO H1 (Noviembre - Diciembre | Días 305 - 365):
@@ -1234,10 +1234,10 @@ export class DigitalTwinSimulationEngine {
       ch4Scale = 2.5; // PULSO AGUDO H1
       n2oScale = 0.2;
       co2Text = "+0.7 µmol m⁻² s⁻¹";
-      ch4Text = "+145 nmol m⁻² s⁻¹ (Pulso H1)";
+      ch4Text = "+145 nmol m⁻² s⁻¹ (H1 Pulse)";
       n2oText = "+0.01 nmol m⁻² s⁻¹";
       co2Color = "#ef4444";
-      phenomMessage = "🔥 Inundación Total (+2 cm) • ¡Pulso Agudo de Metano H1 (+145 nmol)! • Chimenea de aerénquima abierta • Forzamiento GWP₂₀";
+      phenomMessage = "🔥 Full Inundation (+2 cm ponding) • Acute H1 Methane Pulse (+145 nmol)! • Open aerenchyma conduit • High GWP₂₀ forcing";
       if (this.stripTimeIcon) this.stripTimeIcon.textContent = "💧";
       }
 
@@ -1259,7 +1259,7 @@ export class DigitalTwinSimulationEngine {
       isSnowPresent = snowOpacity > 0.02;
       // Solar thaw message during snow evaporation
       if (isSnowPresent && snowOpacity < 0.95) {
-        phenomMessage = `❄️ Deshielo y Evaporación: Radiación solar derritiendo el manto nival (${Math.round(snowOpacity * 100)}% restante) • Infiltración alimentando nivel freático`;
+        phenomMessage = `❄️ Snowmelt & Thaw: Solar radiation melting snowpack (${Math.round(snowOpacity * 100)}% remaining) • Infiltration replenishing water table`;
       }
     }
     // Late autumn first snowfall (Nov 15 - Dec 15 | Month 10.5 - 11.5):
@@ -1374,14 +1374,14 @@ export class DigitalTwinSimulationEngine {
     document.querySelectorAll(".animated-flux-arrow").forEach(el => el.classList.remove("stagnant-flow"));
 
     if (this.stripTimeReadout) this.stripTimeReadout.textContent = "12:00";
-    if (this.stripCalendarReadout) this.stripCalendarReadout.textContent = "Verano (Jul)";
+    if (this.stripCalendarReadout) this.stripCalendarReadout.textContent = "Summer (Jul)";
     if (this.stripTimeIcon) this.stripTimeIcon.textContent = "☀️";
     if (this.hudTimeReadout) this.hudTimeReadout.textContent = "12:00";
-    if (this.hudCalendarReadout) this.hudCalendarReadout.textContent = "Jul (Línea Base)";
+    if (this.hudCalendarReadout) this.hudCalendarReadout.textContent = "Jul (Baseline)";
     if (this.hudTimeIcon) this.hudTimeIcon.textContent = "☀️";
 
-    this.setPhenomenon("Estado de Equilibrio • Bien Acoplado • Asimilación GPP Activa", "#10b981");
-    this.flashPauseFeedback("Restablecido", "↺");
+    this.setPhenomenon("Equilibrium State • Well Coupled • Active GPP Assimilation", "#10b981");
+    this.flashPauseFeedback("Reset", "↺");
     this.applyManualState();
   }
 
@@ -1400,10 +1400,10 @@ export class DigitalTwinSimulationEngine {
       if (isDiurnal) {
         if (this.isPaused) {
           if (icon) icon.textContent = "▶";
-          if (label) label.textContent = "Reanudar 24h";
+          if (label) label.textContent = "Resume 24h";
         } else {
           if (icon) icon.textContent = "⏸";
-          if (label) label.textContent = "Pausar 24h";
+          if (label) label.textContent = "Pause 24h";
         }
       } else {
         if (icon) icon.textContent = "▶";
@@ -1422,10 +1422,10 @@ export class DigitalTwinSimulationEngine {
       if (isAnnual) {
         if (this.isPaused) {
           if (icon) icon.textContent = "▶";
-          if (label) label.textContent = "Reanudar Año";
+          if (label) label.textContent = "Resume Year";
         } else {
           if (icon) icon.textContent = "⏸";
-          if (label) label.textContent = "Pausar Año";
+          if (label) label.textContent = "Pause Year";
         }
       } else {
         if (icon) icon.textContent = "▶";

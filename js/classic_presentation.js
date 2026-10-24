@@ -44,36 +44,6 @@ export class ClassicThesisPresentation {
   }
 
   initDOM() {
-    // 1. Botón en la cabecera principal junto a Thesis Hub
-    const headerActions = document.querySelector('.header-actions');
-    if (headerActions && !document.getElementById('btn-open-classic-presentation')) {
-      const btn = document.createElement('button');
-      btn.id = 'btn-open-classic-presentation';
-      btn.className = 'action-btn primary';
-      btn.title = 'Open Guided Tour & Executive Pitch Deck (22 Visual Slides)';
-      btn.style.cssText = 'background: linear-gradient(135deg, #0ea5e9, #0284c7) !important; border-color: #38bdf8 !important; font-weight: 700 !important;';
-      btn.innerHTML = `<span style="font-size:16px;">🧭</span> <span>Guided Tour</span>`;
-      headerActions.insertBefore(btn, headerActions.children[1] || null);
-    }
-
-    // 2. Tarjeta en el menú lateral (carousel drawer)
-    const track = document.getElementById('carrusel-slider-track');
-    if (track && !document.getElementById('tab-classic-presentation')) {
-      const card = document.createElement('div');
-      card.id = 'tab-classic-presentation';
-      card.className = 'carrusel-card tab-btn';
-      card.dataset.view = 'classic_presentation';
-      card.innerHTML = `
-        <span class="carrusel-card-idx">★</span>
-        <span class="carrusel-card-icon">🧭</span>
-        <div class="carrusel-card-body">
-          <span class="carrusel-card-name">Guided Tour</span>
-          <span class="carrusel-card-sub">Executive Pitch Deck • 22 Slides</span>
-        </div>
-      `;
-      track.insertBefore(card, track.children[1] || null);
-    }
-
     // 3. Crear el contenedor de vista principal #view-classic-presentation
     let viewPanel = document.getElementById('view-classic-presentation');
     if (!viewPanel) {
@@ -415,28 +385,28 @@ export class ClassicThesisPresentation {
     if (slide.interactiveType === 'gwp_toggle') {
       interactiveToolbar = `
         <div class="slide-interactive-toolbar">
-          <span style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase;">Cambiar Horizonte GWP:</span>
-          <button class="interactive-chip ${this.gwpMode === '100y' ? 'active' : ''}" id="chip-gwp-100y">Horizonte 100 Años (GWP₁₀₀)</button>
-          <button class="interactive-chip ${this.gwpMode === '20y' ? 'active red' : ''}" id="chip-gwp-20y">Horizonte 20 Años (GWP₂₀) • Impacto Agudo</button>
+          <span style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase;">Select GWP Horizon:</span>
+          <button class="interactive-chip ${this.gwpMode === '100y' ? 'active' : ''}" id="chip-gwp-100y">100-Year Horizon (GWP₁₀₀)</button>
+          <button class="interactive-chip ${this.gwpMode === '20y' ? 'active red' : ''}" id="chip-gwp-20y">20-Year Horizon (GWP₂₀) • Acute Impact</button>
         </div>
       `;
     } else if (slide.interactiveType === 'soil_layers') {
       interactiveToolbar = `
         <div class="slide-interactive-toolbar">
-          <span style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase;">Estrato Edáfico:</span>
-          <button class="interactive-chip ${this.activeSoilLayer === 'all' ? 'active' : ''}" id="chip-soil-all">Todos los Estratos</button>
-          <button class="interactive-chip ${this.activeSoilLayer === '0-5cm' ? 'active' : ''}" id="chip-soil-top">0–5 cm (Compactado)</button>
-          <button class="interactive-chip ${this.activeSoilLayer === '25cm' ? 'active' : ''}" id="chip-soil-mid">25 cm</button>
-          <button class="interactive-chip ${this.activeSoilLayer === '25-30cm' ? 'active' : ''}" id="chip-soil-deep">25–30 cm (Turba Profunda)</button>
+          <span style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase;">Soil Stratum:</span>
+          <button class="interactive-chip ${this.activeSoilLayer === 'all' ? 'active' : ''}" id="chip-soil-all">All Strata</button>
+          <button class="interactive-chip ${this.activeSoilLayer === '0-5cm' ? 'active' : ''}" id="chip-soil-top">0–5 cm (Compacted)</button>
+          <button class="interactive-chip ${this.activeSoilLayer === '25cm' ? 'active' : ''}" id="chip-soil-mid">25 cm (Plow Pan)</button>
+          <button class="interactive-chip ${this.activeSoilLayer === '25-30cm' ? 'active' : ''}" id="chip-soil-deep">25–30 cm (Deep Peat)</button>
         </div>
       `;
     } else if (slide.interactiveType === 'ch4_zones') {
       interactiveToolbar = `
         <div class="slide-interactive-toolbar">
-          <span style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase;">Zonas del Paisaje:</span>
-          <button class="interactive-chip ${this.activeCh4Zone === 'east' ? 'active' : ''}" id="chip-ch4-east">Zanja Este (Sumidero: -0.03 nmol)</button>
-          <button class="interactive-chip ${this.activeCh4Zone === 'central' ? 'active red' : ''}" id="chip-ch4-central">Meseta Central (Hotspot: +42.0 nmol)</button>
-          <button class="interactive-chip ${this.activeCh4Zone === 'west' ? 'active' : ''}" id="chip-ch4-west">Zanja Oeste (Ebullición)</button>
+          <span style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase;">Landscape Zones:</span>
+          <button class="interactive-chip ${this.activeCh4Zone === 'east' ? 'active' : ''}" id="chip-ch4-east">East Ditch (Sink: -0.03 nmol)</button>
+          <button class="interactive-chip ${this.activeCh4Zone === 'central' ? 'active red' : ''}" id="chip-ch4-central">Central Plateau (Hotspot: +42.0 nmol)</button>
+          <button class="interactive-chip ${this.activeCh4Zone === 'west' ? 'active' : ''}" id="chip-ch4-west">West Ditch (Ebullition)</button>
         </div>
       `;
     }
@@ -447,32 +417,32 @@ export class ClassicThesisPresentation {
     if (slide.interactiveType === 'gwp_toggle') {
       currentVisualSrc = (this.gwpMode === '20y') ? 'assets/figures/22_GHG_Balance_20y.png' : 'assets/figures/21_GHG_Balance_100y.png';
       currentCaption = (this.gwpMode === '20y') 
-        ? 'Balance Radiativo Apilado a 20 Años (GWP₂₀): El forzamiento del metano domina la respuesta térmica inmediata (+9.8 t CO₂e ha⁻¹).' 
-        : 'Balance de GEI a 100 Años (GWP₁₀₀): Neutralidad o balance cercano a cero (+1.2 t CO₂e ha⁻¹) con compensación entre gases.';
+        ? 'Stacked 20-Year Radiative Balance (GWP₂₀): Methane radiative forcing dominates immediate atmospheric response (+9.8 t CO₂e ha⁻¹).' 
+        : '100-Year GHG Balance (GWP₁₀₀): Long-term balance near climate neutrality (+1.2 t CO₂e ha⁻¹) through multi-gas compensation.';
     } else if (slide.interactiveType === 'soil_layers') {
       if (this.activeSoilLayer === '0-5cm') {
         currentVisualSrc = 'assets/figures/Precompression_Individual_WA_0-5cm.png';
-        currentCaption = 'Estrato superficial compactado (0–5 cm): Presión de preconsolidación superada y colapso de macroporos (>50 µm).';
+        currentCaption = 'Compacted surface stratum (0–5 cm): Preconsolidation stress exceeded and macropores collapsed (>50 µm).';
       } else if (this.activeSoilLayer === '25cm') {
         currentVisualSrc = 'assets/figures/Precompression_Individual_WA_25cm.png';
-        currentCaption = 'Piso de arado profundo (25 cm): Máxima resistencia mecánica residual y estrangulamiento de la difusión gaseosa.';
+        currentCaption = 'Deep plow pan (25 cm): High residual mechanical strength throttling gas diffusion.';
       } else if (this.activeSoilLayer === '25-30cm') {
         currentVisualSrc = 'assets/figures/Precompression_Individual_WA_25-30cm.png';
-        currentCaption = 'Turba profunda prístina (25–30 cm): Estructura porosa intacta, baja densidad aparente (0.152 g/cm³) y alto TPV (87.4%).';
+        currentCaption = 'Pristine deep peat (25–30 cm): Intact porous structure, low bulk density (0.152 g/cm³), and high total pore volume (87.4%).';
       } else {
         currentVisualSrc = 'assets/figures/Precompression_Combined.png';
-        currentCaption = 'Curvas combinadas de preconsolidación oedométrica en Wallener Au (0–5 cm, 25 cm, 25–30 cm).';
+        currentCaption = 'Combined oedometer preconsolidation curves at Wallener Au (0–5 cm, 25 cm, 25–30 cm).';
       }
     } else if (slide.interactiveType === 'ch4_zones') {
       if (this.activeCh4Zone === 'east') {
         currentVisualSrc = 'assets/figures/12b_CH4_QC_Flag_Comparison.png';
-        currentCaption = 'Zanja Este (Chambers 1–2): Borde mineralizado con bacterias metanótrofas activas (Sumidero neto: -0.03 nmol m⁻² s⁻¹).';
+        currentCaption = 'East Ditch (Chambers 1–2): Mineralized margin with active methanotrophs (Net sink: -0.03 nmol m⁻² s⁻¹).';
       } else if (this.activeCh4Zone === 'west') {
         currentVisualSrc = 'assets/figures/14b_CH4_Models_Comparison.png';
-        currentCaption = 'Zanja Oeste (Chamber 8): Ebullición episódica en canal profundo y ajuste de Machine Learning (RF vs ANN).';
+        currentCaption = 'West Ditch (Chamber 8): Episodic ebullition in deep canal and machine learning fits (RF vs ANN).';
       } else {
         currentVisualSrc = 'assets/figures/16b_CH4_Daily_Budgets.png';
-        currentCaption = 'Meseta Central (Chambers 3–7): Hotspot estival con emisiones máximas de hasta +42.0 nmol m⁻² s⁻¹ tras la inundación.';
+        currentCaption = 'Central Plateau (Chambers 3–7): Summer hotspot with peak emissions up to +42.0 nmol m⁻² s⁻¹ following inundation.';
       }
     }
 

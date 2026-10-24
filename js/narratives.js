@@ -143,7 +143,7 @@ export const MASTER_APPROACH = {
       "diurnalMode": true,
       "wtdDepth": -45,
       "instrumentHighlight": "soil_sensors",
-      "figure": "assets/24_Soil_Stratigraphy_Wallen_Combined.png",
+      "figure": "assets/Soil_Atmosphere_Interface_WallenerAu.png",
       "pitch": {
         "title": "Agricultural Drainage Baseline: Mechanical & Oxidative Legacy",
         "speech": "For over half a century, the Wallener Au lowlands were subjected to intensive agricultural drainage via deep drainage ditches and subsurface tile networks to support intensive dairy pasture and silage production. Drainage maintained mean summer groundwater tables between -45 and -60 cm. This persistent drawdown aerated the upper peat profile, accelerating heterotrophic microbial mineralization of ancient fen peat and driving progressive vertical subsidence at rates of 1 to 2 cm annually. Concurrently, repeated passes of heavy tractors and slurry tankers applied mechanical contact pressures exceeding 200 kPa onto saturated organic horizons, permanently crushing the virgin peat fabric.",

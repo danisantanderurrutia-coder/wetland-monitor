@@ -50,6 +50,33 @@
   <link rel="stylesheet" href="css/classic_presentation.css?v=2.4.2">
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true, theme: "dark"});</script>
+  
+  <!-- KaTeX for Scientific Math & Thermodynamics Equations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    window.renderScientificMath = function(targetEl) {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(targetEl || document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '$', right: '$', display: false },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false,
+          ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+        });
+      }
+    };
+    document.addEventListener("DOMContentLoaded", function() {
+      window.renderScientificMath();
+    });
+    window.addEventListener("load", function() {
+      window.renderScientificMath();
+    });
+  </script>
 </head>
 <body>
   <div id="app">
@@ -128,29 +155,29 @@
 
         <!-- Global Header Nav Links -->
         <div class="global-nav-links-row" id="global-nav-links-row">
-          <button type="button" class="global-nav-link" id="nav-btn-twin" data-nav-target="soil_interface" title="Universal Twin Lab con controles completos">
+          <button type="button" class="global-nav-link" id="nav-btn-twin" data-nav-target="soil_interface" title="Universal Twin Lab with Full Biophysical Controls">
             <span>🌍</span> <span>Twin Lab</span>
           </button>
-          <button type="button" class="global-nav-link" id="nav-btn-wallener" data-nav-target="wallener_dashboard" title="Caso de Estudio 01: Klimafarm Wallener Au (Benchmark Empírico)">
+          <button type="button" class="global-nav-link" id="nav-btn-wallener" data-nav-target="wallener_dashboard" title="Case Study 01: Klimafarm Wallener Au (Empirical Benchmark)">
             <span>📍</span> <span>Wallener Au</span> <span class="badge-pill" style="background:#10b981; color:#0f172a; font-size:10px; font-weight:800; padding:1px 6px; border-radius:10px;">Case 01</span>
           </button>
           
           <div class="global-nav-dropdown" id="nav-dropdown-methodology">
-            <button type="button" class="global-nav-link" id="nav-btn-methodology" aria-haspopup="true" aria-expanded="false" title="Metodología General de Monitoreo">
-              <span>📚</span> <span>Metodología ▾</span>
+            <button type="button" class="global-nav-link" id="nav-btn-methodology" aria-haspopup="true" aria-expanded="false" title="General Wetland Monitoring Methodology">
+              <span>📚</span> <span>Methodology ▾</span>
             </button>
             <div class="global-dropdown-menu hidden" id="menu-methodology">
               <div class="global-dropdown-item" data-nav-target="tools_general">
-                <span>🛠️</span> <span>Tools &amp; Instrumentación General</span>
+                <span>🛠️</span> <span>Tools &amp; Instrumentation</span>
               </div>
               <div class="global-dropdown-item" data-nav-target="satellites_general">
-                <span>🛰️</span> <span>Satélites &amp; Teledetección General</span>
+                <span>🛰️</span> <span>Satellites &amp; Earth Observation</span>
               </div>
               <div class="global-dropdown-item" data-nav-target="biogeochemistry_general">
-                <span>⚗️</span> <span>Biogeoquímica &amp; Tipos de Humedal</span>
+                <span>⚗️</span> <span>Biogeochemistry &amp; Wetland Types</span>
               </div>
               <div class="global-dropdown-item" data-nav-target="carbon_general">
-                <span>⚖️</span> <span>Carbon Accounting &amp; GWP General</span>
+                <span>⚖️</span> <span>Carbon Accounting &amp; GWP</span>
               </div>
             </div>
           </div>
@@ -188,24 +215,24 @@
       <!-- Contextual Project Navigation Bar (Only displayed when inside Wallener Au project views) -->
       <div class="wallener-project-nav-bar hidden" id="wallener-project-nav-bar">
         <div class="nav-left-actions">
-          <button type="button" class="btn-back-to-landing" id="nav-btn-back-wallener-dash" title="Volver al Dashboard de Wallener Au">
-            <span>⬅</span> <span>Dashboard Wallener</span>
+          <button type="button" class="btn-back-to-landing" id="nav-btn-back-wallener-dash" title="Return to Wallener Au Dashboard">
+            <span>⬅</span> <span>Wallener Dashboard</span>
           </button>
-          <button type="button" class="btn-back-to-landing" id="nav-btn-wallener-to-home" title="Volver al Inicio Principal">
-            <span>🏠</span> <span>Inicio</span>
+          <button type="button" class="btn-back-to-landing" id="nav-btn-wallener-to-home" title="Return to Main Dashboard">
+            <span>🏠</span> <span>Home</span>
           </button>
         </div>
         <div class="project-tabs-track" id="wallener-tabs-track">
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="soil_interface"><span>🌾</span> <span>Twin Calibrado</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="soil_interface"><span>🌾</span> <span>Calibrated Twin</span></button>
           <button type="button" class="wallener-tab-pill" data-wallener-nav="eddy_covariance"><span>📊</span> <span>Eddy Covariance</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="instruments_matrix"><span>📦</span> <span>Cámaras &amp; N₂O</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="geophysics"><span>🗜️</span> <span>Geomecánica</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="instruments_matrix"><span>📦</span> <span>Chambers &amp; N₂O</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="geophysics"><span>🗜️</span> <span>Soil Geomechanics</span></button>
           <button type="button" class="wallener-tab-pill" data-wallener-nav="flux_diagnostics"><span>📈</span> <span>Micrometeo &amp; EBC</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="data_pipeline"><span>🔬</span> <span>Modelos Empíricos</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="macro"><span>🛰️</span> <span>Satélites &amp; Footprint</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="gwp_uncertainties"><span>📐</span> <span>Incertidumbres</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="aims_objectives"><span>🎯</span> <span>Objetivos Tesis</span></button>
-          <button type="button" class="wallener-tab-pill" data-wallener-nav="conclusions_outlook"><span>🏁</span> <span>Conclusiones</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="data_pipeline"><span>🔬</span> <span>Empirical Models</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="macro"><span>🛰️</span> <span>Satellites &amp; Footprint</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="gwp_uncertainties"><span>📐</span> <span>Uncertainties</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="aims_objectives"><span>🎯</span> <span>Thesis Objectives</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="conclusions_outlook"><span>🏁</span> <span>Conclusions</span></button>
         </div>
       </div>
 
@@ -305,16 +332,6 @@
                 </div>
               </div>
 
-              <!-- 7. Guided Tour / Pitch Deck -->
-              <div class="carrusel-card tab-btn" data-view="classic_presentation" id="tab-classic-presentation">
-                <span class="carrusel-card-idx">★</span>
-                <span class="carrusel-card-icon">🧭</span>
-                <div class="carrusel-card-body">
-                  <span class="carrusel-card-name">Guided Tour</span>
-                  <span class="carrusel-card-sub">Executive Pitch Deck • 22 Slides</span>
-                </div>
-              </div>
-
               <!-- 8. Instruments Matrix -->
               <div class="carrusel-card tab-btn" data-view="instruments_matrix" id="tab-instruments">
                 <span class="carrusel-card-idx">07</span>
@@ -400,78 +417,37 @@
         <div class="landing-dashboard-wrapper">
           
           <!-- Institutional Scientific Provenance Banner -->
-          <div class="cover-institution-header" style="margin-bottom: -0.5rem;">
+          <div class="cover-institution-header" style="margin-bottom: -0.25rem;">
             <span class="cover-degree-badge">Scientific Research &amp; Biophysical Modeling Platform</span>
             <h2 class="cover-university-title" style="font-size: 1.25rem;">Christian-Albrechts-Universität zu Kiel</h2>
             <p class="cover-faculty-title">Faculty of Agricultural and Nutritional Sciences • Institute of Crop Science and Plant Breeding</p>
-            <p class="cover-institute-title">Integrated Grassland System Analysis and Assessment (IGSAA) • Projekt Klimafarm (BMBF)</p>
           </div>
 
-          <!-- Hero Card: Platform Presentation & Mission with Central Seal -->
+          <!-- Hero Card: Platform Presentation with Sizable Left Seal and Right Texts -->
           <div class="landing-hero-card">
-            <div class="landing-hero-top">
-              <div class="landing-seal-wrapper">
-                <img src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Golden Seal" class="landing-seal-img">
+            <div class="landing-hero-top" style="display: flex; align-items: center; gap: 2.25rem;">
+              <!-- Large Left Seal Icon -->
+              <div class="landing-seal-wrapper" style="flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Seal" class="landing-seal-img" style="width: 155px; height: 155px; object-fit: contain; filter: drop-shadow(0 12px 28px rgba(2, 132, 199, 0.4));">
               </div>
-              <div class="landing-hero-title-group" style="flex: 1; min-width: 280px;">
+              
+              <!-- Presentation Text Group on the Right -->
+              <div class="landing-hero-title-group" style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
                 <div class="landing-hero-badge">
                   <span class="badge-dot">●</span>
                   <span>Global Peatland Digital Twin &amp; Universal Restoration Simulator</span>
                 </div>
-                <h1 class="landing-hero-title">
+                <h1 class="landing-hero-title" style="font-size: 2rem; line-height: 1.2;">
                   <span class="brand-accent">PEAT-TWIN</span>: Interactive Biophysical Wetland Platform
                 </h1>
-                <p class="landing-hero-desc">
-                  Plataforma científica abierta para la modelación biofísica en tiempo real, monitoreo multiescala (MRV) y simulación de trayectorias de restauración en turberas y humedales templados. Integra micrometeorología de alta frecuencia (Eddy Covariance 10 Hz), dinámica de poros y agua freática, cascadas redox microbianas, teledetección multiespectral (Sentinel-2) y balances de forzamiento radiativo neto (CO₂, CH₄, N₂O).
+                <p class="landing-hero-desc" style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+                  Open-access scientific platform for real-time biophysical modeling, multi-tier MRV monitoring, and restoration trajectory simulation across temperate wetlands and peatlands. Integrates continuous micrometeorology (Eddy Covariance 10 Hz), hydromechanical pore physics, microbial redox kinetics, Copernicus Earth Observation (Sentinel-2 / SAR), and radiative forcing balances (CO₂, CH₄, N₂O).
                 </p>
-              </div>
-            </div>
-
-            <!-- Live Scientific Telemetry & Status Strip -->
-            <div class="landing-telemetry-ticker">
-              <div class="telemetry-chip active">
-                <span class="chip-dot">●</span>
-                <span class="chip-label">Engine:</span>
-                <span class="chip-val">Biophysical Twin v4.0 Active</span>
-              </div>
-              <div class="telemetry-chip">
-                <span class="chip-icon">🌾</span>
-                <span class="chip-label">Benchmark:</span>
-                <span class="chip-val">Wallener Au (Temperate Fen)</span>
-              </div>
-              <div class="telemetry-chip">
-                <span class="chip-icon">🌪️</span>
-                <span class="chip-label">Micrometeo:</span>
-                <span class="chip-val">10 Hz EC (EddyPro QA/QC)</span>
-              </div>
-              <div class="telemetry-chip">
-                <span class="chip-icon">🛰️</span>
-                <span class="chip-label">Satellites:</span>
-                <span class="chip-val">Copernicus Sentinel-2 &amp; SAR</span>
-              </div>
-              <div class="telemetry-chip">
-                <span class="chip-icon">⚖️</span>
-                <span class="chip-label">Accounting:</span>
-                <span class="chip-val">IPCC AR6 GWP-100 &amp; GWP-20</span>
-              </div>
-            </div>
-
-            <!-- Official Scientific Credentials Grid -->
-            <div class="landing-credentials-card">
-              <div class="cred-col">
-                <span class="cred-label">Lead Modeler &amp; System Architect</span>
-                <span class="cred-val">Daniel Sebastián Santander Urrutia</span>
-                <span class="cred-sub">M.Sc. Environmental Management • CAU Kiel</span>
-              </div>
-              <div class="cred-col">
-                <span class="cred-label">Scientific Supervision</span>
-                <span class="cred-val">Prof. Dr. Martin Komainda &amp; Dr. Sebastian Jordan</span>
-                <span class="cred-sub">Institute of Crop Science and Plant Breeding (IGSAA)</span>
-              </div>
-              <div class="cred-col">
-                <span class="cred-label">Research Framework &amp; Funding</span>
-                <span class="cred-val">Klimafarm Peatland Observatory</span>
-                <span class="cred-sub">Federal Ministry of Education and Research (BMBF)</span>
+                <div class="landing-author-line" style="margin-top: 0.35rem; font-size: 0.84rem; color: #94a3b8; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                  <span style="color: #38bdf8; font-weight: 800;">Lead Modeler &amp; System Architect:</span>
+                  <strong style="color: #ffffff;">Daniel Sebastián Santander Urrutia</strong>
+                  <span>• M.Sc. Environmental Management, CAU Kiel</span>
+                </div>
               </div>
             </div>
           </div>
@@ -493,18 +469,18 @@
               </div>
               <div class="landing-card-body">
                 <p class="landing-card-desc" style="font-size: 0.88rem; line-height: 1.6;">
-                  Simulador biofísico interactivo libre con lienzo dinámico en vivo. Controla en tiempo real el nivel freático (-80 a +15 cm), macroporosidad y compactación del suelo, cobertura vegetal (LAI y shunt de aerénquima 90%), pH y forzamiento micrometeorológico (VPD, u*). Observa cinéticas microbianas y flujos de gases en vivo.
+                  Interactive unconstrained biophysical simulator with real-time vector canvas. Freely adjust groundwater table depth (-80 to +15 cm), macroporosity and soil compaction, vegetation cover (LAI and 90% aerenchyma bypass shunt), pH, and atmospheric demand (VPD, u*). Observe microbial kinetics and gas flux vectors in live animation.
                 </p>
                 <div class="landing-tag-pills">
-                  <span class="tag-pill">🌱 Dinámica Freática</span>
-                  <span class="tag-pill">💨 Shunt Aerénquima</span>
-                  <span class="tag-pill">⚡ Cascada Redox</span>
-                  <span class="tag-pill">☀️ Ciclos Diurno &amp; Anual</span>
-                  <span class="tag-pill">🔬 Michaelis-Menten</span>
+                  <span class="tag-pill">🌱 Dynamic Water Table</span>
+                  <span class="tag-pill">💨 Aerenchyma Shunt</span>
+                  <span class="tag-pill">⚡ Redox Cascades</span>
+                  <span class="tag-pill">☀️ Diurnal &amp; Annual Loops</span>
+                  <span class="tag-pill">🔬 Michaelis-Menten Kinetics</span>
                 </div>
               </div>
               <div class="landing-featured-btn">
-                <span>🚀 Iniciar Gemelo Digital Universal (Twin Lab)</span>
+                <span>🚀 Launch Universal Twin Lab</span>
                 <span>➔</span>
               </div>
             </div>
@@ -516,22 +492,22 @@
                 <span class="landing-card-badge badge-green">Case Study 01</span>
               </div>
               <div class="landing-card-body">
-                <h3 class="landing-card-title">Proyecto: Klimafarm Wallener Au</h3>
+                <h3 class="landing-card-title">Project: Klimafarm Wallener Au</h3>
                 <p class="landing-card-desc">
-                  Benchmark de validación empírica en turbera baja templada (Schleswig-Holstein, Alemania). Series de torre Eddy Covariance (10 Hz), transectos de cámaras cerradas N₂O/CH₄, piezometría y balance GWP validado.
+                  Empirical ground-truth calibration benchmark in a temperate minerotrophic fen (Schleswig-Holstein, Germany). Includes 10 Hz Eddy Covariance tower records, closed chamber transects (N₂O/CH₄), automated piezometry, and validated GWP balance.
                 </p>
                 <div class="landing-tag-pills">
-                  <span class="tag-pill">10 Hz EC</span>
+                  <span class="tag-pill">10 Hz EC Tower</span>
                   <span class="tag-pill">N₂O Chambers</span>
                   <span class="tag-pill">ERT 2D</span>
-                  <span class="tag-pill">Oedometer</span>
+                  <span class="tag-pill">Oedometer σ'p</span>
                 </div>
                 <div style="margin-top: 0.5rem; font-size: 0.72rem; color: #f59e0b; font-weight: 700; display: flex; align-items: center; gap: 4px;">
-                  <span>🔒</span> <span>Datos bajo Embargo Académico</span>
+                  <span>🔒</span> <span>Empirical Dataset Under Academic Embargo</span>
                 </div>
               </div>
               <div class="landing-card-footer">
-                <span style="color: #34d399; font-weight: 800;">Acceder al Proyecto</span>
+                <span style="color: #34d399; font-weight: 800;">Explore Project</span>
                 <span class="landing-card-arrow" style="color: #34d399;">➔</span>
               </div>
             </div>
@@ -543,19 +519,19 @@
                 <span class="landing-card-badge badge-blue">Multi-Tier MRV</span>
               </div>
               <div class="landing-card-body">
-                <h3 class="landing-card-title">Tools &amp; Instrumentación</h3>
+                <h3 class="landing-card-title">Tools &amp; Instrumentation</h3>
                 <p class="landing-card-desc">
-                  Catálogo metodológico y principios físicos: covarianza de torbellinos (Eddy Covariance 10-20 Hz), cámaras cerradas automatizadas, redes piezométricas y sensores hidro-redox.
+                  Methodological overview and physical principles: eddy covariance micrometeorology (10–20 Hz), automated closed chamber transects, continuous piezometer networks, and soil hydro-redox sensors.
                 </p>
                 <div class="landing-tag-pills">
-                  <span class="tag-pill">Sonic 3D</span>
-                  <span class="tag-pill">IRGA/QCL</span>
-                  <span class="tag-pill">Chambers</span>
+                  <span class="tag-pill">3D Sonic Anemometry</span>
+                  <span class="tag-pill">IRGA / QCL</span>
+                  <span class="tag-pill">Closed Chambers</span>
                   <span class="tag-pill">WTD Sensors</span>
                 </div>
               </div>
               <div class="landing-card-footer">
-                <span>Ver Metodología de Instrumental</span>
+                <span>View Instrumentation Methods</span>
                 <span class="landing-card-arrow">➔</span>
               </div>
             </div>
@@ -567,19 +543,19 @@
                 <span class="landing-card-badge badge-blue">Earth Observation</span>
               </div>
               <div class="landing-card-body">
-                <h3 class="landing-card-title">Satélites &amp; Teledetección</h3>
+                <h3 class="landing-card-title">Satellites &amp; Remote Sensing</h3>
                 <p class="landing-card-desc">
-                  Constelaciones orbitales (Copernicus Sentinel-2, Sentinel-1 SAR, Landsat 8/9): cálculo de índices espectrales (NDVI, NDWI, NDRE), dinámica de encharcamiento e integración con huella de flujo.
+                  Orbital constellation integration (Copernicus Sentinel-2 MSI, Sentinel-1 SAR, Landsat 8/9 TIRS): vegetation and moisture indices (NDVI, NDWI, NDRE), surface water dynamics, and flux footprint spatial coupling.
                 </p>
                 <div class="landing-tag-pills">
                   <span class="tag-pill">Sentinel-2 MSI</span>
-                  <span class="tag-pill">SAR S1</span>
-                  <span class="tag-pill">Landsat TIRS</span>
-                  <span class="tag-pill">Footprint</span>
+                  <span class="tag-pill">SAR C-Band</span>
+                  <span class="tag-pill">Thermal LST</span>
+                  <span class="tag-pill">Footprint Climatology</span>
                 </div>
               </div>
               <div class="landing-card-footer">
-                <span>Ver Teledetección Satelital</span>
+                <span>View Remote Sensing Methods</span>
                 <span class="landing-card-arrow">➔</span>
               </div>
             </div>
@@ -591,19 +567,19 @@
                 <span class="landing-card-badge badge-blue">Redox Thermodynamics</span>
               </div>
               <div class="landing-card-body">
-                <h3 class="landing-card-title">Biogeoquímica &amp; Tipos</h3>
+                <h3 class="landing-card-title">Biogeochemistry &amp; Peatland Types</h3>
                 <p class="landing-card-desc">
-                  Fundamentos de diagénesis temprana y cascadas redox (O₂ ➔ NO₃⁻ ➔ Mn/Fe ➔ SO₄²⁻ ➔ CH₄). Comparación biofísica entre turberas bajas (Fens), altas (Bogs), paludicultura y suelos drenados.
+                  Thermodynamic electron acceptor cascade (O₂ ➔ NO₃⁻ ➔ Mn/Fe ➔ SO₄²⁻ ➔ CH₄) and early diagenesis. Structural comparison between minerotrophic fens, ombrotrophic bogs, paludiculture, and drained agricultural peatlands.
                 </p>
                 <div class="landing-tag-pills">
-                  <span class="tag-pill">Cascada Redox</span>
+                  <span class="tag-pill">Redox Ladder</span>
                   <span class="tag-pill">Rewetting Paradox</span>
                   <span class="tag-pill">Fens vs Bogs</span>
-                  <span class="tag-pill">Paludicultura</span>
+                  <span class="tag-pill">Paludiculture</span>
                 </div>
               </div>
               <div class="landing-card-footer">
-                <span>Ver Biogeoquímica Universal</span>
+                <span>View Biogeochemical Principles</span>
                 <span class="landing-card-arrow">➔</span>
               </div>
             </div>
@@ -617,17 +593,17 @@
               <div class="landing-card-body">
                 <h3 class="landing-card-title">Carbon Accounting &amp; GWP</h3>
                 <p class="landing-card-desc">
-                  Principios de contabilidad de carbono y forzamiento radiativo sostenido (SGWP, GWP-100 vs GWP-20). Metodología IPCC Tiers 1–3 y estándares de certificación (VM0033 / MoorFutures).
+                  High-integrity carbon accounting standards and cumulative radiative forcing metrics (SGWP, GWP-100 vs GWP-20). IPCC Tiers 1–3 methodologies and wetland carbon credit certification standards (VM0033 / MoorFutures).
                 </p>
                 <div class="landing-tag-pills">
                   <span class="tag-pill">GWP-100 / GWP-20</span>
-                  <span class="tag-pill">SGWP Dynamics</span>
+                  <span class="tag-pill">SGWP Sustained-Flux</span>
                   <span class="tag-pill">IPCC Tier 1-3</span>
                   <span class="tag-pill">Verra VM0033</span>
                 </div>
               </div>
               <div class="landing-card-footer">
-                <span>Ver Contabilidad de Carbono</span>
+                <span>View Carbon Accounting</span>
                 <span class="landing-card-arrow">➔</span>
               </div>
             </div>
@@ -648,8 +624,8 @@
                 <span>Case Studies</span> <span>›</span>
                 <span class="active-crumb">01: Klimafarm Wallener Au</span>
               </div>
-              <button type="button" class="btn-back-to-landing" id="btn-wallener-back-landing" title="Volver al Dashboard Principal">
-                <span>⬅</span> <span>Volver al Dashboard Principal</span>
+              <button type="button" class="btn-back-to-landing" id="btn-wallener-back-landing" title="Return to Main Dashboard">
+                <span>⬅</span> <span>Return to Main Dashboard</span>
               </button>
             </div>
             
@@ -659,10 +635,10 @@
                 <span class="wallener-btn-badge">Schleswig-Holstein, Germany</span>
               </div>
               <h1 class="wallener-hero-title">
-                Proyecto Klimafarm Wallener Au: Observatorio de Turberas
+                Project Klimafarm Wallener Au: Peatland Observatory
               </h1>
               <p class="wallener-hero-desc">
-                Validación empírica en turbera baja templada (Schleswig-Holstein, Alemania). Datos de campo de alta frecuencia temporal (2023–2024) que sustentan y calibran la arquitectura de simulación biofísica de PEAT-TWIN.
+                Field validation benchmark in a temperate minerotrophic fen (Schleswig-Holstein, Germany). High-frequency field records (2023–2024) supporting and calibrating the biophysical PEAT-TWIN simulation engine.
               </p>
             </div>
 
@@ -675,8 +651,8 @@
               </div>
               <div class="telemetry-chip">
                 <span class="chip-icon">🌾</span>
-                <span class="chip-label">Peat:</span>
-                <span class="chip-val">Minerotrophic Carex (1.8m)</span>
+                <span class="chip-label">Peat Type:</span>
+                <span class="chip-val">Minerotrophic Carex Fen (1.8 m)</span>
               </div>
               <div class="telemetry-chip">
                 <span class="chip-icon">🌪️</span>
@@ -686,12 +662,31 @@
               <div class="telemetry-chip">
                 <span class="chip-icon">📦</span>
                 <span class="chip-label">Chambers:</span>
-                <span class="chip-val">N₂O &amp; CH₄ Transects</span>
+                <span class="chip-val">Automated N₂O &amp; CH₄ Transects</span>
               </div>
               <div class="telemetry-chip">
                 <span class="chip-icon">⚡</span>
-                <span class="chip-label">Soil Mechanics:</span>
+                <span class="chip-label">Geomechanics:</span>
                 <span class="chip-val">Oedometer σ'p = 28 kPa</span>
+              </div>
+            </div>
+
+            <!-- Scientific Supervision & Institutional Provenance Card -->
+            <div class="landing-credentials-card" style="margin-top: 0.25rem;">
+              <div class="cred-col">
+                <span class="cred-label">Lead Modeler &amp; Thesis Author</span>
+                <span class="cred-val">Daniel Sebastián Santander Urrutia</span>
+                <span class="cred-sub">M.Sc. Environmental Management • CAU Kiel</span>
+              </div>
+              <div class="cred-col">
+                <span class="cred-label">Scientific Supervision</span>
+                <span class="cred-val">Prof. Dr. Martin Komainda &amp; Dr. Sebastian Jordan</span>
+                <span class="cred-sub">Institute of Crop Science and Plant Breeding (IGSAA)</span>
+              </div>
+              <div class="cred-col">
+                <span class="cred-label">Research Framework &amp; Funding</span>
+                <span class="cred-val">Klimafarm Peatland Observatory</span>
+                <span class="cred-sub">Federal Ministry of Education and Research (BMBF)</span>
               </div>
             </div>
 
@@ -699,7 +694,7 @@
             <div class="wallener-embargo-notice">
               <span class="embargo-icon">🔒</span>
               <div class="embargo-text">
-                <strong>Datos de Investigación bajo Embargo Académico:</strong> Las series empíricas de Eddy Covariance, cámaras cerradas y consolidación de suelos están protegidas para publicación científica. Se desbloquean con el PIN de Investigador en la consola <strong>⚙️ Admin</strong>.
+                <strong>Research Data Under Academic Embargo:</strong> High-frequency Eddy Covariance time-series, closed chamber transects, and soil consolidation records are protected for scientific publication. Unlock via Researcher PIN in the <strong>⚙️ Admin</strong> console.
               </div>
             </div>
           </div>
@@ -708,14 +703,14 @@
           <div class="wallener-calibrated-twin-card" data-jump-wallener="soil_interface">
             <div class="wallener-calibrated-title-group">
               <h3 class="wallener-calibrated-title">
-                <span>🌾</span> <span>Gemelo Digital Calibrado: Wallener Au (Baseline -25 cm WTD)</span>
+                <span>🌾</span> <span>Calibrated Digital Twin: Wallener Au (Baseline -25 cm WTD)</span>
               </h3>
               <p class="wallener-calibrated-desc">
-                Inicia el gemelo biofísico preconfigurado con los parámetros empíricos de Wallener Au: nivel freático medio anual de -25 cm, vegetación fen minerotrófica (*Carex*), aerénquima moderado y bucles de simulación continua de 24 horas y 365 días.
+                Launch the biophysical twin pre-calibrated to Wallener Au empirical conditions: annual mean water table depth of -25 cm, minerotrophic Carex canopy, moderate aerenchyma, and continuous 24-hour diurnal and 365-day annual simulation loops.
               </p>
             </div>
             <button type="button" class="wallener-calibrated-btn">
-              <span>Iniciar Gemelo Calibrado</span>
+              <span>Launch Calibrated Twin</span>
               <span>➔</span>
             </button>
           </div>
@@ -727,14 +722,14 @@
             <div class="wallener-btn-card" data-jump-wallener="thesis_cover">
               <div class="wallener-btn-card-header">
                 <span class="wallener-btn-icon">🏛️</span>
-                <span class="wallener-btn-badge benchmark">Módulo 01</span>
+                <span class="wallener-btn-badge benchmark">Module 01</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Dossier del Proyecto</h4>
-                <p>Contexto institucional CAU Kiel, supervisión científica, autoría y marco de investigación.</p>
+                <h4>Project Dossier</h4>
+                <p>Institutional framework at CAU Kiel, scientific supervision, authorship, and observatory background.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Dossier</span>
+                <span>View Dossier</span>
                 <span>➔</span>
               </div>
             </div>
@@ -743,14 +738,14 @@
             <div class="wallener-btn-card" data-jump-wallener="aims_objectives">
               <div class="wallener-btn-card-header">
                 <span class="wallener-btn-icon">🎯</span>
-                <span class="wallener-btn-badge benchmark">Módulo 02</span>
+                <span class="wallener-btn-badge benchmark">Module 02</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Objetivos &amp; Hipótesis</h4>
-                <p>Preguntas científicas sobre rehumidificación, compactación de turba y bypass de gases.</p>
+                <h4>Aims &amp; Hypotheses</h4>
+                <p>Core scientific questions regarding rewetting dynamics, peat compaction, and vascular gas bypass.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Objetivos</span>
+                <span>View Objectives</span>
                 <span>➔</span>
               </div>
             </div>
@@ -759,14 +754,14 @@
             <div class="wallener-btn-card" data-jump-wallener="macro">
               <div class="wallener-btn-card-header">
                 <span class="wallener-btn-icon">🛰️</span>
-                <span class="wallener-btn-badge benchmark">Módulo 03</span>
+                <span class="wallener-btn-badge benchmark">Module 03</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Sitio &amp; Footprint Satelital</h4>
-                <p>Ortofotos Sentinel-2, modelo de huella de flujo Korman &amp; Meixner y delimitación del predio.</p>
+                <h4>Site &amp; Satellite Footprint</h4>
+                <p>Sentinel-2 true-color orthophotos, Kormann &amp; Meixner 2D analytical footprint, and field parcel boundaries.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Huella &amp; Mapa</span>
+                <span>View Map &amp; Footprint</span>
                 <span>➔</span>
               </div>
             </div>
@@ -775,14 +770,14 @@
             <div class="wallener-btn-card" data-jump-wallener="biogeochemistry">
               <div class="wallener-btn-card-header">
                 <span class="wallener-btn-icon">🧪</span>
-                <span class="wallener-btn-badge benchmark">Módulo 04</span>
+                <span class="wallener-btn-badge benchmark">Module 04</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Biogeoquímica &amp; Suelos</h4>
-                <p>Estratigrafía de turba fen, horizonte sáprico, sulfatorreducción y perfiles de pH en Wallener Au.</p>
+                <h4>Biogeochemistry &amp; Soils</h4>
+                <p>Stratigraphy of fen peat, sapric plow pan horizon, sulfate reduction, and local vertical pH profiles.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Biogeoquímica</span>
+                <span>View Biogeochemistry</span>
                 <span>➔</span>
               </div>
             </div>
@@ -794,11 +789,11 @@
                 <span class="wallener-btn-badge embargoed">Embargoed</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Matriz Instrumental</h4>
-                <p>Diseño experimental: torre Eddy Covariance, cámaras cerradas N₂O/CH₄ y piezómetros.</p>
+                <h4>Instrumental Matrix</h4>
+                <p>Experimental field design: Eddy Covariance tower, manual &amp; automated gas chamber transects, and piezometers.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Instrumental</span>
+                <span>View Instrumentation</span>
                 <span>➔</span>
               </div>
             </div>
@@ -807,14 +802,14 @@
             <div class="wallener-btn-card" data-jump-wallener="data_pipeline">
               <div class="wallener-btn-card-header">
                 <span class="wallener-btn-icon">⚙️</span>
-                <span class="wallener-btn-badge benchmark">Módulo 06</span>
+                <span class="wallener-btn-badge benchmark">Module 06</span>
               </div>
               <div class="wallener-btn-body">
                 <h4>Pipeline &amp; QA/QC</h4>
-                <p>Flujo de datos EddyPro, flags de calidad Mauder &amp; Foken (2004), gapfilling RF y Lloyd-Taylor.</p>
+                <p>EddyPro 7 processing workflow, Mauder &amp; Foken (2004) quality flags, Random Forest gapfilling, and Lloyd-Taylor fits.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Pipeline</span>
+                <span>View Pipeline</span>
                 <span>➔</span>
               </div>
             </div>
@@ -826,11 +821,11 @@
                 <span class="wallener-btn-badge embargoed">Embargoed</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Flujos Eddy Covariance</h4>
-                <p>Series temporales de flujo turbulento, partición NEE (GPP / Reco) y balance de CH₄ en campo.</p>
+                <h4>Eddy Covariance Fluxes</h4>
+                <p>Turbulent flux time series, NEE partitioning (GPP vs. Reco), and field methane seasonality.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Flujos EC</span>
+                <span>View EC Fluxes</span>
                 <span>➔</span>
               </div>
             </div>
@@ -842,11 +837,11 @@
                 <span class="wallener-btn-badge embargoed">Embargoed</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Geofísica &amp; Geomecánica</h4>
-                <p>Tomografía de resistividad eléctrica (ERT), dinámica freática y ensayos de consolidación edométrica.</p>
+                <h4>Geophysics &amp; Geomechanics</h4>
+                <p>Electrical Resistivity Tomography (ERT), piezometric dynamics, and oedometer uniaxial peat consolidation tests.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Geofísica</span>
+                <span>View Geophysics</span>
                 <span>➔</span>
               </div>
             </div>
@@ -855,14 +850,14 @@
             <div class="wallener-btn-card" data-jump-wallener="flux_diagnostics">
               <div class="wallener-btn-card-header">
                 <span class="wallener-btn-icon">📊</span>
-                <span class="wallener-btn-badge benchmark">Módulo 09</span>
+                <span class="wallener-btn-badge benchmark">Module 09</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Micrometeo &amp; Cierre EBC</h4>
-                <p>Balance de energía superficial (EBC 85%), radiación neta, flujos H/LE y respuesta a VPD/u*.</p>
+                <h4>Micrometeo &amp; Energy Balance</h4>
+                <p>Surface Energy Balance Closure (EBC 85%), net radiation, sensible and latent heat fluxes (H/LE), and VPD response.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Micrometeo</span>
+                <span>View Micrometeo</span>
                 <span>➔</span>
               </div>
             </div>
@@ -871,14 +866,14 @@
             <div class="wallener-btn-card" data-jump-wallener="gwp_uncertainties">
               <div class="wallener-btn-card-header">
                 <span class="wallener-btn-icon">📐</span>
-                <span class="wallener-btn-badge benchmark">Módulo 10</span>
+                <span class="wallener-btn-badge benchmark">Module 10</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Incertidumbres &amp; GWP</h4>
-                <p>Simulación Monte Carlo, balance neto en CO₂-eq y comparación de forzamiento a 20 y 100 años.</p>
+                <h4>Uncertainties &amp; GWP</h4>
+                <p>Monte Carlo error propagation, net CO₂-equivalent balance, and comparison across 20-year and 100-year horizons.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Incertidumbres</span>
+                <span>View Uncertainties</span>
                 <span>➔</span>
               </div>
             </div>
@@ -887,14 +882,14 @@
             <div class="wallener-btn-card" data-jump-wallener="conclusions_outlook">
               <div class="wallener-btn-card-header">
                 <span class="wallener-btn-icon">💡</span>
-                <span class="wallener-btn-badge benchmark">Módulo 11</span>
+                <span class="wallener-btn-badge benchmark">Module 11</span>
               </div>
               <div class="wallener-btn-body">
-                <h4>Conclusiones &amp; Manejo</h4>
-                <p>Síntesis para la gestión de turberas templadas, lecciones de rehumidificación y recomendaciones.</p>
+                <h4>Conclusions &amp; Management</h4>
+                <p>Synthesis for temperate peatland management, rewetting trade-offs, and agronomic policy recommendations.</p>
               </div>
               <div class="wallener-btn-footer">
-                <span>Ver Conclusiones</span>
+                <span>View Conclusions</span>
                 <span>➔</span>
               </div>
             </div>
@@ -908,56 +903,56 @@
         <div class="general-method-container">
           <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
             <div class="landing-hero-badge">
-              <span>🛠️ Metodología General</span> • <span>Multi-Tier Wetland Instrumentation</span>
+              <span>🛠️ General Methodology</span> • <span>Multi-Tier Wetland Instrumentation</span>
             </div>
             <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
-              Instrumentación y Tecnologías de Medición en Humedales
+              Wetland Observation Technologies &amp; Instrumentation
             </h1>
             <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
-              El monitoreo integral de gases de efecto invernadero e hidrología en turberas exige una aproximación multiescala que combine micrometeorología continua a escala de ecosistema con análisis a microescala de procesos edáficos y mecánicos.
+              Comprehensive greenhouse gas and hydrological monitoring across peatlands requires a multi-scale architecture coupling non-invasive ecosystem-scale micrometeorology with high-resolution edaphic and mechanical process diagnostics.
             </p>
           </div>
 
           <div class="general-method-grid">
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🌪️</span> 1. Covarianza de Torbellinos (Eddy Covariance)</h3>
+              <h3 class="general-method-card-title"><span>🌪️</span> 1. Eddy Covariance Micrometeorology</h3>
               <p class="general-method-card-desc">
-                Considerado el estándar de oro (*gold standard*) para el monitoreo no invasivo continuo a escala de hectáreas. Mide la covarianza estadística de alta frecuencia (10–20 Hz) entre la velocidad vertical del viento (\(w'\)) y la concentración de gas (\(c'\)): \(F = \overline{w' c'}\). Utiliza anemómetros sónicos 3D combinados con analizadores infrarrojos o láser (IRGA / QCL) para CO₂, H₂O y CH₄. Proporciona series temporales ininterrumpidas sin perturbar el microclima ni la hidrología.
+                Considered the scientific gold standard for continuous, non-invasive ecosystem-scale monitoring over hectares. Measures high-frequency (10–20 Hz) statistical covariance between vertical wind velocity fluctuations (\(w'\)) and trace gas scalar concentrations (\(c'\)): \(F = \overline{w' c'}\). Combines 3D sonic anemometers with high-speed infrared or laser absorption spectrometers (IRGA / QCL) for CO₂, H₂O, and CH₄. Delivers uninterrupted time series without perturbing the hydrological or microclimatic boundary layer.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>📦</span> 2. Cámaras Cerradas de Gases (Chambers)</h3>
+              <h3 class="general-method-card-title"><span>📦</span> 2. Automated &amp; Manual Closed Chambers</h3>
               <p class="general-method-card-desc">
-                Sistemas automatizados o manuales desplegados sobre collares fijos en el suelo (0.2–1.0 m²). Miden la tasa de acumulación de concentración en el tiempo (\(dC/dt\)) para derivar el flujo superficial. Esenciales para cuantificar óxido nitroso (N₂O) y CH₄ en microtopografías específicas (montículos vs. depresiones), así como para separar la fotosíntesis (GPP) de la respiración (Reco) mediante cámaras transparentes y opacas acopladas.
+                Chamber systems deployed on permanent soil collars (0.2–1.0 m²). Measures concentration accumulation rates over time (\(dC/dt\)) to determine localized surface fluxes. Essential for capturing acute nitrous oxide (N₂O) and episodic methane (CH₄) hotspots across microtopographic gradients (hummocks vs. hollows), and for partitioning Net Ecosystem Exchange (NEE) into Gross Primary Productivity (GPP) and Ecosystem Respiration (Reco) via paired transparent and opaque hoods.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>📏</span> 3. Red Piezométrica y Nivel Freático (WTD)</h3>
+              <h3 class="general-method-card-title"><span>📏</span> 3. Continuous Piezometry &amp; Water Table Depth (WTD)</h3>
               <p class="general-method-card-desc">
-                Monitoreo continuo de la profundidad del nivel freático (*Water Table Depth*) mediante pozos piezométricos ranurados equipados con transductores de presión hidrostática y barométrica. Determina el espesor de la zona aireada (acrotelmo) donde ocurre la mineralización oxidativa y la profundidad de la interfase redox anóxica (catotelmo).
+                Continuous telemetry of groundwater table depth via slotted PVC monitoring wells fitted with submerged hydrostatic pressure transducers and automated barometric compensation. Establishes the boundary between the aerated oxic acrotelm—where heterotrophic microbial mineralization consumes peat carbon—and the saturated anoxic catotelm.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>⚡</span> 4. Sensores de Humedad, Potencial Redox y Temperatura</h3>
+              <h3 class="general-method-card-title"><span>⚡</span> 4. Soil Moisture, Redox Potential (Eh) &amp; Temperature</h3>
               <p class="general-method-card-desc">
-                Sondas de reflectometría de dominio temporal (TDR/FDR) para cuantificar el contenido volumétrico de agua (\(\theta\)) en múltiples horizontes, junto con electrodos de platino para registrar el potencial de óxido-reducción (\(Eh\)). Permiten identificar en tiempo real la transición entre ambientes óxicos (+300 mV), subóxicos y metanogénicos (&lt; -200 mV).
+                Multi-depth Time Domain Reflectometry (TDR/FDR) probes quantify volumetric water content (\(\theta\)) alongside permanent platinum redox electrodes referenced to Ag/AgCl. Tracks the continuous dynamic transition between oxic (\(Eh &gt; +300\text{ mV}\)), suboxic, and strictly methanogenic (\(Eh &lt; -200\text{ mV}\)) biogeochemical horizons in real time.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🗜️</span> 5. Geomecánica y Consolidación Edométrica</h3>
+              <h3 class="general-method-card-title"><span>🗜️</span> 5. Soil Geomechanics &amp; Oedometer Consolidation</h3>
               <p class="general-method-card-desc">
-                Ensayos de compresión uniaxial oedométrica en muestras inalteradas de turba. Permiten cuantificar el esfuerzo de preconsolidación (\(\sigma'_p\)), el índice de compresión (\(C_c\)) y el módulo de elasticidad. Revelan cómo el peso de maquinaria agrícola o el desecamiento histórico destruyen los macroporos elásticos de la turba, reduciendo de forma permanente la conductividad hidráulica.
+                Uniaxial incremental-loading oedometer tests performed on undisturbed peat cores. Quantifies the preconsolidation stress threshold (\(\sigma'_p\)), compression index (\(C_c\)), and swelling rebound. Directly demonstrates how drainage desiccation and historical heavy agricultural machinery irreversibly collapse elastic macropores, degrading saturated hydraulic conductivity (\(K_{sat}\)).
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🌐</span> 6. Tomografía de Resistividad Eléctrica (ERT)</h3>
+              <h3 class="general-method-card-title"><span>🌐</span> 6. Electrical Resistivity Tomography (ERT)</h3>
               <p class="general-method-card-desc">
-                Método geofísico no invasivo que inyecta corriente continua para cartografiar perfiles 2D y 3D de resistividad aparente en el subsuelo. Permite delinear con precisión métrica el espesor del depósito orgánico de turba, la cota del basamento mineral impermeable y las zonas de infiltración preferencial o surgencia artesiana.
+                Non-invasive geophysical method injecting direct electrical currents across multi-electrode arrays to construct 2D and 3D resistivity inversion models. Delineates total organic peat body thickness, maps the impermeable glacial mineral contact zone, and detects preferential subterranean groundwater flow paths or artesian springs.
               </p>
             </div>
           </div>
@@ -969,59 +964,59 @@
         <div class="general-method-container">
           <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
             <div class="landing-hero-badge">
-              <span>🛰️ Teledetección Espacial</span> • <span>Earth Observation &amp; Spectral Physics</span>
+              <span>🛰️ Spaceborne Remote Sensing</span> • <span>Earth Observation &amp; Spectral Physics</span>
             </div>
             <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
-              Satélites y Observación de la Tierra en Ecosistemas de Turbera
+              Satellites &amp; Earth Observation in Peatland Ecosystems
             </h1>
             <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
-              La teledetección multiespectral y de radar proporciona la escala espacial necesaria para extrapolar las mediciones micrometeorológicas puntuales a nivel de cuenca y evaluar de forma continua el estado biofísico de los humedales.
+              Multispectral optical and Synthetic Aperture Radar (SAR) constellations provide the spatial scaling required to extrapolate tower micrometeorological observations across regional wetland catchments and continuously assess ecosystem biophysical health.
             </p>
           </div>
 
           <div class="general-method-grid">
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🛰️</span> 1. Constelación Copernicus Sentinel-2 (MSI)</h3>
+              <h3 class="general-method-card-title"><span>🛰️</span> 1. Copernicus Sentinel-2 Constellation (MSI)</h3>
               <p class="general-method-card-desc">
-                Satélites gemelos de la ESA con órbita heliosincrónica y tiempo de revisita de 5 días. Disponen de 13 bandas espectrales que abarcan el visible (B2, B3, B4 a 10 m), borde rojo (B5, B6, B7, B8A a 20 m) y el infrarrojo de onda corta (B11, B12 a 20 m). Proporcionan la base de monitoreo fenológico y humedad de vegetación con resolución submétrica de píxel.
+                ESA twin sun-synchronous satellites delivering a 5-day revisit cycle. Features 13 spectral bands spanning visible (B2, B3, B4 at 10 m), red-edge (B5, B6, B7, B8A at 20 m), and Short-Wave Infrared (B11, B12 at 20 m). Provides the foundation for canopy phenology and vegetation water content tracking at field parcel resolution.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🌿</span> 2. Índices Espectrales Clave (NDVI, NDWI, NDRE)</h3>
+              <h3 class="general-method-card-title"><span>🌿</span> 2. Key Spectral Vegetation &amp; Moisture Indices</h3>
               <p class="general-method-card-desc">
-                • <strong>NDVI:</strong> \((B8 - B4) / (B8 + B4)\) — Vigor fotosintético, biomasa verde y fraccionamiento de radiación interceptada (fAPAR).<br>
-                • <strong>NDWI (Gao):</strong> \((B8 - B11) / (B8 + B11)\) — Contenido volumétrico de agua en el tejido foliar y dosel.<br>
-                • <strong>MNDWI (Xu):</strong> \((B3 - B11) / (B3 + B11)\) — Separación nítida de cuerpos de agua libre y encharcamiento.<br>
-                • <strong>NDRE:</strong> \((B8 - B5) / (B8 + B5)\) — Sensibilidad a clorofila en vegetación densa sin saturación espectral.
+                • <strong>NDVI:</strong> \((B8 - B4) / (B8 + B4)\) — Photosynthetic vigor, green biomass, and fraction of absorbed photosynthetically active radiation (fAPAR).<br>
+                • <strong>NDWI (Gao):</strong> \((B8 - B11) / (B8 + B11)\) — Leaf canopy water content and foliar moisture stress.<br>
+                • <strong>MNDWI (Xu):</strong> \((B3 - B11) / (B3 + B11)\) — Delineation of open standing water and surface ponding.<br>
+                • <strong>NDRE:</strong> \((B8 - B5) / (B8 + B5)\) — High chlorophyll sensitivity in dense wetland canopies without saturation.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>📡</span> 3. Radar de Apertura Sintética (SAR) Sentinel-1</h3>
+              <h3 class="general-method-card-title"><span>📡</span> 3. Synthetic Aperture Radar (SAR) Sentinel-1</h3>
               <p class="general-method-card-desc">
-                Radar de banda C (5.4 GHz) con polarizaciones VV y VH. Capaz de adquirir datos a través de cobertura nubosa y de noche. El mecanismo de doble rebote (*double-bounce scattering*) entre los tallos verticales de vegetación palustre (e.g., *Phragmites*, *Typha*) y la lámina de agua permite cartografiar inundaciones bajo el dosel vegetal. Mediante InSAR, detecta deformaciones de la superficie de turba (*peat oscillation*) a escala milimétrica.
+                C-band radar (5.4 GHz) with dual-polarization (VV + VH). Capable of imaging through cloud cover and darkness. The double-bounce scattering mechanism between emergent vertical vegetation stalks (e.g., *Phragmites*, *Typha*) and standing surface water accurately maps sub-canopy inundation. InSAR interferometry tracks millimeter-scale vertical surface oscillation ("peat breathing").
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🌡️</span> 4. Landsat 8/9 y Series Térmicas Históricas</h3>
+              <h3 class="general-method-card-title"><span>🌡️</span> 4. Landsat 8/9 &amp; Historical Thermal Archives</h3>
               <p class="general-method-card-desc">
-                Instrumento TIRS con dos bandas en el infrarrojo térmico (10.6–12.5 µm). Permite estimar la Temperatura de Superficie del Suelo (LST) y, mediante modelos de balance de energía (SEBAL, METRIC), cuantificar la evapotranspiración real (ET) a escala regional. Ofrece además el archivo histórico continuo más extenso (&gt;40 años) para rastrear desecamiento y degradación histórica de turba.
+                Thermal Infrared Sensor (TIRS) providing dual-band thermal data (10.6–12.5 µm). Estimates Land Surface Temperature (LST) and parameterizes energy balance algorithms (SEBAL, METRIC) for regional actual evapotranspiration (ET). Offers a 40+ year continuous historical archive tracking peatland drainage and historical land degradation.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🏔️</span> 5. Modelos Digitales de Elevación LiDAR</h3>
+              <h3 class="general-method-card-title"><span>🏔️</span> 5. High-Resolution LiDAR Digital Elevation Models</h3>
               <p class="general-method-card-desc">
-                Altimetría láser aerotransportada de alta resolución (&lt; 0.5 m horizontal, vertical centimétrica). Fundamental para cartografiar la red histórica de zanjas de drenaje, calcular el Índice Topográfico de Humedad (TWI) y modelar los flujos superficiales de escorrentía hacia vertederos y compuertas de retención de agua.
+                Airborne laser scanning altimetry (&lt; 0.5 m spatial, centimeter vertical accuracy). Crucial for mapping historical drainage ditch networks, computing the Topographic Wetness Index (TWI), and modeling surface overland runoff towards weirs and retention polders.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🎯</span> 6. Acoplamiento Satélite - Huella de Flujo (Footprint)</h3>
+              <h3 class="general-method-card-title"><span>🎯</span> 6. Satellite-to-Footprint Dynamic Coupling</h3>
               <p class="general-method-card-desc">
-                Integración analítica donde los polígonos de huella micrometeorológica generados en tiempo real por el modelo analítico (Kormann &amp; Meixner o Kljun et al.) se proyectan sobre las escenas satelitales. Permite extraer firmas espectrales ponderadas en la zona de mayor aporte al flujo, posibilitando el entrenamiento de redes neuronales (ANN) y algoritmos de Machine Learning para extrapolación regional de flujos de carbono.
+                Analytical integration where dynamic micrometeorological flux footprint source areas (Kormann &amp; Meixner or Kljun et al. models) are projected onto satellite imagery. Extracts weighted spectral signatures from the dominant contribution zones to calibrate neural networks and machine learning models for regional carbon flux upscaling.
               </p>
             </div>
           </div>
@@ -1033,61 +1028,61 @@
         <div class="general-method-container">
           <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
             <div class="landing-hero-badge">
-              <span>⚗️ Biogeoquímica de Suelos</span> • <span>Redox Ladders &amp; Peatland Typology</span>
+              <span>⚗️ Soil Biogeochemistry</span> • <span>Redox Ladders &amp; Peatland Typology</span>
             </div>
             <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
-              Biogeoquímica Redox y Tipologías Globales de Turbera
+              Redox Biogeochemistry &amp; Global Peatland Typologies
             </h1>
             <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
-              El destino del carbono y el nitrógeno en los humedales está gobernado por principios termodinámicos universales: la disponibilidad de oxígeno y la jerarquía de receptores finales de electrones controlan la respiración, la metanogénesis y el bypass vascular.
+              The fate of carbon and nitrogen across wetlands is governed by universal thermodynamic principles: oxygen availability and the hierarchy of terminal electron acceptors strictly regulate respiration, methanogenesis, and vascular bypass shunts.
             </p>
           </div>
 
           <div class="general-method-grid">
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>⚡</span> 1. La Cascada Termodinámica Redox</h3>
+              <h3 class="general-method-card-title"><span>⚡</span> 1. The Thermodynamic Redox Ladder</h3>
               <p class="general-method-card-desc">
-                A medida que un suelo se inunda y se agota el O₂, los consorcios microbianos utilizan aceptores de electrones alternativos en orden decreciente de energía libre (\(\Delta G^\circ\)):<br>
-                • <strong>Respiración aeróbica:</strong> \(O_2 \rightarrow H_2O\) (\(Eh &gt; +300\) mV)<br>
-                • <strong>Desnitrificación:</strong> \(NO_3^- \rightarrow N_2O \rightarrow N_2\) (\(+100\) a \(+300\) mV)<br>
-                • <strong>Reducción de Mn y Fe:</strong> \(Fe^{3+} \rightarrow Fe^{2+}\) (\(-100\) a \(+100\) mV)<br>
-                • <strong>Sulfatorreducción:</strong> \(SO_4^{2-} \rightarrow H_2S\) (\(-200\) a \(-100\) mV)<br>
-                • <strong>Metanogénesis:</strong> \(CO_2 \rightarrow CH_4\) (\(Eh &lt; -200\) mV)
+                As peat saturates and O₂ is depleted, microbial consortia utilize alternative electron acceptors in order of decreasing free energy yield (\(\Delta G^\circ\)):<br>
+                • <strong>Aerobic Respiration:</strong> \(\mathrm{O}_2 \rightarrow \mathrm{H}_2\mathrm{O}\) (\(Eh > +300\text{ mV}\))<br>
+                • <strong>Denitrification:</strong> \(\mathrm{NO}_3^- \rightarrow \mathrm{N}_2\mathrm{O} \rightarrow \mathrm{N}_2\) (\(+100\text{ to }+300\text{ mV}\))<br>
+                • <strong>Manganese &amp; Iron Reduction:</strong> \(\mathrm{Fe}^{3+} \rightarrow \mathrm{Fe}^{2+}\) (\(-100\text{ to }+100\text{ mV}\))<br>
+                • <strong>Sulfate Reduction:</strong> \(\mathrm{SO}_4^{2-} \rightarrow \mathrm{H}_2\mathrm{S}\) (\(-200\text{ to }-100\text{ mV}\))<br>
+                • <strong>Methanogenesis:</strong> \(\mathrm{CO}_2 \rightarrow \mathrm{CH}_4\) (\(Eh < -200\text{ mV}\))
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🔄</span> 2. La Paradoja de la Rehumidificación (Rewetting Paradox)</h3>
+              <h3 class="general-method-card-title"><span>🔄</span> 2. The Rewetting Paradox</h3>
               <p class="general-method-card-desc">
-                Al restaurar el nivel de agua en una turbera degradada, se detiene de inmediato la oxidación masiva de carbono (\(CO_2\)). Sin embargo, la saturación anóxica sobre horizontes de materia orgánica lábil recientemente inundados desencadena una emisión transitoria intensa de metano (\(CH_4\)) antes de que los consorcios de arqueas metanotróficas se establezcan en la superficie. Manejar este balance es el reto central de la restauración.
+                Restoring water table levels across degraded peat immediately halts catastrophic aerobic CO₂ mineralization. However, sudden anoxia over newly submerged labile organic horizons can trigger an acute initial pulse of methane (CH₄) before specialized aerobic methanotrophic communities establish within the emergent surface biofilm. Balancing this trade-off is the central challenge in wetland restoration.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🌾</span> 3. Turberas Bajas Minerotróficas (Fens / Niedermoore)</h3>
+              <h3 class="general-method-card-title"><span>🌾</span> 3. Minerotrophic Fens (Niedermoore)</h3>
               <p class="general-method-card-desc">
-                Alimentadas por aguas subterráneas y superficiales cargadas de bases minerales disueltas (Ca²⁺, Mg²⁺). Presentan pH neutro a ligeramente básico (5.5–7.5) y elevada actividad biológica. Vegetación dominada por ciperáceas (*Carex*), carrizos (*Phragmites*) y gramíneas. Altas tasas de productividad primaria neta, pero con potencial de emisiones de metano elevadas bajo anoxia prolongada debido a los conductos de aerénquima.
+                Fed by groundwater and surface runoff enriched with dissolved base cations (Ca²⁺, Mg²⁺). Exhibits circumneutral to alkaline pH (5.5–7.5) and high biological productivity. Canopy dominated by sedges (*Carex*), reeds (*Phragmites*), and grasses. Features high gross primary productivity coupled with vascular aerenchyma bypass pathways capable of venting deep CH₄ directly to the atmosphere.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🌿</span> 4. Turberas Altas Ombrotróficas (Bogs / Hochmoore)</h3>
+              <h3 class="general-method-card-title"><span>🌿</span> 4. Ombrotrophic Raised Bogs (Hochmoore)</h3>
               <p class="general-method-card-desc">
-                Alimentadas exclusivamente por precipitación atmosférica; desconectadas de las aguas subterráneas regionales. Ecosistemas extremadamente ácidos (pH 3.2–4.5) y oligotróficos. Dominados por musgos del género *Sphagnum*, que intercambian protones por cationes metálicos e inhiben la actividad bacteriana con polifenoles (sphagnum acid). La metanogénesis es significativamente menor debido a la baja disponibilidad de nutrientes y la acidez.
+                Fed exclusively by atmospheric precipitation, hydrologically decoupled from regional mineral groundwater. Highly acidic (pH 3.2–4.5) and nutrient-poor. Dominated by peat mosses (*Sphagnum*) and ericaceous shrubs. *Sphagnum* exchanges cations for protons and releases polyphenolic acids that suppress bacterial decay, resulting in slow decomposition and naturally suppressed methane emissions.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🎋</span> 5. Paludicultura (Paludiculture / Nasse Bewirtschaftung)</h3>
+              <h3 class="general-method-card-title"><span>🎋</span> 5. Paludiculture (Wet Agriculture &amp; Forestry)</h3>
               <p class="general-method-card-desc">
-                Aprovechamiento agrícola y forestal productivo de turberas rehumidificadas sin drenaje. Cultivos adaptados a saturación hídrica como totora (*Typha latifolia*), carrizo (*Phragmites australis*), junco (*Scirpus*) o cultivo de musgos (*Sphagnum farming*). Proporciona biomasa para materiales aislantes de construcción, celulosa y sustratos hortícolas libres de turba fósil, reteniendo el carbono en el suelo.
+                Productive agricultural and silvicultural cultivation of rewetted peatlands under near-surface water tables. Wetland crops include cattail (*Typha latifolia*), common reed (*Phragmites australis*), bulrush (*Scirpus*), and *Sphagnum* farming. Yields high-value biomass for insulation, fiber, and fossil-free horticultural substrates while preserving the soil carbon pool.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🚜</span> 6. Suelos de Turba Drenados Agrícolas</h3>
+              <h3 class="general-method-card-title"><span>🚜</span> 6. Drained Agricultural Peat Soils</h3>
               <p class="general-method-card-desc">
-                Turberas modificadas con zanjas y drenes subterráneos para pastoreo o agricultura intensiva. El descenso del nivel freático expone el depósito orgánico al aire atmosférico, provocando una respiración heterotrófica violenta (\(15\text{--}40\text{ t }CO_2\text{/ha/año}\)), subsidencia superficial irreversible (\(1\text{--}3\text{ cm/año}\)), pérdida de macroporosidad y lavado masivo de nitratos hacia las cuencas.
+                Peatlands modified with open ditches and tile drainage for intensive grazing or arable cropping. Groundwater drawdown exposes organic horizons to atmospheric oxygen, inducing severe heterotrophic respiration (\(15\text{–}40\text{ t CO}_2\text{ ha}^{-1}\text{ yr}^{-1}\)), continuous land subsidence (\(1\text{–}3\text{ cm yr}^{-1}\)), irreversible macropore collapse, and massive downstream nitrate leaching.
               </p>
             </div>
           </div>
@@ -1099,65 +1094,65 @@
         <div class="general-method-container">
           <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
             <div class="landing-hero-badge">
-              <span>⚖️ Contabilidad de Carbono</span> • <span>MMRV Standards &amp; Climate Forcing</span>
+              <span>⚖️ Carbon Accounting</span> • <span>MMRV Standards &amp; Climate Forcing</span>
             </div>
             <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
-              Estándares de Contabilidad de Carbono y Forzamiento Radiativo
+              Carbon Accounting Standards &amp; Radiative Forcing Metrics
             </h1>
             <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
-              Los marcos de Medición, Reporte y Verificación (MMRV) de alta integridad exigen rigor matemático al comparar gases de diferente vida media atmosférica y evaluar la adicionalidad climática de proyectos de restauración de turberas.
+              High-integrity Measurement, Reporting, and Verification (MMRV) frameworks demand mathematical rigor when comparing greenhouse gases of vastly different atmospheric lifetimes and evaluating the climate additionality of peatland restoration.
             </p>
           </div>
 
           <div class="general-method-grid">
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>📊</span> 1. Balance Neto de Gases de Efecto Invernadero (NGHGB)</h3>
+              <h3 class="general-method-card-title"><span>📊</span> 1. Net Greenhouse Gas Balance (NGHGB)</h3>
               <p class="general-method-card-desc">
-                Ecuación unificada para el balance radiativo de un humedal:<br>
+                Unified mass balance equation for ecosystem climate radiative forcing:<br>
                 \[ NGHGB = NEE_{CO_2} + (F_{CH_4} \cdot GWP_{CH_4}) + (F_{N_2O} \cdot GWP_{N_2O}) + F_{DOC} \]<br>
-                Donde \(NEE\) es el intercambio neto de CO₂, \(F_{CH_4}\) y \(F_{N_2O}\) son los flujos netos ponderados por sus potenciales de calentamiento, y \(F_{DOC}\) representa las pérdidas acuáticas de carbono orgánico disuelto exportadas por el sistema hidrográfico.
+                Where \(NEE\) is net ecosystem CO₂ exchange, \(F_{CH_4}\) and \(F_{N_2O}\) are surface trace gas fluxes weighted by their global warming potentials, and \(F_{DOC}\) represents aquatic dissolved organic carbon export through ditch drainage networks.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>⏳</span> 2. El Dilema Temporal: GWP-100 vs. GWP-20</h3>
+              <h3 class="general-method-card-title"><span>⏳</span> 2. The Time Horizon Dilemma: GWP-100 vs. GWP-20</h3>
               <p class="general-method-card-desc">
-                • <strong>GWP-100:</strong> Horizonte a 100 años adoptado por la CMNUCC. El metano tiene un factor de 27.2 a 29.8 (IPCC AR6), y el N₂O de 273. Refleja el impacto de fondo a largo plazo.<br>
-                • <strong>GWP-20:</strong> Horizonte a 20 años donde el factor del metano sube a 82.5–84. Enfatiza el riesgo de retroalimentación climática a corto plazo en proyectos de rehumidificación reciente.<br>
-                La plataforma PEAT-TWIN calcula ambos horizontes para una auditoría climática transparente.
+                • <strong>GWP-100:</strong> 100-year horizon standard adopted under UNFCCC. Methane factor is 27.2 to 29.8 (IPCC AR6), and N₂O is 273. Reflects long-term steady-state planetary warming.<br>
+                • <strong>GWP-20:</strong> 20-year short-term horizon where the methane multiplier rises to 82.5–84. Highlights near-term tipping-point climate risks during early rewetting phases.<br>
+                PEAT-TWIN computes both metrics side by side for transparent multi-decadal carbon auditing.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>📉</span> 3. Forzamiento Radiativo Sostenido (SGWP)</h3>
+              <h3 class="general-method-card-title"><span>📉</span> 3. Sustained-Flux Radiative Forcing (SGWP)</h3>
               <p class="general-method-card-desc">
-                Los factores estándar de GWP asumen una emisión de pulso único instantáneo. Sin embargo, los humedales emiten y secuestran gases de forma sostenida y continua en el tiempo. Utilizando modelos de forzamiento radiativo acumulativo (SGWP y SGWP-100), se demuestra que debido a la descomposición atmosférica del metano (\(\tau \approx 11.8\) años), el secuestro persistente de CO₂ convierte a las turberas rehumidificadas en sumideros netos de enfriamiento climático (*cooling effect*) en escalas de 30 a 50 años.
+                Standard GWP metrics assume a single instantaneous pulse emission. In reality, peatland ecosystems emit and sequester greenhouse gases continuously over decades. Applying sustained-flux modeling (SGWP) demonstrates that due to the rapid atmospheric breakdown of methane (\(\tau \approx 11.8\text{ years}\)), continuous long-term CO₂ sequestration converts rewetted peatlands into net planetary cooling sinks within 30 to 50 years.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>📐</span> 4. Niveles Metodológicos IPCC (Tiers 1, 2 y 3)</h3>
+              <h3 class="general-method-card-title"><span>📐</span> 4. IPCC Methodological Tiers (Tiers 1, 2, and 3)</h3>
               <p class="general-method-card-desc">
-                • <strong>Tier 1:</strong> Factores de emisión globales por defecto (IPCC Wetlands Supplement 2013). Alta incertidumbre (\(\pm 50\text{--}100\%\)).<br>
-                • <strong>Tier 2:</strong> Factores calibrados a escala regional y clasificados por clases de nivel freático medio anual.<br>
-                • <strong>Tier 3:</strong> Modelos biofísicos deterministas de alta resolución basados en procesos (como los algoritmos de PEAT-TWIN) respaldados por datos continuos de torres Eddy Covariance. Reduce la incertidumbre a niveles auditables para emisión de créditos de alta prima.
+                • <strong>Tier 1:</strong> Global default emission factors categorized by broad soil and land-use classes (IPCC 2013 Wetlands Supplement). High uncertainty (\(\pm 50\text{–}100\%\)).<br>
+                • <strong>Tier 2:</strong> Regionally calibrated emission factors stratified by annual mean water table depth classes.<br>
+                • <strong>Tier 3:</strong> High-resolution process-based biophysical models (such as the PEAT-TWIN engine) validated by continuous Eddy Covariance tower networks. Eliminates systemic bias and unlocks premium institutional carbon credits.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>📜</span> 5. Metodologías de Créditos de Carbono (VM0033 / MoorFutures)</h3>
+              <h3 class="general-method-card-title"><span>📜</span> 5. Carbon Credit Methodologies (VM0033 / MoorFutures)</h3>
               <p class="general-method-card-desc">
-                Estándares internacionales de certificación de carbono en humedales (Verra VCS VM0033: *Restoration of Tidal Wetlands and Peatlands*, y el estándar regional alemán MoorFutures). Exigen el establecimiento de una línea base de emisiones contrafactual (*baseline scenario*), monitoreo continuo y un buffer de permanencia (*buffer pool*) del 10–20% contra eventos de sequía extrema o incendios.
+                Voluntary carbon market certification standards (Verra VCS VM0033: *Restoration of Tidal Wetlands and Peatlands*, and Germany's regional MoorFutures standard). Requires setting a counterfactual drained baseline scenario, continuous monitoring, and setting aside a permanence buffer pool (10–20%) against wildfire or drought reversal risks.
               </p>
             </div>
 
             <div class="general-method-card">
-              <h3 class="general-method-card-title"><span>🛡️</span> 6. Adicionalidad, Permanencia y Fuga (Leakage)</h3>
+              <h3 class="general-method-card-title"><span>🛡️</span> 6. Additionality, Permanence &amp; Leakage Safeguards</h3>
               <p class="general-method-card-desc">
-                Criterios de integridad esenciales para la comercialización de créditos de carbono:<br>
-                • <strong>Adicionalidad:</strong> Demostrar que la restauración no habría ocurrido sin la financiación del mercado de carbono.<br>
-                • <strong>Permanencia:</strong> Garantía legal y ecológica de mantenimiento del nivel freático durante al menos 30 a 50 años.<br>
-                • <strong>Fuga de actividad:</strong> Verificar que la rehumidificación del predio agrícola no traslade el drenaje y la producción intensiva a turberas contiguas.
+                Integrity pillars required for high-grade peatland carbon crediting:<br>
+                • <strong>Additionality:</strong> Proving rewetting would not have occurred without carbon finance revenue.<br>
+                • <strong>Permanencia:</strong> Legal, institutional, and hydrological safeguards guaranteeing elevated water tables for 30–100 years.<br>
+                • <strong>Activity Leakage:</strong> Verifying agricultural drainage and intensive dairy farming are not simply displaced to adjacent peat parcels.
               </p>
             </div>
           </div>
@@ -1221,9 +1216,6 @@
 
             <!-- Interactive Quick Actions — Launch Options -->
             <div class="cover-actions-row" style="justify-content: center; gap: 1rem; margin-top: 1.25rem;">
-              <button class="cover-btn-start" id="btn-start-defense" style="background: linear-gradient(135deg, #0284c7, #0369a1); box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); font-weight: 700;">
-                <span>🧭</span> Launch Executive Guided Tour (22 Slides)
-              </button>
               <button class="cover-btn-start" id="btn-cover-soil" style="background: linear-gradient(135deg, #059669, #047857); box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35); font-weight: 700;">
                 <span>🌍</span> Open Live Ecosystem Twin
               </button>
@@ -1501,13 +1493,13 @@
 
               <!-- 4. Dynamic Animations (Pausables, 24h & 365d) -->
               <div class="twin-anim-group" style="display: flex; gap: 5px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
-                <button type="button" class="preset-pill" id="btn-anim-diurnal" title="Simular / Pausar 24h: Ciclo diurno con paso de la hora" style="padding: 5px 10px; font-size: 0.74rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(2, 132, 199, 0.25); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45); transition: all 0.2s ease;">
+                <button type="button" class="preset-pill" id="btn-anim-diurnal" title="Simulate / Pause 24h: Diurnal cycle with hourly progression" style="padding: 5px 10px; font-size: 0.74rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(2, 132, 199, 0.25); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45); transition: all 0.2s ease;">
                   <span class="anim-btn-icon">▶</span> <span class="anim-btn-text">24h Cycle</span>
                 </button>
-                <button type="button" class="preset-pill" id="btn-anim-annual" title="Simular / Pausar 365d: Evolución anual con paso de los días" style="padding: 5px 10px; font-size: 0.74rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(217, 119, 6, 0.25); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.45); transition: all 0.2s ease;">
+                <button type="button" class="preset-pill" id="btn-anim-annual" title="Simulate / Pause 365d: Annual evolution with daily progression" style="padding: 5px 10px; font-size: 0.74rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(217, 119, 6, 0.25); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.45); transition: all 0.2s ease;">
                   <span class="anim-btn-icon">▶</span> <span class="anim-btn-text">365d Year</span>
                 </button>
-                <button type="button" class="preset-pill" id="btn-reset-sim" title="Restablecer simulación a equilibrio inicial" style="padding: 5px 8px; font-size: 0.72rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); transition: all 0.2s ease;">
+                <button type="button" class="preset-pill" id="btn-reset-sim" title="Reset simulation to initial equilibrium" style="padding: 5px 8px; font-size: 0.72rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); transition: all 0.2s ease;">
                   ↺ Reset
                 </button>
               </div>
@@ -2273,28 +2265,28 @@
             <!-- Dynamic In-Canvas Pause Flash Feedback Indicator -->
             <div id="twin-canvas-pause-flash" class="twin-pause-flash">
               <span id="twin-pause-flash-icon">⏸</span>
-              <span id="twin-pause-flash-text">Pausado</span>
+              <span id="twin-pause-flash-text">Paused</span>
             </div>
 
-            <!-- DYNAMIC INTERACTIVE TIME PROGRESSION OVERLAY (Paso de la Hora / Paso de los Días) -->
+            <!-- DYNAMIC INTERACTIVE TIME PROGRESSION OVERLAY (Hourly Progression / Daily Progression) -->
             <div id="twin-time-progress-overlay" class="twin-time-progress-overlay" style="display: none;">
               <div class="twin-time-header">
                 <div class="twin-time-title-wrap">
-                  <span id="twin-overlay-mode-badge" class="twin-mode-badge">☀️ Ciclo Diurno 24h</span>
+                  <span id="twin-overlay-mode-badge" class="twin-mode-badge">☀️ 24h Diurnal Cycle</span>
                   <span id="twin-overlay-main-clock" class="twin-main-clock">12:00 hrs</span>
-                  <span id="twin-overlay-pause-status" class="twin-pause-badge">▶ En reproducción</span>
+                  <span id="twin-overlay-pause-status" class="twin-pause-badge">▶ Running</span>
                 </div>
                 <div class="twin-time-controls-right">
-                  <button type="button" id="twin-overlay-btn-pause" class="twin-overlay-btn" title="Pausar / Reanudar simulación">
-                    <span id="twin-overlay-btn-pause-icon">⏸</span> <span id="twin-overlay-btn-pause-label">Pausar</span>
+                  <button type="button" id="twin-overlay-btn-pause" class="twin-overlay-btn" title="Pause / Resume simulation">
+                    <span id="twin-overlay-btn-pause-icon">⏸</span> <span id="twin-overlay-btn-pause-label">Pause</span>
                   </button>
-                  <button type="button" id="twin-overlay-btn-close" class="twin-overlay-close-btn" title="Ocultar visor">✕</button>
+                  <button type="button" id="twin-overlay-btn-close" class="twin-overlay-close-btn" title="Close panel">✕</button>
                 </div>
               </div>
 
               <div class="twin-time-body">
                 <div id="twin-overlay-phenomenon" class="twin-overlay-phenom-text">
-                  Mezcla turbulenta acoplada • Asimilación fotosintética constante
+                  Coupled turbulent boundary layer • Active photosynthetic assimilation
                 </div>
 
                 <!-- Interactive Time Progression Scrubber -->
@@ -2302,14 +2294,14 @@
                   <div class="twin-scrubber-labels" id="twin-scrubber-labels">
                     <!-- Dynamic hour or month ticks injected by engine -->
                   </div>
-                  <div class="twin-scrubber-track" id="twin-scrubber-track" title="Haz clic o arrastra para cambiar la hora o el día">
+                  <div class="twin-scrubber-track" id="twin-scrubber-track" title="Click or drag to scrub time or day">
                     <div class="twin-scrubber-fill" id="twin-scrubber-fill" style="width: 50%;"></div>
                     <div class="twin-scrubber-thumb" id="twin-scrubber-thumb" style="left: 50%;"></div>
                   </div>
                   <div class="twin-scrubber-subtext">
-                    <span id="twin-scrubber-sub-left">00:00 Medianoche</span>
-                    <span id="twin-scrubber-hint">💡 Clic en el lienzo para pausar / reanudar • Clic en la barra para navegar el tiempo</span>
-                    <span id="twin-scrubber-sub-right">24:00 Noche</span>
+                    <span id="twin-scrubber-sub-left">00:00 Midnight</span>
+                    <span id="twin-scrubber-hint">💡 Click canvas to pause / resume • Click scrubber track to jump time</span>
+                    <span id="twin-scrubber-sub-right">24:00 Night</span>
                   </div>
                 </div>
               </div>
@@ -2528,7 +2520,7 @@
           </div>
 
           <!-- INTERACTIVE LAB SANDBOX PANEL (EXTENDED CONTROLS) -->
-          <div class="twin-sandbox-tray collapsed" id="twin-sandbox-tray">
+          <div class="twin-sandbox-tray" id="twin-sandbox-tray">
               <div class="twin-sandbox-header">
                 <div class="twin-sandbox-title-wrap">
                   <span class="sandbox-icon">🔬</span>
@@ -2551,7 +2543,7 @@
                     ❓ How It Works
                   </button>
                   <button type="button" class="sandbox-btn-toggle" id="btn-sandbox-tray-toggle" title="Toggle Sandbox Drawer">
-                    ▲ Expand
+                    ✕ Close
                   </button>
                 </div>
               </div>

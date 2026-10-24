@@ -193,6 +193,9 @@ class WetlandMonitorApp {
         e.preventDefault();
         const target = el.dataset.navTarget;
         if (target) {
+          if (target === "soil_interface") {
+            this.isWallenerTwinMode = false;
+          }
           this.switchView(target);
           const dropdown = document.getElementById("menu-methodology");
           if (dropdown) dropdown.classList.add("hidden");
@@ -206,7 +209,10 @@ class WetlandMonitorApp {
         e.preventDefault();
         const target = el.dataset.jumpWallener;
         if (target === "soil_interface") {
+          this.isWallenerTwinMode = true;
           if (this.sandbox) this.sandbox.loadArchetype("fen");
+        } else {
+          this.isWallenerTwinMode = false;
         }
         if (target) this.switchView(target);
       });
@@ -217,6 +223,12 @@ class WetlandMonitorApp {
       el.addEventListener("click", (e) => {
         e.preventDefault();
         const target = el.dataset.wallenerNav;
+        if (target === "soil_interface") {
+          this.isWallenerTwinMode = true;
+          if (this.sandbox) this.sandbox.loadArchetype("fen");
+        } else {
+          this.isWallenerTwinMode = false;
+        }
         if (target) this.switchView(target);
       });
     });
@@ -449,7 +461,7 @@ class WetlandMonitorApp {
     // Toggle Wallener project contextual nav bar
     const wallenerNav = document.getElementById("wallener-project-nav-bar");
     if (wallenerNav) {
-      if (wallenerSubviews.includes(viewKey)) {
+      if (wallenerSubviews.includes(viewKey) || (viewKey === "soil_interface" && this.isWallenerTwinMode)) {
         wallenerNav.classList.remove("hidden");
         // Update active tab pill in Wallener project nav bar
         wallenerNav.querySelectorAll(".wallener-tab-pill").forEach(pill => {
@@ -457,6 +469,26 @@ class WetlandMonitorApp {
         });
       } else {
         wallenerNav.classList.add("hidden");
+      }
+    }
+
+    // Specific Twin Mode Handlers (Universal Lab Sandbox vs Wallener Calibrated Benchmark)
+    if (viewKey === "soil_interface") {
+      const tray = document.getElementById("twin-sandbox-tray");
+      const toggleBtn = document.getElementById("btn-sandbox-tray-toggle");
+      const hudOpenBtn = document.getElementById("btn-open-lab-sandbox");
+
+      if (this.isWallenerTwinMode) {
+        // Wallener Au Calibrated Benchmark Twin
+        if (this.sandbox) this.sandbox.loadArchetype("fen");
+      } else {
+        // Universal Twin Lab Sandbox: reset running loops and uncollapse sandbox levers
+        if (this.digitalTwin) {
+          this.digitalTwin.resetSimulation();
+        }
+        if (tray) tray.classList.remove("collapsed");
+        if (toggleBtn) toggleBtn.textContent = "✕ Close";
+        if (hudOpenBtn) hudOpenBtn.classList.add("active");
       }
     }
 
@@ -547,6 +579,20 @@ class WetlandMonitorApp {
           }
         }, 150);
       }
+    }
+
+    // Automatically re-render any LaTeX equations in the newly active view
+    if (typeof window.renderScientificMath === "function") {
+      setTimeout(() => {
+        window.renderScientificMath();
+      }, 60);
+    }
+
+    // Re-scan and enforce academic embargo on all empirical plots
+    if (typeof this.scanAndApplyEmbargoOverlays === "function") {
+      setTimeout(() => {
+        this.scanAndApplyEmbargoOverlays();
+      }, 100);
     }
   }
 
@@ -2152,6 +2198,9 @@ class WetlandMonitorApp {
       localStorage.setItem("wetland_embargo_active", String(active));
       document.body.classList.toggle("embargo-active", active);
       this.updateAdminModalUI();
+      if (typeof this.scanAndApplyEmbargoOverlays === "function") {
+        this.scanAndApplyEmbargoOverlays();
+      }
     };
 
     const lockSession = () => {
@@ -2274,8 +2323,15 @@ class WetlandMonitorApp {
   }
 
   scanAndApplyEmbargoOverlays() {
-    // Find candidate figures in the document
-    const images = document.querySelectorAll("img.thesis-plot, .presentation-card img, .flux-plot-card img, .ghg-plot-container img, .modal-figure-img, .flowchart-container img, .explorer-gallery-card img");
+    if (!this.isEmbargoActive) {
+      document.querySelectorAll(".embargo-blurred-target").forEach(el => el.classList.remove("embargo-blurred-target"));
+      document.querySelectorAll(".embargoed-wrapper").forEach(el => el.classList.remove("embargoed-wrapper"));
+      document.querySelectorAll(".embargo-overlay").forEach(el => el.remove());
+      return;
+    }
+
+    // Find candidate figures across all views and containers
+    const images = document.querySelectorAll("img:not(#active-brand-logo-img):not(.cover-logo-img):not(.landing-seal-img):not(.no-zoom)");
     images.forEach(img => {
       const src = img.getAttribute("src") || "";
       const alt = img.getAttribute("alt") || "";
