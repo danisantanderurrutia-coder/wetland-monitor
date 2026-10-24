@@ -772,6 +772,181 @@
 }
 
 /* ==========================================================================
+   UPPER ATMOSPHERIC DOCK (SKY & GASES CONTROLS)
+   ========================================================================== */
+.atmo-control-dock {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 6px 12px 4px 12px;
+  padding: 5px 12px;
+  background: rgba(10, 16, 28, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  z-index: 35;
+}
+
+.atmo-dock-label {
+  font-size: 0.68rem;
+  color: #64748b;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-right: 2px;
+}
+
+.atmo-pill {
+  padding: 3px 9px;
+  font-size: 0.71rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  transition: all 0.2s ease;
+}
+
+.atmo-pill:hover {
+  background: rgba(56, 189, 248, 0.25);
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+.atmo-pill[data-on="false"] {
+  opacity: 0.4;
+  text-decoration: line-through;
+  background: rgba(148, 163, 184, 0.08);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+}
+
+.gas-pill {
+  padding: 3px 9px;
+  font-size: 0.71rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+}
+
+.gas-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.gas-pill[data-on="false"] {
+  opacity: 0.4;
+  text-decoration: line-through;
+  background: rgba(148, 163, 184, 0.08);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+}
+
+#gas-pill-co2 { background: rgba(16, 185, 129, 0.15); color: #10b981; border-color: rgba(16, 185, 129, 0.4); }
+#gas-pill-ch4 { background: rgba(249, 115, 22, 0.15); color: #f97316; border-color: rgba(249, 115, 22, 0.4); }
+#gas-pill-n2o { background: rgba(192, 132, 252, 0.15); color: #c084fc; border-color: rgba(192, 132, 252, 0.4); }
+#gas-pill-co2e { background: rgba(255, 255, 255, 0.08); color: #94a3b8; border-color: rgba(255, 255, 255, 0.2); }
+
+.atmo-dock-time-wrap {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   ECOTYPE / PROJECT SELECTOR (HUD INTEGRATION)
+   ========================================================================== */
+.hud-ecotype-selector-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 3px 6px 3px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.hud-ecotype-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.hud-ecotype-select-wrap {
+  position: relative;
+}
+
+.hud-ecotype-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(10, 16, 28, 0.95);
+  color: #f1f5f9;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 24px 4px 8px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 14px;
+}
+
+.hud-ecotype-select:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+}
+
+.hud-ecotype-select option {
+  background: #0b1120;
+  color: #f1f5f9;
+  font-size: 0.76rem;
+  padding: 6px;
+}
+
+.btn-hud-change-project {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 5px;
+  background: rgba(2, 132, 199, 0.25);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-hud-change-project:hover {
+  background: rgba(2, 132, 199, 0.45);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
    PROMINENT TELEMETRY & WATER TABLE CONTROL BAR
    ========================================================================== */
 .digital-twin-telemetry-bar {

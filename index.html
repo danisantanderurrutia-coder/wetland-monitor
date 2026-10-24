@@ -1345,8 +1345,53 @@
           <!-- Central Canvas Stage: The Illustrated Ecosystem Cross-Section -->
           <div class="cross-section-viewport">
             
-            <!-- DIGITAL TWIN SIMULATION CONTROL PANEL (HUD BAR) -->
-                        <!-- UNIFIED DIGITAL TWIN TELEMETRY & CONTROL BAR -->
+            <!-- UPPER CONTROLS DOCK: ATMOSPHERIC PHENOMENA & GAS ISOLATOR CONTROL STRIP (Positioned Above Twin Sky) -->
+            <div id="atmo-control-strip" class="atmo-control-dock">
+              <span class="atmo-dock-label">Atmósfera:</span>
+              <button id="btn-toggle-advection" class="atmo-pill" data-on="true"
+                title="Mostrar/ocultar vectores de viento y advección horizontal">
+                💨 Advección
+              </button>
+              <button id="btn-toggle-convection" class="atmo-pill" data-on="true"
+                title="Mostrar/ocultar plumas térmicas de convección libre">
+                🌪️ Convección
+              </button>
+              <button id="btn-toggle-turbulence" class="atmo-pill" data-on="true"
+                title="Mostrar/ocultar vórtices de mezcla turbulenta (Eddies)">
+                🌀 Turbulencia
+              </button>
+              <button id="btn-toggle-inversion" class="atmo-pill" data-on="true"
+                title="Mostrar/ocultar capa de inversión térmica nocturna estable">
+                ❄️ Inversión
+              </button>
+
+              <span class="atmo-dock-label" style="margin-left: 10px; border-left: 1px solid rgba(255,255,255,0.12); padding-left: 10px;">Gases:</span>
+              <button id="gas-pill-co2" class="gas-pill" data-gas="co2" data-on="true"
+                title="Mostrar/ocultar flujo de CO₂ (Fotosíntesis / Respiración)">
+                🟢 CO₂
+              </button>
+              <button id="gas-pill-ch4" class="gas-pill" data-gas="ch4" data-on="true"
+                title="Mostrar/ocultar flujo de CH₄ (Shunt de aerénquima y ebullición)">
+                🟠 CH₄
+              </button>
+              <button id="gas-pill-n2o" class="gas-pill" data-gas="n2o" data-on="true"
+                title="Mostrar/ocultar pulsos de N₂O en interfase redox">
+                🟣 N₂O
+              </button>
+              <button id="gas-pill-co2e" class="gas-pill" data-gas="co2e" data-on="true"
+                title="Mostrar/ocultar vector resultante de balance de gases GEI">
+                ⚪ Net GHG
+              </button>
+
+              <!-- Live time / calendar readout embedded in strip -->
+              <div class="atmo-dock-time-wrap">
+                <span id="strip-time-icon" style="font-size:1rem;">☀️</span>
+                <span id="strip-time-readout" style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;font-weight:800;color:#38bdf8;min-width:40px;">12:00</span>
+                <span id="strip-calendar-readout" style="font-size:0.7rem;color:#94a3b8;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Summer (Jul)</span>
+              </div>
+            </div>
+
+            <!-- UNIFIED DIGITAL TWIN TELEMETRY & CONTROL BAR -->
             <div class="svg-stage-wrapper">
               <!-- MASTER SVG ILLUSTRATED CANVAS (Widescreen Transect with 1:1 Aspect Ratio) -->
               <svg class="ecosystem-svg-canvas" id="ecosystem-svg" viewBox="0 0 1350 650" preserveAspectRatio="xMidYMid meet">
@@ -2266,19 +2311,32 @@
               </div>
             </div>
 
-            <!-- Floating Canvas Sandbox Badge Button (Inside Canvas Viewport) -->
-            <button type="button" class="canvas-sandbox-badge-btn" id="btn-canvas-sandbox-badge" title="Click to open Wetland Lab Sandbox">
+            <!-- Floating Canvas Sandbox Badge Button (Inside Canvas Viewport - Hidden to keep canvas clean) -->
+            <button type="button" class="canvas-sandbox-badge-btn" id="btn-canvas-sandbox-badge" title="Click to open Wetland Lab Sandbox" style="display: none;">
               <span>🔬</span> <span>Lab Sandbox (Controls)</span>
             </button>
             </div> <!-- End svg-stage-wrapper -->
 
-            <div class="digital-twin-telemetry-bar unified-twin-bar" id="digital-twin-hud" style="margin: 8px 12px 6px 12px; padding: 6px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: rgba(10, 16, 28, 0.94); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+            <div class="digital-twin-telemetry-bar unified-twin-bar" id="digital-twin-hud">
               
-              <!-- 0. Active Wetland Project Badge (Wallener Baseline or Custom GIS) -->
-              <div class="hud-project-badge wallener-baseline" id="hud-project-badge" title="Humedal Activo en el Twin (Haz clic para cambiar)">
-                <span id="hud-project-icon">🔒</span>
-                <span id="hud-project-title">Wallener Au Benchmark</span>
-                <button type="button" class="btn-hud-change-project" id="btn-hud-switch-project" title="Cambiar Humedal / Importar GIS">📂</button>
+              <!-- 0. Ecotipo / Archetype & GIS Project Selector -->
+              <div class="hud-ecotype-selector-group" id="hud-ecotype-group">
+                <span class="hud-ecotype-icon" id="hud-project-icon">🌱</span>
+                <div class="hud-ecotype-select-wrap">
+                  <select id="hud-ecotype-select" class="hud-ecotype-select" title="Seleccionar arquetipo ecológico o proyecto GIS">
+                    <option value="fen" selected>Turbera Minerotrófica (Fen) • [Wallener Benchmark 🔒]</option>
+                    <option value="bog">Turbera Ombrotrófica (Sphagnum Bog Ácido)</option>
+                    <option value="paludi">Paludicultura Productiva (Typha/Phragmites)</option>
+                    <option value="drained">Turbera Drenada Degradada (Pastura)</option>
+                    <option value="mallin">Mallín Patagónico (Aysén, Chile)</option>
+                    <option value="estuary">Humedal Costero / Estuario Río Maipo</option>
+                    <option value="tremedal">Turbera de Tremedal (Sistema Ibérico)</option>
+                    <option value="custom_gis">📂 Importar / Cargar Proyecto GIS...</option>
+                  </select>
+                </div>
+                <button type="button" class="btn-hud-change-project" id="btn-hud-switch-project" title="Abrir Administrador GIS y Presets Territoriales">
+                  <span>📂 GIS</span>
+                </button>
               </div>
 
               <!-- 1. Day / Night Toggle (Sol / Luna) -->
@@ -2347,8 +2405,8 @@
 
               <!-- 7. Lab Sandbox Toggle & Educational Help Buttons -->
               <div class="hud-sandbox-group" style="display: flex; gap: 6px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
-                <button type="button" class="preset-pill" id="btn-open-lab-sandbox" title="Open Advanced Biophysical Lab Sandbox" style="display: flex; align-items: center; gap: 5px; padding: 5px 12px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: 1px solid #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); transition: all 0.2s;">
-                  <span>🔬</span> <span>Lab Sandbox</span>
+                <button type="button" class="preset-pill active" id="btn-open-lab-sandbox" title="Open Advanced Biophysical Lab Sandbox" style="display: flex; align-items: center; gap: 5px; padding: 5px 12px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: 1px solid #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); transition: all 0.2s;">
+                  <span>🔬</span> <span>Lab Bench</span>
                 </button>
                 <button type="button" class="preset-pill" id="btn-twin-help-guide" title="How the Peatland Digital Twin Works (?)" style="display: flex; align-items: center; gap: 4px; padding: 5px 10px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.45); transition: all 0.2s;">
                   <span>❓</span> <span>Help</span>
@@ -2364,77 +2422,20 @@
               </div>
             </div>
 
-            <!-- SVG STAGE WRAPPER (Full Viewport Height for Digital Twin Hero Stage) -->
-
-
-          <!-- LOWER CONTROLS DOCK: ATMOSPHERIC PHENOMENA & GAS ISOLATOR CONTROL STRIP (Positioned Below Twin) -->
-          <div id="atmo-control-strip" class="atmo-control-dock" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 12px 6px 12px;padding:6px 14px;background:rgba(10,16,28,0.92);border-radius:8px;border:1px solid rgba(56,189,248,0.25);box-shadow:0 4px 14px rgba(0,0,0,0.4);">
-            <span style="font-size:0.68rem;color:#64748b;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-right:4px;">Atmosphere:</span>
-            <button id="btn-toggle-advection" class="atmo-pill" data-on="true"
-              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.45);transition:all 0.2s;"
-              title="Show/hide horizontal advection wind arrows">
-              💨 Advection
-            </button>
-            <button id="btn-toggle-convection" class="atmo-pill" data-on="true"
-              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(251,191,36,0.2);color:#fbbf24;border:1px solid rgba(251,191,36,0.45);transition:all 0.2s;"
-              title="Show/hide convective thermal plumes">
-              🌪️ Convection
-            </button>
-            <button id="btn-toggle-turbulence" class="atmo-pill" data-on="true"
-              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(139,92,246,0.2);color:#a78bfa;border:1px solid rgba(139,92,246,0.45);transition:all 0.2s;"
-              title="Show/hide turbulent eddy mixing">
-              🌀 Turbulence
-            </button>
-            <button id="btn-toggle-inversion" class="atmo-pill" data-on="true"
-              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:600;background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.35);transition:all 0.2s;"
-              title="Show/hide stable nocturnal inversion layer">
-              ❄️ Inversion
-            </button>
-
-            <span style="font-size:0.68rem;color:#64748b;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 4px 0 12px;border-left:1px solid rgba(255,255,255,0.1);padding-left:12px;">Gas Layers:</span>
-            <button id="gas-pill-co2" class="gas-pill" data-gas="co2" data-on="true"
-              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(16,185,129,0.2);color:#10b981;border:1px solid rgba(16,185,129,0.45);transition:all 0.2s;"
-              title="Show/hide CO₂ flux arrows">
-              🟢 CO₂
-            </button>
-            <button id="gas-pill-ch4" class="gas-pill" data-gas="ch4" data-on="true"
-              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(249,115,22,0.2);color:#f97316;border:1px solid rgba(249,115,22,0.45);transition:all 0.2s;"
-              title="Show/hide CH₄ flux arrows">
-              🟠 CH₄
-            </button>
-            <button id="gas-pill-n2o" class="gas-pill" data-gas="n2o" data-on="true"
-              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(192,132,252,0.2);color:#c084fc;border:1px solid rgba(192,132,252,0.45);transition:all 0.2s;"
-              title="Show/hide N₂O flux arrows">
-              🟣 N₂O
-            </button>
-            <button id="gas-pill-co2e" class="gas-pill" data-gas="co2e" data-on="true"
-              style="padding:3px 10px;font-size:0.71rem;border-radius:5px;cursor:pointer;font-weight:700;background:rgba(255,255,255,0.07);color:#94a3b8;border:1px solid rgba(255,255,255,0.15);transition:all 0.2s;"
-              title="Show/hide Net CO₂-eq balance arrow">
-              ⚪ Net GHG
-            </button>
-
-            <!-- Live time / calendar readout embedded in strip -->
-            <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
-              <span id="strip-time-icon" style="font-size:1rem;">☀️</span>
-              <span id="strip-time-readout" style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;font-weight:800;color:#38bdf8;min-width:40px;">12:00</span>
-              <span id="strip-calendar-readout" style="font-size:0.7rem;color:#94a3b8;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Summer (Jul)</span>
-            </div>
-          </div>
-
-          <!-- INTERACTIVE LAB SANDBOX PANEL (EXTENDED CONTROLS - COLLAPSED BY DEFAULT) -->
-          <div class="twin-sandbox-tray collapsed" id="twin-sandbox-tray">
+            <!-- INTERACTIVE LAB SANDBOX PANEL (EXTENDED CONTROLS - ALWAYS EXPANDED BENCH) -->
+            <div class="twin-sandbox-tray" id="twin-sandbox-tray">
               <div class="twin-sandbox-header">
                 <div class="twin-sandbox-title-wrap">
                   <span class="sandbox-icon">🔬</span>
-                  <span class="sandbox-title">Wetland Lab Sandbox: Biophysical &amp; Meteophysical Levers</span>
-                  <span class="sandbox-tag">Interactive Simulation</span>
+                  <span class="sandbox-title">Consola de Restauración y Biofísica de Humedales</span>
+                  <span class="sandbox-tag">Universal Virtual Lab</span>
                 </div>
 
                 <div class="sandbox-tab-bar">
-                  <button type="button" class="sandbox-tab-btn active" data-tab="hydro">💧 Hydrology &amp; Site</button>
-                  <button type="button" class="sandbox-tab-btn" data-tab="soil">🚜 Soil &amp; Pores</button>
-                  <button type="button" class="sandbox-tab-btn" data-tab="plants">🌾 Vegetation</button>
-                  <button type="button" class="sandbox-tab-btn" data-tab="atmo">☀️ Meteophysics</button>
+                  <button type="button" class="sandbox-tab-btn active" data-tab="hydro">💧 Hidrología &amp; Restauración</button>
+                  <button type="button" class="sandbox-tab-btn" data-tab="soil">🚜 Suelo &amp; Porosidad</button>
+                  <button type="button" class="sandbox-tab-btn" data-tab="plants">🌾 Vegetación &amp; Aerénquima</button>
+                  <button type="button" class="sandbox-tab-btn" data-tab="atmo">☀️ Meteofísica &amp; Clima</button>
                 </div>
 
                 <div class="sandbox-header-actions">
@@ -2442,13 +2443,13 @@
                     📥 Exportar Ficha (.json)
                   </button>
                   <button type="button" class="sandbox-btn-validate" id="btn-sandbox-validate" title="Compare Model Output with Real 2024 Wallener Au Tower Data">
-                    ⚖️ Validate vs. Field Benchmark
+                    ⚖️ Validar vs Benchmark
                   </button>
                   <button type="button" class="sandbox-btn-help" id="btn-sandbox-help" title="How Everything Works (?)">
-                    ❓ How It Works
+                    ❓ Guía
                   </button>
-                  <button type="button" class="sandbox-btn-toggle" id="btn-sandbox-tray-toggle" title="Toggle Sandbox Drawer">
-                    ▲ Expand
+                  <button type="button" class="sandbox-btn-toggle" id="btn-sandbox-tray-toggle" title="Plegar / Desplegar Consola de Restauración">
+                    ▼ Plegar
                   </button>
                 </div>
               </div>

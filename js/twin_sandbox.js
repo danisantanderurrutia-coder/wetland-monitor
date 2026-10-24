@@ -178,10 +178,15 @@ export class WetlandTwinSandbox {
     const canvasBadgeBtn = document.getElementById("btn-canvas-sandbox-badge");
     const svgCanvas = document.getElementById("ecosystem-svg");
 
+    if (tray && !tray.classList.contains("collapsed")) {
+      if (toggleBtn) toggleBtn.textContent = "▼ Plegar";
+      if (hudOpenBtn) hudOpenBtn.classList.add("active");
+    }
+
     const toggleTray = () => {
       if (tray) {
         const isCollapsed = tray.classList.toggle("collapsed");
-        if (toggleBtn) toggleBtn.textContent = isCollapsed ? "▲ Expand" : "✕ Close";
+        if (toggleBtn) toggleBtn.textContent = isCollapsed ? "▲ Expandir" : "▼ Plegar";
         if (hudOpenBtn) hudOpenBtn.classList.toggle("active", !isCollapsed);
       }
     };
@@ -334,8 +339,9 @@ export class WetlandTwinSandbox {
       btnExport.addEventListener("click", () => this.exportLabReport());
     }
 
-    // 10. HUD Project Badge Switcher Button
+    // 10. HUD Ecotype / Project Selector & GIS Modal Trigger
     const btnHudSwitch = document.getElementById("btn-hud-switch-project");
+    const ecotypeSelect = document.getElementById("hud-ecotype-select");
     const hudBadge = document.getElementById("hud-project-badge");
     const openGisModal = () => {
       const modal = document.getElementById("gis-project-import-modal");
@@ -349,6 +355,16 @@ export class WetlandTwinSandbox {
       openGisModal();
     });
     if (hudBadge) hudBadge.addEventListener("click", openGisModal);
+    if (ecotypeSelect) {
+      ecotypeSelect.addEventListener("change", (e) => {
+        const val = e.target.value;
+        if (val === "custom_gis") {
+          openGisModal();
+        } else {
+          this.loadArchetype(val);
+        }
+      });
+    }
   }
 
   bindSlider(sliderId, readoutId, stateKey, suffix, decimals = 1, customFormatter = null) {
@@ -403,10 +419,20 @@ export class WetlandTwinSandbox {
       opt.classList.toggle("active", opt.dataset.site === key);
     });
 
-    // 4. Sync Sandbox Archetype Buttons
+    // 4. Sync Sandbox Archetype Buttons & HUD Ecotype Selector
     document.querySelectorAll(".archetype-btn").forEach(btn => {
       btn.classList.toggle("active", btn.dataset.archetype === key);
     });
+
+    const ecotypeSelect = document.getElementById("hud-ecotype-select");
+    if (ecotypeSelect && ecotypeSelect.value !== key) {
+      ecotypeSelect.value = key;
+    }
+
+    const hudIcon = document.getElementById("hud-project-icon");
+    if (hudIcon) {
+      hudIcon.textContent = (key === "fen") ? "🔒" : "🌱";
+    }
 
     this.updatePhysics();
   }
@@ -767,20 +793,42 @@ export class WetlandTwinSandbox {
 
   updateProjectBadge() {
     const cp = this.state.currentProject;
-    const hudBadge = document.getElementById("hud-project-badge");
+    const ecotypeSelect = document.getElementById("hud-ecotype-select");
     const hudIcon = document.getElementById("hud-project-icon");
+    const hudBadge = document.getElementById("hud-project-badge");
     const hudTitle = document.getElementById("hud-project-title");
 
-    if (!hudBadge || !cp) return;
+    if (!cp) return;
 
-    if (cp.isWallener) {
-      hudBadge.className = "hud-project-badge wallener-baseline";
-      if (hudIcon) hudIcon.textContent = "🔒";
-      if (hudTitle) hudTitle.textContent = "Wallener Au Benchmark (Kiel)";
-    } else {
-      hudBadge.className = "hud-project-badge";
-      if (hudIcon) hudIcon.textContent = "🧪";
-      if (hudTitle) hudTitle.textContent = `${cp.name} (${cp.areaHa} ha)`;
+    if (ecotypeSelect) {
+      if (cp.isWallener) {
+        ecotypeSelect.value = "fen";
+        if (hudIcon) hudIcon.textContent = "🔒";
+      } else if (this.archetypes[cp.ecosystemType || cp.archetypeKey || cp.archetype]) {
+        const archKey = cp.ecosystemType || cp.archetypeKey || cp.archetype;
+        ecotypeSelect.value = archKey;
+        if (hudIcon) hudIcon.textContent = "🌱";
+      } else {
+        let customOpt = ecotypeSelect.querySelector("option[value='custom_loaded']");
+        if (!customOpt) {
+          customOpt = document.createElement("option");
+          customOpt.value = "custom_loaded";
+          ecotypeSelect.insertBefore(customOpt, ecotypeSelect.lastElementChild);
+        }
+        customOpt.textContent = `📍 GIS: ${cp.name} (${cp.areaHa} ha)`;
+        ecotypeSelect.value = "custom_loaded";
+        if (hudIcon) hudIcon.textContent = "🗺️";
+      }
+    }
+
+    if (hudBadge) {
+      if (cp.isWallener) {
+        hudBadge.className = "hud-project-badge wallener-baseline";
+        if (hudTitle) hudTitle.textContent = "Wallener Au Benchmark (Kiel)";
+      } else {
+        hudBadge.className = "hud-project-badge";
+        if (hudTitle) hudTitle.textContent = `${cp.name} (${cp.areaHa} ha)`;
+      }
     }
   }
 

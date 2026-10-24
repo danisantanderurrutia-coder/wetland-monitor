@@ -695,14 +695,16 @@ class WetlandMonitorApp {
         // Wallener Au Calibrated Benchmark Twin
         if (this.sandbox) this.sandbox.loadArchetype("fen");
       } else {
-        // Universal Twin Lab Sandbox: reset running loops and keep tray tucked until user opens it
+        // Universal Twin Lab Sandbox: reset running loops
         if (this.digitalTwin) {
           this.digitalTwin.resetSimulation();
         }
-        if (tray) tray.classList.add("collapsed");
-        if (toggleBtn) toggleBtn.textContent = "▲ Expand";
-        if (hudOpenBtn) hudOpenBtn.classList.remove("active");
       }
+
+      // Always keep tray expanded so biophysical and restoration levers are immediately accessible
+      if (tray) tray.classList.remove("collapsed");
+      if (toggleBtn) toggleBtn.textContent = "▼ Plegar";
+      if (hudOpenBtn) hudOpenBtn.classList.add("active");
     }
 
     // Header bottom row (carousel) is hidden on landing, wallener and general methodology views to keep UI clean
