@@ -355,9 +355,15 @@
                   <span class="tag-pill">🔬 Michaelis-Menten Kinetics</span>
                 </div>
               </div>
-              <div class="landing-featured-btn">
-                <span>🚀 Launch Universal Twin Lab</span>
-                <span>➔</span>
+              <div class="landing-featured-actions">
+                <div class="landing-featured-btn" id="btn-launch-twin-lab">
+                  <span>🚀 Launch Universal Twin Lab</span>
+                  <span>➔</span>
+                </div>
+                <button type="button" class="landing-gis-btn" id="btn-open-gis-modal" title="Abrir o importar proyecto GIS de humedal (.geojson, .kml)">
+                  <span>📂 Abrir / Importar Proyecto GIS</span>
+                  <span class="gis-btn-badge">NUEVO</span>
+                </button>
               </div>
             </div>
 
@@ -1341,77 +1347,6 @@
             
             <!-- DIGITAL TWIN SIMULATION CONTROL PANEL (HUD BAR) -->
                         <!-- UNIFIED DIGITAL TWIN TELEMETRY & CONTROL BAR -->
-            <div class="digital-twin-telemetry-bar unified-twin-bar" id="digital-twin-hud" style="margin: 8px 12px 6px 12px; padding: 6px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: rgba(10, 16, 28, 0.94); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-              
-              <!-- 1. Day / Night Toggle (Sol / Luna) -->
-              <button type="button" id="btn-toggle-sol-luna" class="preset-pill active" title="Toggle Day (Sun) / Night (Moon)" style="display: flex; align-items: center; gap: 6px; padding: 6px 14px; font-weight: 800; font-size: 0.82rem; border-radius: 8px; cursor: pointer; background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; border: 1px solid #fef08a; box-shadow: 0 0 12px rgba(245, 158, 11, 0.45); transition: all 0.3s ease;">
-                <span id="sol-luna-icon" style="font-size: 1.1rem;">☀️</span> <span id="sol-luna-label">Day (Sun)</span>
-              </button>
-
-              <!-- 2. Season Selector (Summer / Winter) -->
-              <div class="hud-season-group" style="display: flex; gap: 5px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
-                <button type="button" class="preset-pill active" id="btn-season-summer" data-season="summer" title="Summer: Active photosynthetic canopy, WTD -25 cm baseline" style="padding: 5px 11px; font-size: 0.78rem; font-weight: 700; border-radius: 6px; cursor: pointer;">🌿 Summer</button>
-                <button type="button" class="preset-pill" id="btn-season-winter" data-season="winter" title="Winter: Saturated soil (+2 cm), dormant canopy, suppressed Reco and acute CH4 pulse" style="padding: 5px 11px; font-size: 0.78rem; font-weight: 700; border-radius: 6px; cursor: pointer;">❄️ Winter</button>
-              </div>
-
-              <!-- 3. Water Table Depth Slider & Readout -->
-              <div class="telemetry-wtd-group" style="display: flex; align-items: center; gap: 8px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
-                <span class="telemetry-title" style="font-size: 0.75rem; color: #94a3b8; font-weight: 700;">💧 WTD:</span>
-                <span class="telemetry-value" id="hud-water-depth-display" style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3); min-width: 60px; text-align: center;">-25 cm</span>
-                <div class="telemetry-slider-wrap" style="width: 105px; display: flex; align-items: center;">
-                  <input type="range" class="wtd-slider hud-slider" id="hud-water-table-slider" min="-60" max="5" value="-25" step="1" title="Adjust Water Table Depth">
-                </div>
-              </div>
-
-              <!-- 4. Dynamic Animations (Pausables, 24h & 365d) -->
-              <div class="twin-anim-group" style="display: flex; gap: 5px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
-                <button type="button" class="preset-pill" id="btn-anim-diurnal" title="Simulate / Pause 24h: Diurnal cycle with hourly progression" style="padding: 5px 10px; font-size: 0.74rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(2, 132, 199, 0.25); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45); transition: all 0.2s ease;">
-                  <span class="anim-btn-icon">▶</span> <span class="anim-btn-text">24h Cycle</span>
-                </button>
-                <button type="button" class="preset-pill" id="btn-anim-annual" title="Simulate / Pause 365d: Annual evolution with daily progression" style="padding: 5px 10px; font-size: 0.74rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(217, 119, 6, 0.25); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.45); transition: all 0.2s ease;">
-                  <span class="anim-btn-icon">▶</span> <span class="anim-btn-text">365d Year</span>
-                </button>
-                <button type="button" class="preset-pill" id="btn-reset-sim" title="Reset simulation to initial equilibrium" style="padding: 5px 8px; font-size: 0.72rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); transition: all 0.2s ease;">
-                  ↺ Reset
-                </button>
-              </div>
-
-              <!-- 5. Dynamic Live Flux Telemetry Badges -->
-              <div class="telemetry-flux-group" style="display: flex; gap: 8px;">
-                <div class="flux-badge co2" title="Net Ecosystem Exchange (NEE) of Carbon Dioxide" style="display: flex; flex-direction: column; padding: 3px 8px; border-radius: 6px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.25);">
-                  <span class="flux-sub" style="font-size: 0.6rem; color: #94a3b8;">Net CO₂</span>
-                  <span class="flux-val" id="hud-live-flux-co2" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #10b981;">-2.3 µmol m⁻² s⁻¹</span>
-                </div>
-                <div class="flux-badge ch4" title="Total Methane Flux (Ebullition + Plant Aerenchyma Shunt)" style="display: flex; flex-direction: column; padding: 3px 8px; border-radius: 6px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(249, 115, 22, 0.25);">
-                  <span class="flux-sub" style="font-size: 0.6rem; color: #94a3b8;">Net CH₄</span>
-                  <span class="flux-val" id="hud-live-flux-ch4" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #f59e0b;">+42 nmol m⁻² s⁻¹</span>
-                </div>
-                <div class="flux-badge n2o" title="Nitrous Oxide Flux (Redox Microsites Interface)" style="display: flex; flex-direction: column; padding: 3px 8px; border-radius: 6px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(192, 132, 252, 0.25);">
-                  <span class="flux-sub" style="font-size: 0.6rem; color: #94a3b8;">N₂O</span>
-                  <span class="flux-val" id="hud-live-flux-n2o" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #c084fc;">+0.03 nmol m⁻² s⁻¹</span>
-                </div>
-              </div>
-
-              <!-- 7. Lab Sandbox Toggle & Educational Help Buttons -->
-              <div class="hud-sandbox-group" style="display: flex; gap: 6px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
-                <button type="button" class="preset-pill" id="btn-open-lab-sandbox" title="Open Advanced Biophysical Lab Sandbox" style="display: flex; align-items: center; gap: 5px; padding: 5px 12px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: 1px solid #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); transition: all 0.2s;">
-                  <span>🔬</span> <span>Lab Sandbox</span>
-                </button>
-                <button type="button" class="preset-pill" id="btn-twin-help-guide" title="How the Peatland Digital Twin Works (?)" style="display: flex; align-items: center; gap: 4px; padding: 5px 10px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.45); transition: all 0.2s;">
-                  <span>❓</span> <span>Help</span>
-                </button>
-              </div>
-
-              <!-- 6. Active Status Alerts -->
-              <div id="hud-ch4-transient-badge" class="hud-alert-badge transient" style="display: none; padding: 3px 8px; border-radius: 6px; background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.68rem; font-weight: 700;">
-                <span>🔥</span> <strong id="hud-transient-text">H1: Acute CH₄ Pulse</strong>
-              </div>
-              <div id="hud-compaction-badge" class="hud-alert-badge compaction" style="display: none; padding: 3px 8px; border-radius: 6px; background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.68rem; font-weight: 700;">
-                <span>🚜</span> <strong id="hud-compaction-text">Plow Pan Perched Water</strong>
-              </div>
-            </div>
-
-            <!-- SVG STAGE WRAPPER (Full Viewport Height for Digital Twin Hero Stage) -->
             <div class="svg-stage-wrapper">
               <!-- MASTER SVG ILLUSTRATED CANVAS (Widescreen Transect with 1:1 Aspect Ratio) -->
               <svg class="ecosystem-svg-canvas" id="ecosystem-svg" viewBox="0 0 1350 650" preserveAspectRatio="xMidYMid meet">
@@ -2335,6 +2270,102 @@
             <button type="button" class="canvas-sandbox-badge-btn" id="btn-canvas-sandbox-badge" title="Click to open Wetland Lab Sandbox">
               <span>🔬</span> <span>Lab Sandbox (Controls)</span>
             </button>
+            </div> <!-- End svg-stage-wrapper -->
+
+            <div class="digital-twin-telemetry-bar unified-twin-bar" id="digital-twin-hud" style="margin: 8px 12px 6px 12px; padding: 6px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: rgba(10, 16, 28, 0.94); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+              
+              <!-- 0. Active Wetland Project Badge (Wallener Baseline or Custom GIS) -->
+              <div class="hud-project-badge wallener-baseline" id="hud-project-badge" title="Humedal Activo en el Twin (Haz clic para cambiar)">
+                <span id="hud-project-icon">🔒</span>
+                <span id="hud-project-title">Wallener Au Benchmark</span>
+                <button type="button" class="btn-hud-change-project" id="btn-hud-switch-project" title="Cambiar Humedal / Importar GIS">📂</button>
+              </div>
+
+              <!-- 1. Day / Night Toggle (Sol / Luna) -->
+              <button type="button" id="btn-toggle-sol-luna" class="preset-pill active" title="Toggle Day (Sun) / Night (Moon)" style="display: flex; align-items: center; gap: 6px; padding: 6px 14px; font-weight: 800; font-size: 0.82rem; border-radius: 8px; cursor: pointer; background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; border: 1px solid #fef08a; box-shadow: 0 0 12px rgba(245, 158, 11, 0.45); transition: all 0.3s ease;">
+                <span id="sol-luna-icon" style="font-size: 1.1rem;">☀️</span> <span id="sol-luna-label">Day (Sun)</span>
+              </button>
+
+              <!-- 2. Season Selector (Summer / Winter) -->
+              <div class="hud-season-group" style="display: flex; gap: 5px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
+                <button type="button" class="preset-pill active" id="btn-season-summer" data-season="summer" title="Summer: Active photosynthetic canopy, WTD -25 cm baseline" style="padding: 5px 11px; font-size: 0.78rem; font-weight: 700; border-radius: 6px; cursor: pointer;">🌿 Summer</button>
+                <button type="button" class="preset-pill" id="btn-season-winter" data-season="winter" title="Winter: Saturated soil (+2 cm), dormant canopy, suppressed Reco and acute CH4 pulse" style="padding: 5px 11px; font-size: 0.78rem; font-weight: 700; border-radius: 6px; cursor: pointer;">❄️ Winter</button>
+              </div>
+
+              <!-- 3. Water Table Depth Slider & Readout -->
+              <div class="telemetry-wtd-group" style="display: flex; align-items: center; gap: 8px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
+                <span class="telemetry-title" style="font-size: 0.75rem; color: #94a3b8; font-weight: 700;">💧 WTD:</span>
+                <span class="telemetry-value" id="hud-water-depth-display" style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3); min-width: 60px; text-align: center;">-25 cm</span>
+                <div class="telemetry-slider-wrap" style="width: 105px; display: flex; align-items: center;">
+                  <input type="range" class="wtd-slider hud-slider" id="hud-water-table-slider" min="-60" max="5" value="-25" step="1" title="Adjust Water Table Depth">
+                </div>
+              </div>
+
+              <!-- 4. Dynamic Animations (Pausables, 24h & 365d) -->
+              <div class="twin-anim-group" style="display: flex; gap: 5px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
+                <button type="button" class="preset-pill" id="btn-anim-diurnal" title="Simulate / Pause 24h: Diurnal cycle with hourly progression" style="padding: 5px 10px; font-size: 0.74rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(2, 132, 199, 0.25); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45); transition: all 0.2s ease;">
+                  <span class="anim-btn-icon">▶</span> <span class="anim-btn-text">24h Cycle</span>
+                </button>
+                <button type="button" class="preset-pill" id="btn-anim-annual" title="Simulate / Pause 365d: Annual evolution with daily progression" style="padding: 5px 10px; font-size: 0.74rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(217, 119, 6, 0.25); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.45); transition: all 0.2s ease;">
+                  <span class="anim-btn-icon">▶</span> <span class="anim-btn-text">365d Year</span>
+                </button>
+                <button type="button" class="preset-pill" id="btn-reset-sim" title="Reset simulation to initial equilibrium" style="padding: 5px 8px; font-size: 0.72rem; font-weight: 700; border-radius: 6px; cursor: pointer; background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); transition: all 0.2s ease;">
+                  ↺ Reset
+                </button>
+              </div>
+
+              <!-- 5. Dynamic Live Flux Telemetry Badges -->
+              <div class="telemetry-flux-group" style="display: flex; gap: 8px;">
+                <div class="flux-badge co2" title="Net Ecosystem Exchange (NEE) of Carbon Dioxide" style="display: flex; flex-direction: column; padding: 3px 8px; border-radius: 6px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.25);">
+                  <span class="flux-sub" style="font-size: 0.6rem; color: #94a3b8;">Net CO₂</span>
+                  <span class="flux-val" id="hud-live-flux-co2" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #10b981;">-2.3 µmol m⁻² s⁻¹</span>
+                </div>
+                <div class="flux-badge ch4" title="Total Methane Flux (Ebullition + Plant Aerenchyma Shunt)" style="display: flex; flex-direction: column; padding: 3px 8px; border-radius: 6px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(249, 115, 22, 0.25);">
+                  <span class="flux-sub" style="font-size: 0.6rem; color: #94a3b8;">Net CH₄</span>
+                  <span class="flux-val" id="hud-live-flux-ch4" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #f59e0b;">+42 nmol m⁻² s⁻¹</span>
+                </div>
+                <div class="flux-badge n2o" title="Nitrous Oxide Flux (Redox Microsites Interface)" style="display: flex; flex-direction: column; padding: 3px 8px; border-radius: 6px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(192, 132, 252, 0.25);">
+                  <span class="flux-sub" style="font-size: 0.6rem; color: #94a3b8;">N₂O</span>
+                  <span class="flux-val" id="hud-live-flux-n2o" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #c084fc;">+0.03 nmol m⁻² s⁻¹</span>
+                </div>
+              </div>
+
+              <!-- 5b. Climate Radiative Forcing (GWP Horizon Selector & Net Balance) -->
+              <div class="hud-gwp-toggle-group" style="display: flex; align-items: center; gap: 6px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
+                <div style="display: flex; flex-direction: column; gap: 2px;">
+                  <span style="font-size: 0.58rem; color: #94a3b8; font-weight: 700;">HORIZONTE GWP:</span>
+                  <div style="display: flex; gap: 2px; background: rgba(15,23,42,0.8); padding: 2px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);">
+                    <button type="button" class="btn-gwp-horizon active" id="btn-gwp-100" data-horizon="100" style="padding: 2px 6px; font-size: 0.68rem; font-weight: 800; border-radius: 4px; background: #0284c7; color: #fff; border: none; cursor: pointer;">100y</button>
+                    <button type="button" class="btn-gwp-horizon" id="btn-gwp-20" data-horizon="20" style="padding: 2px 6px; font-size: 0.68rem; font-weight: 800; border-radius: 4px; background: transparent; color: #94a3b8; border: none; cursor: pointer;">20y</button>
+                  </div>
+                </div>
+                <div class="gwp-net-badge" id="hud-gwp-net-badge" style="display: flex; flex-direction: column; padding: 3px 8px; border-radius: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(52, 211, 153, 0.4); min-width: 95px;" title="Balance Neto de Calentamiento / Mitigación en tCO2e/ha/año">
+                  <span style="font-size: 0.58rem; color: #34d399; font-weight: 700;" id="hud-gwp-label">Net GWP₁₀₀</span>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; font-weight: 800; color: #34d399;" id="hud-gwp-value">-3.4 tCO₂e/ha</span>
+                </div>
+              </div>
+
+              <!-- 7. Lab Sandbox Toggle & Educational Help Buttons -->
+              <div class="hud-sandbox-group" style="display: flex; gap: 6px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
+                <button type="button" class="preset-pill" id="btn-open-lab-sandbox" title="Open Advanced Biophysical Lab Sandbox" style="display: flex; align-items: center; gap: 5px; padding: 5px 12px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: 1px solid #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); transition: all 0.2s;">
+                  <span>🔬</span> <span>Lab Sandbox</span>
+                </button>
+                <button type="button" class="preset-pill" id="btn-twin-help-guide" title="How the Peatland Digital Twin Works (?)" style="display: flex; align-items: center; gap: 4px; padding: 5px 10px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.45); transition: all 0.2s;">
+                  <span>❓</span> <span>Help</span>
+                </button>
+              </div>
+
+              <!-- 6. Active Status Alerts -->
+              <div id="hud-ch4-transient-badge" class="hud-alert-badge transient" style="display: none; padding: 3px 8px; border-radius: 6px; background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.68rem; font-weight: 700;">
+                <span>🔥</span> <strong id="hud-transient-text">H1: Acute CH₄ Pulse</strong>
+              </div>
+              <div id="hud-compaction-badge" class="hud-alert-badge compaction" style="display: none; padding: 3px 8px; border-radius: 6px; background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.68rem; font-weight: 700;">
+                <span>🚜</span> <strong id="hud-compaction-text">Plow Pan Perched Water</strong>
+              </div>
+            </div>
+
+            <!-- SVG STAGE WRAPPER (Full Viewport Height for Digital Twin Hero Stage) -->
+
 
           <!-- LOWER CONTROLS DOCK: ATMOSPHERIC PHENOMENA & GAS ISOLATOR CONTROL STRIP (Positioned Below Twin) -->
           <div id="atmo-control-strip" class="atmo-control-dock" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 12px 6px 12px;padding:6px 14px;background:rgba(10,16,28,0.92);border-radius:8px;border:1px solid rgba(56,189,248,0.25);box-shadow:0 4px 14px rgba(0,0,0,0.4);">
@@ -2390,8 +2421,8 @@
             </div>
           </div>
 
-          <!-- INTERACTIVE LAB SANDBOX PANEL (EXTENDED CONTROLS) -->
-          <div class="twin-sandbox-tray" id="twin-sandbox-tray">
+          <!-- INTERACTIVE LAB SANDBOX PANEL (EXTENDED CONTROLS - COLLAPSED BY DEFAULT) -->
+          <div class="twin-sandbox-tray collapsed" id="twin-sandbox-tray">
               <div class="twin-sandbox-header">
                 <div class="twin-sandbox-title-wrap">
                   <span class="sandbox-icon">🔬</span>
@@ -2407,6 +2438,9 @@
                 </div>
 
                 <div class="sandbox-header-actions">
+                  <button type="button" class="sandbox-btn-export" id="btn-export-lab-report" title="Exportar informe técnico y balance biogeoquímico en formato JSON">
+                    📥 Exportar Ficha (.json)
+                  </button>
                   <button type="button" class="sandbox-btn-validate" id="btn-sandbox-validate" title="Compare Model Output with Real 2024 Wallener Au Tower Data">
                     ⚖️ Validate vs. Field Benchmark
                   </button>
@@ -2414,7 +2448,7 @@
                     ❓ How It Works
                   </button>
                   <button type="button" class="sandbox-btn-toggle" id="btn-sandbox-tray-toggle" title="Toggle Sandbox Drawer">
-                    ✕ Close
+                    ▲ Expand
                   </button>
                 </div>
               </div>
@@ -2452,6 +2486,17 @@
                       </div>
                       <input type="range" class="sandbox-slider" id="slider-rewetting-year" min="0" max="10" value="0" step="1">
                       <div class="control-desc">Time elapsed since rewetting: Year 0 (shock), Years 1–3 (acute CH4 pulse H1), Year 10 (stabilized biofilter).</div>
+                    </div>
+
+                    <div class="sandbox-control-card">
+                      <div class="control-header">
+                        <span class="control-label">🛑 Ditch Blocking (Restauración)</span>
+                        <span class="control-val" id="val-ditch-blocking">Drenaje Libre</span>
+                      </div>
+                      <button type="button" class="btn-toggle-ditch" id="btn-toggle-ditch-blocking" title="Simular la instalación de diques de turba para bloquear zanjas de drenaje">
+                        <span id="ditch-blocking-icon">🚫</span> <span id="ditch-blocking-text">Instalar Diques de Turba (Bloquear Zanjas)</span>
+                      </button>
+                      <div class="control-desc">Frena el drenaje artificial, eleva la napa a -8 cm, suprime la descomposición aeróbica de turba y estabiliza el forzamiento radiativo.</div>
                     </div>
                   </div>
                 </div>
@@ -6095,6 +6140,208 @@
   <script type="module" src="js/twin_sandbox.js?v=1.0"></script>
   <script type="module" src="js/thesis_explorer.js?v=2.6.0"></script>
   <script type="module" src="js/classic_presentation.js?v=2.5.0"></script>
+
+  <!-- ====================================================================
+       GIS PROJECT IMPORTER & TERRITORIAL WETLAND SELECTOR MODAL
+       ==================================================================== -->
+  <div class="twin-help-modal-overlay hidden" id="gis-project-import-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="gis-import-dialog">
+      <div class="gis-import-header">
+        <div class="gis-import-title-group">
+          <span class="gis-import-icon">📂</span>
+          <div>
+            <h3 class="gis-import-title">Abrir / Importar Proyecto de Humedal (GIS &amp; Territorio)</h3>
+            <p class="gis-import-subtitle">Carga un polígono georreferenciado o selecciona un arquetipo territorial para el laboratorio virtual.</p>
+          </div>
+        </div>
+        <button class="twin-help-close" id="btn-close-gis-modal" type="button" title="Cerrar ventana">✕</button>
+      </div>
+
+      <div class="gis-import-body">
+        
+        <!-- Tabs: Presets vs File Upload -->
+        <div class="gis-modal-tabs">
+          <button type="button" class="gis-tab-btn active" id="tab-btn-gis-presets" data-gis-tab="presets">
+            <span>🌍</span> <span>Arquetipos Territoriales &amp; Presets</span>
+          </button>
+          <button type="button" class="gis-tab-btn" id="tab-btn-gis-upload" data-gis-tab="upload">
+            <span>🛰️</span> <span>Subir Archivo GIS (.geojson, .kml, .json)</span>
+          </button>
+        </div>
+
+        <!-- Panel 1: Presets Grid -->
+        <div class="gis-tab-pane" id="gis-pane-presets">
+          <div class="gis-presets-grid">
+            
+            <!-- Preset 1: Mallin Patagonico -->
+            <div class="gis-preset-card active" data-preset-id="mallin">
+              <div class="gis-preset-header">
+                <div class="gis-preset-flag-title">
+                  <span>🇨🇱</span> <span>Mallín Patagónico</span>
+                </div>
+                <span class="gis-preset-badge badge-patagonia">Andino / Aysén</span>
+              </div>
+              <p class="gis-preset-desc">
+                Humedal de cabecera andina sobre turba fría y depósitos fluvioglaciares. Dominado por <em>Carex magellanica</em>. Regula crecidas y almacena carbono fósil en suelos anóxicos.
+              </p>
+              <div class="gis-preset-meta">
+                <span>WTD: -12 cm</span>
+                <span>pH: 5.8</span>
+                <span>Área: 45 ha</span>
+                <span>Clima: Frío Húmedo</span>
+              </div>
+            </div>
+
+            <!-- Preset 2: Humedal Costero Maipo -->
+            <div class="gis-preset-card" data-preset-id="estuary">
+              <div class="gis-preset-header">
+                <div class="gis-preset-flag-title">
+                  <span>🇨🇱</span> <span>Humedal Costero / Estuario</span>
+                </div>
+                <span class="gis-preset-badge badge-coastal">Mixohalino / Maipo</span>
+              </div>
+              <p class="gis-preset-desc">
+                Marisma estuarina con alta biomasa de <em>Typha domingensis</em> y <em>Schoenoplectus</em>. Chimeneas aerenquimáticas activas y amortiguador hidrológico frente a marejadas.
+              </p>
+              <div class="gis-preset-meta">
+                <span>WTD: -5 cm</span>
+                <span>pH: 7.4</span>
+                <span>Área: 120 ha</span>
+                <span>Mixohalino</span>
+              </div>
+            </div>
+
+            <!-- Preset 3: Turbera Tremedal -->
+            <div class="gis-preset-card" data-preset-id="tremedal">
+              <div class="gis-preset-header">
+                <div class="gis-preset-flag-title">
+                  <span>🇪🇸</span> <span>Turbera de Tremedal</span>
+                </div>
+                <span class="gis-preset-badge badge-locked">Ombrotrófico</span>
+              </div>
+              <p class="gis-preset-desc">
+                Bofedal/trampal de montaña ibérico con tapiz vivo de <em>Sphagnum</em>. Suelo muy ácido (pH 4.0), alta porosidad en acrotelmo y metanogénesis enzimáticamente inhibida.
+              </p>
+              <div class="gis-preset-meta">
+                <span>WTD: -8 cm</span>
+                <span>pH: 4.0</span>
+                <span>Área: 28 ha</span>
+                <span>Ácido</span>
+              </div>
+            </div>
+
+            <!-- Preset 4: Wallener Au (Locked Baseline) -->
+            <div class="gis-preset-card locked-baseline" data-preset-id="fen">
+              <div class="gis-preset-header">
+                <div class="gis-preset-flag-title">
+                  <span>🇩🇪</span> <span>Wallener Au (Kiel Benchmark)</span>
+                </div>
+                <span class="gis-preset-badge badge-locked">🔒 Caso de Estudio 01</span>
+              </div>
+              <p class="gis-preset-desc">
+                Turbera templada minerotrófica de Schleswig-Holstein. Calibración empírica con torre Eddy Covariance 10 Hz y cámaras de flujo. Línea de base de la tesis (Solo Lectura).
+              </p>
+              <div class="gis-preset-meta">
+                <span>WTD: -25 cm</span>
+                <span>pH: 6.8</span>
+                <span>Área: 18.5 ha</span>
+                <span>Benchmark Tesis</span>
+              </div>
+            </div>
+
+            <!-- Preset 5: Paludicultura -->
+            <div class="gis-preset-card" data-preset-id="paludi">
+              <div class="gis-preset-header">
+                <div class="gis-preset-flag-title">
+                  <span>🌾</span> <span>Paludicultura Productiva</span>
+                </div>
+                <span class="gis-preset-badge badge-coastal">Wet Farming</span>
+              </div>
+              <p class="gis-preset-desc">
+                Humedal manejado con inundación superficial permanente para producción de biomasa renovable (Typha / Phragmites). Frena el 100% de la descomposición de turba.
+              </p>
+              <div class="gis-preset-meta">
+                <span>WTD: +2 cm</span>
+                <span>pH: 7.0</span>
+                <span>Área: 35 ha</span>
+                <span>Rehumedecido</span>
+              </div>
+            </div>
+
+            <!-- Preset 6: Pastizal Drenado (Degradado) -->
+            <div class="gis-preset-card" data-preset-id="drained">
+              <div class="gis-preset-header">
+                <div class="gis-preset-flag-title">
+                  <span>🚜</span> <span>Turbera Drenada Degradada</span>
+                </div>
+                <span class="gis-preset-badge badge-locked" style="background: rgba(244,63,94,0.2); color:#f43f5e; border-color: rgba(244,63,94,0.4);">Degradado</span>
+              </div>
+              <p class="gis-preset-desc">
+                Humedal con zanjas de drenaje profundo y compactación por pisoteo de ganado. Napa caída a -55 cm. Fuerte fuente emisora neta de CO₂ por subsidencia y mineralización.
+              </p>
+              <div class="gis-preset-meta">
+                <span>WTD: -55 cm</span>
+                <span>pH: 5.4</span>
+                <span>Área: 60 ha</span>
+                <span>Fuente Crítica</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Panel 2: File Upload (GeoJSON / KML / JSON) -->
+        <div class="gis-tab-pane hidden" id="gis-pane-upload">
+          <div class="gis-dropzone" id="gis-file-dropzone">
+            <span class="gis-dropzone-icon">🛰️</span>
+            <p class="gis-dropzone-text">Arrastra y suelta tu archivo GIS aquí o haz clic para explorar</p>
+            <p class="gis-dropzone-sub">Formatos compatibles: GeoJSON (.geojson, .json), Google Earth (.kml), Shapefile GeoJSON</p>
+            <input type="file" id="gis-file-input" class="gis-dropzone-input" accept=".geojson,.json,.kml">
+          </div>
+
+          <!-- File Upload Details Preview (Hidden initially) -->
+          <div class="gis-file-preview hidden" id="gis-file-preview-box">
+            <div class="gis-file-info">
+              <span class="gis-file-icon">🗺️</span>
+              <div>
+                <div class="gis-file-name" id="gis-preview-filename">humedal_poligono.geojson</div>
+                <div class="gis-file-stats" id="gis-preview-stats">Polígono detectado • 48.6 ha • Coordenadas válidas</div>
+              </div>
+            </div>
+            <button type="button" class="gis-btn-remove-file" id="btn-remove-gis-file" title="Eliminar archivo">✕</button>
+          </div>
+        </div>
+
+        <!-- Common Quick Parameter Controls -->
+        <div class="gis-config-strip">
+          <div class="gis-input-group">
+            <label class="gis-input-label" for="gis-input-sitename">Nombre del Humedal / Proyecto</label>
+            <input type="text" id="gis-input-sitename" class="gis-input-field" value="Mallín Patagónico (Aysén)">
+          </div>
+          <div class="gis-input-group">
+            <label class="gis-input-label" for="gis-input-area">Superficie Estimada (ha)</label>
+            <input type="number" id="gis-input-area" class="gis-input-field" value="45" min="1" max="10000">
+          </div>
+          <div class="gis-input-group">
+            <label class="gis-input-label" for="gis-input-wtd">Nivel Freático Inicial (WTD cm)</label>
+            <input type="number" id="gis-input-wtd" class="gis-input-field" value="-12" min="-70" max="10">
+          </div>
+          <div class="gis-input-group">
+            <label class="gis-input-label" for="gis-input-ph">pH de Suelo / Poro</label>
+            <input type="number" id="gis-input-ph" class="gis-input-field" value="5.8" min="3.5" max="8.5" step="0.1">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="gis-modal-footer">
+        <button type="button" class="btn-gis-cancel" id="btn-cancel-gis-modal">Cancelar</button>
+        <button type="button" class="btn-gis-confirm" id="btn-confirm-gis-load">
+          <span>⚡ Inicializar Lab con este Humedal</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ====================================================================
        EDUCATIONAL HELP GUIDE MODAL: HOW THE DIGITAL TWIN WORKS (?)

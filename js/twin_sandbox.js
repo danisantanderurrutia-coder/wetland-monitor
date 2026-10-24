@@ -11,7 +11,7 @@ export class WetlandTwinSandbox {
     // State Variables
     this.state = {
       waterInjection: 0,        // L/m² (0 - 150)
-      archetype: 'fen',          // 'fen' | 'bog' | 'paludi' | 'drained'
+      archetype: 'fen',          // 'fen' | 'bog' | 'paludi' | 'drained' | 'mallin' | 'estuary' | 'tremedal'
       rewettingYear: 0,          // 0 - 10 years
       soilPh: 6.4,               // 3.5 - 8.5
       soilCompaction: 0.32,      // g/cm³ (0.15 - 0.85)
@@ -23,7 +23,18 @@ export class WetlandTwinSandbox {
       atmoVpd: 0.85,             // kPa (0.2 - 2.5)
       atmoUstar: 0.28,           // m/s (0.04 - 0.80)
       atmoRn: 420,               // W/m² (-50 - 750)
-      atmoBowen: 0.45            // ratio H/LE (0.1 - 2.0)
+      atmoBowen: 0.45,           // ratio H/LE (0.1 - 2.0)
+      gwpHorizon: '100',         // '100' | '20'
+      ditchBlocking: false,      // boolean restoration lever
+      currentProject: {
+        id: 'fen',
+        name: 'Wallener Au Benchmark',
+        badge: 'Empirical Ground-Truth',
+        isWallener: true,
+        areaHa: 18.5,
+        coordinates: '54.2807° N, 9.2586° E',
+        ecosystemType: 'fen'
+      }
     };
 
     // Archetype Presets
@@ -39,7 +50,58 @@ export class WetlandTwinSandbox {
         aerenchymaBypass: 65,
         atmoBowen: 0.42,
         nitrogenLoad: 15,
-        targetWtd: -25
+        targetWtd: -25,
+        areaHa: 18.5,
+        coordinates: "54.2807° N, 9.2586° E",
+        isWallener: true
+      },
+      mallin: {
+        title: "Mallín Patagónico (Aysén, Chile)",
+        badge: "Cold Peat / Andino",
+        soilPh: 5.8,
+        waterInjection: 20,
+        soilCompaction: 0.22,
+        macroporosity: 32,
+        plantLai: 3.2,
+        aerenchymaBypass: 50,
+        atmoBowen: 0.38,
+        nitrogenLoad: 6,
+        targetWtd: -12,
+        areaHa: 45.0,
+        coordinates: "-45.57° S, -72.06° W",
+        isWallener: false
+      },
+      estuary: {
+        title: "Humedal Costero / Estuario Río Maipo",
+        badge: "Mixohalino / Maipo",
+        soilPh: 7.4,
+        waterInjection: 40,
+        soilCompaction: 0.30,
+        macroporosity: 26,
+        plantLai: 4.8,
+        aerenchymaBypass: 85,
+        atmoBowen: 0.30,
+        nitrogenLoad: 30,
+        targetWtd: -5,
+        areaHa: 120.0,
+        coordinates: "-33.61° S, -71.62° W",
+        isWallener: false
+      },
+      tremedal: {
+        title: "Turbera de Tremedal (Sistema Ibérico)",
+        badge: "Sphagnum Ombrotrófico",
+        soilPh: 4.0,
+        waterInjection: 30,
+        soilCompaction: 0.16,
+        macroporosity: 40,
+        plantLai: 2.2,
+        aerenchymaBypass: 30,
+        atmoBowen: 0.36,
+        nitrogenLoad: 4,
+        targetWtd: -8,
+        areaHa: 28.0,
+        coordinates: "40.48° N, -1.68° W",
+        isWallener: false
       },
       bog: {
         title: "Sphagnum Raised Bog (Ombrotrophic)",
@@ -52,7 +114,10 @@ export class WetlandTwinSandbox {
         aerenchymaBypass: 25,
         atmoBowen: 0.35,
         nitrogenLoad: 5,
-        targetWtd: -5
+        targetWtd: -5,
+        areaHa: 22.0,
+        coordinates: "53.80° N, 9.15° E",
+        isWallener: false
       },
       paludi: {
         title: "Paludiculture Reed Bed (Typha / Phragmites)",
@@ -65,7 +130,10 @@ export class WetlandTwinSandbox {
         aerenchymaBypass: 90,
         atmoBowen: 0.25,
         nitrogenLoad: 25,
-        targetWtd: 2
+        targetWtd: 2,
+        areaHa: 35.0,
+        coordinates: "54.10° N, 12.10° E",
+        isWallener: false
       },
       drained: {
         title: "Drained Peat Grassland (Degraded Soil)",
@@ -78,7 +146,10 @@ export class WetlandTwinSandbox {
         aerenchymaBypass: 15,
         atmoBowen: 1.45,
         nitrogenLoad: 60,
-        targetWtd: -60
+        targetWtd: -60,
+        areaHa: 60.0,
+        coordinates: "54.25° N, 9.30° E",
+        isWallener: false
       }
     };
 
@@ -242,6 +313,42 @@ export class WetlandTwinSandbox {
         }
       });
     }
+
+    // 7. GWP Horizon Buttons (100y vs 20y)
+    const btnGwp100 = document.getElementById("btn-gwp-100");
+    const btnGwp20 = document.getElementById("btn-gwp-20");
+    if (btnGwp100 && btnGwp20) {
+      btnGwp100.addEventListener("click", () => this.setGwpHorizon("100"));
+      btnGwp20.addEventListener("click", () => this.setGwpHorizon("20"));
+    }
+
+    // 8. Ditch Blocking Toggle
+    const btnDitch = document.getElementById("btn-toggle-ditch-blocking");
+    if (btnDitch) {
+      btnDitch.addEventListener("click", () => this.toggleDitchBlocking());
+    }
+
+    // 9. Export Lab Report Button
+    const btnExport = document.getElementById("btn-export-lab-report");
+    if (btnExport) {
+      btnExport.addEventListener("click", () => this.exportLabReport());
+    }
+
+    // 10. HUD Project Badge Switcher Button
+    const btnHudSwitch = document.getElementById("btn-hud-switch-project");
+    const hudBadge = document.getElementById("hud-project-badge");
+    const openGisModal = () => {
+      const modal = document.getElementById("gis-project-import-modal");
+      if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("active");
+      }
+    };
+    if (btnHudSwitch) btnHudSwitch.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openGisModal();
+    });
+    if (hudBadge) hudBadge.addEventListener("click", openGisModal);
   }
 
   bindSlider(sliderId, readoutId, stateKey, suffix, decimals = 1, customFormatter = null) {
@@ -311,7 +418,12 @@ export class WetlandTwinSandbox {
     // Peat specific yield Sy ≈ 0.25 (10 mm / 10 L/m² rain raises WTD by 4 cm)
     const deltaWtd = Math.round(s.waterInjection / 2.5);
     const baseWtd = this.soilModel ? (this.soilModel.waterTableDepth || -25) : -25;
-    const effectiveWtd = Math.min(5, Math.max(-60, baseWtd + deltaWtd));
+    let effectiveWtd = Math.min(5, Math.max(-60, baseWtd + deltaWtd));
+
+    // Ditch blocking raises groundwater to optimal rewetting level (-8 cm) and stops peat decay
+    if (s.ditchBlocking) {
+      effectiveWtd = Math.max(-8, effectiveWtd + 18);
+    }
 
     // 2. pH Multipliers on Microbial Kinetics:
     // Acidic bog (pH 3.5 - 4.5) inhibits methanogens; optimum at pH 6.8 - 7.2
@@ -383,6 +495,40 @@ export class WetlandTwinSandbox {
     }
     if (n2oEl) {
       n2oEl.textContent = `+${n2o.toFixed(3)} nmol m⁻² s⁻¹`;
+    }
+
+    // 7b. Radiative Forcing (GWP Horizon Balance):
+    // NEE: umol m-2 s-1 to ton CO2 ha-1 yr-1
+    const co2TonHaYr = nee * 0.1388;
+    // CH4: nmol m-2 s-1 to ton CO2e ha-1 yr-1
+    const ch4GwpFactor = s.gwpHorizon === '20' ? 84 : 28;
+    const ch4TonHaYr = (ch4 * 0.005058) * ch4GwpFactor;
+    // N2O: nmol m-2 s-1 to ton CO2e ha-1 yr-1
+    const n2oGwpFactor = s.gwpHorizon === '20' ? 268 : 265;
+    const n2oTonHaYr = (n2o * 0.01388) * n2oGwpFactor;
+
+    const netGwp = co2TonHaYr + ch4TonHaYr + n2oTonHaYr;
+
+    const gwpLabel = document.getElementById("hud-gwp-label");
+    const gwpVal = document.getElementById("hud-gwp-value");
+    const gwpBadge = document.getElementById("hud-gwp-net-badge");
+
+    if (gwpLabel) gwpLabel.textContent = `Net GWP${s.gwpHorizon === '20' ? '₂₀' : '₁₀₀'}`;
+    if (gwpVal) {
+      gwpVal.textContent = `${netGwp > 0 ? '+' : ''}${netGwp.toFixed(1)} tCO₂e/ha`;
+      if (netGwp < 0) {
+        gwpVal.style.color = "#34d399";
+        if (gwpBadge) {
+          gwpBadge.style.background = "rgba(16, 185, 129, 0.18)";
+          gwpBadge.style.borderColor = "rgba(52, 211, 153, 0.5)";
+        }
+      } else {
+        gwpVal.style.color = "#f43f5e";
+        if (gwpBadge) {
+          gwpBadge.style.background = "rgba(244, 63, 94, 0.18)";
+          gwpBadge.style.borderColor = "rgba(244, 63, 94, 0.5)";
+        }
+      }
     }
 
     // 8. Visual SVG Updates
@@ -547,5 +693,156 @@ export class WetlandTwinSandbox {
     if (!modal) return;
     modal.classList.remove("hidden");
     modal.classList.add("active");
+  }
+
+  setGwpHorizon(horizon) {
+    this.state.gwpHorizon = horizon;
+    const btn100 = document.getElementById("btn-gwp-100");
+    const btn20 = document.getElementById("btn-gwp-20");
+    if (btn100 && btn20) {
+      btn100.classList.toggle("active", horizon === '100');
+      btn20.classList.toggle("active", horizon === '20');
+      btn100.style.background = horizon === '100' ? "#0284c7" : "transparent";
+      btn100.style.color = horizon === '100' ? "#fff" : "#94a3b8";
+      btn20.style.background = horizon === '20' ? "#0284c7" : "transparent";
+      btn20.style.color = horizon === '20' ? "#fff" : "#94a3b8";
+    }
+    this.updatePhysics();
+  }
+
+  toggleDitchBlocking() {
+    this.state.ditchBlocking = !this.state.ditchBlocking;
+    const btn = document.getElementById("btn-toggle-ditch-blocking");
+    const icon = document.getElementById("ditch-blocking-icon");
+    const text = document.getElementById("ditch-blocking-text");
+    const val = document.getElementById("val-ditch-blocking");
+
+    if (this.state.ditchBlocking) {
+      if (btn) btn.classList.add("active");
+      if (icon) icon.textContent = "🛑";
+      if (text) text.textContent = "Diques Activos (Zanjas Bloqueadas)";
+      if (val) {
+        val.textContent = "Diques Activos (-8 cm)";
+        val.style.color = "#34d399";
+      }
+    } else {
+      if (btn) btn.classList.remove("active");
+      if (icon) icon.textContent = "🚫";
+      if (text) text.textContent = "Instalar Diques de Turba (Bloquear Zanjas)";
+      if (val) {
+        val.textContent = "Drenaje Libre";
+        val.style.color = "#94a3b8";
+      }
+    }
+    this.updatePhysics();
+  }
+
+  loadCustomProject(p) {
+    if (!p) return;
+    this.state.currentProject = {
+      id: p.id || 'custom-' + Date.now(),
+      name: p.name || 'Humedal Territorial',
+      badge: p.badge || 'Proyecto GIS',
+      isWallener: !!p.isWallener,
+      areaHa: p.areaHa || 45,
+      coordinates: p.coordinates || '-35.0° S, -71.5° W',
+      ecosystemType: p.ecosystemType || 'custom',
+      geojson: p.geojson || null
+    };
+
+    if (p.archetypeKey && this.archetypes[p.archetypeKey]) {
+      this.loadArchetype(p.archetypeKey);
+    } else {
+      if (p.wtd !== undefined) {
+        if (this.soilModel && typeof this.soilModel.setWaterTable === "function") {
+          this.soilModel.setWaterTable(p.wtd);
+        }
+      }
+      if (p.ph !== undefined) this.state.soilPh = p.ph;
+      this.updatePhysics();
+    }
+
+    this.updateProjectBadge();
+  }
+
+  updateProjectBadge() {
+    const cp = this.state.currentProject;
+    const hudBadge = document.getElementById("hud-project-badge");
+    const hudIcon = document.getElementById("hud-project-icon");
+    const hudTitle = document.getElementById("hud-project-title");
+
+    if (!hudBadge || !cp) return;
+
+    if (cp.isWallener) {
+      hudBadge.className = "hud-project-badge wallener-baseline";
+      if (hudIcon) hudIcon.textContent = "🔒";
+      if (hudTitle) hudTitle.textContent = "Wallener Au Benchmark (Kiel)";
+    } else {
+      hudBadge.className = "hud-project-badge";
+      if (hudIcon) hudIcon.textContent = "🧪";
+      if (hudTitle) hudTitle.textContent = `${cp.name} (${cp.areaHa} ha)`;
+    }
+  }
+
+  exportLabReport() {
+    const s = this.state;
+    const cp = s.currentProject;
+
+    const co2El = document.getElementById("hud-live-flux-co2");
+    const ch4El = document.getElementById("hud-live-flux-ch4");
+    const n2oEl = document.getElementById("hud-live-flux-n2o");
+    const gwpEl = document.getElementById("hud-gwp-value");
+
+    const reportData = {
+      specVersion: "AGROTECH-WETLAND-LAB-1.0",
+      timestamp: new Date().toISOString(),
+      project: {
+        id: cp.id,
+        name: cp.name,
+        areaHectares: cp.areaHa,
+        coordinates: cp.coordinates,
+        archetype: s.archetype,
+        isBaselineBenchmark: cp.isWallener,
+        geojsonFeature: cp.geojson || null
+      },
+      biophysicalParameters: {
+        waterTableDepth_cm: this.soilModel ? this.soilModel.waterTableDepth : -25,
+        waterDosage_L_m2: s.waterInjection,
+        soilPh: s.soilPh,
+        compactionBulkDensity_g_cm3: s.soilCompaction,
+        macroporosity_pct: s.macroporosity,
+        nitrogenLoad_kg_ha: s.nitrogenLoad,
+        vegetationLai_m2_m2: s.plantLai,
+        aerenchymaBypass_pct: s.aerenchymaBypass,
+        rewettingChronosequenceYear: s.rewettingYear,
+        ditchBlockingActive: s.ditchBlocking
+      },
+      instantaneousFluxes: {
+        netEcosystemExchange_co2_umol_m2_s: co2El ? parseFloat(co2El.textContent) : -2.3,
+        methaneFlux_ch4_nmol_m2_s: ch4El ? parseFloat(ch4El.textContent) : 42,
+        nitrousOxide_n2o_nmol_m2_s: n2oEl ? parseFloat(n2oEl.textContent) : 0.03
+      },
+      climateMitigationBalance: {
+        gwpHorizon: s.gwpHorizon === '20' ? "20-Year (Emergency)" : "100-Year (Stability)",
+        netBalance_tCO2e_ha_yr: gwpEl ? parseFloat(gwpEl.textContent) : -3.4,
+        mitigationStatus: (gwpEl && parseFloat(gwpEl.textContent) < 0) ? "Net Climate Carbon Sink" : "Net Warming Emitter"
+      },
+      restorationRecommendations: [
+        s.soilCompaction > 0.45 ? "Plow pan compaction detected. Subsoil decompaction or perched water aeration recommended." : "Soil structure intact.",
+        s.soilPh < 4.5 ? "Acidic peat inhibits bacterial methanogens, naturally suppressing methane emissions." : "Neutral to alkaline pH: optimize water table to prevent methane ebullition.",
+        s.ditchBlocking ? "Ditch blocking active: hydrologic retention maximized for peat preservation." : "Consider ditch blocking to raise summer water table and eliminate aerobic peat combustion."
+      ]
+    };
+
+    const jsonBlob = new Blob([JSON.stringify(reportData, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(jsonBlob);
+    const link = document.createElement("a");
+    const cleanName = (cp.name || "humedal").toLowerCase().replace(/[^a-z0-9]/g, "_");
+    link.href = url;
+    link.download = `wetland_report_${cleanName}_${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   }
 }

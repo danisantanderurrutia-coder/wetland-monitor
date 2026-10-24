@@ -158,6 +158,9 @@ class WetlandMonitorApp {
     window.twinSandbox = this.sandbox;
     this.sandbox.init();
 
+    // Initialize GIS Project Importer & Territorial Wetland Lab Selector
+    this.initGisProjectModal();
+
     // 3. Set branding logo to "Stratigraphy & Probes"
     this.initLogo();
 
@@ -692,13 +695,13 @@ class WetlandMonitorApp {
         // Wallener Au Calibrated Benchmark Twin
         if (this.sandbox) this.sandbox.loadArchetype("fen");
       } else {
-        // Universal Twin Lab Sandbox: reset running loops and uncollapse sandbox levers
+        // Universal Twin Lab Sandbox: reset running loops and keep tray tucked until user opens it
         if (this.digitalTwin) {
           this.digitalTwin.resetSimulation();
         }
-        if (tray) tray.classList.remove("collapsed");
-        if (toggleBtn) toggleBtn.textContent = "✕ Close";
-        if (hudOpenBtn) hudOpenBtn.classList.add("active");
+        if (tray) tray.classList.add("collapsed");
+        if (toggleBtn) toggleBtn.textContent = "▲ Expand";
+        if (hudOpenBtn) hudOpenBtn.classList.remove("active");
       }
     }
 
@@ -2609,6 +2612,224 @@ class WetlandMonitorApp {
     toast.textContent = message;
     toast.style.opacity = "1";
     setTimeout(() => { toast.style.opacity = "0"; }, 3500);
+  }
+
+  // ==========================================================================
+  // GIS PROJECT IMPORTER & TERRITORIAL WETLAND SELECTOR
+  // ==========================================================================
+  initGisProjectModal() {
+    const modal = document.getElementById("gis-project-import-modal");
+    if (!modal) return;
+
+    const btnOpenLanding = document.getElementById("btn-open-gis-modal");
+    const btnClose = document.getElementById("btn-close-gis-modal");
+    const btnCancel = document.getElementById("btn-cancel-gis-modal");
+    const btnConfirm = document.getElementById("btn-confirm-gis-load");
+
+    const tabPresets = document.getElementById("tab-btn-gis-presets");
+    const tabUpload = document.getElementById("tab-btn-gis-upload");
+    const panePresets = document.getElementById("gis-pane-presets");
+    const paneUpload = document.getElementById("gis-pane-upload");
+
+    const dropzone = document.getElementById("gis-file-dropzone");
+    const fileInput = document.getElementById("gis-file-input");
+    const previewBox = document.getElementById("gis-file-preview-box");
+    const previewName = document.getElementById("gis-preview-filename");
+    const previewStats = document.getElementById("gis-preview-stats");
+    const btnRemoveFile = document.getElementById("btn-remove-gis-file");
+
+    const inputName = document.getElementById("gis-input-sitename");
+    const inputArea = document.getElementById("gis-input-area");
+    const inputWtd = document.getElementById("gis-input-wtd");
+    const inputPh = document.getElementById("gis-input-ph");
+
+    let activePresetKey = "mallin";
+    let loadedGeoJson = null;
+
+    const presetConfigs = {
+      mallin: { name: "Mallín Patagónico (Aysén)", area: 45, wtd: -12, ph: 5.8, isWallener: false },
+      estuary: { name: "Humedal Costero / Estuario Río Maipo", area: 120, wtd: -5, ph: 7.4, isWallener: false },
+      tremedal: { name: "Turbera de Tremedal (Sistema Ibérico)", area: 28, wtd: -8, ph: 4.0, isWallener: false },
+      fen: { name: "Wallener Au (Kiel Benchmark)", area: 18.5, wtd: -25, ph: 6.8, isWallener: true },
+      paludi: { name: "Paludicultura Productiva", area: 35, wtd: 2, ph: 7.0, isWallener: false },
+      drained: { name: "Turbera Drenada Degradada", area: 60, wtd: -55, ph: 5.4, isWallener: false }
+    };
+
+    const openModal = (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      modal.classList.remove("hidden");
+      modal.classList.add("active");
+    };
+
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      modal.classList.remove("active");
+    };
+
+    if (btnOpenLanding) btnOpenLanding.addEventListener("click", openModal);
+    if (btnClose) btnClose.addEventListener("click", closeModal);
+    if (btnCancel) btnCancel.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Tab Switching inside GIS Modal
+    if (tabPresets && tabUpload) {
+      tabPresets.addEventListener("click", () => {
+        tabPresets.classList.add("active");
+        tabUpload.classList.remove("active");
+        if (panePresets) panePresets.classList.remove("hidden");
+        if (paneUpload) paneUpload.classList.add("hidden");
+      });
+
+      tabUpload.addEventListener("click", () => {
+        tabUpload.classList.add("active");
+        tabPresets.classList.remove("active");
+        if (paneUpload) paneUpload.classList.remove("hidden");
+        if (panePresets) panePresets.classList.add("hidden");
+      });
+    }
+
+    // Preset Selection Cards
+    const presetCards = modal.querySelectorAll(".gis-preset-card");
+    presetCards.forEach(card => {
+      card.addEventListener("click", () => {
+        presetCards.forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+        const pKey = card.dataset.presetId;
+        activePresetKey = pKey;
+
+        const cfg = presetConfigs[pKey];
+        if (cfg) {
+          if (inputName) inputName.value = cfg.name;
+          if (inputArea) inputArea.value = cfg.area;
+          if (inputWtd) inputWtd.value = cfg.wtd;
+          if (inputPh) inputPh.value = cfg.ph;
+        }
+      });
+    });
+
+    // File Processing Helper (Client-Side Parser)
+    const processFile = (file) => {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const content = e.target.result;
+          let parsed = null;
+          if (file.name.endsWith(".json") || file.name.endsWith(".geojson")) {
+            parsed = JSON.parse(content);
+          } else {
+            parsed = { name: file.name.replace(/\.[^/.]+$/, ""), raw: content };
+          }
+
+          loadedGeoJson = parsed;
+
+          // Estimate properties from GeoJSON if available
+          let siteName = file.name.replace(/\.[^/.]+$/, "").replace(/[_-]/g, " ");
+          siteName = siteName.charAt(0).toUpperCase() + siteName.slice(1);
+          let estArea = 50;
+
+          if (parsed && parsed.features && parsed.features[0]) {
+            const props = parsed.features[0].properties || {};
+            if (props.name || props.site || props.NOMBRE) {
+              siteName = props.name || props.site || props.NOMBRE;
+            }
+            if (props.area || props.hectareas || props.AREA) {
+              estArea = parseFloat(props.area || props.hectareas || props.AREA) || 50;
+            } else if (parsed.features[0].geometry && parsed.features[0].geometry.coordinates) {
+              const coords = parsed.features[0].geometry.coordinates.flat(Infinity);
+              estArea = Math.min(1000, Math.max(10, Math.round(coords.length * 1.5)));
+            }
+          }
+
+          if (inputName) inputName.value = siteName;
+          if (inputArea) inputArea.value = estArea;
+          if (previewName) previewName.textContent = file.name;
+          if (previewStats) {
+            previewStats.textContent = `Archivo procesado • ~${estArea} ha estimadas • Vértices validados`;
+          }
+
+          if (previewBox) previewBox.classList.remove("hidden");
+          if (dropzone) dropzone.classList.add("hidden");
+        } catch (err) {
+          console.error("Error al procesar archivo GIS:", err);
+          alert("El archivo no pudo procesarse como GeoJSON válido. Intenta con un archivo .geojson estándar.");
+        }
+      };
+      reader.readAsText(file);
+    };
+
+    // Dropzone Events
+    if (dropzone && fileInput) {
+      dropzone.addEventListener("click", () => fileInput.click());
+      dropzone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropzone.classList.add("dragover");
+      });
+      dropzone.addEventListener("dragleave", () => dropzone.classList.remove("dragover"));
+      dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("dragover");
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          processFile(e.dataTransfer.files[0]);
+        }
+      });
+      fileInput.addEventListener("change", (e) => {
+        if (e.target.files && e.target.files[0]) {
+          processFile(e.target.files[0]);
+        }
+      });
+    }
+
+    if (btnRemoveFile) {
+      btnRemoveFile.addEventListener("click", () => {
+        loadedGeoJson = null;
+        if (fileInput) fileInput.value = "";
+        if (previewBox) previewBox.classList.add("hidden");
+        if (dropzone) dropzone.classList.remove("hidden");
+      });
+    }
+
+    // Confirm & Load into Twin
+    if (btnConfirm) {
+      btnConfirm.addEventListener("click", () => {
+        const finalName = inputName ? inputName.value : "Humedal Territorial";
+        const finalArea = inputArea ? parseFloat(inputArea.value) : 45;
+        const finalWtd = inputWtd ? parseFloat(inputWtd.value) : -12;
+        const finalPh = inputPh ? parseFloat(inputPh.value) : 6.0;
+
+        const isWallenerSelected = (activePresetKey === "fen" && !loadedGeoJson);
+
+        if (isWallenerSelected) {
+          this.isWallenerTwinMode = true;
+          if (this.sandbox) {
+            this.sandbox.loadArchetype("fen");
+          }
+        } else {
+          this.isWallenerTwinMode = false;
+          if (this.sandbox) {
+            this.sandbox.loadCustomProject({
+              id: activePresetKey,
+              archetypeKey: activePresetKey,
+              name: finalName,
+              areaHa: finalArea,
+              wtd: finalWtd,
+              ph: finalPh,
+              isWallener: false,
+              geojson: loadedGeoJson
+            });
+          }
+        }
+
+        closeModal();
+        this.switchView("soil_interface");
+      });
+    }
   }
 
 }
