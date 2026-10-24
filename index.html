@@ -126,13 +126,38 @@
           </div>
         </div>
 
+        <!-- Global Header Nav Links -->
+        <div class="global-nav-links-row" id="global-nav-links-row">
+          <button type="button" class="global-nav-link" id="nav-btn-twin" data-nav-target="soil_interface" title="Universal Twin Lab con controles completos">
+            <span>🌍</span> <span>Twin Lab</span>
+          </button>
+          <button type="button" class="global-nav-link" id="nav-btn-wallener" data-nav-target="wallener_dashboard" title="Caso de Estudio 01: Klimafarm Wallener Au (Benchmark Empírico)">
+            <span>📍</span> <span>Wallener Au</span> <span class="badge-pill" style="background:#10b981; color:#0f172a; font-size:10px; font-weight:800; padding:1px 6px; border-radius:10px;">Case 01</span>
+          </button>
+          
+          <div class="global-nav-dropdown" id="nav-dropdown-methodology">
+            <button type="button" class="global-nav-link" id="nav-btn-methodology" aria-haspopup="true" aria-expanded="false" title="Metodología General de Monitoreo">
+              <span>📚</span> <span>Metodología ▾</span>
+            </button>
+            <div class="global-dropdown-menu hidden" id="menu-methodology">
+              <div class="global-dropdown-item" data-nav-target="tools_general">
+                <span>🛠️</span> <span>Tools &amp; Instrumentación General</span>
+              </div>
+              <div class="global-dropdown-item" data-nav-target="satellites_general">
+                <span>🛰️</span> <span>Satélites &amp; Teledetección General</span>
+              </div>
+              <div class="global-dropdown-item" data-nav-target="biogeochemistry_general">
+                <span>⚗️</span> <span>Biogeoquímica &amp; Tipos de Humedal</span>
+              </div>
+              <div class="global-dropdown-item" data-nav-target="carbon_general">
+                <span>⚖️</span> <span>Carbon Accounting &amp; GWP General</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Right Header Actions -->
         <div class="header-actions">
-          <!-- Guided Tour / Executive Pitch Deck Button -->
-          <button class="action-btn primary header-presentation-btn" id="btn-open-classic-presentation" title="Open Guided Tour &amp; Executive Pitch Deck (22 Slides)">
-            <span class="btn-icon">🧭</span> <span class="action-btn-text">Guided Tour</span> <span class="badge-pill">Deck</span>
-          </button>
-
           <!-- How It Works Pedagogical Guide Button -->
           <button class="action-btn help-guide-btn" id="btn-header-how-it-works" title="How the Peatland Digital Twin Works (?)">
             <span class="btn-icon">❓</span> <span class="action-btn-text">How It Works</span>
@@ -148,11 +173,6 @@
             <span id="theme-icon">☀️</span> <span id="label-theme-btn" class="theme-label">Luminous</span>
           </button>
 
-          <!-- Presenter Speaker Notes Drawer Toggle -->
-          <button class="action-btn" id="toggle-notes-btn" title="Open Speaker Pitch Notes (Key P)">
-            <span>🎙️</span>
-          </button>
-
           <!-- Research Admin & Security Console Toggle (No password displayed here) -->
           <button class="action-btn admin-btn" id="btn-header-admin" title="Research Admin Console (Key Ctrl+Shift+A or Alt+A)">
             <span>⚙️</span> <span class="admin-btn-text">Admin</span>
@@ -162,6 +182,30 @@
           <button class="action-btn primary" id="fullscreen-btn" title="Toggle Fullscreen">
             <span>⛶</span>
           </button>
+        </div>
+      </div>
+
+      <!-- Contextual Project Navigation Bar (Only displayed when inside Wallener Au project views) -->
+      <div class="wallener-project-nav-bar hidden" id="wallener-project-nav-bar">
+        <div class="nav-left-actions">
+          <button type="button" class="btn-back-to-landing" id="nav-btn-back-wallener-dash" title="Volver al Dashboard de Wallener Au">
+            <span>⬅</span> <span>Dashboard Wallener</span>
+          </button>
+          <button type="button" class="btn-back-to-landing" id="nav-btn-wallener-to-home" title="Volver al Inicio Principal">
+            <span>🏠</span> <span>Inicio</span>
+          </button>
+        </div>
+        <div class="project-tabs-track" id="wallener-tabs-track">
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="soil_interface"><span>🌾</span> <span>Twin Calibrado</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="eddy_covariance"><span>📊</span> <span>Eddy Covariance</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="instruments_matrix"><span>📦</span> <span>Cámaras &amp; N₂O</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="geophysics"><span>🗜️</span> <span>Geomecánica</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="flux_diagnostics"><span>📈</span> <span>Micrometeo &amp; EBC</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="data_pipeline"><span>🔬</span> <span>Modelos Empíricos</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="macro"><span>🛰️</span> <span>Satélites &amp; Footprint</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="gwp_uncertainties"><span>📐</span> <span>Incertidumbres</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="aims_objectives"><span>🎯</span> <span>Objetivos Tesis</span></button>
+          <button type="button" class="wallener-tab-pill" data-wallener-nav="conclusions_outlook"><span>🏁</span> <span>Conclusiones</span></button>
         </div>
       </div>
 
@@ -350,7 +394,509 @@
 
     <!-- Main Viewport Containers -->
     <main class="main-viewport">
-<section class="view-panel" data-view-id="thesis_cover" id="view-cover">
+
+      <!-- 1. LANDING DASHBOARD VIEW -->
+      <section class="view-panel active" data-view-id="landing" id="view-landing">
+        <div class="landing-dashboard-wrapper">
+          
+          <!-- Hero Card: Platform Presentation & Mission -->
+          <div class="landing-hero-card">
+            <div class="landing-hero-badge">
+              <span class="badge-dot">●</span>
+              <span>Global Peatland Digital Twin &amp; Universal Restoration Simulator</span>
+            </div>
+            <h1 class="landing-hero-title">
+              PEAT-TWIN: Interactive Biophysical Wetland Platform
+            </h1>
+            <p class="landing-hero-subtitle">
+              Plataforma científica abierta para la modelación biofísica en tiempo real, monitoreo multiescala (MRV) y simulación de trayectorias de restauración en turberas y humedales templados. Integra micrometeorología de alta frecuencia (Eddy Covariance 10 Hz), dinámica de poros y agua freática, cascadas redox microbianas, teledetección multiespectral (Sentinel-2) y balances de forzamiento radiativo neto (CO₂, CH₄, N₂O).
+            </p>
+          </div>
+
+          <!-- Academic & Professional Credentials Card -->
+          <div class="landing-credentials-card">
+            <div class="credentials-badge">🎓 Academic Provenance &amp; Scientific Engineering</div>
+            <div class="credentials-content">
+              <p class="credentials-author">
+                Desarrollado y modelado por <strong>Daniel Sebastián Santander Urrutia</strong>
+              </p>
+              <p class="credentials-meta">
+                M.Sc. Environmental Management • Christian-Albrechts-Universität zu Kiel (CAU Kiel)<br>
+                Faculty of Agricultural and Nutritional Sciences • Institute of Crop Science and Plant Breeding<br>
+                Integrated Grassland System Analysis and Assessment (IGSAA) • En colaboración con el proyecto <strong>Klimafarm</strong> (BMBF).
+              </p>
+              <p class="credentials-supervisors">
+                Supervisión científica: <strong>Prof. Dr. Martin Komainda</strong> &amp; <strong>Dr. Sebastian Jordan</strong>
+              </p>
+            </div>
+          </div>
+
+          <!-- Interactive 6-Card Dashboard Grid -->
+          <div class="landing-grid">
+            
+            <!-- Card 1: Universal Twin Lab -->
+            <div class="landing-card" data-nav-target="soil_interface">
+              <div class="landing-card-icon">🌍</div>
+              <h2 class="landing-card-title">Universal Twin Lab</h2>
+              <span class="landing-card-tag">Interactive Sandbox</span>
+              <p class="landing-card-desc">
+                Simulador interactivo biofísico con lienzo dinámico en vivo. Controla el nivel freático, porosidad, compactación del suelo, tipo de vegetación (LAI/aerénquima), pH y forzamiento meteorológico (VPD, u*). Explora cinéticas microbianas y flujos de gases en tiempo real.
+              </p>
+              <div class="landing-card-action">
+                <span>Abrir Simulador</span>
+                <span class="action-arrow">➔</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Klimafarm Wallener Au Project -->
+            <div class="landing-card highlight" data-nav-target="wallener_dashboard">
+              <div class="landing-card-icon">📍</div>
+              <h2 class="landing-card-title">Proyecto: Klimafarm Wallener Au</h2>
+              <span class="landing-card-tag">Case Study 01 • Empirical Benchmark</span>
+              <p class="landing-card-desc">
+                Explora el benchmark de calibración empírica en la turbera baja templada de Wallener Au (Alemania). Incluye mediciones de torre Eddy Covariance (10 Hz), transectos de cámaras cerradas, piezometría, ensayos edométricos y balance GWP validado.
+              </p>
+              <div class="landing-card-action">
+                <span>Acceder al Proyecto</span>
+                <span class="action-arrow">➔</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Tools & Instrumentation -->
+            <div class="landing-card" data-nav-target="tools_general">
+              <div class="landing-card-icon">🛠️</div>
+              <h2 class="landing-card-title">Tools &amp; Instrumentación</h2>
+              <span class="landing-card-tag">Multi-Tier MRV Systems</span>
+              <p class="landing-card-desc">
+                Catálogo metodológico y principios físicos de las tecnologías de instrumentación en humedales: covarianza de torbellinos (Eddy Covariance), sistemas automatizados de cámaras de gases, redes piezométricas y sensores hidro-redox de suelo.
+              </p>
+              <div class="landing-card-action">
+                <span>Ver Metodología de Instrumental</span>
+                <span class="action-arrow">➔</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Satellites & Remote Sensing -->
+            <div class="landing-card" data-nav-target="satellites_general">
+              <div class="landing-card-icon">🛰️</div>
+              <h2 class="landing-card-title">Satélites &amp; Teledetección</h2>
+              <span class="landing-card-tag">Earth Observation &amp; Spectral Physics</span>
+              <p class="landing-card-desc">
+                Integración de constelaciones orbitales (Copernicus Sentinel-2, Sentinel-1 SAR, Landsat) para el monitoreo de humedales: cálculo de índices espectrales (NDVI, NDWI, NDRE), dinámica de encharcamiento e integración con huellas de flujo (footprint).
+              </p>
+              <div class="landing-card-action">
+                <span>Ver Teledetección Satelital</span>
+                <span class="action-arrow">➔</span>
+              </div>
+            </div>
+
+            <!-- Card 5: Biogeochemistry & Peatland Typology -->
+            <div class="landing-card" data-nav-target="biogeochemistry_general">
+              <div class="landing-card-icon">⚗️</div>
+              <h2 class="landing-card-title">Biogeoquímica &amp; Tipos de Humedal</h2>
+              <span class="landing-card-tag">Redox Thermodynamics &amp; Habitats</span>
+              <p class="landing-card-desc">
+                Fundamentos termodinámicos de la diagénesis temprana y las cascadas redox (O₂ ➔ NO₃⁻ ➔ Mn/Fe ➔ SO₄²⁻ ➔ Metanogénesis). Comparación estructural entre turberas bajas (Fens), turberas altas (Bogs), paludicultura y suelos drenados.
+              </p>
+              <div class="landing-card-action">
+                <span>Ver Biogeoquímica Universal</span>
+                <span class="action-arrow">➔</span>
+              </div>
+            </div>
+
+            <!-- Card 6: Carbon Accounting & GWP General -->
+            <div class="landing-card" data-nav-target="carbon_general">
+              <div class="landing-card-icon">⚖️</div>
+              <h2 class="landing-card-title">Carbon Accounting &amp; GWP</h2>
+              <span class="landing-card-tag">MMRV Standards &amp; Radiative Forcing</span>
+              <p class="landing-card-desc">
+                Principios de Contabilidad de Carbono y Métricas de Forzamiento Radiativo (GWP-100 vs GWP-20, SGWP). Metodología IPCC Tiers 1–3 para evaluación de proyectos de restauración de turberas y balance neto en equivalentes de CO₂.
+              </p>
+              <div class="landing-card-action">
+                <span>Ver Contabilidad de Carbono</span>
+                <span class="action-arrow">➔</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. WALLENER AU PROJECT DASHBOARD VIEW -->
+      <section class="view-panel" data-view-id="wallener_dashboard" id="view-wallener-dashboard">
+        <div class="wallener-dashboard-wrapper">
+          
+          <!-- Hero Card: Project Overview & Scientific Anchor -->
+          <div class="wallener-hero-card">
+            <div class="wallener-header-top-actions">
+              <button type="button" class="btn-wallener-back" id="btn-wallener-back-landing">
+                <span>⬅</span> <span>Volver al Dashboard Principal</span>
+              </button>
+              <span class="wallener-status-badge">📍 Case Study 01 • Empirical Validation Benchmark</span>
+            </div>
+            
+            <h1 class="wallener-hero-title">
+              Proyecto Klimafarm Wallener Au: Observatorio de Turberas
+            </h1>
+            <p class="wallener-hero-subtitle">
+              Validación empírica en turbera baja templada (Schleswig-Holstein, Alemania). Datos de campo de alta frecuencia temporal (2023–2024) que sustentan y calibran la arquitectura de simulación biofísica de PEAT-TWIN.
+            </p>
+
+            <div class="wallener-embargo-notice">
+              <span class="embargo-icon">🔒</span>
+              <div class="embargo-text">
+                <strong>Datos de Investigación bajo Embargo Académico:</strong> Las series empíricas de Eddy Covariance, cámaras cerradas y consolidación de suelos están protegidas para publicación científica. Se desbloquean con el PIN de Investigador en la consola <strong>⚙️ Admin</strong>.
+              </div>
+            </div>
+          </div>
+
+          <!-- 11 Module Buttons Grid -->
+          <div class="wallener-grid">
+            
+            <!-- Module 1: Thesis Dossier -->
+            <div class="wallener-btn-card" data-jump-wallener="thesis_cover">
+              <div class="wallener-btn-icon">🏛️</div>
+              <h3 class="wallener-btn-title">Dossier del Proyecto</h3>
+              <p class="wallener-btn-desc">Contexto institucional CAU Kiel, supervisión científica, autoría y marco de investigación.</p>
+            </div>
+
+            <!-- Module 2: Aims & Hypotheses -->
+            <div class="wallener-btn-card" data-jump-wallener="aims_objectives">
+              <div class="wallener-btn-icon">🎯</div>
+              <h3 class="wallener-btn-title">Objetivos &amp; Hipótesis</h3>
+              <p class="wallener-btn-desc">Preguntas científicas sobre rehumidificación, compactación de turba y bypass de gases.</p>
+            </div>
+
+            <!-- Module 3: Site & Footprint -->
+            <div class="wallener-btn-card" data-jump-wallener="macro">
+              <div class="wallener-btn-icon">🛰️</div>
+              <h3 class="wallener-btn-title">Sitio &amp; Footprint Satelital</h3>
+              <p class="wallener-btn-desc">Ortofotos Sentinel-2, modelo de huella de flujo Korman &amp; Meixner y delimitación del predio.</p>
+            </div>
+
+            <!-- Module 4: Local Biogeochemistry -->
+            <div class="wallener-btn-card" data-jump-wallener="biogeochemistry">
+              <div class="wallener-btn-icon">🧪</div>
+              <h3 class="wallener-btn-title">Biogeoquímica &amp; Suelos</h3>
+              <p class="wallener-btn-desc">Estratigrafía de turba fen, horizonte sáprico, sulfatorreducción y perfiles de pH en Wallener Au.</p>
+            </div>
+
+            <!-- Module 5: Instrumental Matrix -->
+            <div class="wallener-btn-card" data-jump-wallener="instruments_matrix">
+              <div class="wallener-btn-icon">🧰</div>
+              <h3 class="wallener-btn-title">Matriz Instrumental</h3>
+              <p class="wallener-btn-desc">Diseño experimental: torre Eddy Covariance, cámaras cerradas N₂O/CH₄ y piezómetros.</p>
+            </div>
+
+            <!-- Module 6: Processing Pipeline -->
+            <div class="wallener-btn-card" data-jump-wallener="data_pipeline">
+              <div class="wallener-btn-icon">⚙️</div>
+              <h3 class="wallener-btn-title">Pipeline &amp; QA/QC</h3>
+              <p class="wallener-btn-desc">Flujo de datos EddyPro, flags de calidad Mauder &amp; Foken (2004), gapfilling RF y Lloyd-Taylor.</p>
+            </div>
+
+            <!-- Module 7: Eddy Covariance Fluxes -->
+            <div class="wallener-btn-card" data-jump-wallener="eddy_covariance">
+              <div class="wallener-btn-icon">📈</div>
+              <h3 class="wallener-btn-title">Flujos Eddy Covariance</h3>
+              <p class="wallener-btn-desc">Series temporales de flujo turbulento, partición NEE (GPP / Reco) y balance de CH₄ en campo.</p>
+            </div>
+
+            <!-- Module 8: Hydro-Geophysics & Oedometer -->
+            <div class="wallener-btn-card" data-jump-wallener="geophysics">
+              <div class="wallener-btn-icon">⚡</div>
+              <h3 class="wallener-btn-title">Geofísica &amp; Geomecánica</h3>
+              <p class="wallener-btn-desc">Tomografía de resistividad eléctrica (ERT), dinámica freática y ensayos de consolidación edométrica.</p>
+            </div>
+
+            <!-- Module 9: Micrometeo Diagnostics -->
+            <div class="wallener-btn-card" data-jump-wallener="flux_diagnostics">
+              <div class="wallener-btn-icon">📊</div>
+              <h3 class="wallener-btn-title">Micrometeo &amp; Cierre EBC</h3>
+              <p class="wallener-btn-desc">Balance de energía superficial (EBC 85%), radiación neta, flujos H/LE y respuesta a VPD/u*.</p>
+            </div>
+
+            <!-- Module 10: Uncertainties & GWP Balance -->
+            <div class="wallener-btn-card" data-jump-wallener="gwp_uncertainties">
+              <div class="wallener-btn-icon">📐</div>
+              <h3 class="wallener-btn-title">Incertidumbres &amp; GWP</h3>
+              <p class="wallener-btn-desc">Simulación Monte Carlo, balance neto en CO₂-eq y comparación de forzamiento a 20 y 100 años.</p>
+            </div>
+
+            <!-- Module 11: Conclusions & Agronomy -->
+            <div class="wallener-btn-card" data-jump-wallener="conclusions_outlook">
+              <div class="wallener-btn-icon">💡</div>
+              <h3 class="wallener-btn-title">Conclusiones &amp; Manejo</h3>
+              <p class="wallener-btn-desc">Síntesis para la gestión de turberas templadas, lecciones de rehumidificación y recomendaciones.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. GENERAL VIEW: TOOLS & INSTRUMENTATION -->
+      <section class="view-panel" data-view-id="tools_general" id="view-tools-general">
+        <div class="general-method-container">
+          <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
+            <div class="landing-hero-badge">
+              <span>🛠️ Metodología General</span> • <span>Multi-Tier Wetland Instrumentation</span>
+            </div>
+            <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
+              Instrumentación y Tecnologías de Medición en Humedales
+            </h1>
+            <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
+              El monitoreo integral de gases de efecto invernadero e hidrología en turberas exige una aproximación multiescala que combine micrometeorología continua a escala de ecosistema con análisis a microescala de procesos edáficos y mecánicos.
+            </p>
+          </div>
+
+          <div class="general-method-grid">
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🌪️</span> 1. Covarianza de Torbellinos (Eddy Covariance)</h3>
+              <p class="general-method-card-desc">
+                Considerado el estándar de oro (*gold standard*) para el monitoreo no invasivo continuo a escala de hectáreas. Mide la covarianza estadística de alta frecuencia (10–20 Hz) entre la velocidad vertical del viento (\(w'\)) y la concentración de gas (\(c'\)): \(F = \overline{w' c'}\). Utiliza anemómetros sónicos 3D combinados con analizadores infrarrojos o láser (IRGA / QCL) para CO₂, H₂O y CH₄. Proporciona series temporales ininterrumpidas sin perturbar el microclima ni la hidrología.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>📦</span> 2. Cámaras Cerradas de Gases (Chambers)</h3>
+              <p class="general-method-card-desc">
+                Sistemas automatizados o manuales desplegados sobre collares fijos en el suelo (0.2–1.0 m²). Miden la tasa de acumulación de concentración en el tiempo (\(dC/dt\)) para derivar el flujo superficial. Esenciales para cuantificar óxido nitroso (N₂O) y CH₄ en microtopografías específicas (montículos vs. depresiones), así como para separar la fotosíntesis (GPP) de la respiración (Reco) mediante cámaras transparentes y opacas acopladas.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>📏</span> 3. Red Piezométrica y Nivel Freático (WTD)</h3>
+              <p class="general-method-card-desc">
+                Monitoreo continuo de la profundidad del nivel freático (*Water Table Depth*) mediante pozos piezométricos ranurados equipados con transductores de presión hidrostática y barométrica. Determina el espesor de la zona aireada (acrotelmo) donde ocurre la mineralización oxidativa y la profundidad de la interfase redox anóxica (catotelmo).
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>⚡</span> 4. Sensores de Humedad, Potencial Redox y Temperatura</h3>
+              <p class="general-method-card-desc">
+                Sondas de reflectometría de dominio temporal (TDR/FDR) para cuantificar el contenido volumétrico de agua (\(\theta\)) en múltiples horizontes, junto con electrodos de platino para registrar el potencial de óxido-reducción (\(Eh\)). Permiten identificar en tiempo real la transición entre ambientes óxicos (+300 mV), subóxicos y metanogénicos (&lt; -200 mV).
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🗜️</span> 5. Geomecánica y Consolidación Edométrica</h3>
+              <p class="general-method-card-desc">
+                Ensayos de compresión uniaxial oedométrica en muestras inalteradas de turba. Permiten cuantificar el esfuerzo de preconsolidación (\(\sigma'_p\)), el índice de compresión (\(C_c\)) y el módulo de elasticidad. Revelan cómo el peso de maquinaria agrícola o el desecamiento histórico destruyen los macroporos elásticos de la turba, reduciendo de forma permanente la conductividad hidráulica.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🌐</span> 6. Tomografía de Resistividad Eléctrica (ERT)</h3>
+              <p class="general-method-card-desc">
+                Método geofísico no invasivo que inyecta corriente continua para cartografiar perfiles 2D y 3D de resistividad aparente en el subsuelo. Permite delinear con precisión métrica el espesor del depósito orgánico de turba, la cota del basamento mineral impermeable y las zonas de infiltración preferencial o surgencia artesiana.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. GENERAL VIEW: SATELLITES & REMOTE SENSING -->
+      <section class="view-panel" data-view-id="satellites_general" id="view-satellites-general">
+        <div class="general-method-container">
+          <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
+            <div class="landing-hero-badge">
+              <span>🛰️ Teledetección Espacial</span> • <span>Earth Observation &amp; Spectral Physics</span>
+            </div>
+            <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
+              Satélites y Observación de la Tierra en Ecosistemas de Turbera
+            </h1>
+            <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
+              La teledetección multiespectral y de radar proporciona la escala espacial necesaria para extrapolar las mediciones micrometeorológicas puntuales a nivel de cuenca y evaluar de forma continua el estado biofísico de los humedales.
+            </p>
+          </div>
+
+          <div class="general-method-grid">
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🛰️</span> 1. Constelación Copernicus Sentinel-2 (MSI)</h3>
+              <p class="general-method-card-desc">
+                Satélites gemelos de la ESA con órbita heliosincrónica y tiempo de revisita de 5 días. Disponen de 13 bandas espectrales que abarcan el visible (B2, B3, B4 a 10 m), borde rojo (B5, B6, B7, B8A a 20 m) y el infrarrojo de onda corta (B11, B12 a 20 m). Proporcionan la base de monitoreo fenológico y humedad de vegetación con resolución submétrica de píxel.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🌿</span> 2. Índices Espectrales Clave (NDVI, NDWI, NDRE)</h3>
+              <p class="general-method-card-desc">
+                • <strong>NDVI:</strong> \((B8 - B4) / (B8 + B4)\) — Vigor fotosintético, biomasa verde y fraccionamiento de radiación interceptada (fAPAR).<br>
+                • <strong>NDWI (Gao):</strong> \((B8 - B11) / (B8 + B11)\) — Contenido volumétrico de agua en el tejido foliar y dosel.<br>
+                • <strong>MNDWI (Xu):</strong> \((B3 - B11) / (B3 + B11)\) — Separación nítida de cuerpos de agua libre y encharcamiento.<br>
+                • <strong>NDRE:</strong> \((B8 - B5) / (B8 + B5)\) — Sensibilidad a clorofila en vegetación densa sin saturación espectral.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>📡</span> 3. Radar de Apertura Sintética (SAR) Sentinel-1</h3>
+              <p class="general-method-card-desc">
+                Radar de banda C (5.4 GHz) con polarizaciones VV y VH. Capaz de adquirir datos a través de cobertura nubosa y de noche. El mecanismo de doble rebote (*double-bounce scattering*) entre los tallos verticales de vegetación palustre (e.g., *Phragmites*, *Typha*) y la lámina de agua permite cartografiar inundaciones bajo el dosel vegetal. Mediante InSAR, detecta deformaciones de la superficie de turba (*peat oscillation*) a escala milimétrica.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🌡️</span> 4. Landsat 8/9 y Series Térmicas Históricas</h3>
+              <p class="general-method-card-desc">
+                Instrumento TIRS con dos bandas en el infrarrojo térmico (10.6–12.5 µm). Permite estimar la Temperatura de Superficie del Suelo (LST) y, mediante modelos de balance de energía (SEBAL, METRIC), cuantificar la evapotranspiración real (ET) a escala regional. Ofrece además el archivo histórico continuo más extenso (&gt;40 años) para rastrear desecamiento y degradación histórica de turba.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🏔️</span> 5. Modelos Digitales de Elevación LiDAR</h3>
+              <p class="general-method-card-desc">
+                Altimetría láser aerotransportada de alta resolución (&lt; 0.5 m horizontal, vertical centimétrica). Fundamental para cartografiar la red histórica de zanjas de drenaje, calcular el Índice Topográfico de Humedad (TWI) y modelar los flujos superficiales de escorrentía hacia vertederos y compuertas de retención de agua.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🎯</span> 6. Acoplamiento Satélite - Huella de Flujo (Footprint)</h3>
+              <p class="general-method-card-desc">
+                Integración analítica donde los polígonos de huella micrometeorológica generados en tiempo real por el modelo analítico (Kormann &amp; Meixner o Kljun et al.) se proyectan sobre las escenas satelitales. Permite extraer firmas espectrales ponderadas en la zona de mayor aporte al flujo, posibilitando el entrenamiento de redes neuronales (ANN) y algoritmos de Machine Learning para extrapolación regional de flujos de carbono.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. GENERAL VIEW: BIOGEOCHEMISTRY & PEATLAND TYPOLOGY -->
+      <section class="view-panel" data-view-id="biogeochemistry_general" id="view-biogeochemistry-general">
+        <div class="general-method-container">
+          <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
+            <div class="landing-hero-badge">
+              <span>⚗️ Biogeoquímica de Suelos</span> • <span>Redox Ladders &amp; Peatland Typology</span>
+            </div>
+            <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
+              Biogeoquímica Redox y Tipologías Globales de Turbera
+            </h1>
+            <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
+              El destino del carbono y el nitrógeno en los humedales está gobernado por principios termodinámicos universales: la disponibilidad de oxígeno y la jerarquía de receptores finales de electrones controlan la respiración, la metanogénesis y el bypass vascular.
+            </p>
+          </div>
+
+          <div class="general-method-grid">
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>⚡</span> 1. La Cascada Termodinámica Redox</h3>
+              <p class="general-method-card-desc">
+                A medida que un suelo se inunda y se agota el O₂, los consorcios microbianos utilizan aceptores de electrones alternativos en orden decreciente de energía libre (\(\Delta G^\circ\)):<br>
+                • <strong>Respiración aeróbica:</strong> \(O_2 \rightarrow H_2O\) (\(Eh &gt; +300\) mV)<br>
+                • <strong>Desnitrificación:</strong> \(NO_3^- \rightarrow N_2O \rightarrow N_2\) (\(+100\) a \(+300\) mV)<br>
+                • <strong>Reducción de Mn y Fe:</strong> \(Fe^{3+} \rightarrow Fe^{2+}\) (\(-100\) a \(+100\) mV)<br>
+                • <strong>Sulfatorreducción:</strong> \(SO_4^{2-} \rightarrow H_2S\) (\(-200\) a \(-100\) mV)<br>
+                • <strong>Metanogénesis:</strong> \(CO_2 \rightarrow CH_4\) (\(Eh &lt; -200\) mV)
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🔄</span> 2. La Paradoja de la Rehumidificación (Rewetting Paradox)</h3>
+              <p class="general-method-card-desc">
+                Al restaurar el nivel de agua en una turbera degradada, se detiene de inmediato la oxidación masiva de carbono (\(CO_2\)). Sin embargo, la saturación anóxica sobre horizontes de materia orgánica lábil recientemente inundados desencadena una emisión transitoria intensa de metano (\(CH_4\)) antes de que los consorcios de arqueas metanotróficas se establezcan en la superficie. Manejar este balance es el reto central de la restauración.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🌾</span> 3. Turberas Bajas Minerotróficas (Fens / Niedermoore)</h3>
+              <p class="general-method-card-desc">
+                Alimentadas por aguas subterráneas y superficiales cargadas de bases minerales disueltas (Ca²⁺, Mg²⁺). Presentan pH neutro a ligeramente básico (5.5–7.5) y elevada actividad biológica. Vegetación dominada por ciperáceas (*Carex*), carrizos (*Phragmites*) y gramíneas. Altas tasas de productividad primaria neta, pero con potencial de emisiones de metano elevadas bajo anoxia prolongada debido a los conductos de aerénquima.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🌿</span> 4. Turberas Altas Ombrotróficas (Bogs / Hochmoore)</h3>
+              <p class="general-method-card-desc">
+                Alimentadas exclusivamente por precipitación atmosférica; desconectadas de las aguas subterráneas regionales. Ecosistemas extremadamente ácidos (pH 3.2–4.5) y oligotróficos. Dominados por musgos del género *Sphagnum*, que intercambian protones por cationes metálicos e inhiben la actividad bacteriana con polifenoles (sphagnum acid). La metanogénesis es significativamente menor debido a la baja disponibilidad de nutrientes y la acidez.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🎋</span> 5. Paludicultura (Paludiculture / Nasse Bewirtschaftung)</h3>
+              <p class="general-method-card-desc">
+                Aprovechamiento agrícola y forestal productivo de turberas rehumidificadas sin drenaje. Cultivos adaptados a saturación hídrica como totora (*Typha latifolia*), carrizo (*Phragmites australis*), junco (*Scirpus*) o cultivo de musgos (*Sphagnum farming*). Proporciona biomasa para materiales aislantes de construcción, celulosa y sustratos hortícolas libres de turba fósil, reteniendo el carbono en el suelo.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🚜</span> 6. Suelos de Turba Drenados Agrícolas</h3>
+              <p class="general-method-card-desc">
+                Turberas modificadas con zanjas y drenes subterráneos para pastoreo o agricultura intensiva. El descenso del nivel freático expone el depósito orgánico al aire atmosférico, provocando una respiración heterotrófica violenta (\(15\text{--}40\text{ t }CO_2\text{/ha/año}\)), subsidencia superficial irreversible (\(1\text{--}3\text{ cm/año}\)), pérdida de macroporosidad y lavado masivo de nitratos hacia las cuencas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. GENERAL VIEW: CARBON ACCOUNTING & GWP GENERAL -->
+      <section class="view-panel" data-view-id="carbon_general" id="view-carbon-general">
+        <div class="general-method-container">
+          <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
+            <div class="landing-hero-badge">
+              <span>⚖️ Contabilidad de Carbono</span> • <span>MMRV Standards &amp; Climate Forcing</span>
+            </div>
+            <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
+              Estándares de Contabilidad de Carbono y Forzamiento Radiativo
+            </h1>
+            <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
+              Los marcos de Medición, Reporte y Verificación (MMRV) de alta integridad exigen rigor matemático al comparar gases de diferente vida media atmosférica y evaluar la adicionalidad climática de proyectos de restauración de turberas.
+            </p>
+          </div>
+
+          <div class="general-method-grid">
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>📊</span> 1. Balance Neto de Gases de Efecto Invernadero (NGHGB)</h3>
+              <p class="general-method-card-desc">
+                Ecuación unificada para el balance radiativo de un humedal:<br>
+                \[ NGHGB = NEE_{CO_2} + (F_{CH_4} \cdot GWP_{CH_4}) + (F_{N_2O} \cdot GWP_{N_2O}) + F_{DOC} \]<br>
+                Donde \(NEE\) es el intercambio neto de CO₂, \(F_{CH_4}\) y \(F_{N_2O}\) son los flujos netos ponderados por sus potenciales de calentamiento, y \(F_{DOC}\) representa las pérdidas acuáticas de carbono orgánico disuelto exportadas por el sistema hidrográfico.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>⏳</span> 2. El Dilema Temporal: GWP-100 vs. GWP-20</h3>
+              <p class="general-method-card-desc">
+                • <strong>GWP-100:</strong> Horizonte a 100 años adoptado por la CMNUCC. El metano tiene un factor de 27.2 a 29.8 (IPCC AR6), y el N₂O de 273. Refleja el impacto de fondo a largo plazo.<br>
+                • <strong>GWP-20:</strong> Horizonte a 20 años donde el factor del metano sube a 82.5–84. Enfatiza el riesgo de retroalimentación climática a corto plazo en proyectos de rehumidificación reciente.<br>
+                La plataforma PEAT-TWIN calcula ambos horizontes para una auditoría climática transparente.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>📉</span> 3. Forzamiento Radiativo Sostenido (SGWP)</h3>
+              <p class="general-method-card-desc">
+                Los factores estándar de GWP asumen una emisión de pulso único instantáneo. Sin embargo, los humedales emiten y secuestran gases de forma sostenida y continua en el tiempo. Utilizando modelos de forzamiento radiativo acumulativo (SGWP y SGWP-100), se demuestra que debido a la descomposición atmosférica del metano (\(\tau \approx 11.8\) años), el secuestro persistente de CO₂ convierte a las turberas rehumidificadas en sumideros netos de enfriamiento climático (*cooling effect*) en escalas de 30 a 50 años.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>📐</span> 4. Niveles Metodológicos IPCC (Tiers 1, 2 y 3)</h3>
+              <p class="general-method-card-desc">
+                • <strong>Tier 1:</strong> Factores de emisión globales por defecto (IPCC Wetlands Supplement 2013). Alta incertidumbre (\(\pm 50\text{--}100\%\)).<br>
+                • <strong>Tier 2:</strong> Factores calibrados a escala regional y clasificados por clases de nivel freático medio anual.<br>
+                • <strong>Tier 3:</strong> Modelos biofísicos deterministas de alta resolución basados en procesos (como los algoritmos de PEAT-TWIN) respaldados por datos continuos de torres Eddy Covariance. Reduce la incertidumbre a niveles auditables para emisión de créditos de alta prima.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>📜</span> 5. Metodologías de Créditos de Carbono (VM0033 / MoorFutures)</h3>
+              <p class="general-method-card-desc">
+                Estándares internacionales de certificación de carbono en humedales (Verra VCS VM0033: *Restoration of Tidal Wetlands and Peatlands*, y el estándar regional alemán MoorFutures). Exigen el establecimiento de una línea base de emisiones contrafactual (*baseline scenario*), monitoreo continuo y un buffer de permanencia (*buffer pool*) del 10–20% contra eventos de sequía extrema o incendios.
+              </p>
+            </div>
+
+            <div class="general-method-card">
+              <h3 class="general-method-card-title"><span>🛡️</span> 6. Adicionalidad, Permanencia y Fuga (Leakage)</h3>
+              <p class="general-method-card-desc">
+                Criterios de integridad esenciales para la comercialización de créditos de carbono:<br>
+                • <strong>Adicionalidad:</strong> Demostrar que la restauración no habría ocurrido sin la financiación del mercado de carbono.<br>
+                • <strong>Permanencia:</strong> Garantía legal y ecológica de mantenimiento del nivel freático durante al menos 30 a 50 años.<br>
+                • <strong>Fuga de actividad:</strong> Verificar que la rehumidificación del predio agrícola no traslade el drenaje y la producción intensiva a turberas contiguas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. THESIS DOSSIER & EMBARGO COVER VIEW (Wallener Au Archive) -->
+      <section class="view-panel" data-view-id="thesis_cover" id="view-cover">
         <div class="thesis-cover-wrapper">
           <div class="cover-document-card">
             
@@ -654,7 +1200,7 @@
 
         </div>
       </section>
-<section class="view-panel active" data-view-id="soil_interface">
+<section class="view-panel" data-view-id="soil_interface">
         <div class="ecosystem-container day-mode" id="soil-ecosystem-container">
           
           <!-- Central Canvas Stage: The Illustrated Ecosystem Cross-Section -->

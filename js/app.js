@@ -76,9 +76,9 @@ class WetlandMonitorApp {
     // 3. Set branding logo to "Stratigraphy & Probes"
     this.initLogo();
 
-    // 4. Immediate Hero Landing on Live Ecosystem Digital Twin
-    this.currentViewKey = "soil_interface";
-    this.switchView("soil_interface");
+    // 4. Default Landing Dashboard with Platform Presentation & Architecture Cards
+    this.currentViewKey = "landing";
+    this.switchView("landing");
   }
 
   initDOM() {
@@ -187,27 +187,75 @@ class WetlandMonitorApp {
       });
     });
 
-    const openDeckBtn = document.getElementById("btn-open-classic-presentation");
-    if (openDeckBtn) {
-      openDeckBtn.addEventListener("click", (e) => {
+    // Global Navigation Targets (Landing cards, Header buttons, Dropdown links)
+    document.querySelectorAll("[data-nav-target]").forEach(el => {
+      el.addEventListener("click", (e) => {
         e.preventDefault();
-        this.switchView("classic_presentation");
+        const target = el.dataset.navTarget;
+        if (target) {
+          this.switchView(target);
+          const dropdown = document.getElementById("menu-methodology");
+          if (dropdown) dropdown.classList.add("hidden");
+        }
+      });
+    });
+
+    // Wallener Au Dashboard Jump Cards
+    document.querySelectorAll("[data-jump-wallener]").forEach(el => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = el.dataset.jumpWallener;
+        if (target) this.switchView(target);
+      });
+    });
+
+    // Contextual Wallener Project Nav Pills
+    document.querySelectorAll("[data-wallener-nav]").forEach(el => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = el.dataset.wallenerNav;
+        if (target) this.switchView(target);
+      });
+    });
+
+    // Back to Landing / Home buttons
+    const btnWallenerBack = document.getElementById("btn-wallener-back-landing");
+    if (btnWallenerBack) {
+      btnWallenerBack.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.switchView("landing");
       });
     }
 
-    const directTwinBtn = document.getElementById("btn-header-direct-twin");
-    if (directTwinBtn) {
-      directTwinBtn.addEventListener("click", (e) => {
+    const btnWallenerHome = document.getElementById("nav-btn-wallener-to-home");
+    if (btnWallenerHome) {
+      btnWallenerHome.addEventListener("click", (e) => {
         e.preventDefault();
-        this.switchView("soil_interface");
+        this.switchView("landing");
       });
     }
 
-    const directBarBtn = document.getElementById("btn-direct-presentation-menu");
-    if (directBarBtn) {
-      directBarBtn.addEventListener("click", (e) => {
+    const btnBackWallenerDash = document.getElementById("nav-btn-back-wallener-dash");
+    if (btnBackWallenerDash) {
+      btnBackWallenerDash.addEventListener("click", (e) => {
         e.preventDefault();
-        this.switchView("classic_presentation");
+        this.switchView("wallener_dashboard");
+      });
+    }
+
+    // Methodology Dropdown Toggle
+    const methodBtn = document.getElementById("nav-btn-methodology");
+    const methodMenu = document.getElementById("menu-methodology");
+    if (methodBtn && methodMenu) {
+      methodBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        methodMenu.classList.toggle("hidden");
+      });
+      document.addEventListener("click", (e) => {
+        if (!methodBtn.contains(e.target) && !methodMenu.contains(e.target)) {
+          methodMenu.classList.add("hidden");
+        }
       });
     }
 
@@ -263,12 +311,12 @@ class WetlandMonitorApp {
     const brandBtn = document.getElementById("brand-badge-click");
     if (brandBtn) {
       brandBtn.addEventListener("click", () => {
-        this.switchView("soil_interface");
+        this.switchView("landing");
       });
       brandBtn.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          this.switchView("soil_interface");
+          this.switchView("landing");
         }
       });
     }
@@ -364,23 +412,74 @@ class WetlandMonitorApp {
   switchView(viewKey, fromSlide = false) {
     this.currentViewKey = viewKey;
 
+    const wallenerViews = [
+      "wallener_dashboard",
+      "thesis_cover",
+      "aims_objectives",
+      "macro",
+      "biogeochemistry",
+      "instruments_matrix",
+      "data_pipeline",
+      "eddy_covariance",
+      "geophysics",
+      "flux_diagnostics",
+      "gwp_uncertainties",
+      "conclusions_outlook",
+      "defense_agenda"
+    ];
+
+    const wallenerSubviews = [
+      "thesis_cover",
+      "aims_objectives",
+      "macro",
+      "biogeochemistry",
+      "instruments_matrix",
+      "data_pipeline",
+      "eddy_covariance",
+      "geophysics",
+      "flux_diagnostics",
+      "gwp_uncertainties",
+      "conclusions_outlook",
+      "defense_agenda"
+    ];
+
+    // Toggle Wallener project contextual nav bar
+    const wallenerNav = document.getElementById("wallener-project-nav-bar");
+    if (wallenerNav) {
+      if (wallenerSubviews.includes(viewKey)) {
+        wallenerNav.classList.remove("hidden");
+        // Update active tab pill in Wallener project nav bar
+        wallenerNav.querySelectorAll(".wallener-tab-pill").forEach(pill => {
+          pill.classList.toggle("active", pill.dataset.wallenerNav === viewKey);
+        });
+      } else {
+        wallenerNav.classList.add("hidden");
+      }
+    }
+
+    // Header bottom row (carousel) is hidden on landing, wallener and general methodology views to keep UI clean
+    const headerBottomRow = document.getElementById("header-bottom-row");
+    if (headerBottomRow) {
+      if (viewKey === "landing" || viewKey === "wallener_dashboard" || wallenerSubviews.includes(viewKey) || viewKey.endsWith("_general")) {
+        headerBottomRow.classList.add("hidden");
+      } else {
+        headerBottomRow.classList.remove("hidden");
+      }
+    }
+
+    // Highlight Global Nav Links
+    const navBtnTwin = document.getElementById("nav-btn-twin");
+    const navBtnWallener = document.getElementById("nav-btn-wallener");
+    const navBtnMethodology = document.getElementById("nav-btn-methodology");
+    if (navBtnTwin) navBtnTwin.classList.toggle("active", viewKey === "soil_interface");
+    if (navBtnWallener) navBtnWallener.classList.toggle("active", wallenerViews.includes(viewKey));
+    if (navBtnMethodology) navBtnMethodology.classList.toggle("active", ["tools_general", "satellites_general", "biogeochemistry_general", "carbon_general"].includes(viewKey));
+
     if (viewKey === 'classic_presentation') {
       const inst = window.classicPresentationInstance || window.classicPresentation;
       if (inst && inst.showPresentation) {
         inst.showPresentation();
         return;
-      } else {
-        const presPanel = document.getElementById('view-classic-presentation');
-        if (presPanel) {
-          document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
-          presPanel.classList.add('active');
-        }
-        setTimeout(() => {
-          const retryInst = window.classicPresentationInstance || window.classicPresentation;
-          if (retryInst && retryInst.showPresentation) {
-            retryInst.showPresentation();
-          }
-        }, 80);
       }
     }
 
@@ -398,6 +497,13 @@ class WetlandMonitorApp {
     document.querySelectorAll(".view-panel").forEach(panel => {
       panel.classList.toggle("active", panel.dataset.viewId === viewKey);
     });
+
+    // Scroll window and active view panel to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    const activePanel = document.querySelector(".view-panel.active");
+    if (activePanel) {
+      activePanel.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
     const carouselTitle = document.getElementById("carousel-current-title");
     if (carouselTitle) {
@@ -420,7 +526,7 @@ class WetlandMonitorApp {
 
     const brandBtn = document.getElementById("brand-badge-click");
     if (brandBtn) {
-      brandBtn.classList.toggle("active-cover", viewKey === "thesis_cover");
+      brandBtn.classList.toggle("active-cover", viewKey === "landing" || viewKey === "thesis_cover");
     }
 
     // Re-run Mermaid on pipeline/ec tabs (diagrams inside hidden panels need re-init)
