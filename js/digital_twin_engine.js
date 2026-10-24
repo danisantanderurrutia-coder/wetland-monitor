@@ -506,7 +506,7 @@ export class DigitalTwinSimulationEngine {
       }
       if (netTagText) {
         netTagText.setAttribute("fill", "#10b981");
-        netTagText.textContent = `SUMIDERO NETO (${text})`;
+        netTagText.textContent = `NET SINK (${text})`;
       }
     } else {
       // SOURCE: Upward Arrow (Red / Amber #f43f5e)
@@ -526,7 +526,7 @@ export class DigitalTwinSimulationEngine {
       }
       if (netTagText) {
         netTagText.setAttribute("fill", color || "#f43f5e");
-        netTagText.textContent = `FUENTE NETA (${text})`;
+        netTagText.textContent = `NET SOURCE (${text})`;
       }
     }
   }
@@ -693,9 +693,9 @@ export class DigitalTwinSimulationEngine {
     this.scrubberLabels.innerHTML = "";
 
     if (mode === "diurnal") {
-      if (this.overlayModeBadge) this.overlayModeBadge.textContent = "☀️ Paso de la Hora (24h)";
-      if (this.scrubberSubLeft) this.scrubberSubLeft.textContent = "00:00 Medianoche";
-      if (this.scrubberSubRight) this.scrubberSubRight.textContent = "24:00 Noche";
+      if (this.overlayModeBadge) this.overlayModeBadge.textContent = "☀️ Diurnal Hourly Cycle (24h)";
+      if (this.scrubberSubLeft) this.scrubberSubLeft.textContent = "00:00 Midnight";
+      if (this.scrubberSubRight) this.scrubberSubRight.textContent = "24:00 Night";
 
       const ticks = ["00:00", "04:00", "08:00 (Dawn)", "12:00 (Noon)", "16:00", "20:00 (Dusk)", "24:00"];
       ticks.forEach((tick, i) => {

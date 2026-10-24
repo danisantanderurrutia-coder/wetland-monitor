@@ -72,8 +72,8 @@ export class WetlandTwinSandbox {
         isWallener: false
       },
       estuary: {
-        title: "Humedal Costero / Estuario Río Maipo",
-        badge: "Mixohalino / Maipo",
+        title: "Coastal Wetland / Maipo River Estuary",
+        badge: "Mixohaline / Maipo",
         soilPh: 7.4,
         waterInjection: 40,
         soilCompaction: 0.30,
@@ -88,8 +88,8 @@ export class WetlandTwinSandbox {
         isWallener: false
       },
       tremedal: {
-        title: "Turbera de Tremedal (Sistema Ibérico)",
-        badge: "Sphagnum Ombrotrófico",
+        title: "Tremedal Peat Bog (Iberian System)",
+        badge: "Ombrotrophic Bog",
         soilPh: 4.0,
         waterInjection: 30,
         soilCompaction: 0.16,
@@ -179,14 +179,14 @@ export class WetlandTwinSandbox {
     const svgCanvas = document.getElementById("ecosystem-svg");
 
     if (tray && !tray.classList.contains("collapsed")) {
-      if (toggleBtn) toggleBtn.textContent = "▼ Plegar";
+      if (toggleBtn) toggleBtn.textContent = "▼ Collapse";
       if (hudOpenBtn) hudOpenBtn.classList.add("active");
     }
 
     const toggleTray = () => {
       if (tray) {
         const isCollapsed = tray.classList.toggle("collapsed");
-        if (toggleBtn) toggleBtn.textContent = isCollapsed ? "▲ Expandir" : "▼ Plegar";
+        if (toggleBtn) toggleBtn.textContent = isCollapsed ? "▲ Expand" : "▼ Collapse";
         if (hudOpenBtn) hudOpenBtn.classList.toggle("active", !isCollapsed);
       }
     };
@@ -746,17 +746,17 @@ export class WetlandTwinSandbox {
     if (this.state.ditchBlocking) {
       if (btn) btn.classList.add("active");
       if (icon) icon.textContent = "🛑";
-      if (text) text.textContent = "Diques Activos (Zanjas Bloqueadas)";
+      if (text) text.textContent = "Peat Dams Active (Ditches Blocked)";
       if (val) {
-        val.textContent = "Diques Activos (-8 cm)";
+        val.textContent = "Dams Active (-8 cm)";
         val.style.color = "#34d399";
       }
     } else {
       if (btn) btn.classList.remove("active");
       if (icon) icon.textContent = "🚫";
-      if (text) text.textContent = "Instalar Diques de Turba (Bloquear Zanjas)";
+      if (text) text.textContent = "Install Peat Dams (Block Ditches)";
       if (val) {
-        val.textContent = "Drenaje Libre";
+        val.textContent = "Free Drainage";
         val.style.color = "#94a3b8";
       }
     }
@@ -767,8 +767,8 @@ export class WetlandTwinSandbox {
     if (!p) return;
     this.state.currentProject = {
       id: p.id || 'custom-' + Date.now(),
-      name: p.name || 'Humedal Territorial',
-      badge: p.badge || 'Proyecto GIS',
+      name: p.name || 'Territorial Wetland',
+      badge: p.badge || 'GIS Project',
       isWallener: !!p.isWallener,
       areaHa: p.areaHa || 45,
       coordinates: p.coordinates || '-35.0° S, -71.5° W',
@@ -885,7 +885,7 @@ export class WetlandTwinSandbox {
     const jsonBlob = new Blob([JSON.stringify(reportData, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(jsonBlob);
     const link = document.createElement("a");
-    const cleanName = (cp.name || "humedal").toLowerCase().replace(/[^a-z0-9]/g, "_");
+    const cleanName = (cp.name || "wetland").toLowerCase().replace(/[^a-z0-9]/g, "_");
     link.href = url;
     link.download = `wetland_report_${cleanName}_${new Date().toISOString().slice(0, 10)}.json`;
     document.body.appendChild(link);

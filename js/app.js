@@ -703,7 +703,7 @@ class WetlandMonitorApp {
 
       // Always keep tray expanded so biophysical and restoration levers are immediately accessible
       if (tray) tray.classList.remove("collapsed");
-      if (toggleBtn) toggleBtn.textContent = "▼ Plegar";
+      if (toggleBtn) toggleBtn.textContent = "▼ Collapse";
       if (hudOpenBtn) hudOpenBtn.classList.add("active");
     }
 
@@ -2238,7 +2238,7 @@ class WetlandMonitorApp {
         listEl.innerHTML = data.changelog.map(entry => `
           <div class="changelog-entry">
             <div class="changelog-header">
-              <span class="changelog-ver">Versión ${entry.version}</span>
+              <span class="changelog-ver">Version ${entry.version}</span>
               <span class="changelog-date">${entry.date}</span>
               ${entry.badge ? `<span class="changelog-badge">${entry.badge}</span>` : ''}
             </div>
@@ -2649,12 +2649,12 @@ class WetlandMonitorApp {
     let loadedGeoJson = null;
 
     const presetConfigs = {
-      mallin: { name: "Mallín Patagónico (Aysén)", area: 45, wtd: -12, ph: 5.8, isWallener: false },
-      estuary: { name: "Humedal Costero / Estuario Río Maipo", area: 120, wtd: -5, ph: 7.4, isWallener: false },
-      tremedal: { name: "Turbera de Tremedal (Sistema Ibérico)", area: 28, wtd: -8, ph: 4.0, isWallener: false },
+      mallin: { name: "Patagonian Mallín (Aysén)", area: 45, wtd: -12, ph: 5.8, isWallener: false },
+      estuary: { name: "Coastal Wetland / Maipo Estuary", area: 120, wtd: -5, ph: 7.4, isWallener: false },
+      tremedal: { name: "Tremedal Peat Bog (Iberian System)", area: 28, wtd: -8, ph: 4.0, isWallener: false },
       fen: { name: "Wallener Au (Kiel Benchmark)", area: 18.5, wtd: -25, ph: 6.8, isWallener: true },
-      paludi: { name: "Paludicultura Productiva", area: 35, wtd: 2, ph: 7.0, isWallener: false },
-      drained: { name: "Turbera Drenada Degradada", area: 60, wtd: -55, ph: 5.4, isWallener: false }
+      paludi: { name: "Productive Paludiculture", area: 35, wtd: 2, ph: 7.0, isWallener: false },
+      drained: { name: "Drained Degraded Peatland", area: 60, wtd: -55, ph: 5.4, isWallener: false }
     };
 
     const openModal = (e) => {
@@ -2753,14 +2753,14 @@ class WetlandMonitorApp {
           if (inputArea) inputArea.value = estArea;
           if (previewName) previewName.textContent = file.name;
           if (previewStats) {
-            previewStats.textContent = `Archivo procesado • ~${estArea} ha estimadas • Vértices validados`;
+            previewStats.textContent = `File processed • ~${estArea} ha estimated • Vertices validated`;
           }
 
           if (previewBox) previewBox.classList.remove("hidden");
           if (dropzone) dropzone.classList.add("hidden");
         } catch (err) {
-          console.error("Error al procesar archivo GIS:", err);
-          alert("El archivo no pudo procesarse como GeoJSON válido. Intenta con un archivo .geojson estándar.");
+          console.error("Error processing GIS file:", err);
+          alert("The file could not be processed as valid GeoJSON. Please upload a standard .geojson file.");
         }
       };
       reader.readAsText(file);
@@ -2800,7 +2800,7 @@ class WetlandMonitorApp {
     // Confirm & Load into Twin
     if (btnConfirm) {
       btnConfirm.addEventListener("click", () => {
-        const finalName = inputName ? inputName.value : "Humedal Territorial";
+        const finalName = inputName ? inputName.value : "Territorial Wetland";
         const finalArea = inputArea ? parseFloat(inputArea.value) : 45;
         const finalWtd = inputWtd ? parseFloat(inputWtd.value) : -12;
         const finalPh = inputPh ? parseFloat(inputPh.value) : 6.0;
