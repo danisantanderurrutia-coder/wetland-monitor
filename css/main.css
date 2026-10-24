@@ -4764,6 +4764,24 @@ body:not(.embargo-active) .flux-plot-card img:hover {
   box-shadow: 0 16px 40px rgba(16, 185, 129, 0.25);
 }
 
+/* Featured General Pipeline Hub Card (Spans 2 columns to complete row 3) */
+.landing-card.card-featured-pipeline-hub {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+}
+
+.landing-card.card-featured-pipeline-hub:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 16px 40px rgba(56, 189, 248, 0.2);
+}
+
+@media (max-width: 680px) {
+  .landing-card.card-featured-pipeline-hub {
+    grid-column: span 1;
+  }
+}
+
 /* ==========================================================================
    SEGUNDO DASHBOARD: KLIMAFARM WALLENER AU (LEVEL 2)
    ========================================================================== */
