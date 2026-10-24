@@ -592,6 +592,22 @@ body.theme-dark .site-selector-btn {
   transform: translateY(-1px);
 }
 
+.action-btn.portfolio-btn {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.35);
+  color: #0284c7;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.action-btn.portfolio-btn:hover {
+  background: rgba(2, 132, 199, 0.2);
+  border-color: #0284c7;
+  color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.25);
+}
+
 /* Bilingual Language Toggle */
 .lang-toggle-btn {
   background: var(--bg-secondary);
@@ -4400,6 +4416,53 @@ body:not(.embargo-active) .flux-plot-card img:hover {
 .landing-author-box .author-degrees-list li strong {
   color: var(--text-primary);
   font-weight: 700;
+}
+
+.landing-author-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.btn-author-portfolio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 7px 15px;
+  background: rgba(2, 132, 199, 0.1);
+  border: 1px solid rgba(2, 132, 199, 0.35);
+  border-radius: 8px;
+  color: #0284c7;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.12);
+}
+
+.btn-author-portfolio:hover {
+  background: rgba(2, 132, 199, 0.22);
+  border-color: #0284c7;
+  color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
+}
+
+.btn-author-portfolio .github-icon {
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.btn-author-portfolio .btn-arrow-external {
+  font-size: 0.85rem;
+  font-weight: 800;
+  transition: transform var(--transition-fast);
+}
+
+.btn-author-portfolio:hover .btn-arrow-external {
+  transform: translate(2px, -2px);
 }
 
 /* Live Telemetry Ticker Strip */
