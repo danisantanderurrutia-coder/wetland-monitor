@@ -15,18 +15,7 @@ export class ThesisExplorer {
   }
 
   initDOM() {
-    // 1. Inyectar botón en la barra superior si existe
-    const headerActions = document.querySelector('.header-actions');
-    if (headerActions && !document.getElementById('btn-open-explorer')) {
-      const btn = document.createElement('button');
-      btn.id = 'btn-open-explorer';
-      btn.className = 'action-btn explorer-btn';
-      btn.title = 'Open Scripts & Pipelines Hub (Key T or H)';
-      btn.innerHTML = `<span style="font-size:16px;">💻</span> <span>Hub - Scripts &amp; Pipelines</span> <span class="badge-pill">Live</span>`;
-      headerActions.insertBefore(btn, headerActions.firstChild);
-    }
-
-    // 2. Inyectar el Modal en el body si no existe
+    // Inject the Modal into body if not already present
     if (!document.getElementById('thesis-explorer-modal')) {
       const modal = document.createElement('div');
       modal.id = 'thesis-explorer-modal';
@@ -100,7 +89,6 @@ export class ThesisExplorer {
   }
 
   bindEvents() {
-    const openBtn = document.getElementById('btn-open-explorer');
     const closeBtn = document.getElementById('explorer-close-btn');
     const pitchBtn = document.getElementById('explorer-pitch-btn');
     const twinBtn = document.getElementById('explorer-twin-btn');
@@ -108,9 +96,9 @@ export class ThesisExplorer {
     const searchInput = document.getElementById('explorer-search-input');
     const copyBtn = document.getElementById('explorer-copy-btn');
 
-    if (openBtn) {
-      openBtn.addEventListener('click', () => this.open());
-    }
+    document.querySelectorAll('.btn-open-pipeline-hub, #btn-open-explorer').forEach(btn => {
+      btn.addEventListener('click', () => this.open());
+    });
 
     if (closeBtn) {
       closeBtn.addEventListener('click', () => this.close());
