@@ -399,122 +399,236 @@
       <section class="view-panel active" data-view-id="landing" id="view-landing">
         <div class="landing-dashboard-wrapper">
           
-          <!-- Hero Card: Platform Presentation & Mission -->
+          <!-- Institutional Scientific Provenance Banner -->
+          <div class="cover-institution-header" style="margin-bottom: -0.5rem;">
+            <span class="cover-degree-badge">Scientific Research &amp; Biophysical Modeling Platform</span>
+            <h2 class="cover-university-title" style="font-size: 1.25rem;">Christian-Albrechts-Universität zu Kiel</h2>
+            <p class="cover-faculty-title">Faculty of Agricultural and Nutritional Sciences • Institute of Crop Science and Plant Breeding</p>
+            <p class="cover-institute-title">Integrated Grassland System Analysis and Assessment (IGSAA) • Projekt Klimafarm (BMBF)</p>
+          </div>
+
+          <!-- Hero Card: Platform Presentation & Mission with Central Seal -->
           <div class="landing-hero-card">
-            <div class="landing-hero-badge">
-              <span class="badge-dot">●</span>
-              <span>Global Peatland Digital Twin &amp; Universal Restoration Simulator</span>
-            </div>
-            <h1 class="landing-hero-title">
-              PEAT-TWIN: Interactive Biophysical Wetland Platform
-            </h1>
-            <p class="landing-hero-subtitle">
-              Plataforma científica abierta para la modelación biofísica en tiempo real, monitoreo multiescala (MRV) y simulación de trayectorias de restauración en turberas y humedales templados. Integra micrometeorología de alta frecuencia (Eddy Covariance 10 Hz), dinámica de poros y agua freática, cascadas redox microbianas, teledetección multiespectral (Sentinel-2) y balances de forzamiento radiativo neto (CO₂, CH₄, N₂O).
-            </p>
-          </div>
-
-          <!-- Academic & Professional Credentials Card -->
-          <div class="landing-credentials-card">
-            <div class="credentials-badge">🎓 Academic Provenance &amp; Scientific Engineering</div>
-            <div class="credentials-content">
-              <p class="credentials-author">
-                Desarrollado y modelado por <strong>Daniel Sebastián Santander Urrutia</strong>
-              </p>
-              <p class="credentials-meta">
-                M.Sc. Environmental Management • Christian-Albrechts-Universität zu Kiel (CAU Kiel)<br>
-                Faculty of Agricultural and Nutritional Sciences • Institute of Crop Science and Plant Breeding<br>
-                Integrated Grassland System Analysis and Assessment (IGSAA) • En colaboración con el proyecto <strong>Klimafarm</strong> (BMBF).
-              </p>
-              <p class="credentials-supervisors">
-                Supervisión científica: <strong>Prof. Dr. Martin Komainda</strong> &amp; <strong>Dr. Sebastian Jordan</strong>
-              </p>
-            </div>
-          </div>
-
-          <!-- Interactive 6-Card Dashboard Grid -->
-          <div class="landing-grid">
-            
-            <!-- Card 1: Universal Twin Lab -->
-            <div class="landing-card" data-nav-target="soil_interface">
-              <div class="landing-card-icon">🌍</div>
-              <h2 class="landing-card-title">Universal Twin Lab</h2>
-              <span class="landing-card-tag">Interactive Sandbox</span>
-              <p class="landing-card-desc">
-                Simulador interactivo biofísico con lienzo dinámico en vivo. Controla el nivel freático, porosidad, compactación del suelo, tipo de vegetación (LAI/aerénquima), pH y forzamiento meteorológico (VPD, u*). Explora cinéticas microbianas y flujos de gases en tiempo real.
-              </p>
-              <div class="landing-card-action">
-                <span>Abrir Simulador</span>
-                <span class="action-arrow">➔</span>
+            <div class="landing-hero-top">
+              <div class="landing-seal-wrapper">
+                <img src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Golden Seal" class="landing-seal-img">
+              </div>
+              <div class="landing-hero-title-group" style="flex: 1; min-width: 280px;">
+                <div class="landing-hero-badge">
+                  <span class="badge-dot">●</span>
+                  <span>Global Peatland Digital Twin &amp; Universal Restoration Simulator</span>
+                </div>
+                <h1 class="landing-hero-title">
+                  <span class="brand-accent">PEAT-TWIN</span>: Interactive Biophysical Wetland Platform
+                </h1>
+                <p class="landing-hero-desc">
+                  Plataforma científica abierta para la modelación biofísica en tiempo real, monitoreo multiescala (MRV) y simulación de trayectorias de restauración en turberas y humedales templados. Integra micrometeorología de alta frecuencia (Eddy Covariance 10 Hz), dinámica de poros y agua freática, cascadas redox microbianas, teledetección multiespectral (Sentinel-2) y balances de forzamiento radiativo neto (CO₂, CH₄, N₂O).
+                </p>
               </div>
             </div>
 
-            <!-- Card 2: Klimafarm Wallener Au Project -->
-            <div class="landing-card highlight" data-nav-target="wallener_dashboard">
-              <div class="landing-card-icon">📍</div>
-              <h2 class="landing-card-title">Proyecto: Klimafarm Wallener Au</h2>
-              <span class="landing-card-tag">Case Study 01 • Empirical Benchmark</span>
-              <p class="landing-card-desc">
-                Explora el benchmark de calibración empírica en la turbera baja templada de Wallener Au (Alemania). Incluye mediciones de torre Eddy Covariance (10 Hz), transectos de cámaras cerradas, piezometría, ensayos edométricos y balance GWP validado.
-              </p>
-              <div class="landing-card-action">
-                <span>Acceder al Proyecto</span>
-                <span class="action-arrow">➔</span>
+            <!-- Live Scientific Telemetry & Status Strip -->
+            <div class="landing-telemetry-ticker">
+              <div class="telemetry-chip active">
+                <span class="chip-dot">●</span>
+                <span class="chip-label">Engine:</span>
+                <span class="chip-val">Biophysical Twin v4.0 Active</span>
+              </div>
+              <div class="telemetry-chip">
+                <span class="chip-icon">🌾</span>
+                <span class="chip-label">Benchmark:</span>
+                <span class="chip-val">Wallener Au (Temperate Fen)</span>
+              </div>
+              <div class="telemetry-chip">
+                <span class="chip-icon">🌪️</span>
+                <span class="chip-label">Micrometeo:</span>
+                <span class="chip-val">10 Hz EC (EddyPro QA/QC)</span>
+              </div>
+              <div class="telemetry-chip">
+                <span class="chip-icon">🛰️</span>
+                <span class="chip-label">Satellites:</span>
+                <span class="chip-val">Copernicus Sentinel-2 &amp; SAR</span>
+              </div>
+              <div class="telemetry-chip">
+                <span class="chip-icon">⚖️</span>
+                <span class="chip-label">Accounting:</span>
+                <span class="chip-val">IPCC AR6 GWP-100 &amp; GWP-20</span>
+              </div>
+            </div>
+
+            <!-- Official Scientific Credentials Grid -->
+            <div class="landing-credentials-card">
+              <div class="cred-col">
+                <span class="cred-label">Lead Modeler &amp; System Architect</span>
+                <span class="cred-val">Daniel Sebastián Santander Urrutia</span>
+                <span class="cred-sub">M.Sc. Environmental Management • CAU Kiel</span>
+              </div>
+              <div class="cred-col">
+                <span class="cred-label">Scientific Supervision</span>
+                <span class="cred-val">Prof. Dr. Martin Komainda &amp; Dr. Sebastian Jordan</span>
+                <span class="cred-sub">Institute of Crop Science and Plant Breeding (IGSAA)</span>
+              </div>
+              <div class="cred-col">
+                <span class="cred-label">Research Framework &amp; Funding</span>
+                <span class="cred-val">Klimafarm Peatland Observatory</span>
+                <span class="cred-sub">Federal Ministry of Education and Research (BMBF)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Dashboard Grid -->
+          <div class="landing-grid">
+            
+            <!-- Featured Card 1: Universal Twin Lab (Hero 2-Column Launcher) -->
+            <div class="landing-card card-featured-twin" data-nav-target="soil_interface">
+              <div class="landing-card-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span class="landing-card-icon">🌍</span>
+                  <div>
+                    <h2 class="landing-card-title" style="font-size: 1.35rem;">Universal Peatland Twin Lab</h2>
+                    <span class="landing-card-badge badge-blue">Interactive Biophysical Sandbox</span>
+                  </div>
+                </div>
+                <span class="landing-card-badge badge-green">Real-Time Physics</span>
+              </div>
+              <div class="landing-card-body">
+                <p class="landing-card-desc" style="font-size: 0.88rem; line-height: 1.6;">
+                  Simulador biofísico interactivo libre con lienzo dinámico en vivo. Controla en tiempo real el nivel freático (-80 a +15 cm), macroporosidad y compactación del suelo, cobertura vegetal (LAI y shunt de aerénquima 90%), pH y forzamiento micrometeorológico (VPD, u*). Observa cinéticas microbianas y flujos de gases en vivo.
+                </p>
+                <div class="landing-tag-pills">
+                  <span class="tag-pill">🌱 Dinámica Freática</span>
+                  <span class="tag-pill">💨 Shunt Aerénquima</span>
+                  <span class="tag-pill">⚡ Cascada Redox</span>
+                  <span class="tag-pill">☀️ Ciclos Diurno &amp; Anual</span>
+                  <span class="tag-pill">🔬 Michaelis-Menten</span>
+                </div>
+              </div>
+              <div class="landing-featured-btn">
+                <span>🚀 Iniciar Gemelo Digital Universal (Twin Lab)</span>
+                <span>➔</span>
+              </div>
+            </div>
+
+            <!-- Featured Card 2: Klimafarm Wallener Au (Case Study 01) -->
+            <div class="landing-card card-featured-wallener" data-nav-target="wallener_dashboard">
+              <div class="landing-card-header">
+                <span class="landing-card-icon">📍</span>
+                <span class="landing-card-badge badge-green">Case Study 01</span>
+              </div>
+              <div class="landing-card-body">
+                <h3 class="landing-card-title">Proyecto: Klimafarm Wallener Au</h3>
+                <p class="landing-card-desc">
+                  Benchmark de validación empírica en turbera baja templada (Schleswig-Holstein, Alemania). Series de torre Eddy Covariance (10 Hz), transectos de cámaras cerradas N₂O/CH₄, piezometría y balance GWP validado.
+                </p>
+                <div class="landing-tag-pills">
+                  <span class="tag-pill">10 Hz EC</span>
+                  <span class="tag-pill">N₂O Chambers</span>
+                  <span class="tag-pill">ERT 2D</span>
+                  <span class="tag-pill">Oedometer</span>
+                </div>
+                <div style="margin-top: 0.5rem; font-size: 0.72rem; color: #f59e0b; font-weight: 700; display: flex; align-items: center; gap: 4px;">
+                  <span>🔒</span> <span>Datos bajo Embargo Académico</span>
+                </div>
+              </div>
+              <div class="landing-card-footer">
+                <span style="color: #34d399; font-weight: 800;">Acceder al Proyecto</span>
+                <span class="landing-card-arrow" style="color: #34d399;">➔</span>
               </div>
             </div>
 
             <!-- Card 3: Tools & Instrumentation -->
             <div class="landing-card" data-nav-target="tools_general">
-              <div class="landing-card-icon">🛠️</div>
-              <h2 class="landing-card-title">Tools &amp; Instrumentación</h2>
-              <span class="landing-card-tag">Multi-Tier MRV Systems</span>
-              <p class="landing-card-desc">
-                Catálogo metodológico y principios físicos de las tecnologías de instrumentación en humedales: covarianza de torbellinos (Eddy Covariance), sistemas automatizados de cámaras de gases, redes piezométricas y sensores hidro-redox de suelo.
-              </p>
-              <div class="landing-card-action">
+              <div class="landing-card-header">
+                <span class="landing-card-icon">🛠️</span>
+                <span class="landing-card-badge badge-blue">Multi-Tier MRV</span>
+              </div>
+              <div class="landing-card-body">
+                <h3 class="landing-card-title">Tools &amp; Instrumentación</h3>
+                <p class="landing-card-desc">
+                  Catálogo metodológico y principios físicos: covarianza de torbellinos (Eddy Covariance 10-20 Hz), cámaras cerradas automatizadas, redes piezométricas y sensores hidro-redox.
+                </p>
+                <div class="landing-tag-pills">
+                  <span class="tag-pill">Sonic 3D</span>
+                  <span class="tag-pill">IRGA/QCL</span>
+                  <span class="tag-pill">Chambers</span>
+                  <span class="tag-pill">WTD Sensors</span>
+                </div>
+              </div>
+              <div class="landing-card-footer">
                 <span>Ver Metodología de Instrumental</span>
-                <span class="action-arrow">➔</span>
+                <span class="landing-card-arrow">➔</span>
               </div>
             </div>
 
             <!-- Card 4: Satellites & Remote Sensing -->
             <div class="landing-card" data-nav-target="satellites_general">
-              <div class="landing-card-icon">🛰️</div>
-              <h2 class="landing-card-title">Satélites &amp; Teledetección</h2>
-              <span class="landing-card-tag">Earth Observation &amp; Spectral Physics</span>
-              <p class="landing-card-desc">
-                Integración de constelaciones orbitales (Copernicus Sentinel-2, Sentinel-1 SAR, Landsat) para el monitoreo de humedales: cálculo de índices espectrales (NDVI, NDWI, NDRE), dinámica de encharcamiento e integración con huellas de flujo (footprint).
-              </p>
-              <div class="landing-card-action">
+              <div class="landing-card-header">
+                <span class="landing-card-icon">🛰️</span>
+                <span class="landing-card-badge badge-blue">Earth Observation</span>
+              </div>
+              <div class="landing-card-body">
+                <h3 class="landing-card-title">Satélites &amp; Teledetección</h3>
+                <p class="landing-card-desc">
+                  Constelaciones orbitales (Copernicus Sentinel-2, Sentinel-1 SAR, Landsat 8/9): cálculo de índices espectrales (NDVI, NDWI, NDRE), dinámica de encharcamiento e integración con huella de flujo.
+                </p>
+                <div class="landing-tag-pills">
+                  <span class="tag-pill">Sentinel-2 MSI</span>
+                  <span class="tag-pill">SAR S1</span>
+                  <span class="tag-pill">Landsat TIRS</span>
+                  <span class="tag-pill">Footprint</span>
+                </div>
+              </div>
+              <div class="landing-card-footer">
                 <span>Ver Teledetección Satelital</span>
-                <span class="action-arrow">➔</span>
+                <span class="landing-card-arrow">➔</span>
               </div>
             </div>
 
             <!-- Card 5: Biogeochemistry & Peatland Typology -->
             <div class="landing-card" data-nav-target="biogeochemistry_general">
-              <div class="landing-card-icon">⚗️</div>
-              <h2 class="landing-card-title">Biogeoquímica &amp; Tipos de Humedal</h2>
-              <span class="landing-card-tag">Redox Thermodynamics &amp; Habitats</span>
-              <p class="landing-card-desc">
-                Fundamentos termodinámicos de la diagénesis temprana y las cascadas redox (O₂ ➔ NO₃⁻ ➔ Mn/Fe ➔ SO₄²⁻ ➔ Metanogénesis). Comparación estructural entre turberas bajas (Fens), turberas altas (Bogs), paludicultura y suelos drenados.
-              </p>
-              <div class="landing-card-action">
+              <div class="landing-card-header">
+                <span class="landing-card-icon">⚗️</span>
+                <span class="landing-card-badge badge-blue">Redox Thermodynamics</span>
+              </div>
+              <div class="landing-card-body">
+                <h3 class="landing-card-title">Biogeoquímica &amp; Tipos</h3>
+                <p class="landing-card-desc">
+                  Fundamentos de diagénesis temprana y cascadas redox (O₂ ➔ NO₃⁻ ➔ Mn/Fe ➔ SO₄²⁻ ➔ CH₄). Comparación biofísica entre turberas bajas (Fens), altas (Bogs), paludicultura y suelos drenados.
+                </p>
+                <div class="landing-tag-pills">
+                  <span class="tag-pill">Cascada Redox</span>
+                  <span class="tag-pill">Rewetting Paradox</span>
+                  <span class="tag-pill">Fens vs Bogs</span>
+                  <span class="tag-pill">Paludicultura</span>
+                </div>
+              </div>
+              <div class="landing-card-footer">
                 <span>Ver Biogeoquímica Universal</span>
-                <span class="action-arrow">➔</span>
+                <span class="landing-card-arrow">➔</span>
               </div>
             </div>
 
             <!-- Card 6: Carbon Accounting & GWP General -->
             <div class="landing-card" data-nav-target="carbon_general">
-              <div class="landing-card-icon">⚖️</div>
-              <h2 class="landing-card-title">Carbon Accounting &amp; GWP</h2>
-              <span class="landing-card-tag">MMRV Standards &amp; Radiative Forcing</span>
-              <p class="landing-card-desc">
-                Principios de Contabilidad de Carbono y Métricas de Forzamiento Radiativo (GWP-100 vs GWP-20, SGWP). Metodología IPCC Tiers 1–3 para evaluación de proyectos de restauración de turberas y balance neto en equivalentes de CO₂.
-              </p>
-              <div class="landing-card-action">
+              <div class="landing-card-header">
+                <span class="landing-card-icon">⚖️</span>
+                <span class="landing-card-badge badge-blue">MMRV Standards</span>
+              </div>
+              <div class="landing-card-body">
+                <h3 class="landing-card-title">Carbon Accounting &amp; GWP</h3>
+                <p class="landing-card-desc">
+                  Principios de contabilidad de carbono y forzamiento radiativo sostenido (SGWP, GWP-100 vs GWP-20). Metodología IPCC Tiers 1–3 y estándares de certificación (VM0033 / MoorFutures).
+                </p>
+                <div class="landing-tag-pills">
+                  <span class="tag-pill">GWP-100 / GWP-20</span>
+                  <span class="tag-pill">SGWP Dynamics</span>
+                  <span class="tag-pill">IPCC Tier 1-3</span>
+                  <span class="tag-pill">Verra VM0033</span>
+                </div>
+              </div>
+              <div class="landing-card-footer">
                 <span>Ver Contabilidad de Carbono</span>
-                <span class="action-arrow">➔</span>
+                <span class="landing-card-arrow">➔</span>
               </div>
             </div>
 
@@ -528,20 +642,60 @@
           
           <!-- Hero Card: Project Overview & Scientific Anchor -->
           <div class="wallener-hero-card">
-            <div class="wallener-header-top-actions">
-              <button type="button" class="btn-wallener-back" id="btn-wallener-back-landing">
+            <div class="wallener-nav-breadcrumb-row">
+              <div class="project-breadcrumb">
+                <span>PEAT-TWIN</span> <span>›</span>
+                <span>Case Studies</span> <span>›</span>
+                <span class="active-crumb">01: Klimafarm Wallener Au</span>
+              </div>
+              <button type="button" class="btn-back-to-landing" id="btn-wallener-back-landing" title="Volver al Dashboard Principal">
                 <span>⬅</span> <span>Volver al Dashboard Principal</span>
               </button>
-              <span class="wallener-status-badge">📍 Case Study 01 • Empirical Validation Benchmark</span>
             </div>
             
-            <h1 class="wallener-hero-title">
-              Proyecto Klimafarm Wallener Au: Observatorio de Turberas
-            </h1>
-            <p class="wallener-hero-subtitle">
-              Validación empírica en turbera baja templada (Schleswig-Holstein, Alemania). Datos de campo de alta frecuencia temporal (2023–2024) que sustentan y calibran la arquitectura de simulación biofísica de PEAT-TWIN.
-            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.25rem;">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span class="wallener-btn-badge benchmark">Empirical Validation Benchmark</span>
+                <span class="wallener-btn-badge">Schleswig-Holstein, Germany</span>
+              </div>
+              <h1 class="wallener-hero-title">
+                Proyecto Klimafarm Wallener Au: Observatorio de Turberas
+              </h1>
+              <p class="wallener-hero-desc">
+                Validación empírica en turbera baja templada (Schleswig-Holstein, Alemania). Datos de campo de alta frecuencia temporal (2023–2024) que sustentan y calibran la arquitectura de simulación biofísica de PEAT-TWIN.
+              </p>
+            </div>
 
+            <!-- Field Observatory Telemetry Strip -->
+            <div class="wallener-meta-strip">
+              <div class="telemetry-chip active">
+                <span class="chip-dot">●</span>
+                <span class="chip-label">Coords:</span>
+                <span class="chip-val">54°17'N, 9°58'E</span>
+              </div>
+              <div class="telemetry-chip">
+                <span class="chip-icon">🌾</span>
+                <span class="chip-label">Peat:</span>
+                <span class="chip-val">Minerotrophic Carex (1.8m)</span>
+              </div>
+              <div class="telemetry-chip">
+                <span class="chip-icon">🌪️</span>
+                <span class="chip-label">Tower:</span>
+                <span class="chip-val">10 Hz CSAT3 + LI-7500 / LI-7700</span>
+              </div>
+              <div class="telemetry-chip">
+                <span class="chip-icon">📦</span>
+                <span class="chip-label">Chambers:</span>
+                <span class="chip-val">N₂O &amp; CH₄ Transects</span>
+              </div>
+              <div class="telemetry-chip">
+                <span class="chip-icon">⚡</span>
+                <span class="chip-label">Soil Mechanics:</span>
+                <span class="chip-val">Oedometer σ'p = 28 kPa</span>
+              </div>
+            </div>
+
+            <!-- Embargo Notice Box -->
             <div class="wallener-embargo-notice">
               <span class="embargo-icon">🔒</span>
               <div class="embargo-text">
@@ -550,84 +704,199 @@
             </div>
           </div>
 
-          <!-- 11 Module Buttons Grid -->
+          <!-- Featured: Wallener Au Calibrated Twin Quick Launcher -->
+          <div class="wallener-calibrated-twin-card" data-jump-wallener="soil_interface">
+            <div class="wallener-calibrated-title-group">
+              <h3 class="wallener-calibrated-title">
+                <span>🌾</span> <span>Gemelo Digital Calibrado: Wallener Au (Baseline -25 cm WTD)</span>
+              </h3>
+              <p class="wallener-calibrated-desc">
+                Inicia el gemelo biofísico preconfigurado con los parámetros empíricos de Wallener Au: nivel freático medio anual de -25 cm, vegetación fen minerotrófica (*Carex*), aerénquima moderado y bucles de simulación continua de 24 horas y 365 días.
+              </p>
+            </div>
+            <button type="button" class="wallener-calibrated-btn">
+              <span>Iniciar Gemelo Calibrado</span>
+              <span>➔</span>
+            </button>
+          </div>
+
+          <!-- 11 Module Scientific Buttons Grid -->
           <div class="wallener-grid">
             
             <!-- Module 1: Thesis Dossier -->
             <div class="wallener-btn-card" data-jump-wallener="thesis_cover">
-              <div class="wallener-btn-icon">🏛️</div>
-              <h3 class="wallener-btn-title">Dossier del Proyecto</h3>
-              <p class="wallener-btn-desc">Contexto institucional CAU Kiel, supervisión científica, autoría y marco de investigación.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">🏛️</span>
+                <span class="wallener-btn-badge benchmark">Módulo 01</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Dossier del Proyecto</h4>
+                <p>Contexto institucional CAU Kiel, supervisión científica, autoría y marco de investigación.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Dossier</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 2: Aims & Hypotheses -->
             <div class="wallener-btn-card" data-jump-wallener="aims_objectives">
-              <div class="wallener-btn-icon">🎯</div>
-              <h3 class="wallener-btn-title">Objetivos &amp; Hipótesis</h3>
-              <p class="wallener-btn-desc">Preguntas científicas sobre rehumidificación, compactación de turba y bypass de gases.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">🎯</span>
+                <span class="wallener-btn-badge benchmark">Módulo 02</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Objetivos &amp; Hipótesis</h4>
+                <p>Preguntas científicas sobre rehumidificación, compactación de turba y bypass de gases.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Objetivos</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 3: Site & Footprint -->
             <div class="wallener-btn-card" data-jump-wallener="macro">
-              <div class="wallener-btn-icon">🛰️</div>
-              <h3 class="wallener-btn-title">Sitio &amp; Footprint Satelital</h3>
-              <p class="wallener-btn-desc">Ortofotos Sentinel-2, modelo de huella de flujo Korman &amp; Meixner y delimitación del predio.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">🛰️</span>
+                <span class="wallener-btn-badge benchmark">Módulo 03</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Sitio &amp; Footprint Satelital</h4>
+                <p>Ortofotos Sentinel-2, modelo de huella de flujo Korman &amp; Meixner y delimitación del predio.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Huella &amp; Mapa</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 4: Local Biogeochemistry -->
             <div class="wallener-btn-card" data-jump-wallener="biogeochemistry">
-              <div class="wallener-btn-icon">🧪</div>
-              <h3 class="wallener-btn-title">Biogeoquímica &amp; Suelos</h3>
-              <p class="wallener-btn-desc">Estratigrafía de turba fen, horizonte sáprico, sulfatorreducción y perfiles de pH en Wallener Au.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">🧪</span>
+                <span class="wallener-btn-badge benchmark">Módulo 04</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Biogeoquímica &amp; Suelos</h4>
+                <p>Estratigrafía de turba fen, horizonte sáprico, sulfatorreducción y perfiles de pH en Wallener Au.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Biogeoquímica</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 5: Instrumental Matrix -->
             <div class="wallener-btn-card" data-jump-wallener="instruments_matrix">
-              <div class="wallener-btn-icon">🧰</div>
-              <h3 class="wallener-btn-title">Matriz Instrumental</h3>
-              <p class="wallener-btn-desc">Diseño experimental: torre Eddy Covariance, cámaras cerradas N₂O/CH₄ y piezómetros.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">🧰</span>
+                <span class="wallener-btn-badge embargoed">Embargoed</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Matriz Instrumental</h4>
+                <p>Diseño experimental: torre Eddy Covariance, cámaras cerradas N₂O/CH₄ y piezómetros.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Instrumental</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 6: Processing Pipeline -->
             <div class="wallener-btn-card" data-jump-wallener="data_pipeline">
-              <div class="wallener-btn-icon">⚙️</div>
-              <h3 class="wallener-btn-title">Pipeline &amp; QA/QC</h3>
-              <p class="wallener-btn-desc">Flujo de datos EddyPro, flags de calidad Mauder &amp; Foken (2004), gapfilling RF y Lloyd-Taylor.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">⚙️</span>
+                <span class="wallener-btn-badge benchmark">Módulo 06</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Pipeline &amp; QA/QC</h4>
+                <p>Flujo de datos EddyPro, flags de calidad Mauder &amp; Foken (2004), gapfilling RF y Lloyd-Taylor.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Pipeline</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 7: Eddy Covariance Fluxes -->
             <div class="wallener-btn-card" data-jump-wallener="eddy_covariance">
-              <div class="wallener-btn-icon">📈</div>
-              <h3 class="wallener-btn-title">Flujos Eddy Covariance</h3>
-              <p class="wallener-btn-desc">Series temporales de flujo turbulento, partición NEE (GPP / Reco) y balance de CH₄ en campo.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">📈</span>
+                <span class="wallener-btn-badge embargoed">Embargoed</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Flujos Eddy Covariance</h4>
+                <p>Series temporales de flujo turbulento, partición NEE (GPP / Reco) y balance de CH₄ en campo.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Flujos EC</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 8: Hydro-Geophysics & Oedometer -->
             <div class="wallener-btn-card" data-jump-wallener="geophysics">
-              <div class="wallener-btn-icon">⚡</div>
-              <h3 class="wallener-btn-title">Geofísica &amp; Geomecánica</h3>
-              <p class="wallener-btn-desc">Tomografía de resistividad eléctrica (ERT), dinámica freática y ensayos de consolidación edométrica.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">⚡</span>
+                <span class="wallener-btn-badge embargoed">Embargoed</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Geofísica &amp; Geomecánica</h4>
+                <p>Tomografía de resistividad eléctrica (ERT), dinámica freática y ensayos de consolidación edométrica.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Geofísica</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 9: Micrometeo Diagnostics -->
             <div class="wallener-btn-card" data-jump-wallener="flux_diagnostics">
-              <div class="wallener-btn-icon">📊</div>
-              <h3 class="wallener-btn-title">Micrometeo &amp; Cierre EBC</h3>
-              <p class="wallener-btn-desc">Balance de energía superficial (EBC 85%), radiación neta, flujos H/LE y respuesta a VPD/u*.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">📊</span>
+                <span class="wallener-btn-badge benchmark">Módulo 09</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Micrometeo &amp; Cierre EBC</h4>
+                <p>Balance de energía superficial (EBC 85%), radiación neta, flujos H/LE y respuesta a VPD/u*.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Micrometeo</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 10: Uncertainties & GWP Balance -->
             <div class="wallener-btn-card" data-jump-wallener="gwp_uncertainties">
-              <div class="wallener-btn-icon">📐</div>
-              <h3 class="wallener-btn-title">Incertidumbres &amp; GWP</h3>
-              <p class="wallener-btn-desc">Simulación Monte Carlo, balance neto en CO₂-eq y comparación de forzamiento a 20 y 100 años.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">📐</span>
+                <span class="wallener-btn-badge benchmark">Módulo 10</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Incertidumbres &amp; GWP</h4>
+                <p>Simulación Monte Carlo, balance neto en CO₂-eq y comparación de forzamiento a 20 y 100 años.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Incertidumbres</span>
+                <span>➔</span>
+              </div>
             </div>
 
             <!-- Module 11: Conclusions & Agronomy -->
             <div class="wallener-btn-card" data-jump-wallener="conclusions_outlook">
-              <div class="wallener-btn-icon">💡</div>
-              <h3 class="wallener-btn-title">Conclusiones &amp; Manejo</h3>
-              <p class="wallener-btn-desc">Síntesis para la gestión de turberas templadas, lecciones de rehumidificación y recomendaciones.</p>
+              <div class="wallener-btn-card-header">
+                <span class="wallener-btn-icon">💡</span>
+                <span class="wallener-btn-badge benchmark">Módulo 11</span>
+              </div>
+              <div class="wallener-btn-body">
+                <h4>Conclusiones &amp; Manejo</h4>
+                <p>Síntesis para la gestión de turberas templadas, lecciones de rehumidificación y recomendaciones.</p>
+              </div>
+              <div class="wallener-btn-footer">
+                <span>Ver Conclusiones</span>
+                <span>➔</span>
+              </div>
             </div>
 
           </div>

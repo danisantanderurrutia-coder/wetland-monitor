@@ -141,22 +141,36 @@ h1, h2, h3, h4, .font-display {
   background: var(--bg-primary);
 }
 
-/* Top Navigation Bar: Two-Row Professional Layout */
+/* Universal Visibility Utility */
+.hidden {
+  display: none !important;
+}
+
+.wallener-project-nav-bar.hidden {
+  display: none !important;
+}
+
+.header-bottom-row.hidden {
+  display: none !important;
+}
+
+/* Top Navigation Bar: Dynamic Professional Layout */
 .app-header {
   height: auto;
-  min-height: 90px;
+  min-height: 54px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0.45rem 1.5rem;
+  padding: 0.45rem 1.25rem;
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-sm);
   z-index: 50;
-  gap: 0.4rem;
+  gap: 0.35rem;
+  transition: min-height 0.2s ease;
 }
 
 /* Row 1: Brand Identity & Quick Action Controls */
@@ -664,11 +678,14 @@ body.theme-dark .site-selector-btn {
   display: none;
   opacity: 0;
   transition: opacity var(--transition-normal);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .view-panel.active {
   display: flex;
+  flex-direction: column;
   opacity: 1;
 }
 
@@ -4349,6 +4366,193 @@ body:not(.embargo-active) .flux-plot-card img:hover {
   margin: 0;
 }
 
+/* Landing Seal Graphic */
+.landing-seal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.landing-seal-img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 22px rgba(2, 132, 199, 0.35));
+  transition: transform 0.3s ease;
+}
+
+.landing-seal-img:hover {
+  transform: scale(1.08) rotate(3deg);
+}
+
+/* Live Telemetry Ticker Strip */
+.landing-telemetry-ticker {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+}
+
+.telemetry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+
+.telemetry-chip.active {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(52, 211, 153, 0.35);
+  color: #34d399;
+}
+
+.telemetry-chip .chip-dot {
+  font-size: 0.65rem;
+  color: #34d399;
+  animation: pulse-live 2s infinite ease-in-out;
+}
+
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.telemetry-chip .chip-label {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+}
+
+.telemetry-chip .chip-val {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.landing-tag-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+.tag-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+}
+
+.landing-featured-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+  color: #ffffff;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  margin-top: 0.65rem;
+}
+
+.landing-card:hover .landing-featured-btn {
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+  box-shadow: 0 8px 25px rgba(2, 132, 199, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Wallener Calibrated Twin Launcher Card */
+.wallener-calibrated-twin-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1.5px solid rgba(52, 211, 153, 0.5);
+  border-radius: 14px;
+  padding: 1.35rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+}
+
+.wallener-calibrated-twin-card:hover {
+  border-color: #34d399;
+  box-shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
+  transform: translateY(-3px);
+}
+
+.wallener-calibrated-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 260px;
+}
+
+.wallener-calibrated-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wallener-calibrated-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.wallener-calibrated-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: #10b981;
+  color: #0f172a;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.wallener-calibrated-twin-card:hover .wallener-calibrated-btn {
+  background: #34d399;
+  transform: translateX(4px);
+}
+
 /* Official Academic Credentials Grid */
 .landing-credentials-card {
   background: rgba(15, 23, 42, 0.45);
@@ -4639,6 +4843,40 @@ body:not(.embargo-active) .flux-plot-card img:hover {
   margin: 0;
 }
 
+.wallener-embargo-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: rgba(217, 119, 6, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 10px;
+  padding: 0.85rem 1.15rem;
+  margin-top: 0.4rem;
+}
+
+.wallener-embargo-notice .embargo-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.wallener-embargo-notice .embargo-text {
+  font-size: 0.8rem;
+  color: #fde68a;
+  line-height: 1.5;
+}
+
+.wallener-embargo-notice .embargo-text strong {
+  color: #f59e0b;
+}
+
+.wallener-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
 .wallener-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -4795,6 +5033,7 @@ body:not(.embargo-active) .flux-plot-card img:hover {
   display: flex;
   align-items: center;
   gap: 0.45rem;
+  flex-shrink: 0;
 }
 
 .global-nav-link {

@@ -205,6 +205,9 @@ class WetlandMonitorApp {
       el.addEventListener("click", (e) => {
         e.preventDefault();
         const target = el.dataset.jumpWallener;
+        if (target === "soil_interface") {
+          if (this.sandbox) this.sandbox.loadArchetype("fen");
+        }
         if (target) this.switchView(target);
       });
     });
