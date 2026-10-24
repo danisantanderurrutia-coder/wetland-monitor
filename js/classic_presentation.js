@@ -33,9 +33,11 @@ export class ClassicThesisPresentation {
     this.bindEvents();
     this.renderSlide(0);
 
-    // Auto-abrir la presentación si la URL incluye hash o parámetro de presentación
+    // Auto-open presentation if URL includes pitch or presentation slug
     const urlParams = new URLSearchParams(window.location.search);
-    const shouldOpenPresentation = window.location.hash.includes('presentation') || 
+    const shouldOpenPresentation = window.location.hash.includes('pitch') ||
+                                   window.location.hash.includes('presentation') || 
+                                   urlParams.get('view') === 'pitch' ||
                                    urlParams.get('view') === 'presentation' || 
                                    urlParams.get('view') === 'classic_presentation';
     if (shouldOpenPresentation) {
@@ -324,8 +326,8 @@ export class ClassicThesisPresentation {
     }
 
     try {
-      if (!window.location.hash.includes('presentation')) {
-        window.history.replaceState(null, '', '#presentation');
+      if (!window.location.hash.includes('pitch') && !window.location.hash.includes('presentation')) {
+        window.history.replaceState(null, '', '#pitch');
       }
     } catch (_) {}
 
@@ -337,7 +339,7 @@ export class ClassicThesisPresentation {
     if (panel) panel.classList.remove('active', 'deck-fullscreen');
 
     try {
-      if (window.location.hash.includes('presentation')) {
+      if (window.location.hash.includes('pitch') || window.location.hash.includes('presentation')) {
         window.history.replaceState(null, '', '#wallener');
       }
     } catch (_) {}

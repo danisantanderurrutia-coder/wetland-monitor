@@ -16,6 +16,91 @@ import { DigitalTwinSimulationEngine } from "./digital_twin_engine.js?v=8.0";
 import { PITCH_TRANSLATIONS_ES } from "./pitch_translations_es.js?v=7.0";
 import { WetlandTwinSandbox } from "./twin_sandbox.js?v=1.0";
 
+export const VIEW_SLUGS = {
+  landing: "landing",
+  soil_interface: "twin",
+  wallener_dashboard: "wallener",
+  classic_presentation: "pitch",
+  aims_objectives: "aims",
+  macro: "site-satellites",
+  eddy_covariance: "eddy-covariance",
+  instruments_matrix: "chambers",
+  data_pipeline: "empirical-models",
+  geophysics: "geomechanics",
+  flux_diagnostics: "micrometeo",
+  biogeochemistry: "biogeochemistry",
+  gwp_uncertainties: "uncertainties",
+  conclusions_outlook: "conclusions",
+  tools_general: "tools",
+  satellites_general: "satellites",
+  biogeochemistry_general: "biogeochemistry-general",
+  carbon_general: "carbon-accounting",
+  defense_agenda: "agenda"
+};
+
+export const SLUG_TO_VIEW = {
+  landing: "landing",
+  home: "landing",
+  twin: "soil_interface",
+  simulator: "soil_interface",
+  soil_interface: "soil_interface",
+  wallener: "wallener_dashboard",
+  wallener_dashboard: "wallener_dashboard",
+  "wallener-dashboard": "wallener_dashboard",
+  klimafarm: "wallener_dashboard",
+  pitch: "classic_presentation",
+  presentation: "classic_presentation",
+  walkthrough: "classic_presentation",
+  aims: "aims_objectives",
+  aims_objectives: "aims_objectives",
+  "aims-objectives": "aims_objectives",
+  macro: "macro",
+  "site-satellites": "macro",
+  satellites: "satellites_general",
+  "satellites-general": "satellites_general",
+  satellites_general: "satellites_general",
+  "eddy-covariance": "eddy_covariance",
+  eddy_covariance: "eddy_covariance",
+  ec: "eddy_covariance",
+  tower: "eddy_covariance",
+  chambers: "instruments_matrix",
+  instruments: "instruments_matrix",
+  instruments_matrix: "instruments_matrix",
+  "empirical-models": "data_pipeline",
+  pipeline: "data_pipeline",
+  "data-pipeline": "data_pipeline",
+  data_pipeline: "data_pipeline",
+  geomechanics: "geophysics",
+  geophysics: "geophysics",
+  micrometeo: "flux_diagnostics",
+  flux: "flux_diagnostics",
+  "flux-diagnostics": "flux_diagnostics",
+  flux_diagnostics: "flux_diagnostics",
+  biogeochemistry: "biogeochemistry",
+  biogeo: "biogeochemistry",
+  "biogeochemistry-general": "biogeochemistry_general",
+  biogeochemistry_general: "biogeochemistry_general",
+  uncertainties: "gwp_uncertainties",
+  gwp: "gwp_uncertainties",
+  "gwp-uncertainties": "gwp_uncertainties",
+  gwp_uncertainties: "gwp_uncertainties",
+  conclusions: "conclusions_outlook",
+  "conclusions-outlook": "conclusions_outlook",
+  conclusions_outlook: "conclusions_outlook",
+  tools: "tools_general",
+  "tools-general": "tools_general",
+  tools_general: "tools_general",
+  carbon: "carbon_general",
+  "carbon-accounting": "carbon_general",
+  "carbon-general": "carbon_general",
+  carbon_general: "carbon_general",
+  agenda: "defense_agenda",
+  defense_agenda: "defense_agenda",
+  thesis_cover: "wallener_dashboard",
+  cover: "wallener_dashboard",
+  dossier: "wallener_dashboard"
+};
+
 class WetlandMonitorApp {
   constructor() {
     this.currentViewKey = "soil_interface";
@@ -76,9 +161,31 @@ class WetlandMonitorApp {
     // 3. Set branding logo to "Stratigraphy & Probes"
     this.initLogo();
 
-    // 4. Default Landing Dashboard with Platform Presentation & Architecture Cards
-    this.currentViewKey = "landing";
-    this.switchView("landing");
+    // 4. URL Hash Slug Routing & Browser History
+    window.addEventListener("hashchange", () => {
+      const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase().trim();
+      if (hash && SLUG_TO_VIEW[hash]) {
+        const targetView = SLUG_TO_VIEW[hash];
+        if (this.currentViewKey !== targetView) {
+          if (targetView === "soil_interface") {
+            this.isWallenerTwinMode = (hash.includes("wallener"));
+          }
+          this.switchView(targetView);
+        }
+      }
+    });
+
+    const initialHash = window.location.hash.replace(/^#\/?/, '').toLowerCase().trim();
+    if (initialHash && SLUG_TO_VIEW[initialHash]) {
+      const targetView = SLUG_TO_VIEW[initialHash];
+      if (targetView === "soil_interface") {
+        this.isWallenerTwinMode = (initialHash.includes("wallener"));
+      }
+      this.switchView(targetView);
+    } else {
+      this.currentViewKey = "landing";
+      this.switchView("landing");
+    }
   }
 
   initDOM() {
@@ -230,6 +337,32 @@ class WetlandMonitorApp {
           this.isWallenerTwinMode = false;
         }
         if (target) this.switchView(target);
+      });
+    });
+
+    // Agenda / Progression TOC items
+    document.querySelectorAll(".toc-item").forEach(item => {
+      item.addEventListener("click", () => {
+        const tabId = item.dataset.tab;
+        const mapping = {
+          "tab-cover": "landing",
+          "tab-aims": "aims_objectives",
+          "tab-soil": "soil_interface",
+          "tab-macro": "macro",
+          "tab-biogeo": "biogeochemistry",
+          "tab-instruments": "instruments_matrix",
+          "tab-pipeline": "data_pipeline",
+          "tab-ec": "eddy_covariance",
+          "tab-geophysics": "geophysics",
+          "tab-flux": "flux_diagnostics",
+          "tab-uncertainties": "gwp_uncertainties",
+          "tab-conclusions": "conclusions_outlook"
+        };
+        const target = mapping[tabId] || item.dataset.view;
+        if (target) {
+          if (target === "soil_interface") this.isWallenerTwinMode = true;
+          this.switchView(target);
+        }
       });
     });
 
@@ -478,7 +611,23 @@ class WetlandMonitorApp {
   }
 
   switchView(viewKey, fromSlide = false) {
+    if (viewKey === "thesis_cover" || viewKey === "view-cover") {
+      viewKey = "wallener_dashboard";
+    }
     this.currentViewKey = viewKey;
+
+    // Update URL hash slug smoothly across entire website
+    const targetSlug = VIEW_SLUGS[viewKey] || viewKey;
+    try {
+      const currentHash = window.location.hash.replace(/^#\/?/, '').toLowerCase().trim();
+      if (currentHash !== targetSlug) {
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '#' + targetSlug);
+        } else {
+          window.location.hash = targetSlug;
+        }
+      }
+    } catch (_) {}
 
     const wallenerViews = [
       "wallener_dashboard",
