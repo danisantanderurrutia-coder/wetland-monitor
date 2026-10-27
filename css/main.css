@@ -4614,6 +4614,84 @@ body:not(.embargo-active) .flux-plot-card img:hover {
   transform: translateY(-2px);
 }
 
+/* Wallener Action Button in Landing Card */
+.landing-wallener-actions {
+  display: flex;
+  width: 100%;
+  margin-top: 0.85rem;
+}
+
+.landing-wallener-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 11px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, #059669 0%, #10b981 40%, #06b6d4 100%);
+  border: 1.5px solid rgba(110, 231, 183, 0.7);
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.45), 0 0 14px rgba(6, 182, 212, 0.3);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.landing-wallener-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: rotate(25deg);
+  transition: transform 0.65s ease;
+  pointer-events: none;
+}
+
+.landing-card.card-featured-wallener:hover .landing-wallener-btn,
+.landing-wallener-btn:hover {
+  background: linear-gradient(135deg, #047857 0%, #059669 35%, #0ea5e9 100%);
+  border-color: #a7f3d0;
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.65), 0 0 22px rgba(14, 165, 233, 0.45);
+  transform: translateY(-2px);
+}
+
+.landing-card.card-featured-wallener:hover .landing-wallener-btn::after,
+.landing-wallener-btn:hover::after {
+  transform: translateX(400px) rotate(25deg);
+}
+
+.landing-wallener-btn .wallener-btn-badge {
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ecfdf5;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+.landing-wallener-btn .wallener-btn-arrow {
+  font-size: 0.95rem;
+  font-weight: 900;
+  transition: transform 0.2s ease;
+  color: #a7f3d0;
+}
+
+.landing-card.card-featured-wallener:hover .wallener-btn-arrow,
+.landing-wallener-btn:hover .wallener-btn-arrow {
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
 /* Wallener Calibrated Twin Launcher Card */
 .wallener-calibrated-twin-card {
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%);
@@ -4868,13 +4946,17 @@ body:not(.embargo-active) .flux-plot-card img:hover {
 /* Featured Wallener Au Project Card */
 .landing-card.card-featured-wallener {
   grid-column: span 1;
-  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.18), rgba(15, 23, 42, 0.95));
-  border: 1.5px solid rgba(52, 211, 153, 0.45);
+  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.26), rgba(6, 182, 212, 0.1) 45%, rgba(15, 23, 42, 0.96) 100%);
+  border: 1.5px solid rgba(52, 211, 153, 0.55);
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.18);
+  position: relative;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .landing-card.card-featured-wallener:hover {
   border-color: #34d399;
-  box-shadow: 0 16px 40px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 18px 48px rgba(16, 185, 129, 0.38), 0 0 25px rgba(6, 182, 212, 0.22);
+  transform: translateY(-3px);
 }
 
 /* Featured General Pipeline Hub Card (Spans 2 columns to complete row 3) */
