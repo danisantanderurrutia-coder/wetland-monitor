@@ -1522,6 +1522,12 @@
                 ⚪ Net GHG
               </button>
 
+              <!-- Wetland Biophilic Soundscape Synthesizer Toggle -->
+              <button id="btn-toggle-soundscape" class="atmo-pill soundscape-btn" data-sound="off"
+                title="Toggle Wetland Biophilic Ambience (Synthesized Wind, Water Drops &amp; Sedge Reeds)" style="margin-left: 6px; border-color: rgba(56, 189, 248, 0.4);">
+                🔇 Ambience: Off
+              </button>
+
               <!-- Live time / calendar readout embedded in strip -->
               <div class="atmo-dock-time-wrap">
                 <span id="strip-time-icon" style="font-size:1rem;">☀️</span>
@@ -1706,6 +1712,19 @@
                               <marker id="arrowCo2e" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto">
                   <path d="M 0 1 L 8 5 L 0 9 z" fill="#ffffff" />
                 </marker>
+
+                <!-- Living Wetland Mist Gradients -->
+                <linearGradient id="mistGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0" />
+                  <stop offset="40%" stop-color="#bae6fd" stop-opacity="0.25" />
+                  <stop offset="85%" stop-color="#f0f9ff" stop-opacity="0.45" />
+                  <stop offset="100%" stop-color="#e0f2fe" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="dragonflyWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#a7f3d0" stop-opacity="0.75" />
+                  <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.55" />
+                  <stop offset="100%" stop-color="#c084fc" stop-opacity="0.7" />
+                </linearGradient>
               </defs>
 
               <!-- ==========================================
@@ -1715,6 +1734,24 @@
 
               <!-- Stable Boundary Layer Inversion Layer (Descends nocturnally when u* < 0.12) -->
               <rect id="svg-stable-inversion-layer" class="svg-full-width" x="0" y="0" width="2000" height="240" fill="url(#stableInversionGrad)" opacity="0" pointer-events="none" style="transition: opacity 0.8s ease;" />
+
+              <!-- Distant Wetland Birds Soaring (Ciconia ciconia / Grus grus) -->
+              <g id="svg-wetland-birds" class="wetland-birds-group" opacity="0.75" pointer-events="none">
+                <!-- Lead Bird -->
+                <g transform="translate(140, 52) scale(0.7)">
+                  <path class="bird-wing-flap" d="M 0 0 Q -15 -10, -28 -5 Q -16 -2, 0 0" fill="#0f172a" />
+                  <path class="bird-wing-flap" d="M 0 0 Q 15 -10, 28 -5 Q 16 -2, 0 0" fill="#0f172a" />
+                  <ellipse cx="0" cy="1" rx="2" ry="6.5" fill="#0f172a" />
+                  <polygon points="0,7 -2.5,13 2.5,13" fill="#1e293b" />
+                </g>
+                <!-- Companion Bird -->
+                <g transform="translate(105, 68) scale(0.55)">
+                  <path class="bird-wing-flap" d="M 0 0 Q -15 -10, -28 -5 Q -16 -2, 0 0" fill="#0f172a" />
+                  <path class="bird-wing-flap" d="M 0 0 Q 15 -10, 28 -5 Q 16 -2, 0 0" fill="#0f172a" />
+                  <ellipse cx="0" cy="1" rx="2" ry="6.5" fill="#0f172a" />
+                  <polygon points="0,7 -2.5,13 2.5,13" fill="#1e293b" />
+                </g>
+              </g>
 
               <!-- A. DAYTIME SUN & LIGHT RAYS (Dynamic Arc Positioning based on Diurnal Time) -->
               <g id="svg-sun-group" class="day-element" style="transition: opacity 0.5s ease;">
@@ -1933,6 +1970,42 @@
               <rect id="svg-perched-water" class="svg-full-width" x="0" y="295" width="2000" height="25" fill="#0284c7" opacity="0" style="mix-blend-mode: multiply; pointer-events: none; transition: opacity 0.5s ease;" />
               <text id="svg-perched-water-label" x="1140" y="306" font-family="'JetBrains Mono'" font-size="8.5" fill="#facc15" font-weight="700" text-anchor="end" opacity="0" style="transition: opacity 0.5s ease;">⚠️ Perched Water Table (Compacted Plow Pan Impedance)</text>
 
+              <!-- ACTIVE SUBSURFACE MICROBIAL LIFE (BIOFILTER & CATOTELM ARCHAEA) -->
+              <g id="svg-microbial-life" pointer-events="none">
+                <!-- 1. Capillary Fringe Methanotroph Biofilter (Emerald Consortia above WTD) -->
+                <g class="microbe-colony-emerald" title="Aerobic Methanotrophic Bacteria (Biofilter consuming CH4)">
+                  <circle cx="360" cy="275" r="2.2" fill="#34d399" />
+                  <circle cx="372" cy="282" r="1.8" fill="#10b981" />
+                  <circle cx="385" cy="270" r="2.4" fill="#6ee7b7" />
+                  <circle cx="635" cy="280" r="2.0" fill="#34d399" />
+                  <circle cx="650" cy="272" r="2.5" fill="#10b981" />
+                  <circle cx="662" cy="285" r="1.9" fill="#6ee7b7" />
+                  <circle cx="960" cy="278" r="2.2" fill="#34d399" />
+                  <circle cx="975" cy="284" r="2.0" fill="#10b981" />
+                </g>
+
+                <!-- 2. Deep Catotelm Methanogenic Archaea (Violet Consortia in strict anoxia) -->
+                <g class="microbe-colony-violet" title="Methanogenic Archaea (Strict Anaerobes in Catotelm)">
+                  <circle cx="210" cy="460" r="2.6" fill="#c084fc" />
+                  <circle cx="225" cy="475" r="2.2" fill="#a855f7" />
+                  <circle cx="240" cy="455" r="2.8" fill="#e879f9" />
+                  <circle cx="530" cy="470" r="2.5" fill="#c084fc" />
+                  <circle cx="545" cy="485" r="2.2" fill="#a855f7" />
+                  <circle cx="820" cy="480" r="2.6" fill="#c084fc" />
+                  <circle cx="835" cy="495" r="2.3" fill="#a855f7" />
+                </g>
+
+                <!-- 3. Ascending Aerenchyma Micro-bubbles (Gas flowing through reed vascular lacunae) -->
+                <g class="aerenchyma-bubbles-live">
+                  <circle class="aerenchyma-live-bubble" cx="125" cy="220" r="2.2" fill="#fed7aa" stroke="#f97316" stroke-width="0.8" />
+                  <circle class="aerenchyma-live-bubble bubble-delay-1" cx="124" cy="300" r="2.5" fill="#fde68a" stroke="#f59e0b" stroke-width="0.8" />
+                  <circle class="aerenchyma-live-bubble bubble-delay-2" cx="126" cy="390" r="2.6" fill="#fed7aa" stroke="#f97316" stroke-width="0.8" />
+                  <circle class="aerenchyma-live-bubble bubble-delay-3" cx="597" cy="260" r="2.3" fill="#fed7aa" stroke="#f97316" stroke-width="0.8" />
+                  <circle class="aerenchyma-live-bubble bubble-delay-1" cx="598" cy="370" r="2.5" fill="#fde68a" stroke="#f59e0b" stroke-width="0.8" />
+                  <circle class="aerenchyma-live-bubble bubble-delay-2" cx="1038" cy="280" r="2.3" fill="#fed7aa" stroke="#f97316" stroke-width="0.8" />
+                </g>
+              </g>
+
               <!-- ==========================================
                    4. VEGETATION CANOPY & PLANT ANATOMY (CAREX & PHRAGMITES)
                    ========================================== -->
@@ -2043,6 +2116,77 @@
                     <path d="M 1035 240 Q 1035 180, 1038 135" stroke-width="3.2" stroke="#16a34a" />
                     <path d="M 1040 240 Q 1060 190, 1078 175" stroke-width="2.5" />
                   </g>
+                </g>
+              </g>
+
+              <!-- ==========================================
+                   LIVING ECOSYSTEM LAYER: FAUNA, MIST & WATER DYNAMICS
+                   ========================================== -->
+              <!-- Peatland Ground Fog / Bodennebel (Drifting Low-Level Volumetric Mist) -->
+              <g id="svg-peatland-mist" class="peatland-mist-bank" opacity="0.65" pointer-events="none">
+                <path d="M -50 240 Q 200 215, 450 235 T 950 220 T 1450 238 L 1450 252 L -50 252 Z" fill="url(#mistGrad)" />
+                <path d="M 0 238 Q 300 222, 650 238 T 1200 224 L 1200 250 L 0 250 Z" fill="url(#mistGrad)" opacity="0.6" />
+              </g>
+
+              <!-- Water Surface Ripples (Over Saturated Peat Depressions around pond X: 520, Y: 240) -->
+              <g id="svg-water-ripples" transform="translate(520, 240)" pointer-events="none">
+                <ellipse class="water-ripple-ring" cx="0" cy="0" rx="22" ry="4.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.75" />
+                <ellipse class="water-ripple-ring ripple-delay-1" cx="0" cy="0" rx="22" ry="4.5" fill="none" stroke="#7dd3fc" stroke-width="1.2" opacity="0.75" />
+                <ellipse class="water-ripple-ring ripple-delay-2" cx="0" cy="0" rx="22" ry="4.5" fill="none" stroke="#bae6fd" stroke-width="1.0" opacity="0.75" />
+              </g>
+
+              <!-- Will-o'-the-Wisp (Nocturnal Methane Luminescence over ditch) -->
+              <g id="svg-will-o-the-wisp" class="night-element" opacity="0.85" pointer-events="none">
+                <circle class="will-o-wisp-ember" cx="135" cy="216" r="3.2" fill="#38bdf8" />
+                <circle class="will-o-wisp-ember" cx="135" cy="216" r="7" fill="#0284c7" opacity="0.4" />
+                <circle class="will-o-wisp-ember" cx="495" cy="220" r="2.8" fill="#a7f3d0" style="animation-delay: 1.8s;" />
+                <circle class="will-o-wisp-ember" cx="495" cy="220" r="6.5" fill="#10b981" opacity="0.35" style="animation-delay: 1.8s;" />
+              </g>
+
+              <!-- LIVING FAUNA: DRAGONFLIES & MOOR FROG -->
+              <g id="svg-living-fauna">
+                <!-- Dragonfly 1: Hovering over Left/Center Reeds (X: 430, Y: 145) -->
+                <g class="dragonfly-group dragonfly-hover-1" transform="translate(430, 145) scale(0.75)">
+                  <title>Aeshna grandis (Brown Hawker Dragonfly) — Indicator of healthy wetland water quality</title>
+                  <!-- Wings (Veined Iridescent Sheen) -->
+                  <ellipse class="dragonfly-wing-left" cx="8" cy="4" rx="16" ry="3.5" fill="url(#dragonflyWingGrad)" stroke="rgba(255,255,255,0.7)" stroke-width="0.5" />
+                  <ellipse class="dragonfly-wing-left" cx="9" cy="8" rx="14" ry="3.2" fill="url(#dragonflyWingGrad)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5" />
+                  <ellipse class="dragonfly-wing-right" cx="28" cy="4" rx="16" ry="3.5" fill="url(#dragonflyWingGrad)" stroke="rgba(255,255,255,0.7)" stroke-width="0.5" />
+                  <ellipse class="dragonfly-wing-right" cx="27" cy="8" rx="14" ry="3.2" fill="url(#dragonflyWingGrad)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5" />
+                  <!-- Body (Emerald/Teal Slim Abdomen) -->
+                  <line x1="18" y1="-2" x2="18" y2="28" stroke="#059669" stroke-width="2.2" stroke-linecap="round" />
+                  <line x1="18" y1="6" x2="18" y2="26" stroke="#34d399" stroke-width="1.2" stroke-linecap="round" />
+                  <!-- Thorax & Head with Compound Eyes -->
+                  <circle cx="18" cy="3" r="3.2" fill="#047857" />
+                  <circle cx="16.5" cy="1" r="1.4" fill="#38bdf8" />
+                  <circle cx="19.5" cy="1" r="1.4" fill="#38bdf8" />
+                </g>
+
+                <!-- Dragonfly 2: Hovering over Right Meadow (X: 1120, Y: 135) -->
+                <g class="dragonfly-group dragonfly-hover-2" transform="translate(1120, 135) scale(0.7)">
+                  <title>Aeshna grandis (Brown Hawker Dragonfly)</title>
+                  <ellipse class="dragonfly-wing-left" cx="8" cy="4" rx="16" ry="3.5" fill="url(#dragonflyWingGrad)" stroke="rgba(255,255,255,0.7)" stroke-width="0.5" />
+                  <ellipse class="dragonfly-wing-left" cx="9" cy="8" rx="14" ry="3.2" fill="url(#dragonflyWingGrad)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5" />
+                  <ellipse class="dragonfly-wing-right" cx="28" cy="4" rx="16" ry="3.5" fill="url(#dragonflyWingGrad)" stroke="rgba(255,255,255,0.7)" stroke-width="0.5" />
+                  <ellipse class="dragonfly-wing-right" cx="27" cy="8" rx="14" ry="3.2" fill="url(#dragonflyWingGrad)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5" />
+                  <line x1="18" y1="-2" x2="18" y2="28" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" />
+                  <line x1="18" y1="6" x2="18" y2="26" stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round" />
+                  <circle cx="18" cy="3" r="3.2" fill="#0369a1" />
+                  <circle cx="16.5" cy="1" r="1.4" fill="#a7f3d0" />
+                  <circle cx="19.5" cy="1" r="1.4" fill="#a7f3d0" />
+                </g>
+
+                <!-- Moor Frog (Rana temporaria) on Moss (X: 470, Y: 234) -->
+                <g id="svg-moor-frog" transform="translate(470, 234) scale(0.85)">
+                  <title>Rana temporaria (Moor Frog) — Basking on wet moss hummock</title>
+                  <path d="M 2 8 Q -6 6, -3 14 Q 2 12, 5 9" fill="#15803d" stroke="#14532d" stroke-width="0.8" />
+                  <path d="M 18 8 Q 26 6, 23 14 Q 18 12, 15 9" fill="#15803d" stroke="#14532d" stroke-width="0.8" />
+                  <ellipse cx="10" cy="8" rx="7" ry="5.5" fill="#16a34a" stroke="#166534" stroke-width="0.9" />
+                  <circle class="frog-throat" cx="10" cy="12" r="3" fill="#86efac" opacity="0.9" />
+                  <circle cx="7" cy="4" r="1.5" fill="#facc15" stroke="#14532d" stroke-width="0.5" />
+                  <circle cx="7" cy="4" r="0.7" fill="#000000" />
+                  <circle cx="13" cy="4" r="1.5" fill="#facc15" stroke="#14532d" stroke-width="0.5" />
+                  <circle cx="13" cy="4" r="0.7" fill="#000000" />
                 </g>
               </g>
 

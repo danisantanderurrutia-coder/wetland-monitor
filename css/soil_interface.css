@@ -2199,3 +2199,185 @@
   box-shadow: 0 8px 25px rgba(56, 189, 248, 0.7);
   background: linear-gradient(135deg, #0284c7, #0ea5e9);
 }
+
+/* ==========================================================================
+   LIVING ECOSYSTEM ANIMATIONS (FAUNA, MIST, MICROBES & WATER)
+   ========================================================================== */
+
+/* 1. Dragonflies (Aeshna grandis) Hover & Wing Shimmer */
+.dragonfly-group {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.dragonfly-hover-1 {
+  animation: dragonflyHover1 6.5s ease-in-out infinite alternate;
+}
+
+.dragonfly-hover-2 {
+  animation: dragonflyHover2 8.5s ease-in-out infinite alternate;
+}
+
+@keyframes dragonflyHover1 {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(16px, -10px) rotate(4deg); }
+  50% { transform: translate(-10px, 8px) rotate(-3deg); }
+  75% { transform: translate(25px, -5px) rotate(5deg); }
+  100% { transform: translate(6px, 12px) rotate(-1deg); }
+}
+
+@keyframes dragonflyHover2 {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  30% { transform: translate(-20px, 12px) rotate(-5deg); }
+  60% { transform: translate(15px, -8px) rotate(4deg); }
+  100% { transform: translate(-8px, 10px) rotate(-2deg); }
+}
+
+.dragonfly-wing-left {
+  transform-origin: 18px 8px;
+  animation: wingFlutterLeft 0.08s ease-in-out infinite alternate;
+}
+
+.dragonfly-wing-right {
+  transform-origin: 18px 8px;
+  animation: wingFlutterRight 0.08s ease-in-out infinite alternate;
+}
+
+@keyframes wingFlutterLeft {
+  0% { transform: scaleY(1) rotate(0deg); opacity: 0.85; }
+  100% { transform: scaleY(0.2) rotate(15deg); opacity: 0.4; }
+}
+
+@keyframes wingFlutterRight {
+  0% { transform: scaleY(1) rotate(0deg); opacity: 0.85; }
+  100% { transform: scaleY(0.2) rotate(-15deg); opacity: 0.4; }
+}
+
+/* 2. Soaring Wetland Birds (Ciconia ciconia / Grus grus) */
+.wetland-birds-group {
+  animation: birdGlideAcross 42s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes birdGlideAcross {
+  0% { transform: translate(-180px, 0px); }
+  100% { transform: translate(1550px, -25px); }
+}
+
+.bird-wing-flap {
+  transform-origin: center;
+  animation: birdFlap 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes birdFlap {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(0.35); }
+  100% { transform: scaleY(0.95); }
+}
+
+/* 3. Moor Frog (Rana temporaria) Throat Respiration */
+.frog-throat {
+  animation: frogThroatPulse 2.4s ease-in-out infinite;
+  transform-origin: 472px 238px;
+}
+
+@keyframes frogThroatPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  40% { transform: scale(1.35); opacity: 1; }
+  60% { transform: scale(1.1); opacity: 0.9; }
+}
+
+/* 4. Peatland Ground Fog / Bodennebel */
+.peatland-mist-bank {
+  animation: mistDrift 28s ease-in-out infinite alternate;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@keyframes mistDrift {
+  0% { transform: translateX(0px); opacity: 0.4; }
+  50% { transform: translateX(50px); opacity: 0.75; }
+  100% { transform: translateX(-40px); opacity: 0.45; }
+}
+
+/* 5. Will-o'-the-Wisp (Fuegos Fatuos / Methane Embers) */
+.will-o-wisp-ember {
+  animation: wispFloat 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes wispFloat {
+  0% { transform: translateY(0px) scale(0.85); opacity: 0.25; }
+  50% { transform: translateY(-14px) scale(1.25); opacity: 0.85; filter: drop-shadow(0 0 8px #38bdf8); }
+  100% { transform: translateY(-7px) scale(0.9); opacity: 0.35; }
+}
+
+/* 6. Active Soil Microbes (Methanotrophs & Archaea) */
+.microbe-colony-emerald {
+  animation: microbePulseEmerald 3s ease-in-out infinite alternate;
+}
+
+@keyframes microbePulseEmerald {
+  0% { opacity: 0.35; filter: drop-shadow(0 0 2px #10b981); }
+  100% { opacity: 0.95; filter: drop-shadow(0 0 8px #34d399); }
+}
+
+.microbe-colony-violet {
+  animation: microbePulseViolet 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes microbePulseViolet {
+  0% { opacity: 0.3; filter: drop-shadow(0 0 2px #a855f7); }
+  100% { opacity: 0.9; filter: drop-shadow(0 0 8px #c084fc); }
+}
+
+/* 7. Ascending Aerenchyma Micro-bubbles */
+.aerenchyma-live-bubble {
+  animation: bubbleAscend 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.bubble-delay-1 { animation-delay: 0.6s; }
+.bubble-delay-2 { animation-delay: 1.4s; }
+.bubble-delay-3 { animation-delay: 2.1s; }
+
+@keyframes bubbleAscend {
+  0% { transform: translateY(0px); opacity: 0; }
+  20% { opacity: 0.95; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(-110px); opacity: 0; }
+}
+
+/* 8. Water Surface Ripples */
+.water-ripple-ring {
+  transform-origin: 520px 240px;
+  animation: rippleSpread 3.5s ease-out infinite;
+}
+
+.ripple-delay-1 { animation-delay: 1.2s; }
+.ripple-delay-2 { animation-delay: 2.4s; }
+
+@keyframes rippleSpread {
+  0% { transform: scale(0.15); opacity: 0.85; stroke-width: 1.8; }
+  75% { opacity: 0.3; }
+  100% { transform: scale(2.4); opacity: 0; stroke-width: 0.5; }
+}
+
+/* 9. Soundscape Button */
+.soundscape-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.soundscape-btn[data-sound="on"] {
+  background: rgba(16, 185, 129, 0.25) !important;
+  border-color: #34d399 !important;
+  color: #a7f3d0 !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.45) !important;
+}

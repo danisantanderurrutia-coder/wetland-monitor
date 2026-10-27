@@ -217,6 +217,17 @@ export class DigitalTwinSimulationEngine {
         }
       );
     });
+
+    // 6. SOUNDSCAPE AMBIENT SYNTHESIZER
+    this.soundscape = new WetlandSoundscape();
+    const btnSound = document.getElementById('btn-toggle-soundscape');
+    if (btnSound) {
+      btnSound.addEventListener('click', () => {
+        const isPlaying = this.soundscape.toggle();
+        btnSound.setAttribute('data-sound', isPlaying ? 'on' : 'off');
+        btnSound.textContent = isPlaying ? '🔊 Ambience: On' : '🔇 Ambience: Off';
+      });
+    }
   }
 
   // --- MANUAL OVERRIDES FOR SEASONS & DAY/NIGHT ---
@@ -410,16 +421,26 @@ export class DigitalTwinSimulationEngine {
 
     if (inversionLayer) inversionLayer.style.opacity = state.inversionOpacity;
 
+    const mistEl = document.getElementById('svg-peatland-mist');
+    const wispEl = document.getElementById('svg-will-o-the-wisp');
+    const birdsEl = document.getElementById('svg-wetland-birds');
+
     if (this.isManualDay) {
       if (skyRect) skyRect.setAttribute('fill', 'url(#skyDayGrad)');
       if (sunGroup) sunGroup.style.display = 'inline';
       if (moonGroup) moonGroup.style.display = 'none';
       if (starsGroup) starsGroup.style.display = 'none';
+      if (mistEl) mistEl.style.opacity = '0.35';
+      if (wispEl) wispEl.style.opacity = '0';
+      if (birdsEl) birdsEl.style.opacity = '0.75';
     } else {
       if (skyRect) skyRect.setAttribute('fill', 'url(#skyNightGrad)');
       if (sunGroup) sunGroup.style.display = 'none';
       if (moonGroup) moonGroup.style.display = 'inline';
       if (starsGroup) starsGroup.style.display = 'inline';
+      if (mistEl) mistEl.style.opacity = state.inversionOpacity > 0.4 ? '0.85' : '0.65';
+      if (wispEl) wispEl.style.opacity = '0.85';
+      if (birdsEl) birdsEl.style.opacity = '0.15';
     }
 
     // Vegetation color
@@ -1437,5 +1458,158 @@ export class DigitalTwinSimulationEngine {
   setPhenomenon(text, dotColor = "#10b981") {
     if (this.phenomenonText) this.phenomenonText.textContent = text;
     if (this.phenomDot) this.phenomDot.style.background = dotColor;
+  }
+}
+
+/* ==========================================================================
+   WETLAND BIOPHILIC SOUNDSCAPE SYNTHESIZER (WEB AUDIO API)
+   Procedural natural synthesis: Wind through sedge reeds, soft water drops
+   ========================================================================== */
+export class WetlandSoundscape {
+  constructor() {
+    this.ctx = null;
+    this.isPlaying = false;
+    this.masterGain = null;
+    this.windNode = null;
+    this.dropTimeout = null;
+    this.birdTimeout = null;
+  }
+
+  init() {
+    if (this.ctx) return;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    this.ctx = new AudioCtx();
+    this.masterGain = this.ctx.createGain();
+    this.masterGain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+    this.masterGain.connect(this.ctx.destination);
+  }
+
+  start() {
+    this.init();
+    if (this.ctx.state === "suspended") {
+      this.ctx.resume();
+    }
+    this.isPlaying = true;
+
+    // 1. Wind through reeds (Band-passed Pink Noise)
+    const bufferSize = this.ctx.sampleRate * 2;
+    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+    for (let i = 0; i < bufferSize; i++) {
+      const white = Math.random() * 2 - 1;
+      b0 = 0.99886 * b0 + white * 0.0555179;
+      b1 = 0.99332 * b1 + white * 0.0750759;
+      b2 = 0.96900 * b2 + white * 0.1538520;
+      b3 = 0.86650 * b3 + white * 0.3104856;
+      b4 = 0.55000 * b4 + white * 0.5329522;
+      b5 = -0.7616 * b5 - white * 0.0168980;
+      output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.06;
+      b6 = white * 0.115926;
+    }
+
+    const whiteNoise = this.ctx.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = "bandpass";
+    filter.frequency.value = 420;
+    filter.Q.value = 2.5;
+
+    // LFO for breathing wind gust effect
+    const lfo = this.ctx.createOscillator();
+    lfo.frequency.value = 0.14;
+    const lfoGain = this.ctx.createGain();
+    lfoGain.gain.value = 160;
+    lfo.connect(lfoGain);
+    lfoGain.connect(filter.frequency);
+    lfo.start();
+
+    whiteNoise.connect(filter);
+    const windGain = this.ctx.createGain();
+    windGain.gain.value = 0.32;
+    filter.connect(windGain);
+    windGain.connect(this.masterGain);
+    whiteNoise.start();
+    this.windNode = whiteNoise;
+
+    // 2. Peat water drop / trickle generator
+    const playWaterDrop = () => {
+      if (!this.isPlaying) return;
+      const osc = this.ctx.createOscillator();
+      const dropGain = this.ctx.createGain();
+      const baseFreq = 850 + Math.random() * 450;
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(baseFreq, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.5, this.ctx.currentTime + 0.08);
+
+      dropGain.gain.setValueAtTime(0.035 + Math.random() * 0.025, this.ctx.currentTime);
+      dropGain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.12);
+
+      osc.connect(dropGain);
+      dropGain.connect(this.masterGain);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.13);
+
+      const nextTime = 1400 + Math.random() * 3200;
+      this.dropTimeout = setTimeout(playWaterDrop, nextTime);
+    };
+    playWaterDrop();
+
+    // 3. Rare distant wetland bird chirp
+    const playBirdCall = () => {
+      if (!this.isPlaying) return;
+      const osc = this.ctx.createOscillator();
+      const birdGain = this.ctx.createGain();
+      osc.type = "sine";
+      const t = this.ctx.currentTime;
+      osc.frequency.setValueAtTime(2400, t);
+      osc.frequency.linearRampToValueAtTime(2850, t + 0.06);
+      osc.frequency.linearRampToValueAtTime(2200, t + 0.12);
+      osc.frequency.linearRampToValueAtTime(2600, t + 0.18);
+
+      birdGain.gain.setValueAtTime(0.001, t);
+      birdGain.gain.linearRampToValueAtTime(0.02, t + 0.04);
+      birdGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+
+      osc.connect(birdGain);
+      birdGain.connect(this.masterGain);
+      osc.start(t);
+      osc.stop(t + 0.24);
+
+      const nextCall = 10000 + Math.random() * 16000;
+      this.birdTimeout = setTimeout(playBirdCall, nextCall);
+    };
+    this.birdTimeout = setTimeout(playBirdCall, 4500);
+
+    // Smooth master fade in
+    this.masterGain.gain.linearRampToValueAtTime(0.38, this.ctx.currentTime + 1.2);
+  }
+
+  stop() {
+    if (!this.isPlaying || !this.ctx) return;
+    this.isPlaying = false;
+    clearTimeout(this.dropTimeout);
+    clearTimeout(this.birdTimeout);
+    if (this.masterGain) {
+      this.masterGain.gain.linearRampToValueAtTime(0.0001, this.ctx.currentTime + 0.8);
+      setTimeout(() => {
+        if (this.windNode) {
+          try { this.windNode.stop(); } catch (e) {}
+          this.windNode = null;
+        }
+      }, 900);
+    }
+  }
+
+  toggle() {
+    if (this.isPlaying) {
+      this.stop();
+      return false;
+    } else {
+      this.start();
+      return true;
+    }
   }
 }
