@@ -1,0 +1,624 @@
+/* ==========================================================================
+   WETLAND MONITOR - THEMES & ADVANCED INTERACTIVE UI SUITE
+   1. Dynamic 4-Theme Palettes (Boreal, Daylight, Biophilic, Monochrome)
+   2. Spotlight Command Palette (Cmd + K)
+   3. Interactive Before/After Rewetting Curtain Slider
+   4. Interactive Peat Loss & Subsidence Calculator
+   5. Interactive Thermodynamic Redox Ladder Simulator
+   6. 3D Card Parallax Tilt & Sparkline Micro-interactions
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. THEME PALETTES
+   -------------------------------------------------------------------------- */
+
+/* A. BOREAL PEAT (Default Cyber-Science Dark) */
+body[data-theme="boreal"],
+body.theme-boreal {
+  --bg-primary: #070b12;
+  --bg-secondary: #0d1522;
+  --bg-tertiary: #142033;
+  --bg-card: rgba(18, 30, 48, 0.88);
+  --bg-card-hover: rgba(26, 42, 68, 0.95);
+  --bg-glass: rgba(13, 22, 36, 0.88);
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-medium: rgba(255, 255, 255, 0.22);
+  --border-glow: rgba(56, 189, 248, 0.45);
+  --border-emerald-glow: rgba(16, 185, 129, 0.45);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-light: #ffffff;
+  --accent-cyan: #38bdf8;
+  --accent-blue: #0284c7;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-violet: #a855f7;
+}
+
+/* B. FIELDWORK DAYLIGHT (High-Contrast Clean White for Outdoor Tablets) */
+body[data-theme="daylight"],
+body.theme-daylight {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-glass: rgba(255, 255, 255, 0.95);
+  --border-subtle: #cbd5e1;
+  --border-medium: #94a3b8;
+  --border-glow: rgba(2, 132, 199, 0.4);
+  --border-emerald-glow: rgba(5, 150, 105, 0.4);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-light: #0284c7;
+  --accent-cyan: #0284c7;
+  --accent-blue: #0369a1;
+  --accent-emerald: #059669;
+  --accent-amber: #d97706;
+  --accent-rose: #e11d48;
+  --accent-violet: #7c3aed;
+}
+
+body[data-theme="daylight"] .site-header,
+body[data-theme="daylight"] .digital-twin-telemetry-bar,
+body[data-theme="daylight"] .atmo-control-dock,
+body[data-theme="daylight"] .landing-hero-card {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+body[data-theme="daylight"] .landing-card,
+body[data-theme="daylight"] .general-method-card,
+body[data-theme="daylight"] .presentation-card {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body[data-theme="daylight"] .landing-card-title,
+body[data-theme="daylight"] .presentation-title,
+body[data-theme="daylight"] .thesis-plot-title {
+  color: #0f172a !important;
+}
+
+body[data-theme="daylight"] .landing-card-desc,
+body[data-theme="daylight"] .general-method-card-desc {
+  color: #334155 !important;
+}
+
+/* C. LIVING MOSS / BIOPHILIC (Deep Peat Forest & Lichen Lime) */
+body[data-theme="biophilic"],
+body.theme-biophilic {
+  --bg-primary: #021a10;
+  --bg-secondary: #05291b;
+  --bg-tertiary: #083b27;
+  --bg-card: rgba(6, 46, 29, 0.88);
+  --bg-card-hover: rgba(9, 61, 39, 0.95);
+  --bg-glass: rgba(5, 41, 27, 0.9);
+  --border-subtle: rgba(74, 222, 128, 0.18);
+  --border-medium: rgba(74, 222, 128, 0.32);
+  --border-glow: rgba(52, 211, 153, 0.5);
+  --border-emerald-glow: rgba(34, 197, 94, 0.5);
+  --text-primary: #f0fdf4;
+  --text-secondary: #bbf7d0;
+  --text-muted: #86efac;
+  --text-light: #ffffff;
+  --accent-cyan: #34d399;
+  --accent-blue: #10b981;
+  --accent-emerald: #22c55e;
+  --accent-amber: #eab308;
+  --accent-rose: #fb7185;
+  --accent-violet: #a78bfa;
+}
+
+body[data-theme="biophilic"] .site-header {
+  background: rgba(3, 26, 16, 0.95) !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
+}
+
+body[data-theme="biophilic"] .landing-hero-card {
+  background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.18), rgba(2, 26, 16, 0.95)) !important;
+  border-color: rgba(52, 211, 153, 0.4) !important;
+}
+
+/* D. ACADEMIC MONOCHROME / SWISS PRINT (High-Legibility Grayscale & Crimson) */
+body[data-theme="monochrome"],
+body.theme-monochrome {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1f1f1f;
+  --bg-card: #171717;
+  --bg-card-hover: #262626;
+  --bg-glass: rgba(20, 20, 20, 0.92);
+  --border-subtle: #2e2e2e;
+  --border-medium: #454545;
+  --border-glow: rgba(244, 63, 94, 0.4);
+  --border-emerald-glow: rgba(255, 255, 255, 0.3);
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d4;
+  --text-muted: #a3a3a3;
+  --text-light: #ffffff;
+  --accent-cyan: #f43f5e;
+  --accent-blue: #e11d48;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-violet: #e11d48;
+}
+
+/* --------------------------------------------------------------------------
+   2. SPOTLIGHT COMMAND PALETTE (CMD + K)
+   -------------------------------------------------------------------------- */
+.command-palette-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 18, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 999999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.command-palette-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.command-palette-box {
+  width: 90vw;
+  max-width: 640px;
+  background: var(--bg-card, #0f172a);
+  border: 1.5px solid var(--border-glow, rgba(56, 189, 248, 0.4));
+  border-radius: 16px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75), 0 0 25px rgba(56, 189, 248, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.96) translateY(-10px);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.command-palette-overlay.active .command-palette-box {
+  transform: scale(1) translateY(0);
+}
+
+.command-palette-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.12));
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.command-palette-input-wrap .search-icon {
+  font-size: 1.25rem;
+  color: var(--accent-cyan, #38bdf8);
+}
+
+.command-palette-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-primary, #ffffff);
+}
+
+.command-palette-input::placeholder {
+  color: var(--text-muted, #94a3b8);
+}
+
+.command-palette-shortcut-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-muted, #94a3b8);
+}
+
+.command-palette-results {
+  max-height: 52vh;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.command-palette-group-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted, #94a3b8);
+  padding: 8px 12px 4px;
+}
+
+.command-palette-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--text-primary, #ffffff);
+}
+
+.command-palette-item:hover,
+.command-palette-item.selected {
+  background: rgba(56, 189, 248, 0.16);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  transform: translateX(4px);
+}
+
+.command-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.command-item-icon {
+  font-size: 1.15rem;
+}
+
+.command-item-label {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.command-item-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted, #94a3b8);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.command-palette-footer {
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: var(--text-muted, #94a3b8);
+}
+
+.command-palette-footer-keys {
+  display: flex;
+  gap: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   3. BEFORE / AFTER REWETTING COMPARISON CURTAIN SLIDER
+   -------------------------------------------------------------------------- */
+.comparison-curtain-card {
+  background: var(--bg-card, #0f172a);
+  border: 1.5px solid var(--border-medium, rgba(255, 255, 255, 0.15));
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.comparison-curtain-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.comparison-slider-stage {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+
+.comparison-panel-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.comparison-panel-layer.layer-drained {
+  background: linear-gradient(135deg, #1c100b 0%, #2b1810 50%, #150a04 100%);
+  border-right: 2px solid #ef4444;
+}
+
+.comparison-panel-layer.layer-rewetted {
+  background: linear-gradient(135deg, #032115 0%, #063821 50%, #021a10 100%);
+}
+
+.comparison-layer-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+}
+
+.badge-drained-curtain {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.badge-rewetted-curtain {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.comparison-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-metric-title {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.comparison-metric-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.val-bad { color: #f43f5e; }
+.val-good { color: #10b981; }
+
+.comparison-curtain-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.8), 0 0 4px #0284c7;
+  cursor: ew-resize;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comparison-handle-knob {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0f172a;
+  border: 2px solid #0284c7;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  font-weight: 900;
+  cursor: ew-resize;
+  transform: translateX(-50%);
+}
+
+/* --------------------------------------------------------------------------
+   4. PEAT LOSS & SUBSIDENCE CALCULATOR
+   -------------------------------------------------------------------------- */
+.peat-calc-card {
+  background: var(--bg-card, #0f172a);
+  border: 1.5px solid var(--border-medium, rgba(255, 255, 255, 0.15));
+  border-radius: 16px;
+  padding: 1.6rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.peat-calc-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 860px) {
+  .peat-calc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calc-sliders-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.calc-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calc-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary, #ffffff);
+}
+
+.calc-slider-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--accent-cyan, #38bdf8);
+}
+
+.calc-slider-input {
+  width: 100%;
+  accent-color: #0284c7;
+  cursor: pointer;
+}
+
+.calc-results-col {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 14px;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.calc-result-stat-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calc-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted, #94a3b8);
+  font-weight: 600;
+}
+
+.calc-stat-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+/* --------------------------------------------------------------------------
+   5. THERMODYNAMIC REDOX LADDER SIMULATOR
+   -------------------------------------------------------------------------- */
+.redox-ladder-card {
+  background: var(--bg-card, #0f172a);
+  border: 1.5px solid var(--border-medium, rgba(255, 255, 255, 0.15));
+  border-radius: 16px;
+  padding: 1.6rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.redox-ladder-slider-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 1.25rem 0;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.redox-rungs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.redox-rung-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.25s ease;
+  opacity: 0.45;
+}
+
+.redox-rung-item.active {
+  opacity: 1;
+  background: rgba(56, 189, 248, 0.12);
+  border-color: #38bdf8;
+  transform: scale(1.015);
+  box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25);
+}
+
+.redox-rung-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.redox-rung-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--text-secondary, #cbd5e1);
+}
+
+.redox-rung-potential {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   6. 3D CARD PARALLAX TILT
+   -------------------------------------------------------------------------- */
+.landing-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.2s ease;
+}
+
+.landing-card .landing-card-body,
+.landing-card .landing-card-header,
+.landing-card .landing-wallener-actions,
+.landing-card .landing-featured-actions {
+  transform: translateZ(14px);
+}

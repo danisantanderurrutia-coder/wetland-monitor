@@ -42,6 +42,7 @@
 
   <!-- Core Component Style Sheets -->
   <link rel="stylesheet" href="css/main.css?v=6.0">
+  <link rel="stylesheet" href="css/themes.css?v=1.0">
   <link rel="stylesheet" href="css/soil_interface.css?v=6.0">
   <link rel="stylesheet" href="css/instruments.css?v=6.0">
   <link rel="stylesheet" href="css/results_modal.css?v=6.0">
@@ -114,9 +115,14 @@
             <span class="btn-icon">❓</span> <span class="action-btn-text">How It Works</span>
           </button>
 
-          <!-- Template Theme Toggle (Luminous / Dark) -->
-          <button class="action-btn theme-toggle-btn" id="btn-theme-toggle" title="Toggle Light/Dark Theme">
-            <span id="theme-icon">☀️</span> <span id="label-theme-btn" class="theme-label">Luminous</span>
+          <!-- Spotlight / Command Palette Button (Cmd + K) -->
+          <button class="action-btn spotlight-btn" id="btn-header-spotlight" title="Quick Command Palette &amp; Search (Cmd + K or Ctrl + K)">
+            <span>🔍</span> <span class="action-btn-text">Search (Cmd+K)</span>
+          </button>
+
+          <!-- 4-Theme Switcher Button -->
+          <button class="action-btn theme-toggle-btn" id="btn-theme-toggle" title="Cycle Themes: Boreal Peat / Daylight / Biophilic / Monochrome">
+            <span id="theme-icon">🌌</span> <span id="label-theme-btn" class="theme-label">Boreal Peat</span>
           </button>
 
           <!-- Research Admin & Security Console Toggle (No password displayed here) -->
@@ -912,6 +918,166 @@
               </p>
             </div>
           </div>
+
+          <!-- Interactive Peat Loss & Subsidence Calculator -->
+          <div class="peat-calc-card" id="panel-peat-calculator">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <span class="presentation-card-badge" style="background: rgba(2, 132, 199, 0.15); color: var(--accent-cyan);">Empirical Edaphic Modeling</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0.35rem 0 0 0;">Interactive Peat Subsidence &amp; Carbon Oxidation Calculator</h3>
+                <p style="font-size: 0.85rem; color: #94a3b8; margin: 4px 0 0 0;">
+                  Model cumulative surface subsidence (\(\Delta z\)) and greenhouse gas oxidation rates under intensive agricultural drainage (van den Akker &amp; Schothorst formulation).
+                </p>
+              </div>
+              <span class="presentation-card-badge" style="background: rgba(244, 63, 94, 0.15); color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.4);">Degradation Diagnostic</span>
+            </div>
+
+            <div class="peat-calc-grid">
+              <!-- Sliders Column -->
+              <div class="calc-sliders-col">
+                <!-- Slider 1: Drainage Depth -->
+                <div class="calc-slider-group">
+                  <div class="calc-slider-header">
+                    <span>Drainage Water Table Depth (WTD):</span>
+                    <span class="calc-slider-val" id="calc-val-wtd">-45 cm</span>
+                  </div>
+                  <input type="range" id="calc-input-wtd" class="calc-slider-input" min="-100" max="-10" value="-45" step="5">
+                </div>
+
+                <!-- Slider 2: Peat Thickness -->
+                <div class="calc-slider-group">
+                  <div class="calc-slider-header">
+                    <span>Initial Peat Layer Thickness:</span>
+                    <span class="calc-slider-val" id="calc-val-depth">180 cm</span>
+                  </div>
+                  <input type="range" id="calc-input-depth" class="calc-slider-input" min="40" max="400" value="180" step="10">
+                </div>
+
+                <!-- Slider 3: Years of Drainage -->
+                <div class="calc-slider-group">
+                  <div class="calc-slider-header">
+                    <span>Drainage Duration (Agricultural History):</span>
+                    <span class="calc-slider-val" id="calc-val-years">30 Years</span>
+                  </div>
+                  <input type="range" id="calc-input-years" class="calc-slider-input" min="1" max="80" value="30" step="1">
+                </div>
+
+                <!-- Slider 4: Peat Dry Bulk Density -->
+                <div class="calc-slider-group">
+                  <div class="calc-slider-header">
+                    <span>Dry Bulk Density (\(\rho_b\)):</span>
+                    <span class="calc-slider-val" id="calc-val-bd">0.24 g/cm³</span>
+                  </div>
+                  <input type="range" id="calc-input-bd" class="calc-slider-input" min="0.10" max="0.55" value="0.24" step="0.02">
+                </div>
+              </div>
+
+              <!-- Live Diagnostic Outputs -->
+              <div class="calc-results-col">
+                <div class="calc-result-stat-box">
+                  <span class="calc-stat-label">Total Cumulative Ground Subsidence:</span>
+                  <span class="calc-stat-value" id="calc-res-subsidence" style="color: #f43f5e;">-54.0 cm</span>
+                </div>
+                <div class="calc-result-stat-box">
+                  <span class="calc-stat-label">Cumulative Peat Volume Mineralized:</span>
+                  <span class="calc-stat-value" id="calc-res-volume" style="color: #fbbf24;">5,400 m³/ha</span>
+                </div>
+                <div class="calc-result-stat-box">
+                  <span class="calc-stat-label">Net Atmospheric CO₂ Emissions:</span>
+                  <span class="calc-stat-value" id="calc-res-co2" style="color: #f43f5e;">+712 t CO₂/ha</span>
+                </div>
+                <div class="calc-result-stat-box">
+                  <span class="calc-stat-label">Remaining Peat Life Expectancy:</span>
+                  <span class="calc-stat-value" id="calc-res-lifespan" style="color: #38bdf8;">~70 Years Left</span>
+                </div>
+                <div style="font-size: 0.74rem; color: #94a3b8; font-family: 'JetBrains Mono'; line-height: 1.4; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px;">
+                  💡 <em>Equivalent to burning ~305,000 liters of diesel fuel per hectare drained. Re-saturating the water table halts this decomposition instantly.</em>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Before vs. After Rewetting Comparison Curtain Slider -->
+          <div class="comparison-curtain-card" id="panel-comparison-slider">
+            <div class="comparison-curtain-header">
+              <div>
+                <span class="presentation-card-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald);">Interactive Split-Screen</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0.35rem 0 0 0;">Before vs. After: Peatland Rewetting &amp; Paludiculture Restoration</h3>
+                <p style="font-size: 0.85rem; color: #94a3b8; margin: 4px 0 0 0;">
+                  Drag the interactive center divider to inspect the biophysical transformation from drained degradation to restored paludiculture.
+                </p>
+              </div>
+              <div style="font-size: 0.76rem; color: #38bdf8; font-family: 'JetBrains Mono';">
+                ◀ Drag Slider to Compare ▶
+              </div>
+            </div>
+
+            <!-- Interactive Stage with Clip Path -->
+            <div class="comparison-slider-stage" id="comparison-stage">
+              <!-- Layer Right: Restored / Rewetted Paludiculture (Underneath) -->
+              <div class="comparison-panel-layer layer-rewetted">
+                <div style="display: flex; justify-content: flex-end;">
+                  <span class="comparison-layer-badge badge-rewetted-curtain">
+                    <span>💧</span> <span>RESTORED: Rewetted Paludiculture (Typha / Sphagnum)</span>
+                  </span>
+                </div>
+                <div style="max-width: 480px; margin-left: auto; text-align: right;">
+                  <h4 style="font-size: 1.25rem; color: #34d399; margin: 0 0 6px 0; font-weight: 800;">Carbon Sink Preserved &amp; Ground Subsidence Halted</h4>
+                  <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0 0 1rem 0;">
+                    Permanent near-surface water table (-5 cm) seals the catotelm in continuous anoxia. Aerobic peat oxidation is completely eliminated, restoring peat accumulation and productive wet biomass farming.
+                  </p>
+                  <div class="comparison-metrics-grid">
+                    <div class="comparison-metric-item">
+                      <span class="comparison-metric-title">WATER TABLE</span>
+                      <span class="comparison-metric-val val-good">-5 cm (Near-Surface)</span>
+                    </div>
+                    <div class="comparison-metric-item">
+                      <span class="comparison-metric-title">NET GHG (GWP100)</span>
+                      <span class="comparison-metric-val val-good">+1.2 t CO₂e / ha·yr</span>
+                    </div>
+                    <div class="comparison-metric-item">
+                      <span class="comparison-metric-title">SUBSIDENCE</span>
+                      <span class="comparison-metric-val val-good">0.0 cm / yr (HALTED)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Layer Left: Drained Degradation (Clipped dynamically by handle) -->
+              <div class="comparison-panel-layer layer-drained" id="comparison-drained-layer" style="clip-path: inset(0 50% 0 0);">
+                <div>
+                  <span class="comparison-layer-badge badge-drained-curtain">
+                    <span>🚜</span> <span>BASELINE: Drained Peat Grassland (Intensive Drainage)</span>
+                  </span>
+                </div>
+                <div style="max-width: 480px;">
+                  <h4 style="font-size: 1.25rem; color: #f87171; margin: 0 0 6px 0; font-weight: 800;">Continuous Carbon Oxidation &amp; Ground Subsidence</h4>
+                  <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0 0 1rem 0;">
+                    Artificial ditches lower water table to -55 cm. Oxygen penetrates deep into virgin organic horizons, driving acute microbial mineralization, macropore collapse, and heavy nitrate runoff.
+                  </p>
+                  <div class="comparison-metrics-grid">
+                    <div class="comparison-metric-item">
+                      <span class="comparison-metric-title">WATER TABLE</span>
+                      <span class="comparison-metric-val val-bad">-55 cm (Oxic Stress)</span>
+                    </div>
+                    <div class="comparison-metric-item">
+                      <span class="comparison-metric-title">NET GHG (GWP100)</span>
+                      <span class="comparison-metric-val val-bad">+24.5 t CO₂e / ha·yr</span>
+                    </div>
+                    <div class="comparison-metric-item">
+                      <span class="comparison-metric-title">SUBSIDENCE</span>
+                      <span class="comparison-metric-val val-bad">-1.8 cm / yr</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Center Drag Handle -->
+              <div class="comparison-curtain-handle" id="comparison-handle" style="left: 50%;">
+                <div class="comparison-handle-knob">⇄</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1059,6 +1225,86 @@
               <p class="general-method-card-desc">
                 Peatlands modified with open ditches and tile drainage for intensive grazing or arable cropping. Groundwater drawdown exposes organic horizons to atmospheric oxygen, inducing severe heterotrophic respiration (\(15\text{–}40\text{ t CO}_2\text{ ha}^{-1}\text{ yr}^{-1}\)), continuous land subsidence (\(1\text{–}3\text{ cm yr}^{-1}\)), irreversible macropore collapse, and massive downstream nitrate leaching.
               </p>
+            </div>
+          </div>
+
+          <!-- Interactive Thermodynamic Redox Ladder Simulator -->
+          <div class="redox-ladder-card" id="panel-redox-ladder">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <span class="presentation-card-badge" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-violet);">Thermodynamic Cascade Engine</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0.35rem 0 0 0;">Interactive Thermodynamic Redox Ladder Simulator</h3>
+                <p style="font-size: 0.85rem; color: #94a3b8; margin: 4px 0 0 0;">
+                  Drag the Soil Redox Potential (\(Eh\)) slider to simulate water table saturation and observe microbial electron acceptor succession in real time.
+                </p>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.72rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">Current Soil Redox State</span>
+                <div id="redox-eh-display" style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 900; color: #38bdf8;">+420 mV (Oxic)</div>
+              </div>
+            </div>
+
+            <!-- Redox Slider Control -->
+            <div class="redox-ladder-slider-bar">
+              <div style="display: flex; justify-content: space-between; font-size: 0.76rem; font-family: 'JetBrains Mono', monospace; color: #94a3b8;">
+                <span style="color: #10b981;">+500 mV (Well-Aerated Oxic)</span>
+                <span style="color: #f59e0b;">+100 mV (Suboxic Transition)</span>
+                <span style="color: #f43f5e;">-300 mV (Strict Anoxia / Ponding)</span>
+              </div>
+              <input type="range" id="redox-slider-input" min="-300" max="500" value="420" step="10" style="width: 100%; height: 8px; accent-color: #38bdf8; cursor: pointer;">
+            </div>
+
+            <!-- Dynamic Ecological Alert Box -->
+            <div id="redox-state-alert" style="padding: 10px 14px; border-radius: 9px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); font-size: 0.84rem; color: #6ee7b7; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
+              <span>✅</span> <span><strong>Aerobic Acrotelm Zone:</strong> Plentiful oxygen acts as dominant terminal electron acceptor (\(\mathrm{O}_2 \rightarrow \mathrm{H}_2\mathrm{O}\)). Peat organic matter undergoes heterotrophic aerobic respiration, releasing \(\mathrm{CO}_2\).</span>
+            </div>
+
+            <!-- 5 Thermodynamic Rungs -->
+            <div class="redox-rungs-list">
+              <div class="redox-rung-item active" id="rung-o2" data-min-eh="300">
+                <div class="redox-rung-title">
+                  <span style="color:#10b981;">●</span>
+                  <span>1. Aerobic Respiration (Oxygen Reduction)</span>
+                </div>
+                <div class="redox-rung-formula">\(\mathrm{O}_2 + 4\mathrm{H}^+ + 4\mathrm{e}^- \rightarrow 2\mathrm{H}_2\mathrm{O} \quad (\Delta G^\circ = -2870\text{ kJ/mol})\)</div>
+                <div class="redox-rung-potential" style="color:#10b981;">Eh &gt; +300 mV</div>
+              </div>
+
+              <div class="redox-rung-item" id="rung-no3" data-min-eh="100" data-max-eh="300">
+                <div class="redox-rung-title">
+                  <span style="color:#f59e0b;">●</span>
+                  <span>2. Nitrate Reduction &amp; Denitrification (N₂O Pulse Hotspot)</span>
+                </div>
+                <div class="redox-rung-formula">\(\mathrm{NO}_3^- \rightarrow \mathrm{NO}_2^- \rightarrow \mathrm{NO} \rightarrow \mathrm{N}_2\mathrm{O} \uparrow \rightarrow \mathrm{N}_2\)</div>
+                <div class="redox-rung-potential" style="color:#f59e0b;">+100 to +300 mV</div>
+              </div>
+
+              <div class="redox-rung-item" id="rung-fe" data-min-eh="-100" data-max-eh="100">
+                <div class="redox-rung-title">
+                  <span style="color:#eab308;">●</span>
+                  <span>3. Manganese &amp; Iron Reduction</span>
+                </div>
+                <div class="redox-rung-formula">\(\mathrm{Fe}^{3+} + \mathrm{e}^- \rightarrow \mathrm{Fe}^{2+} \quad (\text{Mottling \&amp; Gleying Horizon})\)</div>
+                <div class="redox-rung-potential" style="color:#eab308;">-100 to +100 mV</div>
+              </div>
+
+              <div class="redox-rung-item" id="rung-so4" data-min-eh="-200" data-max-eh="-100">
+                <div class="redox-rung-title">
+                  <span style="color:#a855f7;">●</span>
+                  <span>4. Sulfate Reduction</span>
+                </div>
+                <div class="redox-rung-formula">\(\mathrm{SO}_4^{2-} + 10\mathrm{H}^+ + 8\mathrm{e}^- \rightarrow \mathrm{H}_2\mathrm{S} + 4\mathrm{H}_2\mathrm{O}\)</div>
+                <div class="redox-rung-potential" style="color:#a855f7;">-200 to -100 mV</div>
+              </div>
+
+              <div class="redox-rung-item" id="rung-ch4" data-max-eh="-200">
+                <div class="redox-rung-title">
+                  <span style="color:#f43f5e;">●</span>
+                  <span>5. Methanogenesis (Strict Anaerobic Archaea)</span>
+                </div>
+                <div class="redox-rung-formula">\(\mathrm{CO}_2 + 4\mathrm{H}_2 \rightarrow \mathrm{CH}_4 \uparrow + 2\mathrm{H}_2\mathrm{O} \quad (\Delta G^\circ = -131\text{ kJ/mol})\)</div>
+                <div class="redox-rung-potential" style="color:#f43f5e;">Eh &lt; -200 mV</div>
+              </div>
             </div>
           </div>
         </div>
@@ -6155,6 +6401,29 @@
 </script>
 
     <!-- ====================================================================
+     SPOTLIGHT COMMAND PALETTE (CMD + K / CTRL + K)
+     ==================================================================== -->
+  <div class="command-palette-overlay" id="command-palette-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="command-palette-box">
+      <div class="command-palette-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="command-palette-input" class="command-palette-input" placeholder="Type a view, figure, sensor, tool, or ecotype... (Esc to close)" autocomplete="off" spellcheck="false">
+        <span class="command-palette-shortcut-badge">ESC</span>
+      </div>
+      <div class="command-palette-results" id="command-palette-results">
+        <!-- Results populated dynamically by JS -->
+      </div>
+      <div class="command-palette-footer">
+        <div class="command-palette-footer-keys">
+          <span><kbd style="font-family:'JetBrains Mono'; background:rgba(255,255,255,0.1); padding:2px 5px; border-radius:4px;">↑</kbd> <kbd style="font-family:'JetBrains Mono'; background:rgba(255,255,255,0.1); padding:2px 5px; border-radius:4px;">↓</kbd> Navigate</span>
+          <span><kbd style="font-family:'JetBrains Mono'; background:rgba(255,255,255,0.1); padding:2px 5px; border-radius:4px;">↵</kbd> Select</span>
+        </div>
+        <span><strong>PEAT-TWIN</strong> Spotlight</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
        RESEARCH ADMIN & IP EMBARGO SECURITY CONSOLE MODAL
        ==================================================================== -->
   <div class="admin-modal-overlay hidden" id="admin-security-modal" role="dialog" aria-modal="true" aria-hidden="true">

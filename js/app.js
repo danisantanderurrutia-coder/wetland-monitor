@@ -15,6 +15,7 @@ import { SatelliteViewController } from "./satellite_view.js?v=7.0";
 import { DigitalTwinSimulationEngine } from "./digital_twin_engine.js?v=8.0";
 import { PITCH_TRANSLATIONS_ES } from "./pitch_translations_es.js?v=7.0";
 import { WetlandTwinSandbox } from "./twin_sandbox.js?v=1.0";
+import { InteractiveSuite } from "./interactive_tools.js?v=8.0";
 
 export const VIEW_SLUGS = {
   landing: "landing",
@@ -161,6 +162,10 @@ class WetlandMonitorApp {
     // Initialize GIS Project Importer & Territorial Wetland Lab Selector
     this.initGisProjectModal();
 
+    // Initialize Interactive Expansion Suite (4-Theme Coordinator, Command Palette, Sliders, Redox Simulator, 3D Tilt)
+    this.interactiveSuite = new InteractiveSuite(this);
+    this.interactiveSuite.init();
+
     // 3. Set branding logo to "Stratigraphy & Probes"
     this.initLogo();
 
@@ -199,35 +204,90 @@ class WetlandMonitorApp {
   }
 
   // ==========================================================================
-  // ILLUMINATED / DARK THEME SYSTEM
+  // 4-THEME ADAPTIVE DESIGN ENGINE
+  // 1. Boreal Peat (Cyber Dark bio-lab default)
+  // 2. Fieldwork Daylight (High-contrast scientific solar light)
+  // 3. Living Moss (Biophilic deep peatland evergreen)
+  // 4. Academic Monochrome (Swiss print minimalist publication)
   // ==========================================================================
   initThemeToggle() {
     const themeBtn = document.getElementById("btn-theme-toggle");
-    
-    // Check saved preference, default to light (luminous scientific theme)
-    const savedTheme = localStorage.getItem("wetland_monitor_theme") || "light";
-    this.setTheme(savedTheme);
+    const themes = [
+      { id: "boreal", name: "Boreal Peat", icon: "🌌", isDark: true },
+      { id: "daylight", name: "Fieldwork", icon: "☀️", isDark: false },
+      { id: "biophilic", name: "Living Moss", icon: "🌿", isDark: true },
+      { id: "monochrome", name: "Academic", icon: "📄", isDark: false }
+    ];
+
+    let saved = localStorage.getItem("wetland_monitor_theme") || "boreal";
+    if (saved === "dark") saved = "boreal";
+    if (saved === "light") saved = "daylight";
+
+    this.setTheme(saved);
 
     if (themeBtn) {
       themeBtn.addEventListener("click", () => {
-        const isDark = document.body.classList.contains("theme-dark");
-        this.setTheme(isDark ? "light" : "dark");
+        const currentThemeId = document.body.getAttribute("data-theme") || "boreal";
+        const currentIndex = themes.findIndex(t => t.id === currentThemeId);
+        const nextTheme = themes[(currentIndex + 1) % themes.length];
+        this.setTheme(nextTheme.id);
+        this.playUiAudioFeedback("click");
       });
     }
   }
 
-  setTheme(theme) {
-    const isDark = theme === "dark";
-    document.body.classList.toggle("theme-dark", isDark);
-    localStorage.setItem("wetland_monitor_theme", theme);
+  setTheme(themeId) {
+    const themeConfigs = {
+      boreal: { id: "boreal", name: "Boreal Peat", icon: "🌌", isDark: true },
+      daylight: { id: "daylight", name: "Fieldwork", icon: "☀️", isDark: false },
+      biophilic: { id: "biophilic", name: "Living Moss", icon: "🌿", isDark: true },
+      monochrome: { id: "monochrome", name: "Academic", icon: "📄", isDark: false }
+    };
+
+    const config = themeConfigs[themeId] || themeConfigs.boreal;
+    document.body.setAttribute("data-theme", config.id);
+    document.body.classList.toggle("theme-dark", config.isDark);
+    localStorage.setItem("wetland_monitor_theme", config.id);
 
     const themeIcon = document.getElementById("theme-icon");
     const themeLabel = document.getElementById("label-theme-btn");
 
-    if (themeIcon) themeIcon.textContent = isDark ? "🌙" : "☀️";
-    if (themeLabel) {
-      themeLabel.textContent = isDark ? "Dark" : "Luminous";
-    }
+    if (themeIcon) themeIcon.textContent = config.icon;
+    if (themeLabel) themeLabel.textContent = config.name;
+  }
+
+  playUiAudioFeedback(type = "click") {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      if (!this._audioCtx) {
+        this._audioCtx = new AudioCtx();
+      }
+      if (this._audioCtx.state === "suspended") {
+        this._audioCtx.resume();
+      }
+      const osc = this._audioCtx.createOscillator();
+      const gain = this._audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(this._audioCtx.destination);
+
+      const now = this._audioCtx.currentTime;
+      if (type === "click") {
+        osc.frequency.setValueAtTime(650, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.03);
+        gain.gain.setValueAtTime(0.025, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      } else if (type === "success") {
+        osc.frequency.setValueAtTime(520, now);
+        osc.frequency.exponentialRampToValueAtTime(1040, now + 0.08);
+        gain.gain.setValueAtTime(0.03, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
+        osc.start(now);
+        osc.stop(now + 0.1);
+      }
+    } catch (_) {}
   }
 
   // ==========================================================================
