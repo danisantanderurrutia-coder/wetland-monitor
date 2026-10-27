@@ -1750,11 +1750,14 @@ body.theme-dark .site-selector-btn {
 
 .actor-image-container {
   width: 100%;
-  height: 140px;
+  height: 220px;
   overflow: hidden;
-  background: #f1f5f9;
+  background: #0f172a;
   border-bottom: 1px solid var(--border-subtle);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .actor-image-container img {
@@ -1762,6 +1765,7 @@ body.theme-dark .site-selector-btn {
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-normal);
+  cursor: zoom-in;
 }
 
 .biogeo-actor-card:hover .actor-image-container img {

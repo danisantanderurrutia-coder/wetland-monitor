@@ -670,9 +670,9 @@ img[data-zoomable="true"] {
 
 .lightbox-stage {
   flex: 1 1 auto;
-  height: 60vh;
-  max-height: 62vh;
-  min-height: 200px;
+  height: 65vh;
+  max-height: 68vh;
+  min-height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -686,7 +686,7 @@ img[data-zoomable="true"] {
 .lightbox-img {
   max-width: 100%;
   max-height: 100%;
-  max-height: calc(62vh - 1.5rem);
+  max-height: calc(68vh - 1.5rem);
   max-width: calc(92vw - 3rem);
   width: auto;
   height: auto;
@@ -699,7 +699,9 @@ img[data-zoomable="true"] {
 }
 
 .lightbox-stage.is-zoomed {
-  overflow: auto;
+  overflow: auto !important;
+  display: block !important;
+  text-align: center;
   cursor: grab;
 }
 
@@ -709,13 +711,14 @@ img[data-zoomable="true"] {
 
 .lightbox-stage.is-zoomed .lightbox-img,
 .lightbox-img.zoomed {
-  max-width: none;
-  max-height: none;
-  width: auto;
-  height: auto;
-  transform: scale(1.4);
-  cursor: zoom-out;
-  transform-origin: center center;
+  max-width: none !important;
+  max-height: none !important;
+  width: 160% !important;
+  height: auto !important;
+  transform: none !important;
+  cursor: zoom-out !important;
+  margin: 1.5rem auto !important;
+  display: inline-block !important;
 }
 
 .lightbox-caption-card {

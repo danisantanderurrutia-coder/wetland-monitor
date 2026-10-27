@@ -1969,6 +1969,28 @@ class WetlandMonitorApp {
     if (zoomBtn) zoomBtn.addEventListener("click", toggleZoom);
     lightboxImg.addEventListener("click", toggleZoom);
 
+    // Mouse drag-to-pan in lightbox when zoomed
+    let isPanning = false, startX = 0, startY = 0, scrollLeft = 0, scrollTop = 0;
+    if (stage) {
+      stage.addEventListener("mousedown", (e) => {
+        if (!stage.classList.contains("is-zoomed")) return;
+        isPanning = true;
+        startX = e.pageX - stage.offsetLeft;
+        startY = e.pageY - stage.offsetTop;
+        scrollLeft = stage.scrollLeft;
+        scrollTop = stage.scrollTop;
+      });
+      window.addEventListener("mouseup", () => { isPanning = false; });
+      stage.addEventListener("mousemove", (e) => {
+        if (!isPanning) return;
+        e.preventDefault();
+        const x = e.pageX - stage.offsetLeft;
+        const y = e.pageY - stage.offsetTop;
+        stage.scrollLeft = scrollLeft - (x - startX);
+        stage.scrollTop = scrollTop - (y - startY);
+      });
+    }
+
     // Universal click handler for figures across all analytical views
     document.addEventListener("click", (e) => {
       if (e.target.closest("#universal-figure-lightbox") || e.target.closest(".lightbox-btn")) return;
