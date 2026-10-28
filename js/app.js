@@ -843,6 +843,9 @@ class WetlandMonitorApp {
     const activePanel = document.querySelector(".view-panel.active");
     if (activePanel) {
       activePanel.scrollTo({ top: 0, behavior: "smooth" });
+      if (typeof window.renderScientificMath === "function") {
+        window.renderScientificMath(activePanel);
+      }
     }
 
     const carouselTitle = document.getElementById("carousel-current-title");

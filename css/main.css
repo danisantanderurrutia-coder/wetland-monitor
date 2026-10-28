@@ -5543,44 +5543,227 @@ body:not(.embargo-active) .flux-plot-card img:hover {
 /* Clean General Methodology Views Container */
 .general-method-container {
   width: 100%;
-  max-width: 1180px;
+  max-width: 1220px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+  padding: 1.5rem 1.25rem 3.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
+}
+
+/* Editorial Section Banners (Scientific Visuals Hero) */
+.section-method-banner {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1.5px solid rgba(56, 189, 248, 0.28);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .section-method-banner {
+    height: 190px;
+  }
+}
+
+.section-method-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.section-method-banner:hover .section-method-banner-img {
+  transform: scale(1.03);
+}
+
+.section-method-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 19, 41, 0.95) 0%,
+    rgba(11, 19, 41, 0.65) 45%,
+    rgba(11, 19, 41, 0.25) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem 1.8rem;
+  pointer-events: none;
+}
+
+.section-method-banner-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #38bdf8;
+  background: rgba(2, 132, 199, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  padding: 3px 10px;
+  border-radius: 6px;
+  width: fit-content;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  backdrop-filter: blur(8px);
+}
+
+.section-method-banner-title {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.section-method-banner-desc {
+  margin: 4px 0 0 0;
+  font-size: 0.84rem;
+  color: #cbd5e1;
+  max-width: 850px;
+  line-height: 1.45;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .general-method-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .general-method-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .general-method-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 1.35rem;
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.88) 0%, rgba(10, 18, 36, 0.95) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 16px;
+  padding: 1.5rem 1.6rem;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.9rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.general-method-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.38);
+  box-shadow: 0 14px 38px rgba(2, 132, 199, 0.2);
 }
 
 .general-method-card-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 1rem;
+  gap: 9px;
+  font-size: 1.05rem;
   font-weight: 800;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0;
+  line-height: 1.35;
 }
 
 .general-method-card-desc {
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Dedicated Isolated Equation Box with Generous Breathing Room */
+.method-equation-box {
+  margin: 0.95rem 0;
+  padding: 0.95rem 1.25rem;
+  background: linear-gradient(180deg, rgba(8, 14, 28, 0.88) 0%, rgba(5, 10, 20, 0.95) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.24);
+  border-left: 3.5px solid #0284c7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow-x: auto;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.method-equation-box .katex-display {
+  margin: 0.25rem 0 !important;
+  padding: 0 !important;
+}
+
+.method-equation-box .equation-caption {
+  margin-top: 0.45rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* Stacked Spectral Indices Component */
+.spectral-indices-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.spectral-index-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(8, 14, 28, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.spectral-index-item:hover {
+  background: rgba(56, 189, 248, 0.05);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.spectral-index-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.spectral-index-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+.spectral-index-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #6ee7b7;
+}
+
+.spectral-index-detail {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.4;
   margin: 0;
 }
 

@@ -878,6 +878,17 @@
       <!-- 3. GENERAL VIEW: TOOLS & INSTRUMENTATION -->
       <section class="view-panel" data-view-id="tools_general" id="view-tools-general">
         <div class="general-method-container">
+          
+          <!-- Editorial Method Banner -->
+          <div class="section-method-banner">
+            <img src="assets/img/banners/banner_analytical_tools.jpg" alt="Analytical Tools & Field Instrumentation" class="section-method-banner-img">
+            <div class="section-method-banner-overlay">
+              <span class="section-method-banner-badge">🛠️ TIER-3 OBSERVATION NETWORK</span>
+              <h2 class="section-method-banner-title">Wetland Field Instrumentation &amp; Diagnostic Technologies</h2>
+              <p class="section-method-banner-desc">Coupling non-invasive ecosystem micrometeorology with sub-surface piezometry, automated chamber networks, and edaphic telemetry to track water-gas-carbon fluxes.</p>
+            </div>
+          </div>
+
           <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
             <div class="landing-hero-badge">
               <span>🛠️ General Methodology</span> • <span>Multi-Tier Wetland Instrumentation</span>
@@ -894,14 +905,28 @@
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>🌪️</span> 1. Eddy Covariance Micrometeorology</h3>
               <p class="general-method-card-desc">
-                Considered the scientific gold standard for continuous, non-invasive ecosystem-scale monitoring over hectares. Measures high-frequency (10–20 Hz) statistical covariance between vertical wind velocity fluctuations (\(w'\)) and trace gas scalar concentrations (\(c'\)): \(F = \overline{w' c'}\). Combines 3D sonic anemometers with high-speed infrared or laser absorption spectrometers (IRGA / QCL) for CO₂, H₂O, and CH₄. Delivers uninterrupted time series without perturbing the hydrological or microclimatic boundary layer.
+                Considered the scientific gold standard for continuous, non-invasive ecosystem-scale monitoring over hectares. Measures high-frequency (10–20 Hz) statistical covariance between vertical wind velocity fluctuations (\(w'\)) and trace gas scalar concentrations (\(c'\)):
+              </p>
+              <div class="method-equation-box">
+                \[ F = \overline{w' c'} \]
+                <span class="equation-caption">Covariance between vertical wind velocity fluctuations (\(w'\)) and trace gas scalar mixing ratio (\(c'\))</span>
+              </div>
+              <p class="general-method-card-desc">
+                Combines 3D sonic anemometers with high-speed infrared or laser absorption spectrometers (IRGA / QCL) for CO₂, H₂O, and CH₄. Delivers uninterrupted time series without perturbing the hydrological or microclimatic boundary layer.
               </p>
             </div>
 
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>📦</span> 2. Automated &amp; Manual Closed Chambers</h3>
               <p class="general-method-card-desc">
-                Chamber systems deployed on permanent soil collars (0.2–1.0 m²). Measures concentration accumulation rates over time (\(dC/dt\)) to determine localized surface fluxes. Essential for capturing acute nitrous oxide (N₂O) and episodic methane (CH₄) hotspots across microtopographic gradients (hummocks vs. hollows), and for partitioning Net Ecosystem Exchange (NEE) into Gross Primary Productivity (GPP) and Ecosystem Respiration (Reco) via paired transparent and opaque hoods.
+                Chamber systems deployed on permanent soil collars (0.2–1.0 m²). Measures concentration accumulation rates over time (\(dC/dt\)) to determine localized surface fluxes:
+              </p>
+              <div class="method-equation-box">
+                \[ F = \frac{V}{A} \cdot \frac{dC}{dt} \cdot \frac{P \cdot M}{R \cdot T} \]
+                <span class="equation-caption">Chamber volume (\(V\)), base area (\(A\)), slope (\(dC/dt\)), and ideal gas law density conversion</span>
+              </div>
+              <p class="general-method-card-desc">
+                Essential for capturing acute nitrous oxide (N₂O) and episodic methane (CH₄) hotspots across microtopographic gradients (hummocks vs. hollows), and for partitioning Net Ecosystem Exchange (NEE) into Gross Primary Productivity (GPP) and Ecosystem Respiration (Reco) via paired transparent and opaque hoods.
               </p>
             </div>
 
@@ -915,14 +940,28 @@
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>⚡</span> 4. Soil Moisture, Redox Potential (Eh) &amp; Temperature</h3>
               <p class="general-method-card-desc">
-                Multi-depth Time Domain Reflectometry (TDR/FDR) probes quantify volumetric water content (\(\theta\)) alongside permanent platinum redox electrodes referenced to Ag/AgCl. Tracks the continuous dynamic transition between oxic (\(Eh &gt; +300\text{ mV}\)), suboxic, and strictly methanogenic (\(Eh &lt; -200\text{ mV}\)) biogeochemical horizons in real time.
+                Multi-depth Time Domain Reflectometry (TDR/FDR) probes quantify volumetric water content (\(\theta\)) alongside permanent platinum redox electrodes referenced to standard hydrogen electrode (SHE via Ag/AgCl):
+              </p>
+              <div class="method-equation-box">
+                \[ Eh = E^\circ - \frac{R \cdot T}{n \cdot F} \ln \frac{[\mathrm{Red}]}{[\mathrm{Ox}]} \]
+                <span class="equation-caption">Nernst thermodynamic redox potential governed by reduced vs. oxidized species activity</span>
+              </div>
+              <p class="general-method-card-desc">
+                Tracks the continuous dynamic transition between oxic (\(Eh &gt; +300\text{ mV}\)), suboxic, and strictly methanogenic (\(Eh &lt; -200\text{ mV}\)) biogeochemical horizons in real time.
               </p>
             </div>
 
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>🗜️</span> 5. Soil Geomechanics &amp; Oedometer Consolidation</h3>
               <p class="general-method-card-desc">
-                Uniaxial incremental-loading oedometer tests performed on undisturbed peat cores. Quantifies the preconsolidation stress threshold (\(\sigma'_p\)), compression index (\(C_c\)), and swelling rebound. Directly demonstrates how drainage desiccation and historical heavy agricultural machinery irreversibly collapse elastic macropores, degrading saturated hydraulic conductivity (\(K_{sat}\)).
+                Uniaxial incremental-loading oedometer tests performed on undisturbed peat cores. Quantifies the preconsolidation stress threshold (\(\sigma'_p\)), compression index (\(C_c\)), and swelling rebound:
+              </p>
+              <div class="method-equation-box">
+                \[ \Delta H = H_0 \cdot \frac{C_c}{1 + e_0} \log_{10}\left(\frac{\sigma'}{\sigma'_0}\right) \]
+                <span class="equation-caption">Primary 1D consolidation settlement under effective overburden stress (\(\sigma'\)) and compression index (\(C_c\))</span>
+              </div>
+              <p class="general-method-card-desc">
+                Directly demonstrates how drainage desiccation and historical heavy agricultural machinery irreversibly collapse elastic macropores, degrading saturated hydraulic conductivity (\(K_{sat}\)).
               </p>
             </div>
 
@@ -938,13 +977,18 @@
           <div class="peat-calc-card" id="panel-peat-calculator">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
               <div>
-                <span class="presentation-card-badge" style="background: rgba(2, 132, 199, 0.15); color: var(--accent-cyan);">Empirical Edaphic Modeling</span>
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0.35rem 0 0 0;">Interactive Peat Subsidence &amp; Carbon Oxidation Calculator</h3>
-                <p style="font-size: 0.85rem; color: #94a3b8; margin: 4px 0 0 0;">
+                <span class="presentation-card-badge" style="background: rgba(2, 132, 199, 0.25); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">Empirical Edaphic Modeling</span>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin: 0.45rem 0 0 0;">Interactive Peat Subsidence &amp; Carbon Oxidation Calculator</h3>
+                <p style="font-size: 0.86rem; color: #94a3b8; margin: 4px 0 0 0;">
                   Model cumulative surface subsidence (\(\Delta z\)) and greenhouse gas oxidation rates under intensive agricultural drainage (van den Akker &amp; Schothorst formulation).
                 </p>
               </div>
-              <span class="presentation-card-badge" style="background: rgba(244, 63, 94, 0.15); color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.4);">Degradation Diagnostic</span>
+              <span class="presentation-card-badge" style="background: rgba(244, 63, 94, 0.2); color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.5);">Degradation Diagnostic</span>
+            </div>
+
+            <div class="method-equation-box" style="margin: 1.1rem 0 0.5rem 0;">
+              \[ \Delta z = \kappa \cdot |\mathrm{WTD}| \cdot t \qquad \left(\approx 0.04 \cdot |\mathrm{WTD}| \text{ cm/yr}\right) \]
+              <span class="equation-caption">Empirical subsidence formulation (van den Akker &amp; Schothorst) with 70% aerobic carbon oxidation fraction</span>
             </div>
 
             <div class="peat-calc-grid">
@@ -1016,13 +1060,13 @@
           <div class="comparison-curtain-card" id="panel-comparison-slider">
             <div class="comparison-curtain-header">
               <div>
-                <span class="presentation-card-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald);">Interactive Split-Screen</span>
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0.35rem 0 0 0;">Before vs. After: Peatland Rewetting &amp; Paludiculture Restoration</h3>
-                <p style="font-size: 0.85rem; color: #94a3b8; margin: 4px 0 0 0;">
+                <span class="presentation-card-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);">Interactive Split-Screen</span>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin: 0.45rem 0 0 0;">Before vs. After: Peatland Rewetting &amp; Paludiculture Restoration</h3>
+                <p style="font-size: 0.86rem; color: #94a3b8; margin: 4px 0 0 0;">
                   Drag the interactive center divider to inspect the biophysical transformation from drained degradation to restored paludiculture.
                 </p>
               </div>
-              <div style="font-size: 0.76rem; color: #38bdf8; font-family: 'JetBrains Mono';">
+              <div style="font-size: 0.78rem; color: #38bdf8; font-family: 'JetBrains Mono'; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); padding: 4px 10px; border-radius: 6px;">
                 ◀ Drag Slider to Compare ▶
               </div>
             </div>
@@ -1099,6 +1143,17 @@
       <!-- 4. GENERAL VIEW: SATELLITES & REMOTE SENSING -->
       <section class="view-panel" data-view-id="satellites_general" id="view-satellites-general">
         <div class="general-method-container">
+          
+          <!-- Editorial Method Banner -->
+          <div class="section-method-banner">
+            <img src="assets/img/banners/banner_satellites_earth_obs.jpg" alt="Satellites & Earth Observation" class="section-method-banner-img">
+            <div class="section-method-banner-overlay">
+              <span class="section-method-banner-badge">🛰️ SPACEBORNE EARTH OBSERVATION</span>
+              <h2 class="section-method-banner-title">Satellites, Optical Multispectral &amp; SAR Radar Physics</h2>
+              <p class="section-method-banner-desc">Extrapolating tower micrometeorology across regional catchments using Copernicus Sentinel-2 MSI, Sentinel-1 C-Band SAR, and airborne LiDAR altimetry.</p>
+            </div>
+          </div>
+
           <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
             <div class="landing-hero-badge">
               <span>🛰️ Spaceborne Remote Sensing</span> • <span>Earth Observation &amp; Spectral Physics</span>
@@ -1122,38 +1177,94 @@
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>🌿</span> 2. Key Spectral Vegetation &amp; Moisture Indices</h3>
               <p class="general-method-card-desc">
-                • <strong>NDVI:</strong> \((B8 - B4) / (B8 + B4)\) — Photosynthetic vigor, green biomass, and fraction of absorbed photosynthetically active radiation (fAPAR).<br>
-                • <strong>NDWI (Gao):</strong> \((B8 - B11) / (B8 + B11)\) — Leaf canopy water content and foliar moisture stress.<br>
-                • <strong>MNDWI (Xu):</strong> \((B3 - B11) / (B3 + B11)\) — Delineation of open standing water and surface ponding.<br>
-                • <strong>NDRE:</strong> \((B8 - B5) / (B8 + B5)\) — High chlorophyll sensitivity in dense wetland canopies without saturation.
+                Multispectral indices computed across Sentinel-2 MSI narrow bands to quantify canopy vigor, leaf water thickness, and hydrologic inundation:
               </p>
+              
+              <div class="spectral-indices-stack">
+                <div class="spectral-index-item">
+                  <div class="spectral-index-head">
+                    <span class="spectral-index-badge">NDVI (Vegetation Index)</span>
+                    <span class="spectral-index-formula">\(\frac{\mathrm{B8} - \mathrm{B4}}{\mathrm{B8} + \mathrm{B4}}\)</span>
+                  </div>
+                  <p class="spectral-index-detail">Photosynthetic vigor, green biomass canopy cover, and fAPAR (NIR 842 nm vs. Red 665 nm).</p>
+                </div>
+                
+                <div class="spectral-index-item">
+                  <div class="spectral-index-head">
+                    <span class="spectral-index-badge">NDWI (Water Index - Gao)</span>
+                    <span class="spectral-index-formula">\(\frac{\mathrm{B8} - \mathrm{B11}}{\mathrm{B8} + \mathrm{B11}}\)</span>
+                  </div>
+                  <p class="spectral-index-detail">Sensitive to foliar liquid water thickness and canopy moisture deficit (NIR 842 nm vs. SWIR-1 1610 nm).</p>
+                </div>
+                
+                <div class="spectral-index-item">
+                  <div class="spectral-index-head">
+                    <span class="spectral-index-badge">MNDWI (Modified NDWI - Xu)</span>
+                    <span class="spectral-index-formula">\(\frac{\mathrm{B3} - \mathrm{B11}}{\mathrm{B3} + \mathrm{B11}}\)</span>
+                  </div>
+                  <p class="spectral-index-detail">Delineates open surface water, ditch ponding, and canals with suppressed built-up soil noise (Green 560 nm vs. SWIR-1 1610 nm).</p>
+                </div>
+                
+                <div class="spectral-index-item">
+                  <div class="spectral-index-head">
+                    <span class="spectral-index-badge">NDRE (Red Edge Index)</span>
+                    <span class="spectral-index-formula">\(\frac{\mathrm{B8} - \mathrm{B5}}{\mathrm{B8} + \mathrm{B5}}\)</span>
+                  </div>
+                  <p class="spectral-index-detail">High chlorophyll sensitivity across dense wetland reeds (*Phragmites*, *Typha*) avoiding NIR saturation.</p>
+                </div>
+              </div>
             </div>
 
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>📡</span> 3. Synthetic Aperture Radar (SAR) Sentinel-1</h3>
               <p class="general-method-card-desc">
-                C-band radar (5.4 GHz) with dual-polarization (VV + VH). Capable of imaging through cloud cover and darkness. The double-bounce scattering mechanism between emergent vertical vegetation stalks (e.g., *Phragmites*, *Typha*) and standing surface water accurately maps sub-canopy inundation. InSAR interferometry tracks millimeter-scale vertical surface oscillation ("peat breathing").
+                C-band radar (5.4 GHz) with dual-polarization (VV + VH). Capable of imaging through cloud cover and darkness. The double-bounce scattering mechanism between emergent vertical vegetation stalks and standing surface water accurately maps sub-canopy inundation:
+              </p>
+              <div class="method-equation-box">
+                \[ \sigma^\circ_{\mathrm{total}} = \sigma^\circ_{\mathrm{canopy}} + \sigma^\circ_{\mathrm{double\text{-}bounce}} + \sigma^\circ_{\mathrm{ground}} \]
+                <span class="equation-caption">Total radar backscatter cross-section isolating corner reflections from inundated vertical emergent stems</span>
+              </div>
+              <p class="general-method-card-desc">
+                In addition, InSAR interferometry tracks millimeter-scale vertical surface oscillation ("peat breathing"), reflecting aquifer recharge and seasonal swelling.
               </p>
             </div>
 
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>🌡️</span> 4. Landsat 8/9 &amp; Historical Thermal Archives</h3>
               <p class="general-method-card-desc">
-                Thermal Infrared Sensor (TIRS) providing dual-band thermal data (10.6–12.5 µm). Estimates Land Surface Temperature (LST) and parameterizes energy balance algorithms (SEBAL, METRIC) for regional actual evapotranspiration (ET). Offers a 40+ year continuous historical archive tracking peatland drainage and historical land degradation.
+                Thermal Infrared Sensor (TIRS) providing dual-band thermal data (10.6–12.5 µm). Estimates Land Surface Temperature (LST) and parameterizes energy balance algorithms (SEBAL, METRIC) for regional actual evapotranspiration (ET):
+              </p>
+              <div class="method-equation-box">
+                \[ \lambda \mathrm{ET} = R_n - G - H \]
+                <span class="equation-caption">Surface energy balance partitioning net radiation (\(R_n\)) into soil heat flux (\(G\)) and sensible heat (\(H\))</span>
+              </div>
+              <p class="general-method-card-desc">
+                Offers a 40+ year continuous historical archive tracking peatland drainage and historical land degradation.
               </p>
             </div>
 
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>🏔️</span> 5. High-Resolution LiDAR Digital Elevation Models</h3>
               <p class="general-method-card-desc">
-                Airborne laser scanning altimetry (&lt; 0.5 m spatial, centimeter vertical accuracy). Crucial for mapping historical drainage ditch networks, computing the Topographic Wetness Index (TWI), and modeling surface overland runoff towards weirs and retention polders.
+                Airborne laser scanning altimetry (&lt; 0.5 m spatial, centimeter vertical accuracy). Crucial for mapping historical drainage ditch networks, computing the Topographic Wetness Index (TWI), and modeling surface overland runoff towards weirs and retention polders:
               </p>
+              <div class="method-equation-box">
+                \[ \mathrm{TWI} = \ln\left(\frac{\alpha}{\tan \beta}\right) \]
+                <span class="equation-caption">Topographic Wetness Index relating upslope contributing drainage area (\(\alpha\)) to local hydraulic slope (\(\tan \beta\))</span>
+              </div>
             </div>
 
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>🎯</span> 6. Satellite-to-Footprint Dynamic Coupling</h3>
               <p class="general-method-card-desc">
-                Analytical integration where dynamic micrometeorological flux footprint source areas (Kormann &amp; Meixner or Kljun et al. models) are projected onto satellite imagery. Extracts weighted spectral signatures from the dominant contribution zones to calibrate neural networks and machine learning models for regional carbon flux upscaling.
+                Analytical integration where dynamic micrometeorological flux footprint source areas (Kormann &amp; Meixner or Kljun et al. models) are projected onto satellite imagery:
+              </p>
+              <div class="method-equation-box">
+                \[ F(x_0, y_0, z_m) = \int_{-\infty}^{\infty} \int_{0}^{\infty} F(x, y) \cdot f(x - x_0, y - y_0, z_m) \, dx \, dy \]
+                <span class="equation-caption">Continuous spatial convolution between localized surface flux \(F(x,y)\) and footprint weighting kernel \(f\)</span>
+              </div>
+              <p class="general-method-card-desc">
+                Extracts weighted spectral signatures from dominant contribution zones to calibrate neural networks and machine learning models for regional carbon flux upscaling.
               </p>
             </div>
           </div>
@@ -1660,6 +1771,17 @@
       <!-- 6. GENERAL VIEW: CARBON ACCOUNTING & GWP GENERAL -->
       <section class="view-panel" data-view-id="carbon_general" id="view-carbon-general">
         <div class="general-method-container">
+          
+          <!-- Editorial Method Banner -->
+          <div class="section-method-banner">
+            <img src="assets/img/banners/banner_carbon_accounting_gwp.jpg" alt="Wetland Carbon Accounting & GWP Metrics" class="section-method-banner-img">
+            <div class="section-method-banner-overlay">
+              <span class="section-method-banner-badge">⚖️ MMRV STANDARDS &amp; CLIMATE FORCING</span>
+              <h2 class="section-method-banner-title">Wetland Carbon Accounting &amp; Radiative Forcing Metrics</h2>
+              <p class="section-method-banner-desc">Mathematical formulations balancing multi-gas fluxes, atmospheric lifespans, time-horizon sensitivity, and process-based IPCC tier reporting.</p>
+            </div>
+          </div>
+
           <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
             <div class="landing-hero-badge">
               <span>⚖️ Carbon Accounting</span> • <span>MMRV Standards &amp; Climate Forcing</span>
@@ -1676,8 +1798,13 @@
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>📊</span> 1. Net Greenhouse Gas Balance (NGHGB)</h3>
               <p class="general-method-card-desc">
-                Unified mass balance equation for ecosystem climate radiative forcing:<br>
-                \[ \mathrm{NGHGB} = \mathrm{NEE}_{\mathrm{CO}_2} + (F_{\mathrm{CH}_4} \cdot \mathrm{GWP}_{\mathrm{CH}_4}) + (F_{\mathrm{N}_2\mathrm{O}} \cdot \mathrm{GWP}_{\mathrm{N}_2\mathrm{O}}) + F_{\mathrm{DOC}} \]<br>
+                Unified mass balance equation expressing total ecosystem climate radiative forcing:
+              </p>
+              <div class="method-equation-box">
+                \[ \mathrm{NGHGB} = \mathrm{NEE}_{\mathrm{CO}_2} + \left(F_{\mathrm{CH}_4} \cdot \mathrm{GWP}_{\mathrm{CH}_4}\right) + \left(F_{\mathrm{N}_2\mathrm{O}} \cdot \mathrm{GWP}_{\mathrm{N}_2\mathrm{O}}\right) + F_{\mathrm{DOC}} \]
+                <span class="equation-caption">Mass flux equation summing net CO₂ exchange, GWP-weighted trace gases, and lateral dissolved organic carbon loss</span>
+              </div>
+              <p class="general-method-card-desc">
                 Where \(\mathrm{NEE}\) is net ecosystem CO₂ exchange, \(F_{\mathrm{CH}_4}\) and \(F_{\mathrm{N}_2\mathrm{O}}\) are surface trace gas fluxes weighted by their global warming potentials, and \(F_{\mathrm{DOC}}\) represents aquatic dissolved organic carbon export through ditch drainage networks.
               </p>
             </div>
@@ -1685,25 +1812,45 @@
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>⏳</span> 2. The Time Horizon Dilemma: GWP-100 vs. GWP-20</h3>
               <p class="general-method-card-desc">
-                • <strong>GWP-100:</strong> 100-year horizon standard adopted under UNFCCC. Methane factor is 27.2 to 29.8 (IPCC AR6), and N₂O is 273. Reflects long-term steady-state planetary warming.<br>
-                • <strong>GWP-20:</strong> 20-year short-term horizon where the methane multiplier rises to 82.5–84. Highlights near-term tipping-point climate risks during early rewetting phases.<br>
-                PEAT-TWIN computes both metrics side by side for transparent multi-decadal carbon auditing.
+                Standard metric weighting atmospheric decay over specific time horizons:
+              </p>
+              <div class="method-equation-box">
+                \[ \mathrm{GWP}_H(x) = \frac{\int_0^H \mathrm{RF}_x(t) \, dt}{\int_0^H \mathrm{RF}_{\mathrm{CO}_2}(t) \, dt} \]
+                <span class="equation-caption">Ratio of cumulative radiative forcing from a 1 kg pulse of trace gas \(x\) relative to 1 kg of CO₂ over horizon \(H\)</span>
+              </div>
+              <p class="general-method-card-desc">
+                • <strong>GWP-100:</strong> Methane multiplier is 27.2–29.8 (IPCC AR6), and N₂O is 273. Reflects century-scale planetary warming.<br>
+                • <strong>GWP-20:</strong> Short-term horizon where methane multiplier climbs to 82.5–84, emphasizing near-term climate tipping points. PEAT-TWIN renders both metrics simultaneously for transparent reporting.
               </p>
             </div>
 
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>📉</span> 3. Sustained-Flux Radiative Forcing (SGWP)</h3>
               <p class="general-method-card-desc">
-                Standard GWP metrics assume a single instantaneous pulse emission. In reality, peatland ecosystems emit and sequester greenhouse gases continuously over decades. Applying sustained-flux modeling (SGWP) demonstrates that due to the rapid atmospheric breakdown of methane (\(\tau \approx 11.8\text{ years}\)), continuous long-term CO₂ sequestration converts rewetted peatlands into net planetary cooling sinks within 30 to 50 years.
+                Standard GWP assumes a single pulse emission. In contrast, ecosystems emit and sequester continuously over centuries:
+              </p>
+              <div class="method-equation-box">
+                \[ \mathrm{SGWP}_H = \frac{\mathrm{AGRF}_{s,\mathrm{CH}_4}(H)}{\mathrm{AGRF}_{s,\mathrm{CO}_2}(H)} \]
+                <span class="equation-caption">Sustained-emission metric reflecting rapid atmospheric CH₄ decay (\(\tau \approx 11.8\text{ yr}\)) and cumulative peat cooling</span>
+              </div>
+              <p class="general-method-card-desc">
+                Because atmospheric methane reaches steady-state equilibrium quickly, sustained long-term CO₂ sequestration converts rewetted peatlands into net cooling sinks within 30 to 50 years.
               </p>
             </div>
 
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>📐</span> 4. IPCC Methodological Tiers (Tiers 1, 2, and 3)</h3>
               <p class="general-method-card-desc">
-                • <strong>Tier 1:</strong> Global default emission factors categorized by broad soil and land-use classes (IPCC 2013 Wetlands Supplement). High uncertainty (\(\pm 50\text{–}100\%\)).<br>
-                • <strong>Tier 2:</strong> Regionally calibrated emission factors stratified by annual mean water table depth classes.<br>
-                • <strong>Tier 3:</strong> High-resolution process-based biophysical models (such as the PEAT-TWIN engine) validated by continuous Eddy Covariance tower networks. Eliminates systemic bias and unlocks premium institutional carbon credits.
+                Process-based modeling (Tier 3) replaces static default factors with dynamic biophysical differential equations:
+              </p>
+              <div class="method-equation-box">
+                \[ \frac{dC_{\mathrm{peat}}}{dt} = \mathrm{NPP} - k_{\mathrm{ox}}(T, \theta) \cdot C_{\mathrm{aerobic}} - k_{\mathrm{anox}}(T) \cdot C_{\mathrm{catotelm}} \]
+                <span class="equation-caption">Process-level carbon balance dynamically modulated by soil temperature (\(T\)) and water table saturation (\(\theta\))</span>
+              </div>
+              <p class="general-method-card-desc">
+                • <strong>Tier 1:</strong> Global default emission factors (high uncertainty: \(\pm 50\text{–}100\%\)).<br>
+                • <strong>Tier 2:</strong> Regionally calibrated factors by annual mean water table depth.<br>
+                • <strong>Tier 3:</strong> High-resolution physics models validated by continuous Eddy Covariance towers.
               </p>
             </div>
 
@@ -1717,10 +1864,10 @@
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>🛡️</span> 6. Additionality, Permanence &amp; Leakage Safeguards</h3>
               <p class="general-method-card-desc">
-                Integrity pillars required for high-grade peatland carbon crediting:<br>
-                • <strong>Additionality:</strong> Proving rewetting would not have occurred without carbon finance revenue.<br>
-                • <strong>Permanence:</strong> Legal, institutional, and hydrological safeguards guaranteeing elevated water tables for 30–100 years.<br>
-                • <strong>Activity Leakage:</strong> Verifying agricultural drainage and intensive dairy farming are not simply displaced to adjacent peat parcels.
+                Integrity pillars required for institutional-grade carbon crediting:<br>
+                • <strong>Additionality:</strong> Verifying rewetting would not have occurred without carbon finance revenue.<br>
+                • <strong>Permanence:</strong> Legal covenants guaranteeing elevated water tables for 30–100 years.<br>
+                • <strong>Activity Leakage:</strong> Verifying agricultural drainage and dairy farming are not displaced to adjacent peat parcels.
               </p>
             </div>
           </div>
@@ -5931,7 +6078,6 @@
       </div>
 
     </div>
-    </div> <!-- /.embargo-section-locked-content -->
 
   </div>
 </section>
@@ -7274,5 +7420,6 @@
     </div>
   </div>
 
+  </div> <!-- /#app -->
 </body>
 </html>
