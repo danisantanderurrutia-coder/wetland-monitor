@@ -1195,22 +1195,22 @@ body.theme-dark .site-selector-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transform: rotate(-1.5deg);
+  transform: none;
   transform-origin: left center;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: box-shadow var(--transition-fast);
   cursor: default;
 }
 
 .hardware-card:nth-child(even) .hardware-postit {
-  transform: rotate(1.4deg);
+  transform: none;
 }
 
 .hardware-card:nth-child(3n) .hardware-postit {
-  transform: rotate(-0.9deg);
+  transform: none;
 }
 
 .hardware-card:hover .hardware-postit {
-  transform: rotate(0deg) scale(1.04);
+  transform: none;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.45);
 }
 
@@ -4389,7 +4389,7 @@ body:not(.embargo-active) .flux-plot-card img:hover {
 }
 
 .landing-seal-img:hover {
-  transform: scale(1.05) rotate(2deg);
+  transform: scale(1.04);
 }
 
 @media (max-width: 900px) {
@@ -5540,32 +5540,66 @@ body:not(.embargo-active) .flux-plot-card img:hover {
   color: #ffffff;
 }
 
-/* Clean General Methodology Views Container */
+/* ==========================================================================
+   WALLENER-INSPIRED VIVID METHODOLOGY VIEWS (TOOLS, SATELLITES, CARBON GWP)
+   High-Contrast Surfaces, 6 Semantic Category Palettes, Luminous Equations,
+   Post-it Category Headers, Telemetry Strips & KPI Specification Footers
+   ========================================================================== */
 .general-method-container {
   width: 100%;
-  max-width: 1220px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3.5rem;
+  padding: 1.5rem 1.25rem 3.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 1.65rem;
+}
+
+/* 1. Unified Wallener-Style Hero + Visual Banner Card */
+.method-section-hero-card {
+  background: var(--bg-card, #ffffff);
+  border: 1.5px solid var(--border-medium, #cbd5e1);
+  border-radius: 18px;
+  padding: 1.65rem 1.85rem;
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+body.theme-dark .method-section-hero-card {
+  background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.14), rgba(16, 185, 129, 0.08) 45%, rgba(15, 25, 45, 0.98) 100%);
+  border-color: rgba(56, 189, 248, 0.38);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 28px rgba(14, 165, 233, 0.12);
+}
+
+.method-section-hero-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #0ea5e9 0%, #10b981 35%, #f59e0b 70%, #8b5cf6 100%);
+  z-index: 5;
 }
 
 /* Editorial Section Banners (Scientific Visuals Hero) */
 .section-method-banner {
   position: relative;
   width: 100%;
-  height: 250px;
-  border-radius: 18px;
+  height: 265px;
+  border-radius: 14px;
   overflow: hidden;
-  border: 1.5px solid rgba(56, 189, 248, 0.28);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
-  margin-bottom: 0.25rem;
+  border: 1.5px solid rgba(56, 189, 248, 0.42);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 768px) {
   .section-method-banner {
-    height: 190px;
+    height: 200px;
   }
 }
 
@@ -5574,12 +5608,14 @@ body:not(.embargo-active) .flux-plot-card img:hover {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  cursor: zoom-in !important;
+  filter: saturate(1.12) contrast(1.05);
 }
 
 .section-method-banner:hover .section-method-banner-img {
-  transform: scale(1.03);
+  transform: scale(1.035);
+  filter: saturate(1.22) contrast(1.08);
 }
 
 .section-method-banner-overlay {
@@ -5587,151 +5623,535 @@ body:not(.embargo-active) .flux-plot-card img:hover {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(11, 19, 41, 0.95) 0%,
-    rgba(11, 19, 41, 0.65) 45%,
-    rgba(11, 19, 41, 0.25) 100%
+    rgba(7, 13, 28, 0.94) 0%,
+    rgba(7, 13, 28, 0.52) 48%,
+    rgba(7, 13, 28, 0.12) 100%
   );
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.5rem 1.8rem;
+  padding: 1.4rem 1.75rem;
   pointer-events: none;
+}
+
+.section-method-banner-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
 }
 
 .section-method-banner-badge {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
   font-weight: 800;
-  color: #38bdf8;
-  background: rgba(2, 132, 199, 0.25);
-  border: 1px solid rgba(56, 189, 248, 0.45);
-  padding: 3px 10px;
+  color: #ecfdf5;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(2, 132, 199, 0.85));
+  border: 1px solid rgba(167, 243, 208, 0.7);
+  padding: 4px 11px;
   border-radius: 6px;
   width: fit-content;
-  letter-spacing: 0.04em;
-  margin-bottom: 6px;
-  backdrop-filter: blur(8px);
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.section-method-zoom-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 3px 9px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
 }
 
 .section-method-banner-title {
   margin: 0;
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: #ffffff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: #ffffff !important;
+  letter-spacing: -0.015em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
 }
 
 .section-method-banner-desc {
-  margin: 4px 0 0 0;
-  font-size: 0.84rem;
-  color: #cbd5e1;
-  max-width: 850px;
-  line-height: 1.45;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  margin: 5px 0 0 0;
+  font-size: 0.88rem;
+  color: #f1f5f9 !important;
+  max-width: 920px;
+  line-height: 1.5;
+  font-weight: 500;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
 }
 
+/* Telemetry Strip inside Method Hero Card (Light & Dark Contrast Safe) */
+.method-telemetry-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding-top: 0.2rem;
+}
+
+.method-telemetry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+body.theme-dark .method-telemetry-chip {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(148, 163, 184, 0.28);
+  color: #f8fafc;
+}
+
+.method-telemetry-chip .chip-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #0284c7;
+  letter-spacing: 0.03em;
+}
+
+body.theme-dark .method-telemetry-chip .chip-label {
+  color: #38bdf8;
+}
+
+.method-telemetry-chip.chip-live {
+  background: rgba(16, 185, 129, 0.14);
+  border-color: rgba(16, 185, 129, 0.45);
+  color: #065f46;
+}
+
+body.theme-dark .method-telemetry-chip.chip-live {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(52, 211, 153, 0.5);
+  color: #6ee7b7;
+}
+
+.method-telemetry-chip .live-dot {
+  color: #10b981;
+  font-size: 0.7rem;
+  animation: pulse-live 2s infinite ease-in-out;
+}
+
+/* 2. Wallener-Style 6-Color Semantic Grid & Cards */
 .general-method-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(355px, 1fr));
   gap: 1.5rem;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .general-method-grid {
     grid-template-columns: 1fr;
   }
 }
 
 .general-method-card {
-  background: linear-gradient(145deg, rgba(15, 23, 42, 0.88) 0%, rgba(10, 18, 36, 0.95) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.18);
+  --card-accent: #0284c7;
+  --card-accent-bright: #38bdf8;
+  --card-accent-soft: rgba(2, 132, 199, 0.09);
+  --card-accent-soft-dark: rgba(56, 189, 248, 0.15);
+  --card-accent-border: rgba(2, 132, 199, 0.32);
+  --card-accent-border-dark: rgba(56, 189, 248, 0.42);
+  --postit-bg: #e0f2fe;
+  --postit-color: #0369a1;
+  --postit-border: #7dd3fc;
+
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+  border: 1.5px solid var(--card-accent-border);
+  border-top: 4.5px solid var(--card-accent);
   border-radius: 16px;
-  padding: 1.5rem 1.6rem;
+  padding: 1.45rem 1.55rem;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  justify-content: space-between;
+  gap: 0.95rem;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease, box-shadow 0.24s ease;
   word-break: normal;
   overflow-wrap: break-word;
+  position: relative;
+  overflow: hidden;
+  color: #0f172a;
+}
+
+body.theme-dark .general-method-card {
+  background: radial-gradient(circle at top right, var(--card-accent-soft-dark) 0%, rgba(19, 32, 56, 0.96) 55%, rgba(12, 21, 38, 0.99) 100%);
+  border-color: var(--card-accent-border-dark);
+  border-top: 4.5px solid var(--card-accent-bright);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.42);
+  color: #f8fafc;
 }
 
 .general-method-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.38);
-  box-shadow: 0 14px 38px rgba(2, 132, 199, 0.2);
+  transform: translateY(-4px);
+  border-color: var(--card-accent);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14);
 }
 
+body.theme-dark .general-method-card:hover {
+  border-color: var(--card-accent-bright);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6), 0 0 24px var(--card-accent-soft-dark);
+}
+
+/* 6 Semantic Category Themes (Inherited from Wallener Au Instrument Matrix) */
+.general-method-card.method-card-cyan {
+  --card-accent: #0284c7;
+  --card-accent-bright: #38bdf8;
+  --card-accent-soft: rgba(2, 132, 199, 0.08);
+  --card-accent-soft-dark: rgba(56, 189, 248, 0.16);
+  --card-accent-border: rgba(2, 132, 199, 0.32);
+  --card-accent-border-dark: rgba(56, 189, 248, 0.45);
+  --postit-bg: #e0f2fe;
+  --postit-color: #0369a1;
+  --postit-border: #7dd3fc;
+}
+
+.general-method-card.method-card-emerald {
+  --card-accent: #059669;
+  --card-accent-bright: #34d399;
+  --card-accent-soft: rgba(5, 150, 105, 0.08);
+  --card-accent-soft-dark: rgba(52, 211, 153, 0.16);
+  --card-accent-border: rgba(5, 150, 105, 0.32);
+  --card-accent-border-dark: rgba(52, 211, 153, 0.45);
+  --postit-bg: #dcfce7;
+  --postit-color: #166534;
+  --postit-border: #86efac;
+}
+
+.general-method-card.method-card-amber {
+  --card-accent: #d97706;
+  --card-accent-bright: #fbbf24;
+  --card-accent-soft: rgba(217, 119, 6, 0.09);
+  --card-accent-soft-dark: rgba(251, 191, 36, 0.16);
+  --card-accent-border: rgba(217, 119, 6, 0.35);
+  --card-accent-border-dark: rgba(251, 191, 36, 0.45);
+  --postit-bg: #fef9c3;
+  --postit-color: #854d0e;
+  --postit-border: #fde047;
+}
+
+.general-method-card.method-card-violet {
+  --card-accent: #7c3aed;
+  --card-accent-bright: #a78bfa;
+  --card-accent-soft: rgba(124, 58, 237, 0.08);
+  --card-accent-soft-dark: rgba(167, 139, 250, 0.16);
+  --card-accent-border: rgba(124, 58, 237, 0.32);
+  --card-accent-border-dark: rgba(167, 139, 250, 0.45);
+  --postit-bg: #f3e8ff;
+  --postit-color: #6b21a8;
+  --postit-border: #d8b4fe;
+}
+
+.general-method-card.method-card-rose {
+  --card-accent: #e11d48;
+  --card-accent-bright: #fb7185;
+  --card-accent-soft: rgba(225, 29, 72, 0.08);
+  --card-accent-soft-dark: rgba(251, 113, 133, 0.16);
+  --card-accent-border: rgba(225, 29, 72, 0.32);
+  --card-accent-border-dark: rgba(251, 113, 133, 0.45);
+  --postit-bg: #ffe4e6;
+  --postit-color: #9f1239;
+  --postit-border: #fda4af;
+}
+
+.general-method-card.method-card-teal {
+  --card-accent: #0d9488;
+  --card-accent-bright: #2dd4bf;
+  --card-accent-soft: rgba(13, 148, 136, 0.08);
+  --card-accent-soft-dark: rgba(45, 212, 191, 0.16);
+  --card-accent-border: rgba(13, 148, 136, 0.32);
+  --card-accent-border-dark: rgba(45, 212, 191, 0.45);
+  --postit-bg: #ccfbf1;
+  --postit-color: #115e59;
+  --postit-border: #5eead4;
+}
+
+/* Card Top Bar: Wallener Post-it + Tier Pill */
+.method-card-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.method-postit-badge {
+  background: var(--postit-bg);
+  color: var(--postit-color);
+  border: 1px solid var(--postit-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+  border-radius: 5px;
+  padding: 3px 9px 3px 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transform: none;
+  transition: transform 0.2s ease;
+}
+
+.general-method-card:nth-child(even) .method-postit-badge {
+  transform: none;
+}
+
+.general-method-card:hover .method-postit-badge {
+  transform: none;
+}
+
+.method-tier-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--card-accent);
+  background: var(--card-accent-soft);
+  border: 1px solid var(--card-accent-border);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+body.theme-dark .method-tier-pill {
+  color: var(--card-accent-bright);
+  background: var(--card-accent-soft-dark);
+  border-color: var(--card-accent-border-dark);
+}
+
+/* Card Title Row with Illuminated Icon Box */
 .general-method-card-title {
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-size: 1.05rem;
+  gap: 11px;
+  font-size: 1.08rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
   margin: 0;
-  line-height: 1.35;
+  line-height: 1.32;
 }
 
+body.theme-dark .general-method-card-title {
+  color: #ffffff;
+}
+
+.method-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--card-accent-soft);
+  border: 1.5px solid var(--card-accent-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+body.theme-dark .method-icon-badge {
+  background: var(--card-accent-soft-dark);
+  border-color: var(--card-accent-border-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* High-Contrast Description Text */
 .general-method-card-desc {
-  font-size: 0.85rem;
-  color: #cbd5e1;
+  font-size: 0.86rem;
+  color: #1e293b;
   line-height: 1.65;
   margin: 0;
+  font-weight: 450;
 }
 
-/* Dedicated Isolated Equation Box with Generous Breathing Room */
+body.theme-dark .general-method-card-desc {
+  color: #f1f5f9;
+}
+
+.general-method-card-desc strong {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+body.theme-dark .general-method-card-desc strong {
+  color: #ffffff;
+}
+
+/* 3. Luminous Wallener-Style Equation Box (Tinted by Card Semantic Color) */
 .method-equation-box {
-  margin: 0.95rem 0;
-  padding: 0.95rem 1.25rem;
-  background: linear-gradient(180deg, rgba(8, 14, 28, 0.88) 0%, rgba(5, 10, 20, 0.95) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.24);
-  border-left: 3.5px solid #0284c7;
-  border-radius: 10px;
+  margin: 0.45rem 0;
+  padding: 0.9rem 1.15rem;
+  background: var(--card-accent-soft);
+  border: 1.5px solid var(--card-accent-border);
+  border-left: 4px solid var(--card-accent);
+  border-radius: 11px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow-x: auto;
-  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.45);
+  color: #0f172a;
+  position: relative;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
+}
+
+body.theme-dark .method-equation-box {
+  background: linear-gradient(135deg, var(--card-accent-soft-dark) 0%, rgba(15, 25, 45, 0.92) 100%);
+  border-color: var(--card-accent-border-dark);
+  border-left: 4px solid var(--card-accent-bright);
+  color: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.equation-law-badge {
+  align-self: flex-start;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.63rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--card-accent);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--card-accent-border);
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-bottom: 0.35rem;
+}
+
+body.theme-dark .equation-law-badge {
+  color: var(--card-accent-bright);
+  background: rgba(15, 23, 42, 0.75);
+  border-color: var(--card-accent-border-dark);
 }
 
 .method-equation-box .katex-display {
-  margin: 0.25rem 0 !important;
+  margin: 0.35rem 0 !important;
   padding: 0 !important;
+  font-size: 1.02rem;
 }
 
 .method-equation-box .equation-caption {
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.74rem;
-  color: #94a3b8;
-  line-height: 1.4;
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.42;
 }
 
-/* Stacked Spectral Indices Component */
+body.theme-dark .method-equation-box .equation-caption {
+  color: #cbd5e1;
+}
+
+/* 4. Wallener-Style Card KPI & Spec Footer */
+.method-card-footer {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--card-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+body.theme-dark .method-card-footer {
+  border-top-color: rgba(148, 163, 184, 0.22);
+}
+
+.method-spec-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.method-spec-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.69rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+}
+
+body.theme-dark .method-spec-pill {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #f8fafc;
+}
+
+.method-spec-pill strong {
+  color: var(--card-accent);
+}
+
+body.theme-dark .method-spec-pill strong {
+  color: var(--card-accent-bright);
+}
+
+.method-status-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--card-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+body.theme-dark .method-status-tag {
+  color: var(--card-accent-bright);
+}
+
+/* 5. Stacked Spectral Indices Component (High-Contrast Multi-Band Color Coding) */
 .spectral-indices-stack {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  margin: 0.5rem 0 0.25rem 0;
+  margin: 0.35rem 0;
 }
 
 .spectral-index-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  background: rgba(8, 14, 28, 0.6);
-  border: 1px solid rgba(56, 189, 248, 0.15);
-  border-radius: 8px;
-  padding: 8px 12px;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  gap: 5px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 3.5px solid var(--card-accent);
+  border-radius: 9px;
+  padding: 9px 12px;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.theme-dark .spectral-index-item {
+  background: rgba(15, 25, 45, 0.85);
+  border-color: rgba(148, 163, 184, 0.25);
+  border-left: 3.5px solid var(--card-accent-bright);
 }
 
 .spectral-index-item:hover {
-  background: rgba(56, 189, 248, 0.05);
-  border-color: rgba(56, 189, 248, 0.35);
+  transform: translateX(3px);
+  border-color: var(--card-accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .spectral-index-head {
@@ -5744,27 +6164,42 @@ body:not(.embargo-active) .flux-plot-card img:hover {
 
 .spectral-index-badge {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 800;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  padding: 2px 7px;
+  color: #0369a1;
+  background: #e0f2fe;
+  border: 1px solid #7dd3fc;
+  padding: 2px 8px;
   border-radius: 5px;
 }
 
 .spectral-index-formula {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+body.theme-dark .spectral-index-formula {
   color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(52, 211, 153, 0.4);
 }
 
 .spectral-index-detail {
-  font-size: 0.78rem;
-  color: #94a3b8;
-  line-height: 1.4;
+  font-size: 0.79rem;
+  color: #1e293b;
+  line-height: 1.45;
   margin: 0;
+  font-weight: 500;
+}
+
+body.theme-dark .spectral-index-detail {
+  color: #e2e8f0;
 }
 
 /* ==========================================================================

@@ -614,17 +614,25 @@ body.theme-monochrome {
 }
 
 /* --------------------------------------------------------------------------
-   5. THERMODYNAMIC REDOX LADDER SIMULATOR (RE-DESIGNED & POLISHED)
+   5. THERMODYNAMIC REDOX LADDER SIMULATOR (HIGH-CONTRAST LABORATORY SUITE)
    -------------------------------------------------------------------------- */
 .redox-ladder-card {
-  background: var(--bg-card, #0f172a);
-  border: 1.5px solid var(--border-medium, rgba(255, 255, 255, 0.15));
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.96) 0%, rgba(9, 16, 32, 0.99) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
   border-radius: 18px;
-  padding: 1.8rem;
+  padding: 1.85rem;
   margin: 1.75rem 0;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
   position: relative;
   overflow: hidden;
+  color: #f8fafc;
+}
+
+body[data-theme="daylight"] .redox-ladder-card {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.09) !important;
+  color: #0f172a !important;
 }
 
 .redox-ladder-card::before {
@@ -633,7 +641,7 @@ body.theme-monochrome {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 4px;
   background: linear-gradient(90deg, #f43f5e 0%, #a855f7 25%, #eab308 50%, #06b6d4 75%, #10b981 100%);
 }
 
@@ -643,9 +651,14 @@ body.theme-monochrome {
   gap: 12px;
   margin: 1.4rem 0;
   padding: 16px 20px;
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(11, 19, 41, 0.7);
   border-radius: 14px;
-  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+body[data-theme="daylight"] .redox-control-panel {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
 }
 
 .redox-presets-row {
@@ -657,14 +670,14 @@ body.theme-monochrome {
 }
 
 .redox-preset-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
-  padding: 5px 11px;
+  padding: 6px 12px;
   font-size: 0.76rem;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
-  color: var(--text-secondary, #cbd5e1);
+  color: #f1f5f9;
   cursor: pointer;
   transition: all 0.18s ease;
   display: inline-flex;
@@ -672,17 +685,36 @@ body.theme-monochrome {
   gap: 6px;
 }
 
+body[data-theme="daylight"] .redox-preset-btn {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
 .redox-preset-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(56, 189, 248, 0.18);
+  border-color: #38bdf8;
   color: #ffffff;
   transform: translateY(-1px);
 }
 
+body[data-theme="daylight"] .redox-preset-btn:hover {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
 .redox-preset-btn.active {
-  background: rgba(56, 189, 248, 0.2);
+  background: rgba(56, 189, 248, 0.25);
   border-color: #38bdf8;
   color: #ffffff;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+body[data-theme="daylight"] .redox-preset-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.3);
 }
 
 .redox-slider-track-wrap {
@@ -725,59 +757,81 @@ body.theme-monochrome {
 }
 
 .redox-slider-range::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
   box-shadow: 0 0 18px rgba(56, 189, 248, 1), 0 3px 8px rgba(0,0,0,0.5);
 }
 
 .redox-rungs-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 11px;
 }
 
 .redox-rung-item {
   display: grid;
-  grid-template-columns: 80px 1fr auto;
+  grid-template-columns: 85px 1fr auto;
   align-items: center;
-  gap: 14px;
-  padding: 12px 18px;
+  gap: 16px;
+  padding: 14px 20px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1.5px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0.5;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.22s ease;
+  opacity: 0.88;
+}
+
+body[data-theme="daylight"] .redox-rung-item {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 .redox-rung-item:hover {
-  opacity: 0.75;
-  background: rgba(255, 255, 255, 0.05);
+  opacity: 1;
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+body[data-theme="daylight"] .redox-rung-item:hover {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
 }
 
 .redox-rung-item.active {
   opacity: 1;
-  background: rgba(15, 23, 42, 0.9);
-  transform: translateX(6px) scale(1.01);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 20, 38, 0.98) 100%);
+  transform: translateX(4px);
+}
+
+body[data-theme="daylight"] .redox-rung-item.active {
+  background: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08) !important;
 }
 
 .redox-rung-item.active.rung-o2 {
   border-color: #10b981;
-  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25), inset 0 0 12px rgba(16, 185, 129, 0.08);
+  border-left: 5px solid #10b981;
+  box-shadow: 0 4px 22px rgba(16, 185, 129, 0.25);
 }
 .redox-rung-item.active.rung-no3 {
   border-color: #f59e0b;
-  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25), inset 0 0 12px rgba(245, 158, 11, 0.08);
+  border-left: 5px solid #f59e0b;
+  box-shadow: 0 4px 22px rgba(245, 158, 11, 0.25);
 }
 .redox-rung-item.active.rung-fe {
   border-color: #eab308;
-  box-shadow: 0 4px 20px rgba(234, 179, 8, 0.25), inset 0 0 12px rgba(234, 179, 8, 0.08);
+  border-left: 5px solid #eab308;
+  box-shadow: 0 4px 22px rgba(234, 179, 8, 0.25);
 }
 .redox-rung-item.active.rung-so4 {
   border-color: #a855f7;
-  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.25), inset 0 0 12px rgba(168, 85, 247, 0.08);
+  border-left: 5px solid #a855f7;
+  box-shadow: 0 4px 22px rgba(168, 85, 247, 0.25);
 }
 .redox-rung-item.active.rung-ch4 {
   border-color: #f43f5e;
-  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.25), inset 0 0 12px rgba(244, 63, 94, 0.08);
+  border-left: 5px solid #f43f5e;
+  box-shadow: 0 4px 22px rgba(244, 63, 94, 0.25);
 }
 
 .redox-rung-num-badge {
@@ -785,49 +839,62 @@ body.theme-monochrome {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 3px;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 800;
-  font-size: 0.72rem;
-  padding: 6px;
+  font-size: 0.74rem;
+  padding: 8px 6px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   text-align: center;
+}
+
+body[data-theme="daylight"] .redox-rung-num-badge {
+  background: #ffffff;
+  border-color: #cbd5e1;
 }
 
 .redox-rung-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   min-width: 0;
 }
 
 .redox-rung-title {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--text-primary, #ffffff);
+  font-weight: 800;
+  font-size: 0.98rem;
+  color: #ffffff;
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
+body[data-theme="daylight"] .redox-rung-title {
+  color: #0f172a !important;
+}
+
 .redox-guild-tag {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 2px 7px;
+  padding: 2px 8px;
   border-radius: 4px;
 }
 
 .redox-rung-formula {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.84rem;
-  color: var(--text-secondary, #cbd5e1);
+  font-size: 0.88rem;
+  color: #f1f5f9;
   overflow-x: auto;
-  padding: 2px 0;
+  padding: 3px 0;
+}
+
+body[data-theme="daylight"] .redox-rung-formula {
+  color: #1e293b !important;
 }
 
 .redox-rung-right {
@@ -840,11 +907,16 @@ body.theme-monochrome {
 .redox-rung-potential {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 800;
-  font-size: 0.8rem;
-  padding: 4px 9px;
+  font-size: 0.82rem;
+  padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   white-space: nowrap;
+}
+
+body[data-theme="daylight"] .redox-rung-potential {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
 }
 
 .redox-rung-status-pill {
@@ -852,7 +924,7 @@ body.theme-monochrome {
   font-size: 0.68rem;
   font-weight: 800;
   text-transform: uppercase;
-  padding: 2px 6px;
+  padding: 2px 7px;
   border-radius: 4px;
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -872,17 +944,11 @@ body.theme-monochrome {
   }
 }
 
-/* --------------------------------------------------------------------------
-   6. 3D CARD PARALLAX TILT
-   -------------------------------------------------------------------------- */
-.landing-card {
-  transform-style: preserve-3d;
-  transition: transform 0.15s ease-out, box-shadow 0.2s ease;
-}
-
-.landing-card .landing-card-body,
-.landing-card .landing-card-header,
-.landing-card .landing-wallener-actions,
-.landing-card .landing-featured-actions {
-  transform: translateZ(14px);
+/* 3D Card Tilt disabled per user instruction */
+.landing-card,
+.general-method-card,
+.comparison-curtain-card,
+.peat-calc-card,
+.redox-ladder-card {
+  transform: none !important;
 }

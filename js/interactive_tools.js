@@ -737,31 +737,10 @@ export class InteractiveSuite {
   }
 
   // ==========================================================================
-  // 5. 3D CARD PARALLAX TILT
+  // 5. 3D CARD PARALLAX TILT (Disabled by user preference: flat, stable cards)
   // ==========================================================================
   initCardParallaxTilt() {
-    const cards = document.querySelectorAll(".landing-card, .comparison-curtain-card, .peat-calc-card, .redox-ladder-card");
-    
-    cards.forEach(card => {
-      card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const deltaX = (x - centerX) / centerX;
-        const deltaY = (y - centerY) / centerY;
-
-        const rotX = -deltaY * 5;
-        const rotY = deltaX * 5;
-
-        card.style.transform = `perspective(900px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`;
-      });
-
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
-      });
-    });
+    // 3D tilt and rotations permanently disabled across all cards for crisp, stable reading.
+    return;
   }
 }
