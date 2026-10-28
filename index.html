@@ -1538,10 +1538,34 @@
             </div>
           </div>
 
-          <!-- Top Row: Redox Reactions (Stoichiometry) & Comparative Ecological Succession Panel -->
-          <div class="presentation-grid-2" style="margin-bottom: 1.5rem;">
-            <!-- Left: Redox Equations -->
-            <div class="presentation-card" id="biogeo-general-card-redox">
+          <!-- Biogeochemistry Subtabs Navigation Bar -->
+          <div class="biogeo-subtabs-bar">
+            <button type="button" class="biogeo-subtab-pill active" data-biogeo-tab="drained-rewetted">
+              <span>⚖️</span> Drained vs. Rewetted
+            </button>
+            <button type="button" class="biogeo-subtab-pill" data-biogeo-tab="fig20">
+              <span>🔬</span> Conceptual Model (Fig. 20)
+            </button>
+            <button type="button" class="biogeo-subtab-pill" data-biogeo-tab="actors">
+              <span>🦠</span> Microbial Consortia &amp; Aerenchyma
+            </button>
+            <button type="button" class="biogeo-subtab-pill" data-biogeo-tab="redox-ladder">
+              <span>⚡</span> Redox Ladder Simulator
+            </button>
+            <button type="button" class="biogeo-subtab-pill" data-biogeo-tab="typologies">
+              <span>🌾</span> Peatland Typologies
+            </button>
+            <button type="button" class="biogeo-subtab-pill" data-biogeo-tab="all">
+              <span>📑</span> View All Sections
+            </button>
+          </div>
+
+          <!-- SUB-TAB 1: DRAINED VS REWETTED DYNAMICS -->
+          <div class="biogeo-tab-panel active" data-biogeo-panel="drained-rewetted">
+            <!-- Top Row: Redox Reactions (Stoichiometry) & Comparative Ecological Succession Panel -->
+            <div class="presentation-grid-2" style="margin-bottom: 1.5rem;">
+              <!-- Left: Redox Equations -->
+              <div class="presentation-card" id="biogeo-general-card-redox">
               <div class="presentation-card-header">
                 <span class="presentation-card-badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent-cyan);">Stoichiometry</span>
                 <h3 class="presentation-card-title">Gas Exchange Redox Equations</h3>
@@ -1643,30 +1667,36 @@
                   </ul>
                 </div>
               </div>
-            </div>
-          </div>
+            </div> <!-- /.presentation-card #biogeo-general-card-succession -->
+          </div> <!-- /.presentation-grid-2 -->
+        </div> <!-- /.biogeo-tab-panel [data-biogeo-panel="drained-rewetted"] -->
 
-          <!-- Visual Centerpiece: Figure 20 Conceptual Model Full-Width & Expansive -->
-          <div class="presentation-card thesis-plot-card" id="biogeo-general-fig20-card" style="margin: 1.25rem 0 1.75rem; padding: 1.5rem; background: var(--bg-card, #0f172a); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 14px; box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);">
-            <div class="thesis-plot-header" style="margin-bottom: 1rem;">
-              <div class="plot-header-left">
-                <span class="presentation-card-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald);">Universal Biogeochemical Framework</span>
-                <h3 class="thesis-plot-title" style="font-size: 1.25rem;">Peatlands Biogeochemical Processes &amp; Gas Flux Cascade (Fig. 20)</h3>
+          <!-- SUB-TAB 2: CONCEPTUAL MODEL (FIG. 20) -->
+          <div class="biogeo-tab-panel" data-biogeo-panel="fig20">
+            <!-- Visual Centerpiece: Figure 20 Conceptual Model Full-Width & Expansive -->
+            <div class="presentation-card thesis-plot-card" id="biogeo-general-fig20-card" style="margin: 0.5rem 0 1.75rem; padding: 1.5rem; background: var(--bg-card, #0f172a); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 14px; box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);">
+              <div class="thesis-plot-header" style="margin-bottom: 1rem;">
+                <div class="plot-header-left">
+                  <span class="presentation-card-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald);">Universal Biogeochemical Framework</span>
+                  <h3 class="thesis-plot-title" style="font-size: 1.25rem;">Peatlands Biogeochemical Processes &amp; Gas Flux Cascade (Fig. 20)</h3>
+                </div>
+                <span class="plot-depth-tag">Click to Zoom • Full Resolution</span>
               </div>
-              <span class="plot-depth-tag">Click to Zoom • Full Resolution</span>
+              <div class="thesis-plot-container biogeo-fig20-container" style="max-height: none; min-height: auto; display: flex; justify-content: center; align-items: center; background: #ffffff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); cursor: zoom-in;">
+                <img src="assets/Peatlands_Biogeochemical_Processes_Fig20.png" alt="Peatlands Biogeochemical Processes (Fig. 20)" class="thesis-plot biogeo-fig20-img" style="width: 100%; max-width: 1100px; height: auto; max-height: none; object-fit: contain; display: block;" data-title="Peatlands Biogeochemical Processes (Fig. 20)" data-caption="Conceptual model of greenhouse gas fluxes control in wetland soils: carbon assimilation, aerobic respiration, anaerobic fermentation, alternative electron acceptors (NO3-, Fe3+, SO4(2-)), methanogenesis, methanotrophic biofilter, and vascular aerenchyma bypass conduits.">
+              </div>
+              <div class="thesis-plot-meta" style="margin-top: 1rem;">
+                <p class="plot-caption" style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+                  <strong>Integrative Biogeochemical Continuum:</strong> Visualizes the thermodynamic coupling between photosynthetic carbon fixation, aerobic acrotelm respiration, sequential electron acceptor exhaustion (\(\mathrm{O}_2 \rightarrow \mathrm{NO}_3^- \rightarrow \mathrm{Fe}^{3+} \rightarrow \mathrm{SO}_4^{2-} \rightarrow \mathrm{CH}_4\)), the capillary methanotrophic biofilter, and emergent vascular plant aerenchyma chimneys bypassing surface oxidation.
+                </p>
+              </div>
             </div>
-            <div class="thesis-plot-container biogeo-fig20-container" style="max-height: none; min-height: auto; display: flex; justify-content: center; align-items: center; background: #ffffff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); cursor: zoom-in;">
-              <img src="assets/Peatlands_Biogeochemical_Processes_Fig20.png" alt="Peatlands Biogeochemical Processes (Fig. 20)" class="thesis-plot biogeo-fig20-img" style="width: 100%; max-width: 1100px; height: auto; max-height: none; object-fit: contain; display: block;" data-title="Peatlands Biogeochemical Processes (Fig. 20)" data-caption="Conceptual model of greenhouse gas fluxes control in wetland soils: carbon assimilation, aerobic respiration, anaerobic fermentation, alternative electron acceptors (NO3-, Fe3+, SO4(2-)), methanogenesis, methanotrophic biofilter, and vascular aerenchyma bypass conduits.">
-            </div>
-            <div class="thesis-plot-meta" style="margin-top: 1rem;">
-              <p class="plot-caption" style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
-                <strong>Integrative Biogeochemical Continuum:</strong> Visualizes the thermodynamic coupling between photosynthetic carbon fixation, aerobic acrotelm respiration, sequential electron acceptor exhaustion (\(\mathrm{O}_2 \rightarrow \mathrm{NO}_3^- \rightarrow \mathrm{Fe}^{3+} \rightarrow \mathrm{SO}_4^{2-} \rightarrow \mathrm{CH}_4\)), the capillary methanotrophic biofilter, and emergent vascular plant aerenchyma chimneys bypassing surface oxidation.
-              </p>
-            </div>
-          </div>
+          </div> <!-- /.biogeo-tab-panel [data-biogeo-panel="fig20"] -->
 
-          <!-- Key Biogeochemical Actors Grid (6 Consortia Cards) -->
-          <div class="presentation-card" id="biogeo-general-card-actors" style="margin-bottom: 1.75rem;">
+          <!-- SUB-TAB 3: MICROBIAL CONSORTIA & AERENCHYMA -->
+          <div class="biogeo-tab-panel" data-biogeo-panel="actors">
+            <!-- Key Biogeochemical Actors Grid (6 Consortia Cards) -->
+            <div class="presentation-card" id="biogeo-general-card-actors" style="margin-bottom: 1.75rem;">
             <div class="presentation-card-header" style="margin-bottom: 1rem;">
               <span class="presentation-card-badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent-cyan);">Microbial Consortia</span>
               <h3 class="presentation-card-title">Key Biogeochemical Actors Across Peatland Ecosystems</h3>
@@ -1764,25 +1794,29 @@
               </div>
 
               <!-- Actor 6: Plants with Aerenchyma -->
-              <div class="biogeo-actor-card actor-rewetted actor-aerenchyma">
-                <div class="actor-image-container">
-                  <img src="assets/actors/plants.jpg" alt="Plants with Aerenchyma">
+              <div class="biogeo-actor-card actor-rewetted actor-aerenchyma" style="cursor: pointer;" title="Click to open full-resolution anatomical aerenchyma plate">
+                <div class="actor-image-container" style="position: relative;">
+                  <img src="assets/sprites/wetland_carex_plate.jpg" alt="Carex rostrata Stokes & Vascular Aerenchyma Anatomy" style="object-position: center top;">
+                  <span class="aerenchyma-inspect-btn" style="position: absolute; bottom: 8px; right: 8px; background: rgba(15, 23, 42, 0.88); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 6px; padding: 2px 7px; font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">🔍 Zoom Aerenchyma</span>
                 </div>
                 <div class="actor-card-body">
                   <div class="actor-badge-row">
-                    <span class="actor-role-badge" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald);">BYPASS SHUNT</span>
+                    <span class="actor-role-badge" style="background: rgba(14, 165, 233, 0.12); color: var(--accent-cyan);">BYPASS SHUNT</span>
                     <span class="actor-trophic-tag tag-vascular">VASCULAR WETLAND FLORA</span>
                   </div>
-                  <div class="actor-title">Plants with Aerenchyma</div>
+                  <div class="actor-title">Plants with Aerenchyma (Carex rostrata)</div>
                   <div class="actor-desc">
-                    Emergent wetland sedges (*Carex*, *Phragmites*, *Eriophorum*) with gas lacunae that vent deep soil methane directly into the atmosphere, bypassing methanotrophs.
+                    Emergent wetland sedges (<em>Carex rostrata</em>, <em>Phragmites australis</em>) with continuous longitudinal aerenchyma gas lacunae that vent deep soil methane directly into the atmosphere, bypassing methanotrophs.
                   </div>
-                  <div class="actor-substrate-pill">Substrate: Gas Transport Conduit</div>
+                  <div class="actor-substrate-pill">Substrate: Gas Transport Conduit • Click to Zoom Anatomy</div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> <!-- /.presentation-card #biogeo-general-card-actors -->
+        </div> <!-- /.biogeo-tab-panel [data-biogeo-panel="actors"] -->
 
+        <!-- SUB-TAB 5: GLOBAL PEATLAND TYPOLOGIES -->
+        <div class="biogeo-tab-panel" data-biogeo-panel="typologies">
           <!-- Global Peatland Typology & Restoration Paradigms Grid -->
           <div class="general-method-grid">
             <div class="general-method-card method-card-cyan">
@@ -1916,11 +1950,14 @@
                 </div>
                 <span class="method-status-tag tag-field">Degraded</span>
               </div>
-            </div>
-          </div>
+            </div> <!-- /.general-method-card -->
+          </div> <!-- /.general-method-grid -->
+        </div> <!-- /.biogeo-tab-panel [data-biogeo-panel="typologies"] -->
 
-          <!-- Redesigned Thermodynamic Redox Ladder Simulator -->
-          <div class="redox-ladder-card" id="panel-redox-ladder">
+          <!-- SUB-TAB 4: THERMODYNAMIC REDOX LADDER -->
+          <div class="biogeo-tab-panel" data-biogeo-panel="redox-ladder">
+            <!-- Redesigned Thermodynamic Redox Ladder Simulator -->
+            <div class="redox-ladder-card" id="panel-redox-ladder">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px;">
               <div>
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
@@ -2084,8 +2121,9 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div> <!-- /#panel-redox-ladder -->
+        </div> <!-- /.biogeo-tab-panel [data-biogeo-panel="redox-ladder"] -->
+      </div> <!-- /.general-method-container -->
       </section>
 
       <!-- 6. GENERAL VIEW: CARBON ACCOUNTING & GWP GENERAL -->
@@ -4367,20 +4405,21 @@
               </div>
 
               <!-- Actor 6: Plants with Aerenchyma (Rewetted Bypass) -->
-              <div class="biogeo-actor-card actor-rewetted actor-aerenchyma">
-                <div class="actor-image-container">
-                  <img src="assets/actors/plants.jpg" alt="Plants with Aerenchyma">
+              <div class="biogeo-actor-card actor-rewetted actor-aerenchyma" style="cursor: pointer;" title="Click to open full-resolution anatomical aerenchyma plate">
+                <div class="actor-image-container" style="position: relative;">
+                  <img src="assets/sprites/wetland_carex_plate.jpg" alt="Carex rostrata Stokes & Vascular Aerenchyma Anatomy" style="object-position: center top;">
+                  <span class="aerenchyma-inspect-btn" style="position: absolute; bottom: 8px; right: 8px; background: rgba(15, 23, 42, 0.85); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 6px; padding: 2px 7px; font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">🔍 Zoom Aerenchyma</span>
                 </div>
                 <div class="actor-card-body">
                   <div class="actor-badge-row">
                     <span class="actor-role-badge" style="background: rgba(14, 165, 233, 0.12); color: var(--accent-cyan);">VASCULAR CONDUIT</span>
                     <span class="actor-trophic-tag tag-conduit">BYPASS CHIMNEY</span>
                   </div>
-                  <div class="actor-title">Plants with Aerenchyma</div>
+                  <div class="actor-title">Plants with Aerenchyma (Carex rostrata)</div>
                   <div class="actor-desc">
-                    Wetland vegetation (*Carex*, *Eriophorum*, *Typha*) providing internal gas channels that vent deep CH₄ straight to the atmosphere, bypassing the biofilter.
+                    Wetland vegetation (<em>Carex</em>, <em>Eriophorum</em>, <em>Typha</em>) providing internal gas channels that vent deep CH₄ straight to the atmosphere, bypassing the biofilter.
                   </div>
-                  <div class="actor-substrate-pill">Substrate: Root Exudates &amp; Gas Transport</div>
+                  <div class="actor-substrate-pill">Substrate: Root Exudates &amp; Gas Transport • Click to Zoom Anatomy</div>
                 </div>
               </div>
 

@@ -142,6 +142,7 @@ class WetlandMonitorApp {
     this.initPipelineToggles();
     this.initInstrumentMatrix();
     this.initBiogeoToggle();
+    this.initBiogeoSubtabs();
     this.initEddyDashboard();
     this.initMacroDashboard();
     this.initCoverActions();
@@ -935,6 +936,51 @@ class WetlandMonitorApp {
 
     btns.forEach(btn => {
       btn.classList.toggle("active", btn.dataset.state === state);
+    });
+  }
+
+  // ==========================================================================
+  // BIOGEOCHEMISTRY INTERNAL SUB-TABS NAVIGATION
+  // ==========================================================================
+  initBiogeoSubtabs() {
+    const pills = document.querySelectorAll(".biogeo-subtab-pill");
+    const panels = document.querySelectorAll(".biogeo-tab-panel");
+    if (!pills.length || !panels.length) return;
+
+    pills.forEach(pill => {
+      pill.addEventListener("click", () => {
+        const targetTab = pill.dataset.biogeoTab || "all";
+        pills.forEach(p => p.classList.toggle("active", p === pill));
+
+        panels.forEach(panel => {
+          if (targetTab === "all") {
+            panel.classList.add("active");
+          } else {
+            panel.classList.toggle("active", panel.dataset.biogeoPanel === targetTab);
+          }
+        });
+
+        // Trigger KaTeX rendering if newly revealed
+        if (window.renderMathInElement) {
+          panels.forEach(p => {
+            if (p.classList.contains("active")) {
+              try {
+                window.renderMathInElement(p, {
+                  delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false }
+                  ],
+                  throwOnError: false
+                });
+              } catch (e) {}
+            }
+          });
+        }
+
+        this.playUiAudioFeedback("click");
+      });
     });
   }
 
@@ -2146,7 +2192,14 @@ class WetlandMonitorApp {
 
       // 1. Check if clicked inside a Biogeochemistry Actor Card image
       const biogeoCard = e.target.closest(".biogeo-actor-card");
-      if (biogeoCard && (e.target.closest(".actor-image-container") || e.target.tagName === "IMG")) {
+      if (biogeoCard && (e.target.closest(".actor-image-container") || e.target.tagName === "IMG" || e.target.closest(".aerenchyma-inspect-btn, .actor-role-badge, .actor-trophic-tag"))) {
+        if (biogeoCard.classList.contains("actor-aerenchyma")) {
+          const plantSrc = "assets/sprites/wetland_carex_plate.jpg";
+          const plantTitle = "Carex rostrata Stokes (Bottle Sedge) — Botanical & Aerenchyma Anatomy";
+          const plantCaption = "High-resolution botanical illustration and internal tissue anatomy of Carex rostrata Stokes. Highlighting continuous longitudinal aerenchyma gas lacunae in culm and adventitious root cross-sections, acting as a direct atmospheric chimney venting catotelm biogenic CH₄ to the planetary boundary layer. Note horizontal creeping rhizome network and adventitious root deflection at the compacted plow pan boundary (σp = 62.4 kPa). (Official Botanical Specimen Plate, Klimafarm Peatland Observatory, Santander et al., 2026)";
+          openLightbox(plantSrc, plantTitle, plantCaption, "Botanical & Aerenchyma Specimen • Carex rostrata");
+          return;
+        }
         const img = biogeoCard.querySelector("img");
         if (img) {
           const title = biogeoCard.querySelector(".actor-title")?.textContent.trim() || "Biogeochemical Actor";
