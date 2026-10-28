@@ -624,7 +624,9 @@ export class InteractiveSuite {
   initRedoxLadder() {
     const slider = document.getElementById("redox-slider-input");
     const displayEh = document.getElementById("redox-eh-display");
+    const displayDg = document.getElementById("redox-dg-display");
     const alertBox = document.getElementById("redox-state-alert");
+    const presetBtns = document.querySelectorAll(".redox-preset-btn");
 
     const rungs = [
       { id: "rung-o2", minEh: 300, maxEh: 9999 },
@@ -638,12 +640,14 @@ export class InteractiveSuite {
 
     const updateRedoxState = (eh) => {
       let stateLabel = "";
+      let dgLabel = "";
       let alertContent = "";
 
       if (eh >= 300) {
         stateLabel = `+${eh} mV (Oxic Respiration)`;
+        dgLabel = "ΔG°' = -125 kJ / mol e⁻ (High Energy Yield)";
         displayEh.style.color = "#10b981";
-        alertContent = `<span>✅</span> <span><strong>Aerobic Acrotelm Zone:</strong> Plentiful oxygen acts as dominant terminal electron acceptor (\\(\\mathrm{O}_2 \\rightarrow \\mathrm{H}_2\\mathrm{O}\\)). Organic matter mineralizes rapidly via heterotrophic respiration, emitting high \\(\\mathrm{CO}_2\\).</span>`;
+        alertContent = `<span style="font-size: 1.25rem; line-height: 1;">✅</span> <div><strong>Aerobic Acrotelm Respiration Zone:</strong> Dissolved oxygen is abundant and acts as the dominant terminal electron acceptor (O₂ → H₂O). Aerobic bacteria and fungi rapidly mineralize structural peat organic matter, releasing continuous heterotrophic CO₂.</div>`;
         if (alertBox) {
           alertBox.style.background = "rgba(16, 185, 129, 0.12)";
           alertBox.style.borderColor = "rgba(16, 185, 129, 0.35)";
@@ -651,8 +655,9 @@ export class InteractiveSuite {
         }
       } else if (eh >= 100) {
         stateLabel = `+${eh} mV (Suboxic Denitrification)`;
+        dgLabel = "ΔG°' = -119 kJ / mol e⁻ (Nitrate Respiration)";
         displayEh.style.color = "#f59e0b";
-        alertContent = `<span>⚠️</span> <span><strong>Denitrification &amp; N₂O Threshold:</strong> Dissolved \\(\\mathrm{O}_2\\) is depleted. Facultative anaerobes reduce nitrate (\\(\\mathrm{NO}_3^- \\rightarrow \\mathrm{N}_2\\mathrm{O} \\rightarrow \\mathrm{N}_2\\)). Fluctuating water tables in this zone create dangerous hot-moments for nitrous oxide (\\(\\mathrm{N}_2\\mathrm{O}\\)) greenhouse pulses.</span>`;
+        alertContent = `<span style="font-size: 1.25rem; line-height: 1;">⚠️</span> <div><strong>Denitrification &amp; N₂O Threshold:</strong> Dissolved O₂ is depleted. Facultative anaerobes reduce nitrate (NO₃⁻ → NO₂⁻ → NO → N₂O → N₂). Water table fluctuations across this horizon trigger high-GWP N₂O greenhouse gas pulses when trace oxygen inhibits nitrous oxide reductase.</div>`;
         if (alertBox) {
           alertBox.style.background = "rgba(245, 158, 11, 0.12)";
           alertBox.style.borderColor = "rgba(245, 158, 11, 0.35)";
@@ -660,8 +665,9 @@ export class InteractiveSuite {
         }
       } else if (eh >= -100) {
         stateLabel = `${eh >= 0 ? '+' : ''}${eh} mV (Fe/Mn Reduction)`;
+        dgLabel = "ΔG°' = -27 kJ / mol e⁻ (Metal Reduction)";
         displayEh.style.color = "#eab308";
-        alertContent = `<span>🔶</span> <span><strong>Iron &amp; Manganese Reduction Horizon:</strong> Insoluble ferric iron (\\(\\mathrm{Fe}^{3+}\\)) is enzymatically reduced to mobile ferrous iron (\\(\\mathrm{Fe}^{2+}\\)). Creates characteristic soil gleying, redox mottling, and potential co-release of adsorbed phosphate into porewaters.</span>`;
+        alertContent = `<span style="font-size: 1.25rem; line-height: 1;">🔶</span> <div><strong>Iron &amp; Manganese Reduction Horizon:</strong> Dissimilatory metal reducers enzymatically reduce ferric iron (Fe³⁺ → Fe²⁺). Generates characteristic soil gleying, redox mottling, and induces porewater phosphate desorption into discharge waterways.</div>`;
         if (alertBox) {
           alertBox.style.background = "rgba(234, 179, 8, 0.12)";
           alertBox.style.borderColor = "rgba(234, 179, 8, 0.35)";
@@ -669,8 +675,9 @@ export class InteractiveSuite {
         }
       } else if (eh >= -200) {
         stateLabel = `${eh} mV (Sulfate Reduction)`;
+        dgLabel = "ΔG°' = -22 kJ / mol e⁻ (Sulfate Reduction)";
         displayEh.style.color = "#a855f7";
-        alertContent = `<span>🟣</span> <span><strong>Sulfate Reduction Zone:</strong> Obligate anaerobes reduce sulfate to sulfide (\\(\\mathrm{SO}_4^{2-} \\rightarrow \\mathrm{H}_2\\mathrm{S}\\)). Sulfide can precipitate with iron forming insoluble pyrite (\\(\\mathrm{FeS}_2\\)) or inhibit methane production thermodynamically while sulfate is available.</span>`;
+        alertContent = `<span style="font-size: 1.25rem; line-height: 1;">🟣</span> <div><strong>Sulfate Reduction Zone:</strong> Obligate anaerobes reduce sulfate to sulfide (SO₄²⁻ → H₂S). Sulfide precipitates with ferrous iron to form insoluble iron sulfide (FeS / FeS₂), suppressing methane formation until porewater sulfate is exhausted.</div>`;
         if (alertBox) {
           alertBox.style.background = "rgba(168, 85, 247, 0.12)";
           alertBox.style.borderColor = "rgba(168, 85, 247, 0.35)";
@@ -678,8 +685,9 @@ export class InteractiveSuite {
         }
       } else {
         stateLabel = `${eh} mV (Strict Methanogenesis)`;
+        dgLabel = "ΔG°' = -4 kJ / mol e⁻ (Terminal Anoxic Cascade)";
         displayEh.style.color = "#f43f5e";
-        alertContent = `<span>🔥</span> <span><strong>Strict Anaerobic Catotelm (Methanogenesis):</strong> All alternative electron acceptors are exhausted. Methanogenic Archaea convert \\(\\mathrm{CO}_2 + 4\\mathrm{H}_2 \\rightarrow \\mathrm{CH}_4\\) and acetate to methane. Water saturation halts \\(\\mathrm{CO}_2\\) soil subsidence but induces biogenic methane production.</span>`;
+        alertContent = `<span style="font-size: 1.25rem; line-height: 1;">🔥</span> <div><strong>Strict Anaerobic Catotelm (Methanogenesis):</strong> All alternative electron acceptors are exhausted. Methanogenic Archaea convert CO₂ + 4H₂ → CH₄ and acetate to biogenic methane. Water saturation halts CO₂ peat subsidence but initiates strong methane production.</div>`;
         if (alertBox) {
           alertBox.style.background = "rgba(244, 63, 94, 0.14)";
           alertBox.style.borderColor = "rgba(244, 63, 94, 0.4)";
@@ -688,11 +696,9 @@ export class InteractiveSuite {
       }
 
       displayEh.textContent = stateLabel;
+      if (displayDg) displayDg.textContent = dgLabel;
       if (alertBox) {
         alertBox.innerHTML = alertContent;
-        if (window.renderMathInElement) {
-          window.renderMathInElement(alertBox, { delimiters: [{left: '\\(', right: '\\)', display: false}] });
-        }
       }
 
       // Highlight the active rung in the UI
@@ -703,11 +709,27 @@ export class InteractiveSuite {
           el.classList.toggle("active", isActive);
         }
       });
+
+      // Update preset buttons active state
+      presetBtns.forEach(btn => {
+        const targetEh = parseInt(btn.dataset.eh, 10);
+        const isMatched = Math.abs(targetEh - eh) < 50;
+        btn.classList.toggle("active", isMatched);
+      });
     };
 
     slider.addEventListener("input", (e) => {
       const eh = parseInt(e.target.value, 10);
       updateRedoxState(eh);
+    });
+
+    presetBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const targetEh = parseInt(btn.dataset.eh, 10);
+        slider.value = targetEh;
+        updateRedoxState(targetEh);
+        this.app.playUiAudioFeedback("click");
+      });
     });
 
     // Run initial state

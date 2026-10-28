@@ -153,7 +153,7 @@ export class ClassicThesisPresentation {
         <div class="slide-lightbox-modal" id="slide-lightbox-modal">
           <button class="lightbox-close-btn" id="btn-close-lightbox">✕</button>
           <div class="lightbox-img-wrap">
-            <img id="lightbox-img" src="" alt="High-Res Inspection" />
+            <img id="slide-deck-lightbox-img" src="" alt="High-Res Inspection" />
             <div class="lightbox-caption" id="lightbox-caption"></div>
           </div>
         </div>
@@ -631,7 +631,7 @@ export class ClassicThesisPresentation {
     }
 
     const modal = document.getElementById('slide-lightbox-modal');
-    const img = document.getElementById('lightbox-img');
+    const img = document.getElementById('slide-deck-lightbox-img');
     const cap = document.getElementById('lightbox-caption');
     if (!modal || !img) return;
 

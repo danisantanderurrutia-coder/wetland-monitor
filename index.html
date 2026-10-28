@@ -90,7 +90,7 @@
         <!-- Brand Identity: PEAT-TWIN (Click to Return to Live Digital Twin) -->
         <div class="header-brand" id="brand-badge-click" role="button" tabindex="0" title="Return to Interactive Ecosystem Digital Twin">
           <div class="brand-icon-wrapper">
-            <img id="active-brand-logo-img" src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Simulator">
+            <img id="active-brand-logo-img" class="no-zoom" src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Simulator">
           </div>
           <div class="brand-text-block">
             <div class="brand-title-row">
@@ -113,6 +113,11 @@
           <!-- How It Works Pedagogical Guide Button -->
           <button class="action-btn help-guide-btn" id="btn-header-how-it-works" title="How the Peatland Digital Twin Works (?)">
             <span class="btn-icon">❓</span> <span class="action-btn-text">How It Works</span>
+          </button>
+
+          <!-- Analytical Tools Direct Jump Button -->
+          <button class="action-btn tools-header-btn" id="btn-header-tools" title="Analytical Tools &amp; Empirical Models (Subsidence Calc, Split Slider)">
+            <span>⚙️</span> <span class="action-btn-text">Analytical Tools</span>
           </button>
 
           <!-- Spotlight / Command Palette Button (Cmd + K) -->
@@ -271,6 +276,16 @@
                 <span class="carrusel-card-sub">Pillars &amp; Management</span>
               </div>
             </div>
+
+            <!-- 13. Analytical Tools & Models -->
+            <div class="carrusel-card tab-btn" data-view="tools_general" data-wallener-nav="tools_general" id="wallener-tab-tools">
+              <span class="carrusel-card-idx">13</span>
+              <span class="carrusel-card-icon">⚙️</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Analytical Tools</span>
+                <span class="carrusel-card-sub">Calculators &amp; Split Slider</span>
+              </div>
+            </div>
           </div>
 
           <button type="button" class="carrusel-nav-arrow arrow-right" id="btn-wallener-slide-next" title="Scroll right">❯</button>
@@ -297,7 +312,7 @@
             <div class="landing-hero-top">
               <!-- Large Left Seal Icon (Occupies 33% width) -->
               <div class="landing-seal-wrapper">
-                <img src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Seal" class="landing-seal-img">
+                <img src="assets/sprites/logo_2.png?v=4.0" alt="PEAT-TWIN Seal" class="landing-seal-img no-zoom">
               </div>
               
               <!-- Presentation Text Group on the Right (67% width) -->
@@ -414,27 +429,27 @@
               </div>
             </div>
 
-            <!-- Card 3: Tools & Instrumentation -->
-            <div class="landing-card" data-nav-target="tools_general">
+            <!-- Card 3: Analytical Tools & Empirical Models -->
+            <div class="landing-card" data-nav-target="tools_general" style="border: 1.5px solid rgba(56, 189, 248, 0.4); box-shadow: 0 10px 30px rgba(56, 189, 248, 0.12);">
               <div class="landing-card-header">
-                <span class="landing-card-icon">🛠️</span>
-                <span class="landing-card-badge badge-blue">Multi-Tier MRV</span>
+                <span class="landing-card-icon">⚙️</span>
+                <span class="landing-card-badge badge-blue" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">Interactive Calculators</span>
               </div>
               <div class="landing-card-body">
-                <h3 class="landing-card-title">Tools &amp; Instrumentation</h3>
+                <h3 class="landing-card-title">Analytical Tools &amp; Empirical Models</h3>
                 <p class="landing-card-desc">
-                  Methodological overview and physical principles: eddy covariance micrometeorology (10–20 Hz), automated closed chamber transects, continuous piezometer networks, and soil hydro-redox sensors.
+                  Interactive split-screen curtain slider (before vs. after rewetting), dynamic peat subsidence &amp; CO₂ oxidation calculator (van den Akker formulation), and multi-tier sensor instrumentation guides.
                 </p>
                 <div class="landing-tag-pills">
-                  <span class="tag-pill">3D Sonic Anemometry</span>
-                  <span class="tag-pill">IRGA / QCL</span>
-                  <span class="tag-pill">Closed Chambers</span>
-                  <span class="tag-pill">WTD Sensors</span>
+                  <span class="tag-pill" style="border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;">Split Curtain Slider</span>
+                  <span class="tag-pill" style="border-color: rgba(244, 63, 94, 0.3); color: #fda4af;">Subsidence Calculator</span>
+                  <span class="tag-pill" style="border-color: rgba(16, 185, 129, 0.3); color: #6ee7b7;">CO₂ Oxidation</span>
+                  <span class="tag-pill">Eddy &amp; Chambers</span>
                 </div>
               </div>
-              <div class="landing-card-footer">
-                <span>View Instrumentation Methods</span>
-                <span class="landing-card-arrow">➔</span>
+              <div class="landing-card-footer" style="background: rgba(56, 189, 248, 0.08); border-top: 1px solid rgba(56, 189, 248, 0.2);">
+                <span style="color: #38bdf8; font-weight: 700;">Launch Analytical Tools &amp; Slider</span>
+                <span class="landing-card-arrow" style="color: #38bdf8; font-weight: 900;">➔</span>
               </div>
             </div>
 
@@ -576,7 +591,7 @@
             <div class="wallener-hero-top-grid" style="display: grid; grid-template-columns: 140px 1fr; gap: 1.75rem; align-items: center;">
               <!-- Left Seal / Visual Landmark -->
               <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px;">
-                <img src="assets/sprites/logo_2.png?v=4.0" alt="Wallener Au Seal" style="width: 110px; height: 110px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(16, 185, 129, 0.35));">
+                <img src="assets/sprites/logo_2.png?v=4.0" alt="Wallener Au Seal" class="no-zoom" style="width: 110px; height: 110px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(16, 185, 129, 0.35));">
                 <span style="font-size: 0.65rem; font-weight: 800; color: #059669; letter-spacing: 0.04em; text-transform: uppercase;">Klimafarm Observatory</span>
               </div>
 
@@ -1146,18 +1161,144 @@
       </section>
 
       <!-- 5. GENERAL VIEW: BIOGEOCHEMISTRY & PEATLAND TYPOLOGY -->
-      <section class="view-panel" data-view-id="biogeochemistry_general" id="view-biogeochemistry-general">
+      <section class="view-panel state-drained" data-view-id="biogeochemistry_general" id="view-biogeochemistry-general">
         <div class="general-method-container">
-          <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 0.5rem;">
-            <div class="landing-hero-badge">
-              <span>⚗️ Soil Biogeochemistry</span> • <span>Redox Ladders &amp; Peatland Typology</span>
+          <div class="landing-hero-card" style="padding: 1.5rem 1.8rem; margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <div class="landing-hero-badge">
+                  <span>⚗️ Soil Biogeochemistry</span> • <span>Universal Redox Ladders &amp; Peatland Typologies</span>
+                </div>
+                <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
+                  Redox Biogeochemistry, Stoichiometry &amp; Global Peatland Typologies
+                </h1>
+                <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
+                  The fate of carbon, nitrogen, and greenhouse gases across wetlands is governed by universal thermodynamic laws: oxygen availability, terminal electron acceptor hierarchies (\(\mathrm{O}_2 \rightarrow \mathrm{NO}_3^- \rightarrow \mathrm{Fe}^{3+} \rightarrow \mathrm{SO}_4^{2-} \rightarrow \mathrm{CH}_4\)), and vascular bypass shunts.
+                </p>
+              </div>
+
+              <!-- Interactive Drained vs Rewetted State Toggle -->
+              <div class="biogeo-state-toggle-wrapper">
+                <div class="biogeo-state-toggle-box">
+                  <button class="biogeo-toggle-btn btn-biogeo-drained active" data-state="drained" type="button">
+                    <span class="state-indicator-dot drained-dot"></span>
+                    <span>🌾 Drained State</span>
+                  </button>
+                  <button class="biogeo-toggle-btn btn-biogeo-rewetted" data-state="rewetted" type="button">
+                    <span class="state-indicator-dot rewetted-dot"></span>
+                    <span>💧 Rewetted State</span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <h1 class="landing-hero-title" style="font-size: 1.7rem; margin-top: 0.4rem;">
-              Redox Biogeochemistry &amp; Global Peatland Typologies
-            </h1>
-            <p class="landing-hero-subtitle" style="font-size: 0.88rem; max-width: 900px;">
-              The fate of carbon and nitrogen across wetlands is governed by universal thermodynamic principles: oxygen availability and the hierarchy of terminal electron acceptors strictly regulate respiration, methanogenesis, and vascular bypass shunts.
-            </p>
+          </div>
+
+          <!-- Top Row: Redox Reactions (Stoichiometry) & Comparative Ecological Succession Panel -->
+          <div class="presentation-grid-2" style="margin-bottom: 1.5rem;">
+            <!-- Left: Redox Equations -->
+            <div class="presentation-card" id="biogeo-general-card-redox">
+              <div class="presentation-card-header">
+                <span class="presentation-card-badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent-cyan);">Stoichiometry</span>
+                <h3 class="presentation-card-title">Gas Exchange Redox Equations</h3>
+              </div>
+              <div class="redox-reactions-list">
+                <!-- Oxic Mineralization: Aerobic Reaction -->
+                <div class="redox-reaction-item reaction-aerobic">
+                  <div class="redox-reaction-title">
+                    <span style="color: var(--accent-emerald);">●</span>
+                    <strong>Oxic Mineralization (Aerobic Respiration)</strong>
+                    <span class="state-match-badge badge-drained-only">Drained Active</span>
+                  </div>
+                  <div class="redox-formula-display">
+                    \[ \mathrm{C}_{\mathrm{org}} + \mathrm{O}_2 \xrightarrow{\quad} \mathrm{CO}_2 + \mathrm{H}_2\mathrm{O} \quad (\Delta G^{\circ\prime} = -2870\text{ kJ/mol}) \]
+                  </div>
+                  <span style="font-size: 0.76rem; color: var(--text-secondary);">
+                    Dominant in drained acrotelm. Oxygen acts as highest-energy terminal electron acceptor, driving rapid peat oxidation.
+                  </span>
+                </div>
+
+                <!-- Incomplete Denitrification: Intermediate -->
+                <div class="redox-reaction-item reaction-suboxic">
+                  <div class="redox-reaction-title">
+                    <span style="color: var(--accent-violet);">●</span>
+                    <strong>Incomplete Denitrification (Fluctuating / Suboxic)</strong>
+                  </div>
+                  <div class="redox-formula-display">
+                    \[ \mathrm{NO}_3^- \xrightarrow{\quad} \mathrm{NO}_2^- \xrightarrow{\quad} \mathrm{NO} \xrightarrow{\quad} \mathrm{N}_2\mathrm{O} \uparrow \quad (\xrightarrow{\quad} \mathrm{N}_2) \]
+                  </div>
+                  <span style="font-size: 0.76rem; color: var(--text-secondary);">
+                    Fluctuating water tables trigger high-GWP N₂O pulses (\(\mathrm{GWP}_{100} = 273\)) when trace oxygen inhibits nitrous oxide reductase.
+                  </span>
+                </div>
+
+                <!-- Methanogenesis: Anaerobic -->
+                <div class="redox-reaction-item reaction-anaerobic reaction-methanogenesis">
+                  <div class="redox-reaction-title">
+                    <span style="color: var(--accent-cyan);">●</span>
+                    <strong>Methanogenesis (Strict Anoxia, \(Eh \lt -200\text{ mV}\))</strong>
+                    <span class="state-match-badge badge-rewetted-only">Rewetted Spike</span>
+                  </div>
+                  <div class="redox-formula-display">
+                    \[ \begin{aligned} \text{Hydrogenotrophic: } & \mathrm{CO}_2 + 4\mathrm{H}_2 \xrightarrow{\quad} \mathrm{CH}_4 + 2\mathrm{H}_2\mathrm{O} \\ \text{Acetoclastic: } & \mathrm{CH}_3\mathrm{COOH} \xrightarrow{\quad} \mathrm{CH}_4 + \mathrm{CO}_2 \end{aligned} \]
+                  </div>
+                  <span style="font-size: 0.76rem; color: var(--text-secondary);">
+                    Terminal step of anaerobic degradation executed by Archaea after alternative electron acceptors are fully depleted.
+                  </span>
+                </div>
+
+                <!-- Methanotrophy: Rewetted Active -->
+                <div class="redox-reaction-item reaction-rewetted reaction-methanotrophy">
+                  <div class="redox-reaction-title">
+                    <span style="color: var(--accent-amber);">●</span>
+                    <strong>Methanotrophy (Biological Methane Filter)</strong>
+                    <span class="state-match-badge badge-rewetted-only">Biofilter Active</span>
+                  </div>
+                  <div class="redox-formula-display">
+                    \[ \mathrm{CH}_4 + 2\mathrm{O}_2 \xrightarrow{\quad} \mathrm{CO}_2 + 2\mathrm{H}_2\mathrm{O} \quad (\Delta G^{\circ\prime} = -820\text{ kJ/mol}) \]
+                  </div>
+                  <span style="font-size: 0.76rem; color: var(--text-secondary);">
+                    Aerobic methanotrophic bacteria consume 60–90% of upward diffusing CH₄ at the capillary fringe before reaching atmosphere.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Comparative Ecological Succession Panel -->
+            <div class="presentation-card succession-panel-card" id="biogeo-general-card-succession">
+              <div class="presentation-card-header">
+                <span class="presentation-card-badge" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald);">Succession Dynamics</span>
+                <h3 class="presentation-card-title">Ecological Succession &amp; Community Shift</h3>
+              </div>
+              <div class="succession-comparison-container">
+                <!-- Trajectory 1: Drained Terrestrial Degradation -->
+                <div class="succession-trajectory-card drained-trajectory">
+                  <div class="succession-phase-header">
+                    <span class="phase-badge drained-badge">DRAINED AGRICULTURAL BASELINE</span>
+                    <h4 class="phase-title">Oxic Degradation &amp; Aerobic Dominance</h4>
+                  </div>
+                  <ul class="succession-points">
+                    <li><strong>Key Drivers:</strong> Deep water table (&lt; -40 cm), persistent oxic acrotelm, rapid gas diffusion into peat matrix.</li>
+                    <li><strong>Microbial Consortia:</strong> Aerobic bacteria, saprophytic fungi, actinobacteria activate extracellular phenol oxidases.</li>
+                    <li><strong>Carbon Fate:</strong> Accelerated peat oxidation, severe subsidence (1–2 cm/yr), sustained net source (<span class="mono-stat font-rose">15–25 t CO₂-eq ha⁻¹ yr⁻¹</span>).</li>
+                    <li><strong>Biofilter Status:</strong> Quiescent; negligible anaerobic CH₄ substrate supply.</li>
+                  </ul>
+                </div>
+
+                <!-- Trajectory 2: Rewetted Wetland Restoration -->
+                <div class="succession-trajectory-card rewetted-trajectory">
+                  <div class="succession-phase-header">
+                    <span class="phase-badge rewetted-badge">REWETTED RESTORATION TRAJECTORY</span>
+                    <h4 class="phase-title">Thermodynamic Inversion &amp; Trophic Succession</h4>
+                  </div>
+                  <ul class="succession-points">
+                    <li><strong>Phase 1 (Transient 0–2 yr):</strong> Acute Methane Spike! Rapid O₂ exhaustion triggers severe redox collapse (<span class="mono-stat font-amber">Eh &lt; -200 mV</span>); fermenters and methanogenic archaea metabolize labile dead root biomass.</li>
+                    <li><strong>Phase 2 (Equilibrium &gt;3 yr):</strong> Sphagnum/Carex recolonization establishes a stratified microbial biofilter. Methanotrophic bacteria in top 5 cm consume <span class="mono-stat font-emerald">60–90% of CH₄</span>.</li>
+                    <li><strong>Bypass Conduit:</strong> Vascular plant aerenchymas act as direct chimneys, bypassing surface oxidation.</li>
+                    <li><strong>Net Climate Impact:</strong> Long-term CO₂ respiration halted by &gt;85%; restored peat accumulation.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Visual Centerpiece: Figure 20 Conceptual Model Full-Width & Expansive -->
@@ -1167,9 +1308,9 @@
                 <span class="presentation-card-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald);">Universal Biogeochemical Framework</span>
                 <h3 class="thesis-plot-title" style="font-size: 1.25rem;">Peatlands Biogeochemical Processes &amp; Gas Flux Cascade (Fig. 20)</h3>
               </div>
-              <span class="plot-depth-tag">Redox Stratification • Methanotrophy • Aerenchyma Shunt</span>
+              <span class="plot-depth-tag">Click to Zoom • Full Resolution</span>
             </div>
-            <div class="thesis-plot-container biogeo-fig20-container" style="max-height: none; min-height: 850px; display: flex; justify-content: center; align-items: center; background: #ffffff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
+            <div class="thesis-plot-container biogeo-fig20-container" style="max-height: none; min-height: 850px; display: flex; justify-content: center; align-items: center; background: #ffffff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); cursor: zoom-in;">
               <img src="assets/Peatlands_Biogeochemical_Processes_Fig20.png" alt="Peatlands Biogeochemical Processes (Fig. 20)" class="thesis-plot biogeo-fig20-img" style="width: 100%; max-width: 1100px; height: auto; max-height: none; object-fit: contain; display: block;" data-title="Peatlands Biogeochemical Processes (Fig. 20)" data-caption="Conceptual model of greenhouse gas fluxes control in wetland soils: carbon assimilation, aerobic respiration, anaerobic fermentation, alternative electron acceptors (NO3-, Fe3+, SO4(2-)), methanogenesis, methanotrophic biofilter, and vascular aerenchyma bypass conduits.">
             </div>
             <div class="thesis-plot-meta" style="margin-top: 1rem;">
@@ -1179,6 +1320,125 @@
             </div>
           </div>
 
+          <!-- Key Biogeochemical Actors Grid (6 Consortia Cards) -->
+          <div class="presentation-card" id="biogeo-general-card-actors" style="margin-bottom: 1.75rem;">
+            <div class="presentation-card-header" style="margin-bottom: 1rem;">
+              <span class="presentation-card-badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent-cyan);">Microbial Consortia</span>
+              <h3 class="presentation-card-title">Key Biogeochemical Actors Across Peatland Ecosystems</h3>
+            </div>
+
+            <div class="biogeo-actors-grid">
+              <!-- Actor 1: Extracellular Enzymes -->
+              <div class="biogeo-actor-card actor-aerobic">
+                <div class="actor-image-container">
+                  <img src="assets/actors/enzymes.jpg" alt="Extracellular Enzymes">
+                </div>
+                <div class="actor-card-body">
+                  <div class="actor-badge-row">
+                    <span class="actor-role-badge" style="background: rgba(217, 119, 6, 0.12); color: var(--accent-amber);">DEPOLYMERIZATION</span>
+                    <span class="actor-trophic-tag tag-aerobic">AEROBIC (FUNGI/BACTERIA)</span>
+                  </div>
+                  <div class="actor-title">Extracellular Enzymes</div>
+                  <div class="actor-desc">
+                    Secreted by fungi and aerobic bacteria to depolymerize structural peat compounds (cellulose, lignin, phenolics). Controlled by the "phenol oxidase latch".
+                  </div>
+                  <div class="actor-substrate-pill">Substrate: Structural Peat Polymers</div>
+                </div>
+              </div>
+
+              <!-- Actor 2: Fermentative Bacteria -->
+              <div class="biogeo-actor-card actor-anaerobic">
+                <div class="actor-image-container">
+                  <img src="assets/actors/fermenters.jpg" alt="Fermentative Bacteria">
+                </div>
+                <div class="actor-card-body">
+                  <div class="actor-badge-row">
+                    <span class="actor-role-badge" style="background: rgba(2, 132, 199, 0.12); color: var(--accent-blue);">ACIDOGENESIS</span>
+                    <span class="actor-trophic-tag tag-anaerobic">ANAEROBIC BACTERIA</span>
+                  </div>
+                  <div class="actor-title">Fermentative Bacteria</div>
+                  <div class="actor-desc">
+                    Anaerobically break down soluble monosaccharides and amino acids into short-chain fatty acids (acetate, propionate, butyrate), H₂, and CO₂.
+                  </div>
+                  <div class="actor-substrate-pill">Substrate: Soluble Monomers</div>
+                </div>
+              </div>
+
+              <!-- Actor 3: Acetogenic Microorganisms -->
+              <div class="biogeo-actor-card actor-anaerobic">
+                <div class="actor-image-container">
+                  <img src="assets/actors/acetogens.jpg" alt="Acetogenic Microorganisms">
+                </div>
+                <div class="actor-card-body">
+                  <div class="actor-badge-row">
+                    <span class="actor-role-badge" style="background: rgba(147, 51, 234, 0.12); color: var(--accent-violet);">ACETOGENESIS</span>
+                    <span class="actor-trophic-tag tag-anaerobic">SYNTROPHIC ANAEROBES</span>
+                  </div>
+                  <div class="actor-title">Acetogenic Microorganisms</div>
+                  <div class="actor-desc">
+                    Synthesize acetate from H₂ and CO₂ via the Wood-Ljungdahl pathway or oxidize volatile acids, providing critical direct precursor for methanogenesis.
+                  </div>
+                  <div class="actor-substrate-pill">Substrate: H₂ + CO₂ &amp; Volatile Fatty Acids</div>
+                </div>
+              </div>
+
+              <!-- Actor 4: Methanogenic Archaea -->
+              <div class="biogeo-actor-card actor-anaerobic actor-methanogen">
+                <div class="actor-image-container">
+                  <img src="assets/actors/archaea.jpg" alt="Methanogenic Archaea">
+                </div>
+                <div class="actor-card-body">
+                  <div class="actor-badge-row">
+                    <span class="actor-role-badge" style="background: rgba(225, 29, 72, 0.12); color: var(--accent-rose);">METHANOGENESIS</span>
+                    <span class="actor-trophic-tag tag-methanogen">STRICT ANAEROBIC ARCHAEA</span>
+                  </div>
+                  <div class="actor-title">Methanogenic Archaea</div>
+                  <div class="actor-desc">
+                    Strictly anaerobic Archaea producing CH₄ via acetoclastic cleavage or CO₂ reduction with H₂ in permanently waterlogged peat horizons (Eh &lt; -200 mV).
+                  </div>
+                  <div class="actor-substrate-pill">Substrate: Acetate &amp; H₂/CO₂</div>
+                </div>
+              </div>
+
+              <!-- Actor 5: Methanotrophic Bacteria -->
+              <div class="biogeo-actor-card actor-rewetted actor-methanotroph">
+                <div class="actor-image-container">
+                  <img src="assets/actors/methanotrophs.jpg" alt="Methanotrophic Bacteria">
+                </div>
+                <div class="actor-card-body">
+                  <div class="actor-badge-row">
+                    <span class="actor-role-badge" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald);">OXIDATION</span>
+                    <span class="actor-trophic-tag tag-biofilter">CAPILLARY BIOFILTER</span>
+                  </div>
+                  <div class="actor-title">Methanotrophic Bacteria</div>
+                  <div class="actor-desc">
+                    Obligate aerobic methane oxidizers residing at the oxic-anoxic boundary that convert up to 90% of CH₄ into CO₂ and biomass before release.
+                  </div>
+                  <div class="actor-substrate-pill">Substrate: CH₄ + O₂</div>
+                </div>
+              </div>
+
+              <!-- Actor 6: Plants with Aerenchyma -->
+              <div class="biogeo-actor-card actor-rewetted actor-aerenchyma">
+                <div class="actor-image-container">
+                  <img src="assets/actors/plants.jpg" alt="Plants with Aerenchyma">
+                </div>
+                <div class="actor-card-body">
+                  <div class="actor-badge-row">
+                    <span class="actor-role-badge" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald);">BYPASS SHUNT</span>
+                    <span class="actor-trophic-tag tag-vascular">VASCULAR WETLAND FLORA</span>
+                  </div>
+                  <div class="actor-title">Plants with Aerenchyma</div>
+                  <div class="actor-desc">
+                    Emergent wetland sedges (*Carex*, *Phragmites*, *Eriophorum*) with gas lacunae that vent deep soil methane directly into the atmosphere, bypassing methanotrophs.
+                  </div>
+                  <div class="actor-substrate-pill">Substrate: Gas Transport Conduit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Global Peatland Typology & Restoration Paradigms Grid -->
           <div class="general-method-grid">
             <div class="general-method-card">
               <h3 class="general-method-card-title"><span>⚡</span> 1. The Thermodynamic Redox Ladder</h3>
@@ -1228,82 +1488,169 @@
             </div>
           </div>
 
-          <!-- Interactive Thermodynamic Redox Ladder Simulator -->
+          <!-- Redesigned Thermodynamic Redox Ladder Simulator -->
           <div class="redox-ladder-card" id="panel-redox-ladder">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px;">
               <div>
-                <span class="presentation-card-badge" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-violet);">Thermodynamic Cascade Engine</span>
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0.35rem 0 0 0;">Interactive Thermodynamic Redox Ladder Simulator</h3>
-                <p style="font-size: 0.85rem; color: #94a3b8; margin: 4px 0 0 0;">
-                  Drag the Soil Redox Potential (\(Eh\)) slider to simulate water table saturation and observe microbial electron acceptor succession in real time.
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span class="presentation-card-badge" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-violet);">Thermodynamic Electron Cascade</span>
+                  <span class="presentation-card-badge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan);">Nernst Formulation</span>
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin: 0.35rem 0 0 0;">
+                  Thermodynamic Redox Ladder Simulator
+                </h3>
+                <p style="font-size: 0.86rem; color: #94a3b8; margin: 4px 0 0 0; max-width: 720px; line-height: 1.5;">
+                  Drag the Soil Redox Potential (\(Eh\)) slider or click a biogeochemical horizon preset to observe microbial terminal electron acceptor succession in real time.
                 </p>
               </div>
-              <div style="text-align: right;">
-                <span style="font-size: 0.72rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">Current Soil Redox State</span>
-                <div id="redox-eh-display" style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 900; color: #38bdf8;">+420 mV (Oxic)</div>
+
+              <!-- Real-time Status Readout -->
+              <div style="text-align: right; background: rgba(15, 23, 42, 0.7); padding: 10px 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <span style="font-size: 0.72rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; display: block;">Soil Redox Potential (\(Eh\))</span>
+                <div id="redox-eh-display" style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 900; color: #10b981;">+420 mV (Oxic Respiration)</div>
+                <span id="redox-dg-display" style="font-size: 0.76rem; color: #cbd5e1; font-family: 'JetBrains Mono', monospace; display: block; margin-top: 2px;">\(\Delta G^\circ = -125\text{ kJ/mol } e^-\)</span>
               </div>
             </div>
 
-            <!-- Redox Slider Control -->
-            <div class="redox-ladder-slider-bar">
-              <div style="display: flex; justify-content: space-between; font-size: 0.76rem; font-family: 'JetBrains Mono', monospace; color: #94a3b8;">
-                <span style="color: #10b981;">+500 mV (Well-Aerated Oxic)</span>
-                <span style="color: #f59e0b;">+100 mV (Suboxic Transition)</span>
-                <span style="color: #f43f5e;">-300 mV (Strict Anoxia / Ponding)</span>
+            <!-- Redox Control Panel: Presets & Slider -->
+            <div class="redox-control-panel">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <span style="font-size: 0.76rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em;">Biogeochemical Horizon Presets:</span>
+                <div class="redox-presets-row">
+                  <button type="button" class="redox-preset-btn active" data-eh="450" id="preset-redox-aerobic"><span>🟢</span> Aerobic Acrotelm (+450 mV)</button>
+                  <button type="button" class="redox-preset-btn" data-eh="220" id="preset-redox-nitrate"><span>🟡</span> Denitrification (+220 mV)</button>
+                  <button type="button" class="redox-preset-btn" data-eh="0" id="preset-redox-iron"><span>🟠</span> Fe/Mn Reduction (0 mV)</button>
+                  <button type="button" class="redox-preset-btn" data-eh="-150" id="preset-redox-sulfate"><span>🟣</span> Sulfate Reduction (-150 mV)</button>
+                  <button type="button" class="redox-preset-btn" data-eh="-250" id="preset-redox-methane"><span>🔴</span> Methanogenesis (-250 mV)</button>
+                </div>
               </div>
-              <input type="range" id="redox-slider-input" min="-300" max="500" value="420" step="10" style="width: 100%; height: 8px; accent-color: #38bdf8; cursor: pointer;">
+
+              <!-- Slider Bar -->
+              <div class="redox-slider-track-wrap">
+                <div class="redox-slider-ticks">
+                  <span style="color: #f43f5e;">-300 mV (Strict Anoxia)</span>
+                  <span style="color: #a855f7;">-100 mV</span>
+                  <span style="color: #eab308;">0 mV (Fe/Mn)</span>
+                  <span style="color: #f59e0b;">+200 mV (Suboxic)</span>
+                  <span style="color: #10b981;">+500 mV (Well-Aerated)</span>
+                </div>
+                <input type="range" id="redox-slider-input" class="redox-slider-range" min="-300" max="500" value="420" step="10">
+              </div>
             </div>
 
             <!-- Dynamic Ecological Alert Box -->
-            <div id="redox-state-alert" style="padding: 10px 14px; border-radius: 9px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); font-size: 0.84rem; color: #6ee7b7; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
-              <span>✅</span> <span><strong>Aerobic Acrotelm Zone:</strong> Plentiful oxygen acts as dominant terminal electron acceptor (\(\mathrm{O}_2 \rightarrow \mathrm{H}_2\mathrm{O}\)). Peat organic matter undergoes heterotrophic aerobic respiration, releasing \(\mathrm{CO}_2\).</span>
+            <div id="redox-state-alert" style="padding: 12px 18px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); font-size: 0.88rem; color: #6ee7b7; margin-bottom: 1.25rem; display: flex; align-items: flex-start; gap: 12px; line-height: 1.55;">
+              <span style="font-size: 1.2rem; line-height: 1;">✅</span>
+              <div>
+                <strong>Aerobic Acrotelm Respiration Zone:</strong> Dissolved oxygen is abundant and acts as the dominant terminal electron acceptor (\(\mathrm{O}_2 \rightarrow \mathrm{H}_2\mathrm{O}\)). Aerobic bacteria and fungi rapidly mineralize structural peat organic matter, releasing continuous heterotrophic \(\mathrm{CO}_2\).
+              </div>
             </div>
 
             <!-- 5 Thermodynamic Rungs -->
             <div class="redox-rungs-list">
-              <div class="redox-rung-item active" id="rung-o2" data-min-eh="300">
-                <div class="redox-rung-title">
-                  <span style="color:#10b981;">●</span>
-                  <span>1. Aerobic Respiration (Oxygen Reduction)</span>
+              <!-- Rung 1: O2 Reduction -->
+              <div class="redox-rung-item active rung-o2" id="rung-o2">
+                <div class="redox-rung-num-badge" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3);">
+                  <span>STEP 1</span>
+                  <span>O₂ / H₂O</span>
                 </div>
-                <div class="redox-rung-formula">\(\mathrm{O}_2 + 4\mathrm{H}^+ + 4\mathrm{e}^- \rightarrow 2\mathrm{H}_2\mathrm{O} \quad (\Delta G^\circ = -2870\text{ kJ/mol})\)</div>
-                <div class="redox-rung-potential" style="color:#10b981;">Eh &gt; +300 mV</div>
+                <div class="redox-rung-content">
+                  <div class="redox-rung-title">
+                    <span>1. Aerobic Respiration</span>
+                    <span class="redox-guild-tag" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">Obligate Aerobic Heterotrophs</span>
+                  </div>
+                  <div class="redox-rung-formula">
+                    \(\mathrm{O}_2 + 4\mathrm{H}^+ + 4\mathrm{e}^- \rightarrow 2\mathrm{H}_2\mathrm{O} \quad (\Delta G^\circ = -125\text{ kJ/mol } e^-, \quad E^\circ' = +0.82\text{ V})\)
+                  </div>
+                </div>
+                <div class="redox-rung-right">
+                  <div class="redox-rung-potential" style="color: #10b981;">Eh &gt; +300 mV</div>
+                  <span class="redox-rung-status-pill" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">● Active Pathway</span>
+                </div>
               </div>
 
-              <div class="redox-rung-item" id="rung-no3" data-min-eh="100" data-max-eh="300">
-                <div class="redox-rung-title">
-                  <span style="color:#f59e0b;">●</span>
-                  <span>2. Nitrate Reduction &amp; Denitrification (N₂O Pulse Hotspot)</span>
+              <!-- Rung 2: Nitrate Reduction -->
+              <div class="redox-rung-item rung-no3" id="rung-no3">
+                <div class="redox-rung-num-badge" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">
+                  <span>STEP 2</span>
+                  <span>NO₃⁻ / N₂</span>
                 </div>
-                <div class="redox-rung-formula">\(\mathrm{NO}_3^- \rightarrow \mathrm{NO}_2^- \rightarrow \mathrm{NO} \rightarrow \mathrm{N}_2\mathrm{O} \uparrow \rightarrow \mathrm{N}_2\)</div>
-                <div class="redox-rung-potential" style="color:#f59e0b;">+100 to +300 mV</div>
+                <div class="redox-rung-content">
+                  <div class="redox-rung-title">
+                    <span>2. Nitrate Reduction &amp; Denitrification</span>
+                    <span class="redox-guild-tag" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">Facultative Anaerobic Denitrifiers</span>
+                  </div>
+                  <div class="redox-rung-formula">
+                    \(\mathrm{NO}_3^- \rightarrow \mathrm{NO}_2^- \rightarrow \mathrm{NO} \rightarrow \mathrm{N}_2\mathrm{O} \uparrow \rightarrow \mathrm{N}_2 \quad (\Delta G^\circ = -119\text{ kJ/mol } e^-, \quad E^\circ' = +0.74\text{ V})\)
+                  </div>
+                </div>
+                <div class="redox-rung-right">
+                  <div class="redox-rung-potential" style="color: #f59e0b;">+100 to +300 mV</div>
+                  <span class="redox-rung-status-pill" style="background: rgba(245, 158, 11, 0.2); color: #fde68a;">● Active Pathway</span>
+                </div>
               </div>
 
-              <div class="redox-rung-item" id="rung-fe" data-min-eh="-100" data-max-eh="100">
-                <div class="redox-rung-title">
-                  <span style="color:#eab308;">●</span>
-                  <span>3. Manganese &amp; Iron Reduction</span>
+              <!-- Rung 3: Iron & Manganese Reduction -->
+              <div class="redox-rung-item rung-fe" id="rung-fe">
+                <div class="redox-rung-num-badge" style="color: #eab308; border-color: rgba(234, 179, 8, 0.3);">
+                  <span>STEP 3</span>
+                  <span>Fe³⁺ / Fe²⁺</span>
                 </div>
-                <div class="redox-rung-formula">\(\mathrm{Fe}^{3+} + \mathrm{e}^- \rightarrow \mathrm{Fe}^{2+} \quad (\text{Mottling \&amp; Gleying Horizon})\)</div>
-                <div class="redox-rung-potential" style="color:#eab308;">-100 to +100 mV</div>
+                <div class="redox-rung-content">
+                  <div class="redox-rung-title">
+                    <span>3. Iron (Fe³⁺) &amp; Manganese (Mn⁴⁺) Reduction</span>
+                    <span class="redox-guild-tag" style="background: rgba(234, 179, 8, 0.15); color: #facc15;">Dissimilatory Metal Reducers (Geobacter)</span>
+                  </div>
+                  <div class="redox-rung-formula">
+                    \(\mathrm{Fe}^{3+} + \mathrm{e}^- \rightarrow \mathrm{Fe}^{2+} \quad (\Delta G^\circ = -27\text{ kJ/mol } e^-, \quad E^\circ' = -0.18\text{ V, Mottling \&amp; Gleying Horizon})\)
+                  </div>
+                </div>
+                <div class="redox-rung-right">
+                  <div class="redox-rung-potential" style="color: #eab308;">-100 to +100 mV</div>
+                  <span class="redox-rung-status-pill" style="background: rgba(234, 179, 8, 0.2); color: #fef08a;">● Active Pathway</span>
+                </div>
               </div>
 
-              <div class="redox-rung-item" id="rung-so4" data-min-eh="-200" data-max-eh="-100">
-                <div class="redox-rung-title">
-                  <span style="color:#a855f7;">●</span>
-                  <span>4. Sulfate Reduction</span>
+              <!-- Rung 4: Sulfate Reduction -->
+              <div class="redox-rung-item rung-so4" id="rung-so4">
+                <div class="redox-rung-num-badge" style="color: #a855f7; border-color: rgba(168, 85, 247, 0.3);">
+                  <span>STEP 4</span>
+                  <span>SO₄²⁻ / H₂S</span>
                 </div>
-                <div class="redox-rung-formula">\(\mathrm{SO}_4^{2-} + 10\mathrm{H}^+ + 8\mathrm{e}^- \rightarrow \mathrm{H}_2\mathrm{S} + 4\mathrm{H}_2\mathrm{O}\)</div>
-                <div class="redox-rung-potential" style="color:#a855f7;">-200 to -100 mV</div>
+                <div class="redox-rung-content">
+                  <div class="redox-rung-title">
+                    <span>4. Sulfate Reduction</span>
+                    <span class="redox-guild-tag" style="background: rgba(168, 85, 247, 0.15); color: #c084fc;">Obligate Sulfate-Reducing Bacteria (Desulfovibrio)</span>
+                  </div>
+                  <div class="redox-rung-formula">
+                    \(\mathrm{SO}_4^{2-} + 10\mathrm{H}^+ + 8\mathrm{e}^- \rightarrow \mathrm{H}_2\mathrm{S} + 4\mathrm{H}_2\mathrm{O} \quad (\Delta G^\circ = -22\text{ kJ/mol } e^-, \quad E^\circ' = -0.22\text{ V})\)
+                  </div>
+                </div>
+                <div class="redox-rung-right">
+                  <div class="redox-rung-potential" style="color: #a855f7;">-200 to -100 mV</div>
+                  <span class="redox-rung-status-pill" style="background: rgba(168, 85, 247, 0.2); color: #e9d5ff;">● Active Pathway</span>
+                </div>
               </div>
 
-              <div class="redox-rung-item" id="rung-ch4" data-max-eh="-200">
-                <div class="redox-rung-title">
-                  <span style="color:#f43f5e;">●</span>
-                  <span>5. Methanogenesis (Strict Anaerobic Archaea)</span>
+              <!-- Rung 5: Methanogenesis -->
+              <div class="redox-rung-item rung-ch4" id="rung-ch4">
+                <div class="redox-rung-num-badge" style="color: #f43f5e; border-color: rgba(244, 63, 94, 0.3);">
+                  <span>STEP 5</span>
+                  <span>CO₂ / CH₄</span>
                 </div>
-                <div class="redox-rung-formula">\(\mathrm{CO}_2 + 4\mathrm{H}_2 \rightarrow \mathrm{CH}_4 \uparrow + 2\mathrm{H}_2\mathrm{O} \quad (\Delta G^\circ = -131\text{ kJ/mol})\)</div>
-                <div class="redox-rung-potential" style="color:#f43f5e;">Eh &lt; -200 mV</div>
+                <div class="redox-rung-content">
+                  <div class="redox-rung-title">
+                    <span>5. Methanogenesis</span>
+                    <span class="redox-guild-tag" style="background: rgba(244, 63, 94, 0.15); color: #fb7185;">Strict Anaerobic Methanogenic Archaea</span>
+                  </div>
+                  <div class="redox-rung-formula">
+                    \(\mathrm{CO}_2 + 4\mathrm{H}_2 \rightarrow \mathrm{CH}_4 \uparrow + 2\mathrm{H}_2\mathrm{O} \quad (\Delta G^\circ = -4\text{ kJ/mol } e^-, \quad E^\circ' = -0.24\text{ V})\)
+                  </div>
+                </div>
+                <div class="redox-rung-right">
+                  <div class="redox-rung-potential" style="color: #f43f5e;">Eh &lt; -200 mV</div>
+                  <span class="redox-rung-status-pill" style="background: rgba(244, 63, 94, 0.2); color: #fda4af;">● Active Pathway</span>
+                </div>
               </div>
             </div>
           </div>

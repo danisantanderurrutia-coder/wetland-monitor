@@ -575,13 +575,32 @@ class WetlandMonitorApp {
     const brandBtn = document.getElementById("brand-badge-click");
     if (brandBtn) {
       brandBtn.addEventListener("click", () => {
-        this.switchView("landing");
+        if (this.currentViewKey === "landing") {
+          this.switchView("soil_interface");
+        } else {
+          this.switchView("landing");
+        }
+        this.playUiAudioFeedback("click");
       });
       brandBtn.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          this.switchView("landing");
+          if (this.currentViewKey === "landing") {
+            this.switchView("soil_interface");
+          } else {
+            this.switchView("landing");
+          }
+          this.playUiAudioFeedback("click");
         }
+      });
+    }
+
+    const landingSeal = document.querySelector(".landing-seal-wrapper");
+    if (landingSeal) {
+      landingSeal.style.cursor = "pointer";
+      landingSeal.addEventListener("click", () => {
+        this.switchView("soil_interface");
+        this.playUiAudioFeedback("click");
       });
     }
 
@@ -607,6 +626,16 @@ class WetlandMonitorApp {
         modal.setAttribute("aria-hidden", "true");
       }
     };
+
+    // Wire header "Analytical Tools" jump button
+    const headerToolsBtn = document.getElementById("btn-header-tools");
+    if (headerToolsBtn) {
+      headerToolsBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.switchView("tools_general");
+        this.playUiAudioFeedback("click");
+      });
+    }
 
     // Wire all "How It Works" triggers across header, menu, and twin HUD
     const howItWorksBtn = document.getElementById("btn-header-how-it-works");
@@ -721,7 +750,8 @@ class WetlandMonitorApp {
       "gwp_uncertainties",
       "conclusions_outlook",
       "defense_agenda",
-      "classic_presentation"
+      "classic_presentation",
+      "tools_general"
     ];
 
     // Toggle Wallener project contextual nav bar (Scrolleable Carrusel)
@@ -839,6 +869,11 @@ class WetlandMonitorApp {
       brandBtn.classList.toggle("active-cover", viewKey === "landing" || viewKey === "thesis_cover");
     }
 
+    const headerToolsBtn = document.getElementById("btn-header-tools");
+    if (headerToolsBtn) {
+      headerToolsBtn.classList.toggle("active", viewKey === "tools_general");
+    }
+
     // Re-run Mermaid on pipeline/ec tabs (diagrams inside hidden panels need re-init)
     if (viewKey === "data_pipeline" || viewKey === "eddy_covariance") {
       if (typeof mermaid !== "undefined") {
@@ -876,36 +911,28 @@ class WetlandMonitorApp {
   // BIOGEOCHEMISTRY DRAINED / REWETTED STATE TOGGLE
   // ==========================================================================
   initBiogeoToggle() {
-    const btnDrained = document.getElementById("btn-biogeo-drained");
-    const btnRewetted = document.getElementById("btn-biogeo-rewetted");
-
-    if (btnDrained) {
-      btnDrained.addEventListener("click", () => {
-        this.setBiogeoState("drained");
+    const btns = document.querySelectorAll(".biogeo-toggle-btn");
+    btns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const state = btn.dataset.state || "drained";
+        this.setBiogeoState(state);
+        this.playUiAudioFeedback("click");
       });
-    }
-
-    if (btnRewetted) {
-      btnRewetted.addEventListener("click", () => {
-        this.setBiogeoState("rewetted");
-      });
-    }
+    });
   }
 
   setBiogeoState(state) {
-    const biogeoPanel = document.getElementById("view-biogeochemistry") || document.querySelector(".view-panel[data-view-id='biogeochemistry']");
-    const btnDrained = document.getElementById("btn-biogeo-drained");
-    const btnRewetted = document.getElementById("btn-biogeo-rewetted");
+    const panels = document.querySelectorAll("#view-biogeochemistry, #view-biogeochemistry-general, .view-panel[data-view-id*='biogeochemistry']");
+    const btns = document.querySelectorAll(".biogeo-toggle-btn");
 
-    if (biogeoPanel) {
-      biogeoPanel.classList.remove("state-drained", "state-rewetted");
-      biogeoPanel.classList.add(state === "rewetted" ? "state-rewetted" : "state-drained");
-    }
+    panels.forEach(panel => {
+      panel.classList.remove("state-drained", "state-rewetted");
+      panel.classList.add(state === "rewetted" ? "state-rewetted" : "state-drained");
+    });
 
-    if (btnDrained && btnRewetted) {
-      btnDrained.classList.toggle("active", state === "drained");
-      btnRewetted.classList.toggle("active", state === "rewetted");
-    }
+    btns.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.state === state);
+    });
   }
 
   // ==========================================================================
@@ -1979,7 +2006,7 @@ class WetlandMonitorApp {
 
   initUniversalLightbox() {
     const lightboxEl = document.getElementById("universal-figure-lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxImg = lightboxEl ? lightboxEl.querySelector(".lightbox-img") : null;
     const lightboxTitle = document.getElementById("lightbox-title");
     const lightboxCaption = document.getElementById("lightbox-caption-text");
     const lightboxBadge = document.getElementById("lightbox-badge");
@@ -1991,8 +2018,11 @@ class WetlandMonitorApp {
 
     const openLightbox = (src, title, caption, badgeText = "Empirical Figure") => {
       if (!src) return;
-      lightboxImg.src = src;
-      lightboxImg.classList.remove("zoomed");
+      const targetImg = lightboxEl.querySelector(".lightbox-img") || lightboxImg;
+      if (targetImg) {
+        targetImg.src = src;
+        targetImg.classList.remove("zoomed");
+      }
       if (stage) stage.classList.remove("is-zoomed");
       if (lightboxTitle) lightboxTitle.textContent = title || "Scientific Empirical Plot";
       if (lightboxCaption) lightboxCaption.textContent = caption || "High-frequency empirical observation and biophysical analysis from the Klimafarm Peatland Observatory.";
@@ -2004,7 +2034,8 @@ class WetlandMonitorApp {
     const closeLightbox = () => {
       lightboxEl.classList.remove("active");
       lightboxEl.setAttribute("aria-hidden", "true");
-      lightboxImg.classList.remove("zoomed");
+      const targetImg = lightboxEl.querySelector(".lightbox-img") || lightboxImg;
+      if (targetImg) targetImg.classList.remove("zoomed");
       if (stage) stage.classList.remove("is-zoomed");
     };
 
@@ -2022,7 +2053,9 @@ class WetlandMonitorApp {
 
     const toggleZoom = (e) => {
       if (e) e.stopPropagation();
-      const isZoomed = lightboxImg.classList.toggle("zoomed");
+      const targetImg = lightboxEl.querySelector(".lightbox-img") || lightboxImg;
+      if (!targetImg) return;
+      const isZoomed = targetImg.classList.toggle("zoomed");
       if (stage) stage.classList.toggle("is-zoomed", isZoomed);
     };
 
@@ -2056,6 +2089,11 @@ class WetlandMonitorApp {
       if (e.target.closest("#universal-figure-lightbox") || e.target.closest(".lightbox-btn")) return;
       if (e.target.closest(".hardware-card") || e.target.closest(".instrument-card")) return;
 
+      // Filter out brand logos and seals explicitly so they never trigger figure lightboxes
+      if (e.target.closest("#active-brand-logo-img, .landing-seal-img, .landing-seal-wrapper, .cover-logo-img, .no-zoom, .header-brand, .brand-icon-wrapper")) {
+        return;
+      }
+
       // 0. Check if clicked Carex rostrata botanical specimen in Digital Twin
       const plantTrigger = e.target.closest("#plant-cluster-prominent, #plant-cluster-center, #plant-cluster-right, .carex-botanical-twin, [data-plant-zoom], .plant-inspect-badge");
       if (plantTrigger) {
@@ -2068,14 +2106,26 @@ class WetlandMonitorApp {
         return;
       }
 
-      // 0b. Check if clicked Figure 20 in Biogeochemistry or Aims View, or Slide Figure Preview
-      const fig20Trigger = e.target.closest("#btn-zoom-biogeo-fig20, #wrap-fig20-zoom, #img-fig20-biogeo, #btn-zoom-aims-fig20, #aims-fig20-img-box, #img-aims-fig20");
+      // 0b. Check if clicked Figure 20 in Biogeochemistry, Aims View, or anywhere else
+      const fig20Trigger = e.target.closest("#btn-zoom-biogeo-fig20, #wrap-fig20-zoom, #img-fig20-biogeo, #btn-zoom-aims-fig20, #aims-fig20-img-box, #img-aims-fig20, .biogeo-fig20-img, .biogeo-fig20-container");
       if (fig20Trigger) {
         const fig20Src = "assets/Peatlands_Biogeochemical_Processes_Fig20.png";
         const fig20Title = "Figure 20: Peatlands Biogeochemical Processes";
         const fig20Caption = "Conceptual model of greenhouse gas flux control in wetland soils. Carbon enters ecosystems through plant photosynthesis and is incorporated into biomass, which decomposes via aerobic respiration in oxygen-rich surface soils to produce CO₂. In water-saturated, oxygen-depleted layers, anaerobic decomposition takes over, where fermentative bacteria first break down organic matter into simpler substrates. These substrates are then used in alternative respiratory pathways like denitrification, iron reduction, and sulfate reduction until methanogenic archaea take over to produce methane (CH₄). Before escaping into the atmosphere via diffusion, bubbling (ebullition), or plant tissue transport (vascular aerenchyma), a portion of this methane is consumed by specialized bacteria and archaea through both aerobic and anaerobic oxidation processes. (Official Thesis Draft Figure 20, Santander et al., 2026)";
         openLightbox(fig20Src, fig20Title, fig20Caption, "Thesis Figure 20 • Conceptual Model");
         return;
+      }
+
+      // 0c. Check if clicked micro-scope cards in Digital Twin overlays
+      const microTrigger = e.target.closest(".scope-micro-card");
+      if (microTrigger) {
+        const img = microTrigger.querySelector("img");
+        if (img && img.src) {
+          const title = microTrigger.querySelector("strong")?.textContent.trim() || img.alt || "Microscopic Specimen";
+          const desc = microTrigger.textContent.replace(title, "").trim() || "High-resolution micrograph specimen.";
+          openLightbox(img.src, title, desc, "High-Res Specimen");
+          return;
+        }
       }
 
       const slideFigBox = e.target.closest(".slide-fig-preview-box");
@@ -2130,7 +2180,11 @@ class WetlandMonitorApp {
       }
 
       if (targetImg) {
-        if (targetImg.id === "active-brand-logo-img" || targetImg.classList.contains("cover-logo-img") || targetImg.classList.contains("no-zoom")) {
+        if (targetImg.id === "active-brand-logo-img" ||
+            targetImg.classList.contains("landing-seal-img") ||
+            targetImg.classList.contains("cover-logo-img") ||
+            targetImg.classList.contains("no-zoom") ||
+            targetImg.closest(".header-brand, .landing-seal-wrapper, .brand-icon-wrapper")) {
           return;
         }
 
@@ -2444,6 +2498,15 @@ class WetlandMonitorApp {
         "SiteMap_SoilCarbon",
         "Peatlands_Biogeochemical_Processes_Fig20",
         "wetland_carex_plate",
+        "methanogen_archaea_micro",
+        "peat_plowpan",
+        "actors",
+        "enzymes",
+        "fermenters",
+        "acetogens",
+        "archaea",
+        "methanotrophs",
+        "plants",
         "conclusions",
         "sprites",
         "logo"
