@@ -73,22 +73,270 @@ body[data-theme="daylight"] .landing-hero-card {
 }
 
 body[data-theme="daylight"] .landing-card,
+body.theme-daylight .landing-card,
 body[data-theme="daylight"] .general-method-card,
 body[data-theme="daylight"] .presentation-card {
   background: #ffffff !important;
-  border-color: #cbd5e1 !important;
+  border: 1.5px solid #cbd5e1 !important;
   color: #0f172a !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
 }
 
+body[data-theme="daylight"] .landing-card:hover,
+body.theme-daylight .landing-card:hover {
+  border-color: var(--card-hover-border, #0284c7) !important;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.14), 0 0 20px var(--card-hover-glow, rgba(2, 132, 199, 0.2)) !important;
+}
+
+/* Featured Twin Hero Card in Daylight */
+body[data-theme="daylight"] .landing-card.card-featured-twin,
+body.theme-daylight .landing-card.card-featured-twin {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #ecfdf5 100%) !important;
+  border: 2px solid #0284c7 !important;
+  box-shadow: 0 12px 35px rgba(2, 132, 199, 0.14) !important;
+}
+
+/* Featured Wallener Card in Daylight */
+body[data-theme="daylight"] .landing-card.card-featured-wallener,
+body.theme-daylight .landing-card.card-featured-wallener {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #ecfeff 100%) !important;
+  border: 2px solid #059669 !important;
+  box-shadow: 0 12px 35px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* Featured Pipeline Hub Card in Daylight */
+body[data-theme="daylight"] .landing-card.card-featured-pipeline-hub,
+body.theme-daylight .landing-card.card-featured-pipeline-hub {
+  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #f0f9ff 100%) !important;
+  border: 2px solid #7c3aed !important;
+  box-shadow: 0 12px 35px rgba(124, 58, 237, 0.12) !important;
+}
+
+/* Individual card daylight borders */
+body[data-theme="daylight"] .landing-card.card-landing-tools,
+body.theme-daylight .landing-card.card-landing-tools {
+  border-color: #7dd3fc !important;
+}
+body[data-theme="daylight"] .landing-card.card-landing-satellites,
+body.theme-daylight .landing-card.card-landing-satellites {
+  border-color: #c4b5fd !important;
+}
+body[data-theme="daylight"] .landing-card.card-landing-biogeo,
+body.theme-daylight .landing-card.card-landing-biogeo {
+  border-color: #fde68a !important;
+}
+body[data-theme="daylight"] .landing-card.card-landing-carbon,
+body.theme-daylight .landing-card.card-landing-carbon {
+  border-color: #fecdd3 !important;
+}
+
+/* Card Titles & Descriptions in Daylight */
 body[data-theme="daylight"] .landing-card-title,
+body.theme-daylight .landing-card-title,
 body[data-theme="daylight"] .presentation-title,
 body[data-theme="daylight"] .thesis-plot-title {
   color: #0f172a !important;
 }
 
 body[data-theme="daylight"] .landing-card-desc,
+body.theme-daylight .landing-card-desc,
 body[data-theme="daylight"] .general-method-card-desc {
   color: #334155 !important;
+}
+
+/* HIGH-CONTRAST GIS BUTTON IN DAYLIGHT (Fixes white button with pale green text!) */
+body[data-theme="daylight"] .landing-gis-btn,
+body.theme-daylight .landing-gis-btn {
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+  border: 2px solid #059669 !important;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.22) !important;
+  font-weight: 800 !important;
+}
+
+body[data-theme="daylight"] .landing-gis-btn:hover,
+body.theme-daylight .landing-gis-btn:hover {
+  background: #059669 !important;
+  color: #ffffff !important;
+  border-color: #047857 !important;
+  box-shadow: 0 8px 24px rgba(5, 150, 105, 0.4) !important;
+}
+
+body[data-theme="daylight"] .landing-gis-btn .gis-btn-badge,
+body.theme-daylight .landing-gis-btn .gis-btn-badge {
+  background: #059669 !important;
+  color: #ffffff !important;
+}
+
+body[data-theme="daylight"] .landing-gis-btn:hover .gis-btn-badge,
+body.theme-daylight .landing-gis-btn:hover .gis-btn-badge {
+  background: #ffffff !important;
+  color: #065f46 !important;
+}
+
+/* Wallener Action Button in Daylight */
+body[data-theme="daylight"] .landing-wallener-btn,
+body.theme-daylight .landing-wallener-btn {
+  background: linear-gradient(135deg, #065f46 0%, #059669 50%, #0891b2 100%) !important;
+  color: #ffffff !important;
+  border: 1.5px solid #047857 !important;
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35) !important;
+}
+
+/* Tag Pills in Daylight */
+body[data-theme="daylight"] .tag-pill,
+body.theme-daylight .tag-pill {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+body[data-theme="daylight"] .tag-pill:hover,
+body.theme-daylight .tag-pill:hover {
+  background: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+  color: #0284c7 !important;
+}
+
+body[data-theme="daylight"] .tag-pill.pill-blue,
+body.theme-daylight .tag-pill.pill-blue {
+  background: #e0f2fe !important;
+  border-color: #7dd3fc !important;
+  color: #0369a1 !important;
+}
+body[data-theme="daylight"] .tag-pill.pill-green,
+body.theme-daylight .tag-pill.pill-green {
+  background: #dcfce7 !important;
+  border-color: #86efac !important;
+  color: #15803d !important;
+}
+body[data-theme="daylight"] .tag-pill.pill-cyan,
+body.theme-daylight .tag-pill.pill-cyan {
+  background: #cffafe !important;
+  border-color: #67e8f9 !important;
+  color: #0e7490 !important;
+}
+body[data-theme="daylight"] .tag-pill.pill-amber,
+body.theme-daylight .tag-pill.pill-amber {
+  background: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+}
+body[data-theme="daylight"] .tag-pill.pill-rose,
+body.theme-daylight .tag-pill.pill-rose {
+  background: #ffe4e6 !important;
+  border-color: #fecdd3 !important;
+  color: #be123c !important;
+}
+body[data-theme="daylight"] .tag-pill.pill-violet,
+body.theme-daylight .tag-pill.pill-violet {
+  background: #f3e8ff !important;
+  border-color: #d8b4fe !important;
+  color: #6b21a8 !important;
+}
+
+/* Badges in Daylight */
+body[data-theme="daylight"] .landing-card-badge,
+body.theme-daylight .landing-card-badge {
+  background: #f1f5f9 !important;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1 !important;
+}
+body[data-theme="daylight"] .landing-card-badge.badge-blue,
+body.theme-daylight .landing-card-badge.badge-blue {
+  background: #e0f2fe !important;
+  color: #0369a1 !important;
+  border: 1.5px solid #7dd3fc !important;
+}
+body[data-theme="daylight"] .landing-card-badge.badge-green,
+body.theme-daylight .landing-card-badge.badge-green {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1.5px solid #86efac !important;
+}
+body[data-theme="daylight"] .landing-card-badge.badge-cyan,
+body.theme-daylight .landing-card-badge.badge-cyan {
+  background: #cffafe !important;
+  color: #0e7490 !important;
+  border: 1.5px solid #67e8f9 !important;
+}
+body[data-theme="daylight"] .landing-card-badge.badge-amber,
+body.theme-daylight .landing-card-badge.badge-amber {
+  background: #fef3c7 !important;
+  color: #b45309 !important;
+  border: 1.5px solid #fde68a !important;
+}
+body[data-theme="daylight"] .landing-card-badge.badge-rose,
+body.theme-daylight .landing-card-badge.badge-rose {
+  background: #ffe4e6 !important;
+  color: #be123c !important;
+  border: 1.5px solid #fecdd3 !important;
+}
+body[data-theme="daylight"] .landing-card-badge.badge-violet,
+body.theme-daylight .landing-card-badge.badge-violet {
+  background: #f3e8ff !important;
+  color: #6b21a8 !important;
+  border: 1.5px solid #d8b4fe !important;
+}
+
+/* Card Footers in Daylight */
+body[data-theme="daylight"] .landing-card-footer,
+body.theme-daylight .landing-card-footer {
+  border-top: 1px solid #e2e8f0 !important;
+  color: #0284c7 !important;
+}
+body[data-theme="daylight"] .landing-card-arrow,
+body.theme-daylight .landing-card-arrow {
+  color: #0284c7 !important;
+}
+
+body[data-theme="daylight"] .landing-card.card-landing-tools .landing-card-footer,
+body.theme-daylight .landing-card.card-landing-tools .landing-card-footer {
+  color: #0284c7 !important;
+}
+body[data-theme="daylight"] .landing-card.card-landing-satellites .landing-card-footer,
+body.theme-daylight .landing-card.card-landing-satellites .landing-card-footer {
+  color: #6d28d9 !important;
+}
+body[data-theme="daylight"] .landing-card.card-landing-biogeo .landing-card-footer,
+body.theme-daylight .landing-card.card-landing-biogeo .landing-card-footer {
+  color: #b45309 !important;
+}
+body[data-theme="daylight"] .landing-card.card-landing-carbon .landing-card-footer,
+body.theme-daylight .landing-card.card-landing-carbon .landing-card-footer {
+  color: #be123c !important;
+}
+body[data-theme="daylight"] .landing-card.card-featured-wallener .landing-card-footer,
+body.theme-daylight .landing-card.card-featured-wallener .landing-card-footer {
+  color: #047857 !important;
+}
+body[data-theme="daylight"] .landing-card.card-featured-twin .landing-card-footer,
+body.theme-daylight .landing-card.card-featured-twin .landing-card-footer {
+  color: #0284c7 !important;
+}
+
+/* Embargo Pill & Footer Label */
+body[data-theme="daylight"] .wallener-embargo-pill,
+body.theme-daylight .wallener-embargo-pill {
+  background: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+}
+body[data-theme="daylight"] .wallener-footer-label,
+body.theme-daylight .wallener-footer-label {
+  color: #047857 !important;
+}
+
+/* Author Box in Daylight */
+body[data-theme="daylight"] .btn-author-portfolio,
+body.theme-daylight .btn-author-portfolio {
+  background: #e0f2fe !important;
+  border-color: #7dd3fc !important;
+  color: #0369a1 !important;
+}
+body[data-theme="daylight"] .landing-author-box .author-role-badge,
+body.theme-daylight .landing-author-box .author-role-badge {
+  color: #0284c7 !important;
 }
 
 /* C. LIVING MOSS / BIOPHILIC (Deep Peat Forest & Lichen Lime) */
