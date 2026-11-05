@@ -1,0 +1,732 @@
+/* ==========================================================================
+   SOIL & PLANT BIOPHYSICS LAB (Interactive Canvas & Mechanistic Sandbox)
+   Styled with Scientific Blueprint & JetBrains Engineering Aesthetics
+   ========================================================================== */
+
+.soil-plant-lab-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 24px 20px 80px 20px;
+  color: #F8FAFC;
+}
+
+/* --------------------------------------------------------------------------
+   Hero & Phenomenon Selection Header
+   -------------------------------------------------------------------------- */
+.spl-hero-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85));
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 14px;
+  padding: 22px 26px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.spl-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.spl-lang-toggle-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(2, 6, 23, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.spl-btn-lang {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spl-btn-lang:hover {
+  color: #FFFFFF;
+}
+
+.spl-btn-lang.active {
+  background: #0284C7;
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.spl-hero-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.spl-badge-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spl-badge-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.spl-badge-sub {
+  color: #94A3B8;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.spl-main-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.spl-main-subtitle {
+  font-size: 0.92rem;
+  color: #94A3B8;
+  max-width: 900px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Phenomenon Selector Tabs */
+.spl-phenomena-nav {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  padding-top: 16px;
+}
+
+/* Plant Species Selector Bar */
+.spl-species-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 10px;
+  padding: 8px 14px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.spl-species-title {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #34D399;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.spl-species-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.spl-species-btn {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #CBD5E1;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.80rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spl-species-btn:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #34D399;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.spl-species-btn.active {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.35), rgba(16, 185, 129, 0.25));
+  border-color: #34D399;
+  color: #34D399;
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.3);
+}
+
+.spl-species-name {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.spl-species-trait {
+  font-size: 0.68rem;
+  color: #94A3B8;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.spl-phenomenon-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #CBD5E1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spl-phenomenon-tab:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.spl-phenomenon-tab.active {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.3), rgba(16, 185, 129, 0.2));
+  border-color: #38BDF8;
+  color: #38BDF8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+}
+
+.spl-phenomenon-icon {
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Workbench Layout: Left Canvas Stage + Right Control HUD
+   -------------------------------------------------------------------------- */
+.spl-workbench-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+@media (max-width: 1080px) {
+  .spl-workbench-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Canvas Stage */
+.spl-stage-card {
+  background: #0B1120;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.spl-stage-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 10px 18px;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.spl-stage-status-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spl-live-pulse {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #34D399;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+}
+
+.spl-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: splPulseAnim 1.8s infinite;
+}
+
+@keyframes splPulseAnim {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.spl-clock-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: #94A3B8;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spl-sim-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spl-btn-ctrl {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #F8FAFC;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.spl-btn-ctrl:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38BDF8;
+  color: #38BDF8;
+}
+
+.spl-btn-ctrl.active {
+  background: #0284C7;
+  border-color: #38BDF8;
+  color: #FFFFFF;
+}
+
+/* Canvas Viewport */
+.spl-canvas-viewport {
+  width: 100%;
+  min-height: 400px;
+  background: #070B14;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spl-canvas-viewport canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Live Telemetry Bar beneath Canvas */
+.spl-telemetry-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.95);
+  border-top: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 14px 18px;
+}
+
+.spl-telemetry-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: rgba(2, 6, 23, 0.6);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.spl-telemetry-label {
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.spl-telemetry-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #38BDF8;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.spl-telemetry-unit {
+  font-size: 0.72rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.spl-telemetry-state {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.spl-state-indicator {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #34D399;
+}
+
+/* --------------------------------------------------------------------------
+   Right Control Panel (Sliders & Presets)
+   -------------------------------------------------------------------------- */
+.spl-control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.spl-panel-box {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.spl-panel-heading {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  padding-bottom: 8px;
+}
+
+/* Preset Buttons */
+.spl-preset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spl-preset-btn {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #E2E8F0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.spl-preset-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38BDF8;
+  color: #38BDF8;
+  transform: translateX(3px);
+}
+
+.spl-preset-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.70rem;
+  color: #94A3B8;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Sliders List */
+.spl-sliders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.spl-slider-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.spl-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.80rem;
+}
+
+.spl-slider-label {
+  font-weight: 600;
+  color: #CBD5E1;
+}
+
+.spl-slider-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: #38BDF8;
+  background: rgba(56, 189, 248, 0.12);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+}
+
+.spl-slider-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #1E293B;
+  outline: none;
+  cursor: pointer;
+}
+
+.spl-slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #38BDF8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.spl-slider-range::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* --------------------------------------------------------------------------
+   Mathematical Foundations Section (KaTeX Dual Blocks)
+   -------------------------------------------------------------------------- */
+.spl-math-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .spl-math-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.spl-math-card {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+
+.spl-math-title {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #38BDF8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+  padding-bottom: 8px;
+}
+
+.spl-formula-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.spl-formula-box {
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.spl-formula-desc {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94A3B8;
+  margin-bottom: 6px;
+}
+
+.spl-formula-render {
+  font-size: 1.05rem;
+  color: #FFFFFF;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Diagnostic Formative Challenge (Quiz Section)
+   -------------------------------------------------------------------------- */
+.spl-challenge-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 12px;
+  padding: 22px 26px;
+}
+
+.spl-challenge-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.spl-challenge-badge {
+  background: rgba(168, 85, 247, 0.2);
+  color: #C084FC;
+  border: 1px solid rgba(192, 132, 252, 0.4);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.spl-challenge-question {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.spl-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .spl-options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.spl-option-btn {
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #E2E8F0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.15s ease;
+}
+
+.spl-option-btn:hover {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: #A855F7;
+  color: #FFFFFF;
+}
+
+.spl-option-btn.correct {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: #10B981;
+  color: #34D399;
+}
+
+.spl-option-btn.incorrect {
+  background: rgba(244, 63, 94, 0.25);
+  border-color: #F43F5E;
+  color: #FB7185;
+}
+
+.spl-option-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.spl-feedback-card {
+  margin-top: 14px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  display: none;
+}
+
+.spl-feedback-card.correct {
+  display: block;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10B981;
+  color: #D1FAE5;
+}
+
+.spl-feedback-card.incorrect {
+  display: block;
+  background: rgba(244, 63, 94, 0.15);
+  border: 1px solid #F43F5E;
+  color: #FFE4E6;
+}

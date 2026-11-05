@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="css/presentation_mode.css?v=6.0">
   <link rel="stylesheet" href="css/thesis_explorer.css?v=2.6.0">
   <link rel="stylesheet" href="css/classic_presentation.css?v=2.4.2">
+  <link rel="stylesheet" href="css/soil_plant_lab.css?v=1.0">
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true, theme: "dark"});</script>
   
@@ -286,6 +287,16 @@
                 <span class="carrusel-card-sub">Calculators &amp; Split Slider</span>
               </div>
             </div>
+
+            <!-- 14. Soil & Plant Biophysics Lab -->
+            <div class="carrusel-card tab-btn" data-view="soil_plant_lab" data-wallener-nav="soil_plant_lab" id="wallener-tab-soil-plant-lab">
+              <span class="carrusel-card-idx">14</span>
+              <span class="carrusel-card-icon">🔬</span>
+              <div class="carrusel-card-body">
+                <span class="carrusel-card-name">Soil &amp; Plant Lab</span>
+                <span class="carrusel-card-sub">Micro-Physics &amp; SPAC</span>
+              </div>
+            </div>
           </div>
 
           <button type="button" class="carrusel-nav-arrow arrow-right" id="btn-wallener-slide-next" title="Scroll right">❯</button>
@@ -450,6 +461,30 @@
               <div class="landing-card-footer">
                 <span>Launch Analytical Tools &amp; Slider</span>
                 <span class="landing-card-arrow">➔</span>
+              </div>
+            </div>
+
+            <!-- Card 3B: Soil & Plant Biophysics Lab -->
+            <div class="landing-card card-landing-lab" data-nav-target="soil_plant_lab" style="border-color: rgba(52, 211, 153, 0.4); box-shadow: 0 4px 20px -5px rgba(16, 185, 129, 0.25);">
+              <div class="landing-card-header">
+                <span class="landing-card-icon">🔬</span>
+                <span class="landing-card-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4);">Micro-Physics Simulation</span>
+              </div>
+              <div class="landing-card-body">
+                <h3 class="landing-card-title">Soil &amp; Plant Biophysics Lab</h3>
+                <p class="landing-card-desc">
+                  Interactive real-time 60 FPS simulations of plant-soil micro-physics: SPAC water potential gradients, xylem cavitation &amp; embolism thresholds (Weibull), Van Genuchten capillary pore retention, and Green-Ampt infiltration fronts.
+                </p>
+                <div class="landing-tag-pills">
+                  <span class="tag-pill pill-green">SPAC &amp; Stomata</span>
+                  <span class="tag-pill pill-rose">Xylem Cavitation (P₅₀)</span>
+                  <span class="tag-pill pill-blue">Van Genuchten θ(h)</span>
+                  <span class="tag-pill pill-amber">Green-Ampt Infiltration</span>
+                </div>
+              </div>
+              <div class="landing-card-footer">
+                <span style="color: #34d399; font-weight: 700;">Enter Soil &amp; Plant Physics Lab</span>
+                <span class="landing-card-arrow" style="color: #34d399;">➔</span>
               </div>
             </div>
 
@@ -1262,6 +1297,155 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- SOIL & PLANT BIOPHYSICS LAB (Interactive Canvas Sandbox) -->
+      <section class="view-panel" data-view-id="soil_plant_lab" id="view-soil-plant-lab">
+        <div class="soil-plant-lab-container">
+          
+          <!-- Hero & Phenomenon Selector -->
+          <div class="spl-hero-card">
+            <div class="spl-hero-header">
+              <div class="spl-hero-title-group">
+                <div class="spl-badge-strip">
+                  <span class="spl-badge-primary" id="spl-badge-primary">🌱 Ecohidrología &amp; SPAC</span>
+                  <span class="spl-badge-sub" id="spl-badge-sub">PIAD Engineering &amp; Mechanistic Bench</span>
+                </div>
+                <h2 class="spl-main-title" id="spl-main-title">Continuo Suelo-Planta-Atmósfera (SPAC) &amp; Cavitación en Xilema</h2>
+                <p class="spl-main-subtitle" id="spl-main-subtitle">
+                  Simulación del gradiente de potencial hídrico por analogía resistiva de Ohm, regulación estomática por VPD y umbral crítico de embolismo (P50).
+                </p>
+              </div>
+
+              <!-- Language Selector Toggle (EN | ES) -->
+              <div class="spl-lang-toggle-wrap" title="Switch Language / Cambiar Idioma">
+                <button type="button" class="spl-btn-lang" data-spl-lang="en">EN</button>
+                <button type="button" class="spl-btn-lang active" data-spl-lang="es">ES</button>
+              </div>
+            </div>
+
+            <!-- Phenomenon Selector Tabs -->
+            <div class="spl-phenomena-nav">
+              <button type="button" class="spl-phenomenon-tab active" data-problem-id="spac_cavitation">
+                <span class="spl-phenomenon-icon">🌱</span>
+                <span>1. Continuo SPAC &amp; Cavitación</span>
+              </button>
+              <button type="button" class="spl-phenomenon-tab" data-problem-id="van_genuchten">
+                <span class="spl-phenomenon-icon">🕳️</span>
+                <span>2. Retención Capilar (Van Genuchten)</span>
+              </button>
+              <button type="button" class="spl-phenomenon-tab" data-problem-id="green_ampt">
+                <span class="spl-phenomenon-icon">🌧️</span>
+                <span>3. Infiltración &amp; Compactación</span>
+              </button>
+              <button type="button" class="spl-phenomenon-tab" data-problem-id="redox_enzymic">
+                <span class="spl-phenomenon-icon">⚡</span>
+                <span>4. Escalera Redox &amp; Latch Enzimático</span>
+              </button>
+            </div>
+
+            <!-- Plant Species Selector Bar -->
+            <div class="spl-species-bar">
+              <span class="spl-species-title">🌿 ESPECIE VEGETAL:</span>
+              <div class="spl-species-pills" id="spl-species-pills">
+                <!-- Populated dynamically by SoilPlantLab -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Workbench Grid: Left Canvas Stage + Right Control HUD -->
+          <div class="spl-workbench-grid">
+            
+            <!-- Left: Interactive Canvas Stage & Live Telemetry -->
+            <div class="spl-stage-card">
+              <div class="spl-stage-topbar">
+                <div class="spl-stage-status-group">
+                  <div class="spl-live-pulse">
+                    <span class="spl-pulse-dot"></span>
+                    <span>60 FPS SIMULADOR EN VIVO</span>
+                  </div>
+                  <span class="spl-clock-display" id="spl-sim-clock">T = 0.0s</span>
+                </div>
+                <div class="spl-sim-controls">
+                  <button type="button" class="spl-btn-ctrl active" id="spl-btn-play">⏸ Pause</button>
+                  <button type="button" class="spl-btn-ctrl" id="spl-btn-reset">↺ Reset</button>
+                  <button type="button" class="spl-btn-ctrl" id="spl-btn-speed">1.0x</button>
+                </div>
+              </div>
+
+              <!-- Canvas Viewport -->
+              <div class="spl-canvas-viewport">
+                <canvas id="spl-simulation-canvas" width="840" height="380"></canvas>
+              </div>
+
+              <!-- Live Telemetry Bar beneath Canvas -->
+              <div class="spl-telemetry-bar" id="spl-telemetry-bar">
+                <!-- Dynamically populated by SoilPlantLab -->
+              </div>
+            </div>
+
+            <!-- Right: Controls, Sliders & Canonic Presets -->
+            <div class="spl-control-panel">
+              <div class="spl-panel-box">
+                <div class="spl-panel-heading">
+                  <span>⚡</span> <span>Estados Canónicos (Presets)</span>
+                </div>
+                <div class="spl-preset-list" id="spl-presets-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <div class="spl-panel-box">
+                <div class="spl-panel-heading">
+                  <span>🎛️</span> <span>Parámetros Biofísicos</span>
+                </div>
+                <div class="spl-sliders-list" id="spl-sliders-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+          </div> <!-- /.spl-workbench-grid -->
+
+          <!-- Mathematical Foundations (Dual KaTeX Formulations) -->
+          <div class="spl-math-section">
+            <div class="spl-math-card">
+              <div class="spl-math-title">
+                <span>📐</span> <span>1. Formulación Algebraica &amp; Resistiva</span>
+              </div>
+              <div class="spl-formula-list" id="spl-algebra-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="spl-math-card">
+              <div class="spl-math-title">
+                <span>∫</span> <span>2. Conexión con EDOs &amp; EDPs</span>
+              </div>
+              <div class="spl-formula-list" id="spl-calculus-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Diagnostic Formative Challenge (Quiz Section) -->
+          <div class="spl-challenge-card">
+            <div class="spl-challenge-header">
+              <span class="spl-challenge-badge">Desafío Analítico</span>
+              <span style="font-size: 0.82rem; color: #94A3B8; font-weight: 600;">Verificación Conceptual &amp; Cuantitativa</span>
+            </div>
+            <div class="spl-challenge-question" id="spl-quiz-question">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="spl-options-grid" id="spl-quiz-options">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="spl-feedback-card" id="spl-quiz-feedback">
+              <!-- Dynamically populated on answer -->
+            </div>
+          </div>
+
+        </div> <!-- /.soil-plant-lab-container -->
       </section>
 
       <!-- 4. GENERAL VIEW: SATELLITES & REMOTE SENSING -->
@@ -2675,6 +2859,9 @@
 
               <!-- 7. Lab Sandbox Toggle & Educational Help Buttons -->
               <div class="hud-sandbox-group" style="display: flex; gap: 6px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 8px;">
+                <button type="button" class="preset-pill" id="btn-jump-micro-lab" data-nav-target="soil_plant_lab" title="Launch Interactive Soil & Plant Physics Lab" style="display: flex; align-items: center; gap: 4px; padding: 5px 12px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: linear-gradient(135deg, #059669, #047857); color: #ffffff; border: 1px solid #34d399; box-shadow: 0 0 10px rgba(52, 211, 153, 0.4); transition: all 0.2s;">
+                  <span>🌱</span> <span>Micro-Lab SPAC</span>
+                </button>
                 <button type="button" class="preset-pill active" id="btn-open-lab-sandbox" title="Open Advanced Biophysical Lab Sandbox" style="display: flex; align-items: center; gap: 5px; padding: 5px 12px; font-weight: 800; font-size: 0.76rem; border-radius: 6px; cursor: pointer; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: 1px solid #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); transition: all 0.2s;">
                   <span>🔬</span> <span>Lab Bench</span>
                 </button>

@@ -16,6 +16,7 @@ import { DigitalTwinSimulationEngine } from "./digital_twin_engine.js?v=8.0";
 import { PITCH_TRANSLATIONS_ES } from "./pitch_translations_es.js?v=7.0";
 import { WetlandTwinSandbox } from "./twin_sandbox.js?v=1.0";
 import { InteractiveSuite } from "./interactive_tools.js?v=8.0";
+import { SoilPlantLab } from "./soil_plant_lab.js";
 
 export const VIEW_SLUGS = {
   landing: "landing",
@@ -33,6 +34,7 @@ export const VIEW_SLUGS = {
   gwp_uncertainties: "uncertainties",
   conclusions_outlook: "conclusions",
   tools_general: "tools",
+  soil_plant_lab: "lab",
   satellites_general: "satellites",
   biogeochemistry_general: "biogeochemistry-general",
   carbon_general: "carbon-accounting",
@@ -91,6 +93,10 @@ export const SLUG_TO_VIEW = {
   tools: "tools_general",
   "tools-general": "tools_general",
   tools_general: "tools_general",
+  lab: "soil_plant_lab",
+  "soil-plant-lab": "soil_plant_lab",
+  soil_plant_lab: "soil_plant_lab",
+  spac: "soil_plant_lab",
   carbon: "carbon_general",
   "carbon-accounting": "carbon_general",
   "carbon-general": "carbon_general",
@@ -166,6 +172,11 @@ class WetlandMonitorApp {
     // Initialize Interactive Expansion Suite (4-Theme Coordinator, Command Palette, Sliders, Redox Simulator, 3D Tilt)
     this.interactiveSuite = new InteractiveSuite(this);
     this.interactiveSuite.init();
+
+    // Initialize Soil & Plant Biophysics Lab (Micro-Physics & SPAC)
+    this.soilPlantLab = new SoilPlantLab(this);
+    window.soilPlantLab = this.soilPlantLab;
+    this.soilPlantLab.initDOM();
 
     // 3. Set branding logo to "Stratigraphy & Probes"
     this.initLogo();
@@ -638,6 +649,16 @@ class WetlandMonitorApp {
       });
     }
 
+    // Wire HUD Micro-Lab jump button
+    const btnJumpLab = document.getElementById("btn-jump-micro-lab");
+    if (btnJumpLab) {
+      btnJumpLab.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.switchView("soil_plant_lab");
+        this.playUiAudioFeedback("click");
+      });
+    }
+
     // Wire all "How It Works" triggers across header, menu, and twin HUD
     const howItWorksBtn = document.getElementById("btn-header-how-it-works");
     if (howItWorksBtn) howItWorksBtn.addEventListener("click", (e) => { e.preventDefault(); window.openHowItWorks(); });
@@ -752,7 +773,8 @@ class WetlandMonitorApp {
       "conclusions_outlook",
       "defense_agenda",
       "classic_presentation",
-      "tools_general"
+      "tools_general",
+      "soil_plant_lab"
     ];
 
     // Toggle Wallener project contextual nav bar (Scrolleable Carrusel)
@@ -838,6 +860,16 @@ class WetlandMonitorApp {
     document.querySelectorAll(".view-panel").forEach(panel => {
       panel.classList.toggle("active", panel.dataset.viewId === viewKey);
     });
+
+    // Control Soil & Plant Lab Animation Loop & KaTeX
+    if (this.soilPlantLab) {
+      if (viewKey === "soil_plant_lab") {
+        this.soilPlantLab.resumeLoop();
+        setTimeout(() => this.soilPlantLab.renderKaTeX(), 80);
+      } else {
+        this.soilPlantLab.pauseLoop();
+      }
+    }
 
     // Scroll window and active view panel to top
     window.scrollTo({ top: 0, behavior: "smooth" });
