@@ -1,11 +1,12 @@
-# 🌿 PEAT-TWIN: Interactive Biophysical Wetland & Peatland Simulator
+# 🌿 Wetland Monitor: Multi-Scale Wetland Platform &amp; PEAT-TWIN Simulator
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success?style=for-the-badge&logo=github)](https://danisantanderurrutia-coder.github.io/wetland-monitor/)
 [![Institution](https://img.shields.io/badge/Institution-CAU%20Kiel-003366?style=for-the-badge)](https://www.uni-kiel.de/)
 [![Faculty](https://img.shields.io/badge/Faculty-Agricultural%20%26%20Nutritional%20Sciences-2e7d32?style=for-the-badge)](https://www.agrar.uni-kiel.de/)
 
-**Product:** PEAT-TWIN (Universal Peatland Digital Twin & Restoration Simulator)  
-**Lead Modeler & System Architect:** Daniel Sebastián Santander Urrutia  
+**Platform:** Wetland Monitor (Multi-Scale Wetland Monitoring &amp; Biophysical Digital Twin)  
+**Simulation Engine:** PEAT-TWIN (Universal Peatland Biophysical Simulator)  
+**Lead Modeler &amp; System Architect:** Daniel Sebastián Santander Urrutia  
 **Scientific Supervision:** Prof. Martin Komainda Ph.D., Sebastian Jordan Ph.D.  
 **Validation Testbed:** Wallener Au Peatland Observatory, Schleswig-Holstein, Northern Germany  
 
